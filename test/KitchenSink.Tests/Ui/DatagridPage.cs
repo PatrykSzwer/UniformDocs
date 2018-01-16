@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Linq;
@@ -18,22 +17,22 @@ namespace KitchenSink.Tests.Ui
 
         public bool CheckTableVisible()
         {
-            bool isHotTableVisible = GetHtCore().Displayed;
-
-            return isHotTableVisible;
+            return GetHotTableShadowRoot().FindElement(By.ClassName("htCore")).Displayed;
         }
 
-        public long GetTableRowsCount()
+        public int GetTableRowsCount()
         {
-            var tableRowsCount = GetHtCore().FindElements(By.XPath("tbody//tr")).Count;
+            return GetHotTableShadowRoot().FindElement(By.ClassName("htCore")).FindElements(By.XPath("tbody//tr")).Count;
+        }
 
-            return tableRowsCount;
+        public IWebElement GetHotTableShadowRoot()
+        {
+            return ExpandShadowRoot(Driver.FindElement(By.XPath("//hot-table")));
         }
 
         public IReadOnlyCollection<IWebElement> GetCellsByText(string searchText)
         {
-            var cells = GetHtCore().FindElements(By.XPath($"tbody//tr//td[text() = '{searchText}']"));
-            return cells;
+            return GetHotTableShadowRoot().FindElement(By.ClassName("htCore")).FindElements(By.XPath($"tbody//tr//td[text() = '{searchText}']"));
         }
 
         public int GetCatsCount()
@@ -50,7 +49,7 @@ namespace KitchenSink.Tests.Ui
         {
             var td = GetCellsByText(searchText).First();
             DblClickOn(td);
-            var input = GetShadowElementByQuerySelector(By.XPath("//hot-table"), "textarea.handsontableInput");
+            var input = GetHotTableShadowRoot().FindElement(By.CssSelector("textarea.handsontableInput"));
             input.Clear();
             input.SendKeys(newText);
             input.SendKeys(Keys.Enter);
@@ -59,11 +58,6 @@ namespace KitchenSink.Tests.Ui
         public void AddPet()
         {
             ClickOn(AddPetButton);
-        }
-
-        private IWebElement GetHtCore()
-        {
-            return GetShadowElementByQuerySelector(By.XPath("//hot-table"), ".htCore");
         }
     }
 }
