@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "hot-table": "^0.7.0",
-    "juicy-markdown": "~1.0.0",
+    "marked-element": "^2.3.3",
     "paper-item": "PolymerElements/paper-item#^2.0.0",
     "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
     "paper-radio-button": "PolymerElements/paper-radio-button#^2.0.0",

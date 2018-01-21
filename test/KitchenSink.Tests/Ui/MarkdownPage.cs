@@ -15,17 +15,17 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.TagName, Using = "juicy-markdown")]
-        public IWebElement JuicyMarkdown { get; set; }
+        [FindsBy(How = How.TagName, Using = "marked-element")]
+        public IWebElement MarkedElement { get; set; }
 
         public string GetHeaderText()
         {
-            return GetJuicyMarkdown().Text;
+            return GetMarkedElement().Text;
         }
 
-        private IWebElement GetJuicyMarkdown()
+        private IWebElement GetMarkedElement()
         {
-            return GetShadowElementByQuerySelector(By.TagName("juicy-markdown"), "h1");
+            return GetShadowElementByQuerySelector(By.TagName("marked-element"), "h1");
         }
     }
 }
