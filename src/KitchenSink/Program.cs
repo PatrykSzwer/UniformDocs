@@ -10,7 +10,40 @@ namespace KitchenSink
         {
             var app = Application.Current;
             app.Use(new HtmlFromJsonProvider());
-            app.Use(new PartialToStandaloneHtmlProvider());
+            app.Use(new PartialToStandaloneHtmlProvider(@"<!DOCTYPE html>
+
+            <html>
+            <head>
+                <meta charset='utf-8'>
+                <title>{0}</title>
+                <script src='/sys/webcomponentsjs/webcomponents.min.js'></script>
+                <script>
+                  /* this script must run before Polymer is imported */
+                  /*
+                   * Let Polymer use native Shadow DOM if available.
+                   * Otherwise (at least Polymer 1.x) assumes everybody else
+                   * uses ShadyDOM, which is not true, as many Vanilla CE uses
+                   * real Shadow DOM.
+                   */
+                  window.Polymer = {{
+                    dom: 'shadow'
+                  }};
+                </script>
+                <link rel='import' href='/sys/polymer/polymer.html'>
+                <link rel='import' href='/sys/starcounter.html'>
+                <link rel='import' href='/sys/starcounter-include/starcounter-include.html'>
+                <link rel='stylesheet' href='/sys/normalize-css/normalize.css'>
+                <link rel='stylesheet' href='/sys/underwear/underwear.css'>
+            </head>
+            <body>
+            <dom-bind id='palindrom-root'>
+                <template is='dom-bind'>
+                    <starcounter-include view-model='{{{{model}}}}'></starcounter-include>
+                </template>
+            </dom-bind>
+                <palindrom-client ref=""palindrom-root"" remote-url=""{1}""></palindrom-client>
+            </body>
+            </html>"));
 
             DummyData.Create();
 
