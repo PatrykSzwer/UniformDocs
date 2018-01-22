@@ -2,8 +2,8 @@
 
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/dropdown-heading" class="kitchensink-heading-1">Dropdown</h1>
-        <h2 slot="kitchensink/dropdown-primitive-array-heading" class="kitchensink-heading-2">Primitive array</h2>
+        <h1 slot="kitchensink/dropdown-heading">Dropdown</h1>
+        <h2 slot="kitchensink/dropdown-primitive-array-heading">Primitive array</h2>
         <p slot="kitchensink/dropdown-pets-description">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to an HTML <code>select</code> element.</p>
 
         <select slot="kitchensink/dropdown-pets-dropdown" class="kitchensink-select kitchensink-test-pets-select" value="{{model.SelectedPet$::change}}">
@@ -14,7 +14,7 @@
 
         <div slot="kitchensink/dropdown-pets-reaction" class="kitchensink-test-pet-like-label">{{model.PetReaction}}</div>
 
-        <h2 slot="kitchensink/dropdown-objects-heading" class="kitchensink-heading-2">Objects array</h2>
+        <h2 slot="kitchensink/dropdown-objects-heading">Objects array</h2>
 
         <p slot="kitchensink/dropdown-objects-description">A combination of object <code>array</code> and bound JSON string property can be mapped to an HTML <code>select</code> element.</p>
    
@@ -30,11 +30,9 @@
 
         <juicy-select slot="kitchensink/dropdown-objects-juicy-select" class="kitchensink-juicyselect kitchensink-test-juicy-select" caption-text="" value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
         
-        <div slot="kitchensink/dropdown-objects-select-label">
-            <template is="dom-if" if="{{model.SelectedProduct.Name}}">
-                <p class="kitchensink-test-juicy-select-label">You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
-            </template>
-        </div>
+        <template is="dom-if" if="{{model.SelectedProduct.Name}}">
+            <p slot="kitchensink/dropdown-objects-select-label" class="kitchensink-test-juicy-select-label">You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
+        </template>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <style>
@@ -42,7 +40,6 @@
                 margin-bottom: 20px;
             }
         </style>
-
         <slot name="kitchensink/dropdown-heading"></slot>
         <slot name="kitchensink/dropdown-primitive-array-heading"></slot>
         <slot name="kitchensink/dropdown-pets-description"></slot>
@@ -60,6 +57,8 @@
         <div class="kitchensink-dropdown-margin">
             <slot name="kitchensink/dropdown-objects-juicy-select"></slot>
         </div>
-        <slot name="kitchensink/dropdown-objects-select-label"></slot>
+        <div>
+            <slot name="kitchensink/dropdown-objects-select-label"></slot>
+        </div>
     </template>
 </template>
