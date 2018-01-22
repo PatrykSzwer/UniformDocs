@@ -135,9 +135,6 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
-        <style>
-            @import "/sys/uniform/uniform.css";
-        </style>
         <slot name="kitchensink/fileupload-heading"></slot>
         <slot name="kitchensink/fileupload-description"></slot>
         <slot name="kitchensink/fileupload-warning"></slot>
@@ -151,9 +148,7 @@
         <slot name="kitchensink/fileupload-uploading-table"></slot>
         <slot name="kitchensink/fileupload-ongoing-message"></slot>
         <slot name="kitchensink/fileupload-upload"></slot>
-        <span class="uniform-button-primary">
-            <slot name="kitchensink/fileupload-select-button"></slot>
-        </span>
+         <slot name="kitchensink/fileupload-select-button"></slot>
         <slot name="kitchensink/fileupload-cancel-button"></slot>
         <slot name="kitchensink/fileupload-tasks-collection"></slot>
     </template>
