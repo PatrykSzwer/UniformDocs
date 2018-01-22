@@ -2,12 +2,12 @@
 
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/lazyLoading-heading" class="kitchensink-heading-1">Lazy Loading</h1>
+        <h1 slot="kitchensink/lazyLoading-heading">Lazy Loading</h1>
 
         <p slot="kitchensink/lazyLoading-scheduling-description"> By using <code>Scheduling.RunTask</code> it is possible to achieve asynchronous data loading. </p>
         <p slot="kitchensink/lazyLoading-table-description"> In the table below, one can retrieve data for every person by hovering them. As a person gets hovered, it will automatically start loading that persons data. Once the data has been loaded, it will fill the "Favorite Game" column. </p>
 
-        <table slot="kitchensink/lazyLoading-table" class="table table-striped table-hover table-sortable-list">
+        <table slot="kitchensink/lazyLoading-table">
             <thead>
             <tr>
                 <th> Order </th>
@@ -30,21 +30,19 @@
             </template>
             </tbody>
         </table>
-        <div slot="kitchensink/lazyLoading-message-box">
-            <template is="dom-if" if="{{model.DisplayHoverBox$}}">
-                <div class="kitchensink-lazy-loading__hover-box">
-                    <p>{{model.SelectedPersonsName$}}'s Favorite game</p>
+        <template is="dom-if" if="{{model.DisplayHoverBox$}}">
+            <div slot="kitchensink/lazyLoading-message-box" class="kitchensink-lazy-loading__hover-box">
+                <p>{{model.SelectedPersonsName$}}'s Favorite game</p>
 
-                    <template is="dom-if" if="{{showLoadSpinner(model.DisplayedData.DataContent$)}}">
-                        <div class="kitchensink-lazy-loading__spinning-loading"></div>
-                    </template>
+                <template is="dom-if" if="{{showLoadSpinner(model.DisplayedData.DataContent$)}}">
+                    <div class="kitchensink-lazy-loading__spinning-loading"></div>
+                </template>
 
-                    <template is="dom-if" if="{{!showLoadSpinner(model.DisplayedData.DataContent$)}}">
-                        <p>{{model.DisplayedData.DataContent$}}</p>
-                    </template>
-                </div>
-            </template>
-        </div>
+                <template is="dom-if" if="{{!showLoadSpinner(model.DisplayedData.DataContent$)}}">
+                    <p>{{model.DisplayedData.DataContent$}}</p>
+                </template>
+            </div>
+        </template>
     </template></dom-bind>
     <script>
         (function () {

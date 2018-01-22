@@ -3,49 +3,33 @@
 
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/pagination-heading" class="kitchensink-heading-1">Pagination</h1>
-        
+        <h1 slot="kitchensink/pagination-heading">Pagination</h1>
         <p slot="kitchensink/pagination-description">Pagination can be implemented in the code-behind by using <code>FETCH</code> to determine how many entries there should be on every page and <code>OFFSET</code> to retrieve the right entries</p>
-        <juicy-select slot="kitchensink/pagination-juicy-select-items-per-page" class="kitchensink-juicyselect dropdown kitchensink-test-juicy-select" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
+        <juicy-select slot="kitchensink/pagination-juicy-select-items-per-page" class="kitchensink-juicyselect kitchensink-test-juicy-select" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
         </juicy-select>
-        <table slot="kitchensink/pagination-table" class="table">
+        <table slot="kitchensink/pagination-table">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                </tr>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
             </thead>
             <tbody>
-                <template is="dom-repeat" items="{{model.Library}}" as="book">
-                    <tr class="kitchensink-test-pagination-result-table-row">
-                        <td>{{book.Title}}</td>
-                        <td>{{book.Author}}</td>
-                    </tr>
-                </template>
+            <template is="dom-repeat" items="{{model.Library}}" as="book">
+                <tr class="kitchensink-test-pagination-result-table-row">
+                    <td>{{book.Title}}</td>
+                    <td>{{book.Author}}</td>
+                </tr>
+            </template>
             </tbody>
         </table>
-
-        <nav slot="kitchensink/pagination-navigation">
-            <ul class="pagination kitchensink-test-pagination">
-                <li>
-                    <span class="kitchensink-pagination-span" id="kitchensink-pagination-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
-                </li>
-                <li class$="{{getLiClassDisabled(model.DisableFirst)}}">
-                    <span class="kitchensink-pagination-span" id="kitchensink-pagination-previous" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" on-click="onPreviousPageClick">Previous</span>
-                </li>
-                <template is="dom-repeat" items="{{model.Pages}}">
-                    <li class$="{{getLiClassActive(item.Active)}}">
-                        <span class="kitchensink-pagination-change" tabindex="0" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</span>
-                    </li>
-                </template>
-                <li class$="{{getLiClassDisabled(model.DisableLast)}}">
-                    <span class="kitchensink-pagination-span" id="kitchensink-pagination-next" tabindex="0" value="{{model.NextPageTrigger$::click}}" on-click="onNextPageClick">Next</span>
-                </li>
-                <li>
-                    <span class="kitchensink-pagination-span" id="kitchensink-pagination-last" tabindex="0" value="{{model.LastPageTrigger$::click}}" on-click="onLastPageClick">Last</span>
-                </li>
-            </ul>
-        </nav>
+        <span slot="kitchensink/pagination-navigation-first" class="kitchensink-pagination-span" id="kitchensink-pagination-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
+        <span slot="kitchensink/pagination-navigation-previous" class="kitchensink-pagination-span" class$="{{getLiClassDisabled(model.DisableFirst)}}" id="kitchensink-pagination-previous" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" on-click="onPreviousPageClick">Previous</span>
+        <template is="dom-repeat" items="{{model.Pages}}">
+            <span slot="kitchensink/pagination-navigation-number" class$="{{getLiClassActive(item.Active)}}" class="kitchensink-pagination-change" tabindex="0" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</span>
+        </template>
+        <span slot="kitchensink/pagination-navigation-next" class$="{{getLiClassDisabled(model.DisableLast)}}" class="kitchensink-pagination-span" id="kitchensink-pagination-next" tabindex="0" value="{{model.NextPageTrigger$::click}}" on-click="onNextPageClick">Next</span>
+        <span slot="kitchensink/pagination-navigation-last" class="kitchensink-pagination-span" id="kitchensink-pagination-last" tabindex="0" value="{{model.LastPageTrigger$::click}}" on-click="onLastPageClick">Last</span>
         <p slot="kitchensink/pagination-page-number" class="kitchensink-test-pagination-label">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>
@@ -88,11 +72,20 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
+        <style>
+            @import "/sys/uniform/uniform.css";
+        </style>
         <slot name="kitchensink/pagination-heading"></slot>
         <slot name="kitchensink/pagination-description"></slot>
         <slot name="kitchensink/pagination-juicy-select-items-per-page"></slot>
         <slot name="kitchensink/pagination-table"></slot>
-        <slot name="kitchensink/pagination-navigation"></slot>
+        <div class="uniform-pagination">
+            <slot name="kitchensink/pagination-navigation-first"></slot>
+            <slot name="kitchensink/pagination-navigation-previous"></slot>
+            <slot name="kitchensink/pagination-navigation-number"></slot>
+            <slot name="kitchensink/pagination-navigation-next"></slot>
+            <slot name="kitchensink/pagination-navigation-last"></slot>
+        </div>
         <slot name="kitchensink/pagination-page-number"></slot>
     </template>
 </template>

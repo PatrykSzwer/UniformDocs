@@ -3,7 +3,7 @@
 
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/radiolist-heading" class="kitchensink-heading-1">Radiolist</h1>
+        <h1 slot="kitchensink/radiolist-heading">Radiolist</h1>
 
         <p slot="kitchensink/radiolist-description">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to a multiselect control.</p>
 
@@ -16,18 +16,14 @@
         </paper-listbox>
 
         <p slot="kitchensink/radiolist-selected-label">Selected item:</p>
-
         <span slot="kitchensink/radiolist-selected-item-label" class="kitchensink-test-selected-item-label">{{model.SelectedItemLabel}}</span>
-
-        <div slot="kitchensink/radiolist-selected-item-index">
-            (<span>{{model.SelectedItemIndex$}}</span>)
-        </div>
+        <span slot="kitchensink/radiolist-selected-item-index">({{model.SelectedItemIndex$}})</span>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/radiolist-heading"></slot>
         <slot name="kitchensink/radiolist-description"></slot>
         <slot name="kitchensink/radiolist-description-recommend"></slot>
-        <div class="horizontal-section">
+        <div>
             <slot name="kitchensink/radiolist-paper-listbox"></slot>           
         </div>
         <slot name="kitchensink/radiolist-selected-label"></slot>
