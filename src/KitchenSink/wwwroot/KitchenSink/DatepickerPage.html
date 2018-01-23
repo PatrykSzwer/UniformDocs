@@ -1,15 +1,17 @@
-<link rel="import" href="/sys/pikaday-decorator/pikaday-decorator.html">
+<link rel="import" href="/sys/vaadin-date-picker/vaadin-date-picker.html">
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/datepicker-heading" class="kitchensink-heading-1">Datepicker</h1>
 
-        <p slot="kitchensink/datepicker-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker.</p>
+        <p slot="kitchensink/datepicker-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker. In this example We used <code>vaadin-date-picker</code>.</p>
 
-        <label slot="kitchensink/datepicker-date-label" class="control-label">Date</label>
-
-        <pikaday-decorator slot="kitchensink/datepicker-pikaday" format="YYYY-MM-DD">
-            <input type="text" value="{{model.Value$::change}}" class="form-control kitchensink-test-pikaday-input" placeholder="Select a date to parse">
-        </pikaday-decorator>
+        <vaadin-date-picker slot="kitchensink/datepicker-date-picker" 
+                            label="Date"
+                            min="1920-01-01"
+                            initial-position="2017-06-01"
+                            value="{{model.Value$}}"
+                            placeholder="Pick a date">
+        </vaadin-date-picker> 
 
         <label slot="kitchensink/datepicker-year-label" class="control-label">Year</label>
 
@@ -26,8 +28,9 @@
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/datepicker-heading"></slot>
         <slot name="kitchensink/datepicker-description"></slot>
-        <slot name="kitchensink/datepicker-date-label"></slot>
-        <slot name="kitchensink/datepicker-pikaday"></slot>
+        <p>
+            <slot name="kitchensink/datepicker-date-picker"></slot>
+        </p>
         <slot name="kitchensink/datepicker-year-label"></slot>
         <slot name="kitchensink/datepicker-year-input"></slot>
         <slot name="kitchensink/datepicker-month-label"></slot>
