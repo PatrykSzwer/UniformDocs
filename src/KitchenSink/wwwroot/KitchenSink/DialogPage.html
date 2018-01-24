@@ -1,4 +1,4 @@
-<link href="/sys/paper-dialog/paper-dialog.html" rel="import">
+﻿<link href="/sys/paper-dialog/paper-dialog.html" rel="import">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -11,6 +11,9 @@
         <p slot="kitchensink/dialog-message" class$="{{model.MessageCss}}">{{model.Message}}</p>
 
         <paper-dialog slot="kitchensink/dialog-paper-dialog" id="actions" opened="[[model.Opened]]" modal="true">
+            <style>
+                @import "/sys/uniform.css/uniform.css";
+            </style>
             <div>
                 <h2>Confirmation</h2>
                 <p>
@@ -20,11 +23,14 @@
             <div class="buttons">
                 <button dialog-dismiss value="{{model.RejectTrigger$::click}}" onmousedown="++this.value;">Reject</button>
                 <span>&nbsp;</span>
-                <button dialog-confirm autofocus value="{{model.ConfirmTrigger$::click}}" onmousedown="++this.value;">Accept</button>
+                <button dialog-confirm autofocus class="primary" value="{{model.ConfirmTrigger$::click}}" onmousedown="++this.value;">Accept</button>
             </div>
         </paper-dialog>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>
+            @import "/sys/uniform.css/uniform.css";
+        </style>
         <slot name="kitchensink/dialog-heading"></slot>
         <slot name="kitchensink/dialog-description"></slot>
         <p>
