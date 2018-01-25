@@ -18,9 +18,6 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-result-table-row")]
         public IList<IWebElement> PaginationResult { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination li")]
-        public IWebElement Pagination { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-label")]
         public IWebElement PaginationInfoLabel { get; set; }
 
@@ -32,7 +29,7 @@ namespace KitchenSink.Tests.Ui
 
         internal void GoToPage(string pageNumber)
         {
-            ClickOn(Pagination.FindElement(By.XPath("//span[text() = '" + pageNumber + "']")));
+            ClickOn(Driver.FindElement(By.XPath($"//span[text() = '{pageNumber}']")));
         }
     }
 }

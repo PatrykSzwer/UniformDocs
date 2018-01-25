@@ -14,7 +14,7 @@
         <p slot="kitchensink/autocomplete-products-price" class="kitchensink-test-autocomplete-price">{{model.ProductsText}}</p>
 
         <p slot="kitchensink/autocomplete-places-description">This autocomplete field uses pre-defined list of places (although it's usually better to use DB as source).</p>
-        <input slot="kitchensink/autocomplete-places-input" type="text" class="=kitchensink-test-autocomplete-places-input" value="{{model.PlacesSearch$::input}}" placeholder="Poland? Sweden?" on-blur="clearPlaces">
+        <input slot="kitchensink/autocomplete-places-input" type="text" class="kitchensink-test-autocomplete-places-input" value="{{model.PlacesSearch$::input}}" placeholder="Poland? Sweden?" on-blur="clearPlaces">
         <ul slot="kitchensink/autocomplete-places-autocomplete" class="kitchensink-autocomplete">
             <template is="dom-repeat" items="{{model.FoundPlaces}}">
                 <li on-mousedown="selectPlace" class="kitchensink-autocomplete__item kitchensink-test-autocomplete-places-item" item="{{item}}">{{item.Name}}</li>

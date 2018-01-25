@@ -17,7 +17,6 @@ namespace KitchenSink.Tests.Ui
 
         [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-places-input")]
         public IWebElement PlaceInput { get; set; }
-
         [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-products-item")]
         public IList<IWebElement> ProductsAutoComplete { get; set; }
 

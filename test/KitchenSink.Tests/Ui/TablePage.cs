@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace KitchenSink.Tests.Ui
 {
     public class TablePage : BasePage
-    {  
+    {
         public TablePage(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(Driver, this);
@@ -14,10 +14,10 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add a pet']")]
         public IWebElement AddPetButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//table[@class='table table-striped']")]
+        [FindsBy(How = How.XPath, Using = "//table[@class='kitchensink-test-table']")]
         public IWebElement PetsTable { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//table[@class='table table-striped']//tbody//tr")]
+        [FindsBy(How = How.XPath, Using = "//table[@class='kitchensink-test-table']//tbody//tr")]
         public IList<IWebElement> PetsTableRows { get; set; }
 
         public void AddPet()

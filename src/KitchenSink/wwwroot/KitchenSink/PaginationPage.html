@@ -30,7 +30,7 @@
         </template>
         <span slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}" on-click="onNextPageClick">Next</span>
         <span slot="kitchensink/pagination-navigation-last" class="next" tabindex="0" value="{{model.LastPageTrigger$::click}}" on-click="onLastPageClick">Last</span>
-        <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
+        <p slot="kitchensink/pagination-page-number" class="kitchensink-test-pagination-label">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>
         (function () {
