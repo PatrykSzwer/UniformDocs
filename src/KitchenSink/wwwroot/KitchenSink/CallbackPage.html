@@ -194,29 +194,32 @@
             };
         })();
     </script>
-    <template is="declarative-shadow-dom">
-        <slot name="kitchensink/callback-heading"></slot>
-        <slot name="kitchensink/callback-description"></slot>
-        <slot name="kitchensink/callback-responsive-label"></slot>
-        <div>
-            <slot name="kitchensink/callback-responsive-button"></slot>
-            <slot name="kitchensink/callback-responsive-button-spin"></slot>
-        </div>
-        <slot name="kitchensink/callback-save-server-heading"></slot>
-        <div>
-            <slot name="kitchensink/callback-save-server-message"></slot>
-        </div>
-        <slot name="kitchensink/callback-save-server-button"></slot>
-        <slot name="kitchensink/callback-save-client-heading"></slot>
-        <slot name="kitchensink/callback-save-client-note"></slot>
-        <div>
-            <slot name="kitchensink/callback-save-client-message"></slot>
-        </div>
-        <p>
-            <slot name="kitchensink/callback-save-client-button"></slot>
-        </p>
-        <slot name="kitchensink/callback-table-heading"></slot>
-        <slot name="kitchensink/callback-table-note"></slot>
-        <slot name="kitchensink/callback-table"></slot>
-    </template>
+<template is="declarative-shadow-dom">
+    <style>
+        @import "/sys/uniform.css/uniform.css";
+    </style>
+    <slot name="kitchensink/callback-heading"></slot>
+    <slot name="kitchensink/callback-description"></slot>
+    <slot name="kitchensink/callback-responsive-label"></slot>
+    <div>
+        <slot name="kitchensink/callback-responsive-button"></slot>
+        <slot name="kitchensink/callback-responsive-button-spin"></slot>
+    </div>
+    <slot name="kitchensink/callback-save-server-heading"></slot>
+    <div>
+        <slot name="kitchensink/callback-save-server-message"></slot>
+    </div>
+    <slot name="kitchensink/callback-save-server-button"></slot>
+    <slot name="kitchensink/callback-save-client-heading"></slot>
+    <slot name="kitchensink/callback-save-client-note"></slot>
+    <div>
+        <slot name="kitchensink/callback-save-client-message"></slot>
+    </div>
+    <p>
+        <slot name="kitchensink/callback-save-client-button"></slot>
+    </p>
+    <slot name="kitchensink/callback-table-heading"></slot>
+    <slot name="kitchensink/callback-table-note"></slot>
+    <slot name="kitchensink/callback-table"></slot>
+</template>
 </template>
