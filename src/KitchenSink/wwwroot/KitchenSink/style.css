@@ -1,16 +1,3 @@
-﻿.kitchensink-menu__heading {
-  font-size: 100%;
-}
-
-.kitchensink-menu__heading--first {
-  margin-top: 0;
-}
-
-.kitchensink-menu__list {
-  padding: 0;
-  list-style: none;
-}
-
 .kitchensink-select {
     width: 50%;
 }
