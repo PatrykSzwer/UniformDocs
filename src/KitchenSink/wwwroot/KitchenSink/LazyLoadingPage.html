@@ -31,17 +31,13 @@
             </tbody>
         </table>
         <template is="dom-if" if="{{model.DisplayHoverBox$}}">
-            <div slot="kitchensink/lazyLoading-message-box" class="kitchensink-lazy-loading__hover-box">
-                <p>{{model.SelectedPersonsName$}}'s Favorite game</p>
-
-                <template is="dom-if" if="{{showLoadSpinner(model.DisplayedData.DataContent$)}}">
-                    <div class="kitchensink-lazy-loading__spinning-loading"></div>
-                </template>
-
-                <template is="dom-if" if="{{!showLoadSpinner(model.DisplayedData.DataContent$)}}">
-                    <p>{{model.DisplayedData.DataContent$}}</p>
-                </template>
-            </div>
+            <p slot="kitchensink/lazyLoading-message-box-game-label">{{model.SelectedPersonsName$}}'s Favorite game</p>
+            <template is="dom-if" if="{{showLoadSpinner(model.DisplayedData.DataContent$)}}">
+                <div slot="kitchensink/lazyLoading-message-box-game-loading"></div>
+            </template>
+            <template is="dom-if" if="{{!showLoadSpinner(model.DisplayedData.DataContent$)}}">
+                <p slot="kitchensink/lazyLoading-message-box-game-data">{{model.DisplayedData.DataContent$}}</p>
+            </template>
         </template>
     </template></dom-bind>
     <script>
@@ -93,10 +89,42 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
+        <style>
+            .kitchensink-lazy-loading__spinning-loading::slotted(div) {
+                border: 5px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 5px solid rgba(255, 133, 0, 1);
+                border-bottom: 5px solid rgba(255, 133, 0, 1);
+                width: 50px;
+                height: 50px;
+                margin-left: calc(50% - 25px);
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+            }
+
+             .kitchensink-lazy-loading__hover-box {
+                 background-color: rgba(255, 255, 255, 0.80);
+                 color: #000000;
+                 border: 2px solid rgba(255, 133, 0, 1);
+                 border-radius: 5px;
+                 width: 75%;
+                 min-height: 100px;
+                 margin-left: 12.5%;
+             }
+
+            .kitchensink-lazy-loading__hover-box > ::slotted(p) {
+                font-size: 14px;
+                text-align: center;
+            }
+        </style>
         <slot name="kitchensink/lazyLoading-heading"></slot>
         <slot name="kitchensink/lazyLoading-scheduling-description"></slot>
         <slot name="kitchensink/lazyLoading-table-description"></slot>
         <slot name="kitchensink/lazyLoading-table"></slot>
-        <slot name="kitchensink/lazyLoading-message-box"></slot>
+        <div class="kitchensink-lazy-loading__hover-box">
+            <slot name="kitchensink/lazyLoading-message-box-game-label"></slot>
+            <slot class="kitchensink-lazy-loading__spinning-loading" name="kitchensink/lazyLoading-message-box-game-loading"></slot>
+            <slot name="kitchensink/lazyLoading-message-box-game-data"></slot>
+        </div>
     </template>
 </template>
