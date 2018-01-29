@@ -23,8 +23,8 @@
             </template>
             </tbody>
         </table>
-        <span slot="kitchensink/pagination-navigation-first" class="previous" id="kitchensink-pagination-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
-        <span slot="kitchensink/pagination-navigation-previous"  disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" on-click="onPreviousPageClick">Previous</span>
+        <span slot="kitchensink/pagination-navigation-first" class="previous" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
+        <span slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" on-click="onPreviousPageClick">Previous</span>
         <template is="dom-repeat" items="{{model.Pages}}">
             <span slot="kitchensink/pagination-navigation-number" class$="{{getLiClassActive(item.Active)}}" class="kitchensink-pagination-change" tabindex="0" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</span>
         </template>
@@ -75,7 +75,7 @@
         <slot name="kitchensink/pagination-description"></slot>
         <slot name="kitchensink/pagination-juicy-select-items-per-page"></slot>
         <slot name="kitchensink/pagination-table"></slot>
-        <div class="uniform-pagination">
+        <div class="uni-pagination">
             <slot name="kitchensink/pagination-navigation-first"></slot>
             <slot name="kitchensink/pagination-navigation-previous"></slot>
             <slot name="kitchensink/pagination-navigation-number"></slot>
