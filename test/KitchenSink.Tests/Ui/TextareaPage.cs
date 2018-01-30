@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-textarea")]
         public IWebElement Textarea { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-bio-reaction-label")]
+        [FindsBy(How = How.XPath, Using = "//label[@slot = 'kitchensink/textarea-label']")]
         public IWebElement TextareaInfoLabel { get; set; }
 
         public void FillTextarea(string input)

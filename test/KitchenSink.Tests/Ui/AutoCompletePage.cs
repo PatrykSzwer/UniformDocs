@@ -12,10 +12,10 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-products-input")]
+        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/autocomplete-products-input']")]
         public IWebElement ProductsInput { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-places-input")]
+        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/autocomplete-places-input']")]
         public IWebElement PlaceInput { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-products-item")]
@@ -24,10 +24,10 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-places-item")]
         public IList<IWebElement> PlacesAutoComplete { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-capital")]
+        [FindsBy(How = How.XPath, Using = "//p[@slot = 'kitchensink/autocomplete-places-capital']")]
         public IWebElement PlaceInfoLabel { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-price")]
+        [FindsBy(How = How.XPath, Using = "//p[@slot = 'kitchensink/autocomplete-products-price']")]
         public IWebElement ProductsInfoLabel { get; set; }
 
         public void ChoosePlace(string place)
