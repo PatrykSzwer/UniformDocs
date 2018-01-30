@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-clientlocalstatepage-hoverable-list")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-clientlocalstatepage-test-hoverable-list")]
         public IWebElement HoverableList { get; set; }
 
         [FindsBy(How = How.TagName, Using = "hover-observer")]
@@ -23,7 +23,7 @@ namespace KitchenSink.Tests.Ui
         {
             /* Hover can only be acheived by Selenium Actions. 
              * Firefox doesn't support Selenium actions, this is JS/Polymer walkaround */
-            string command = 
+            string command =
                 "const item = document.querySelectorAll('hover-observer')[0];" +
                 "item.fire('mouseenter');" +
                 "setTimeout(()=> item.fire('mouseleave'), 500)";
@@ -39,7 +39,7 @@ namespace KitchenSink.Tests.Ui
         }
         public IWebElement GetFirstHoverObservor()
         {
-            return HoverObservors[0];            
+            return HoverObservors[0];
         }
         public IWebElement GetSecondHoverObservor()
         {
