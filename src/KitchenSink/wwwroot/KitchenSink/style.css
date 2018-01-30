@@ -68,10 +68,6 @@
     margin-right: 10px;
 }
 
-.kitchensink-add-carrots__label {
-    font-weight: bold;
-}
-
 .kitchensink-regenerating-carrots {
     display: flex;
     align-items: baseline;

@@ -20,7 +20,7 @@
 
         <pre slot="kitchensink/buttonpage-regular-reaction-label" class="kitchensink-test-carrots-reaction-label">{{model.CarrotsReaction}}</pre>
 
-        <span slot="kitchensink/buttonpage-regular-add-carrots-label" class="kitchensink-add-carrots__label">Add carrots:</span>
+        <span slot="kitchensink/buttonpage-regular-add-carrots-label">Add carrots:</span>
 
         <button slot="kitchensink/buttonpage-regular-add-carrots-button" value="{{model.AddCarrotsTrigger$::click}}" onmousedown="++this.value">Button (inline script)</button>
 
@@ -123,7 +123,7 @@
         <slot name="kitchensink/buttonpage-regular-increment-ways"></slot>
         <slot name="kitchensink/buttonpage-regular-reaction-label"></slot>
         <p class="kitchensink-add-carrots">
-            <span class="kitchensink-add-carrots__element">
+            <span class="kitchensink-add-carrots__element" style="font-weight: bold">
                 <slot name="kitchensink/buttonpage-regular-add-carrots-label"></slot>
             </span>
             <span class="kitchensink-add-carrots__element">
