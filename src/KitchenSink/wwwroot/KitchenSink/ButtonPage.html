@@ -111,8 +111,12 @@
                 align-items: baseline;
             }
 
-            .kitchensink-add-carrots__element { /*TODO: .kitchensink-add-carrots > ::slotted(*) didn't worked'*/
-                margin-right: 10px;
+            .kitchensink-add-carrots ::slotted(*) {
+                margin-right: 10px !important;
+            }
+
+            .kitchensink-add-carrots__label::slotted(span) {
+                font-weight: bold;
             }
         </style>
         <slot name="kitchensink/buttonpage-heading"></slot>
@@ -123,18 +127,10 @@
         <slot name="kitchensink/buttonpage-regular-increment-ways"></slot>
         <slot name="kitchensink/buttonpage-regular-reaction-label"></slot>
         <p class="kitchensink-add-carrots">
-            <span class="kitchensink-add-carrots__element" style="font-weight: bold">
-                <slot name="kitchensink/buttonpage-regular-add-carrots-label"></slot>
-            </span>
-            <span class="kitchensink-add-carrots__element">
-                <slot name="kitchensink/buttonpage-regular-add-carrots-button"></slot>
-            </span>
-            <span class="kitchensink-add-carrots__element">
-                <slot name="kitchensink/buttonpage-regular-add-carrots-button-function"></slot>
-            </span>
-            <span class="kitchensink-add-carrots__element">
-                <slot name="kitchensink/buttonpage-regular-add-carrots-span-function"></slot>
-            </span>
+            <slot class="kitchensink-add-carrots__label" name="kitchensink/buttonpage-regular-add-carrots-label"></slot>
+            <slot name="kitchensink/buttonpage-regular-add-carrots-button"></slot>
+            <slot name="kitchensink/buttonpage-regular-add-carrots-button-function"></slot>
+            <slot name="kitchensink/buttonpage-regular-add-carrots-span-function"></slot>
         </p>
         <slot name="kitchensink/buttonpage-regular-add-carrots"></slot>
         <slot name="kitchensink/buttonpage-switch-heading"></slot>
