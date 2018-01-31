@@ -11,16 +11,16 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pets-select")]
+        [FindsBy(How = How.XPath, Using = "//select[@slot = 'kitchensink/dropdown-pets-dropdown']")]
         public IWebElement PetsSelect { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pet-like-label")]
+        [FindsBy(How = How.XPath, Using = "//div[@slot = 'kitchensink/dropdown-pets-reaction']")]
         public IWebElement PetLikeLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-product-select")]
+        [FindsBy(How = How.XPath, Using = "//select[@slot = 'kitchensink/dropdown-objects-select']")]
         public IWebElement ProductSelect { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select-label")]
+        [FindsBy(How = How.XPath, Using = "//juicy-select[@slot = 'kitchensink/dropdown-objects-juicy-select']")]
         public IWebElement JuicySelectLabel { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select select")]

@@ -17,13 +17,13 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//div[@class = 'pika-lendar']//table//tbody//td[@class = 'is-selected']//button[@class = 'pika-button pika-day']")]
         public IWebElement SelectedDay { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-year-input")]
+        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/datepicker-year-input']")]
         public IWebElement YearInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-month-input")]
+        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/datepicker-month-input']")]
         public IWebElement MonthInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-day-input")]
+        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/datepicker-day-input']")]
         public IWebElement DayInput { get; set; }
 
         public void SelectDate(string date)
