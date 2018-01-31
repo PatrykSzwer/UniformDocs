@@ -2,6 +2,7 @@ using System.Drawing.Design;
 using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 
 namespace KitchenSink.Tests.Test
@@ -50,7 +51,8 @@ namespace KitchenSink.Tests.Test
         public void ButtonPage_SelfButton()
         {
             _buttonPage.ClickButonTakeOneRegeneratingCarrot();
-            Assert.IsTrue(WaitForText(_buttonPage.TakeOneRegeneratingCarrotLabel, "Currently Regenerating!", 5));
+            WaitUntil(x => _buttonPage.GeneratingCarrotsElement.Displayed);
+            Assert.IsTrue(WaitForText(_buttonPage.GeneratingCarrotsElement.FindElement(By.TagName("p")), "Currently Regenerating!", 5));
         }
 
         [Test]
