@@ -13,7 +13,7 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-clientlocalstatepage-hoverable-list")]
+        [FindsBy(How = How.XPath, Using = "//p[@slot = 'kitchensink/clientlocalstatepage-description']/following::ul")]
         public IWebElement HoverableList { get; set; }
 
         [FindsBy(How = How.TagName, Using = "hover-observer")]

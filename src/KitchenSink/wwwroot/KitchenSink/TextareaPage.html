@@ -6,7 +6,7 @@
 
         <label slot="kitchensink/textarea-label" class="control-label">{{model.BioReaction}}</label>
 
-        <textarea slot="kitchensink/textarea-textarea" value="{{model.Bio$::input}}" class="form-control" rows="3"></textarea>
+        <textarea slot="kitchensink/textarea-textarea" test-value$="{{model.Bio$}}" value="{{model.Bio$::input}}" class="form-control" rows="3"></textarea>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/textarea-heading"></slot>

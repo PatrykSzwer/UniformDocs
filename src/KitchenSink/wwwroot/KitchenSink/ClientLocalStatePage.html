@@ -3,7 +3,7 @@
     <p slot="kitchensink/clientlocalstatepage-description">This page demonstrates the ability to keep parts of your state local (unsynced with the server).</p>
     <dom-bind><template is="dom-bind">
         <p><em>Please hover an item to see it in action</em></p>
-        <ul class="kitchensink-clientlocalstatepage-hoverable-list">
+        <ul>
             <template is="dom-repeat" items="{{model.People}}">
                 <li>
                     <define-local public="{{item}}" prop="_local"></define-local>
