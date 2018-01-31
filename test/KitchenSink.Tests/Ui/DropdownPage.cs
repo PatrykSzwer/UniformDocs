@@ -20,10 +20,10 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//select[@slot = 'kitchensink/dropdown-objects-select']")]
         public IWebElement ProductSelect { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//juicy-select[@slot = 'kitchensink/dropdown-objects-juicy-select']")]
+        [FindsBy(How = How.XPath, Using = "//div[@slot = 'kitchensink/dropdown-objects-select-label']/descendant::p")]
         public IWebElement JuicySelectLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select select")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-juicyselect select")]
         public IWebElement JuicySelect { get; set; }
 
         public void SelectPet(string petName)

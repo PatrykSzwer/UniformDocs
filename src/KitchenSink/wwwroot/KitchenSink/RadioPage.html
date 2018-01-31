@@ -11,11 +11,11 @@
 
         <paper-radio-group slot="kitchensink/radio-paper-radio-group" selected="{{model.SelectedPet$}}">
             <template is="dom-repeat" items="{{model.Pets}}">
-                <paper-radio-button test-value$="{{item.Label}}" class="kitchensink-test-radio-buttons" name="{{item.Label}}">{{item.Label}}</paper-radio-button>
+                <paper-radio-button test-value$="{{item.Label}}" name="{{item.Label}}">{{item.Label}}</paper-radio-button>
             </template>
         </paper-radio-group>
 
-        <div slot="kitchensink/radio-reaction-label" class="kitchensink-test-pet-reaction-label">{{model.PetReaction}}</div>
+        <div slot="kitchensink/radio-reaction-label">{{model.PetReaction}}</div>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/radio-heading"></slot>

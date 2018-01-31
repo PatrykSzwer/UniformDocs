@@ -12,16 +12,16 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select select")]
+        [FindsBy(How = How.CssSelector, Using = ".kitchensink-juicyselect select")]
         public IWebElement DropDown { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-result-table-row")]
+        [FindsBy(How = How.XPath, Using = "//table[@slot = 'kitchensink/pagination-table']/tbody/descendant::tr")]
         public IList<IWebElement> PaginationResult { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination li")]
+        [FindsBy(How = How.XPath, Using = "//nav[@slot = 'kitchensink/pagination-navigation']/ul/li")]
         public IWebElement Pagination { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pagination-label")]
+        [FindsBy(How = How.XPath, Using = "//p[@slot = 'kitchensink/pagination-page-number']")]
         public IWebElement PaginationInfoLabel { get; set; }
 
         public void DropdownSelect(string option)

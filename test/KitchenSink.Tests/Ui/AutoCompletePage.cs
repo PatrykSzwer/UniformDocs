@@ -18,10 +18,10 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/autocomplete-places-input']")]
         public IWebElement PlaceInput { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//ul[@slot = 'kitchensink/autocomplete-products-autocomplete']/template/li")]
+        [FindsBy(How = How.XPath, Using = "//ul[@slot = 'kitchensink/autocomplete-products-autocomplete']/li")]
         public IList<IWebElement> ProductsAutoComplete { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//ul[@slot = 'kitchensink/autocomplete-places-autocomplete']/template/li")]
+        [FindsBy(How = How.XPath, Using = "//ul[@slot = 'kitchensink/autocomplete-places-autocomplete']/li")]
         public IList<IWebElement> PlacesAutoComplete { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//p[@slot = 'kitchensink/autocomplete-places-capital']")]

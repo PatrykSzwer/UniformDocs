@@ -10,10 +10,10 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-password-input")]
+        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/password-input']")]
         public IWebElement PasswordInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-info-label")]
+        [FindsBy(How = How.XPath, Using = "//label[@slot = 'kitchensink/password-label']")]
         public IWebElement PaswordInputInfoLabel { get; set; }
 
         public void FillPassword(string password)
