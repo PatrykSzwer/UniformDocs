@@ -6,13 +6,13 @@
 
         <label slot="kitchensink/validation-name-label" class="control-label">Please type your name</label>
 
-        <input slot="kitchensink/validation-name-input" type="text" test-value$="{{model.Name$}}" value="{{model.Name$::change}}" placeholder="Name" class="form-control">
+        <input slot="kitchensink/validation-name-input" type="text" value="{{model.Name$::change}}" placeholder="Name" class="form-control">
         <label slot="kitchensink/validation-name-error-message" class="error-label">{{model.ErrorName$}}</label>
         <br>
 
         <label slot="kitchensink/validation-last-name-label" class="control-label">Please type your last name</label>
 
-        <input slot="kitchensink/validation-last-name-input" type="text" test-value$="{{model.LastName$}}" value="{{model.LastName$::change}}" placeholder="Last name" class="form-control">
+        <input slot="kitchensink/validation-last-name-input" type="text" value="{{model.LastName$::change}}" placeholder="Last name" class="form-control">
         <label slot="kitchensink/validation-last-name-error-message" class="error-label">{{model.ErrorLastName$}}</label>
         <br>
 

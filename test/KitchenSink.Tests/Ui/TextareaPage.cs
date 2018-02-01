@@ -23,8 +23,8 @@ namespace KitchenSink.Tests.Ui
 
         public void ClearTextarea()
         {
-            //can't use Clear()
-            var textAreaLength = Textarea.GetAttribute("test-value").Length;
+            // can't use Clear()
+            var textAreaLength = Textarea.GetAttribute("value").Length;
 
             for (var i = 0; i < textAreaLength; i++)
             {

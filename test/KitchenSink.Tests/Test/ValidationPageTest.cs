@@ -45,7 +45,7 @@ namespace KitchenSink.Tests.Test
             WaitUntil(x => _validationPage.LastNameInput.Displayed);
             _validationPage.InsertLastName("TestLastName");
 
-            WaitUntil(x => _validationPage.NameInput.GetAttribute("test-value") != string.Empty && _validationPage.LastNameInput.GetAttribute("test-value") != string.Empty);
+            WaitUntil(x => _validationPage.NameInput.GetAttribute("value") != string.Empty && _validationPage.LastNameInput.GetAttribute("value") != string.Empty);
             _validationPage.Validate();
 
             Assert.AreEqual(string.Empty, _validationPage.NameErrorLabel.Text);
