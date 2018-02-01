@@ -24,12 +24,12 @@
                     </thead>
                     <tbody>
                     <template is="dom-repeat" items="{{model.Files}}">
-                        <tr>
+                        <tr slot="kitchensink/fileupload-uploaded-files-list">
                             <td>{{item.FileName}}</td>
                             <td>{{item.FileSizeString}}</td>
                             <td>{{item.FilePath}}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-default" value="{{item.DeleteTrigger$::click}}" onmouseup="++this.value;">Delete</button>
+                                <button slot="kitchensink/fileupload-delete-button" type="button" class="btn btn-sm btn-default" value="{{item.DeleteTrigger$::click}}" onmouseup="++this.value;">Delete</button>
                             </td>
                         </tr>
                     </template>
@@ -144,6 +144,8 @@
         <slot name="kitchensink/fileupload-warning"></slot>
         <slot name="kitchensink/fileupload-upload-file-header"></slot>
         <slot name="kitchensink/fileupload-files-table"></slot>
+        <slot name="kitchensink/fileupload-uploaded-files-list"></slot>
+        <slot name="kitchensink/fileupload-delete-button"></slot>
         <slot name="kitchensink/fileupload-no-files-message"></slot>
         <slot name="kitchensink/fileupload-uploading-header"></slot>
         <slot name="kitchensink/fileupload-uploading-table"></slot>

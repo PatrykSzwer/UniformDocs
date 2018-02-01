@@ -10,10 +10,10 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = "//textarea[@slot = 'kitchensink/textarea-textarea']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/textarea-textarea']")]
         public IWebElement Textarea { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//label[@slot = 'kitchensink/textarea-label']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/textarea-label']")]
         public IWebElement TextareaInfoLabel { get; set; }
 
         public void FillTextarea(string input)

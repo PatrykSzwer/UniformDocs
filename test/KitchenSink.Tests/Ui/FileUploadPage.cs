@@ -14,10 +14,10 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.CssSelector, Using = ".alert-warning")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//div[@slot = 'kitchensink/fileupload-files-table']/descendant::tr[2]")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/fileupload-uploaded-files-list']")]
         public IList<IWebElement> UploadedFilesList { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//div[@slot = 'kitchensink/fileupload-files-table']/descendant::button")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/fileupload-delete-button']")]
         public IList<IWebElement> DeleteButtons { get; set; }
 
         public void UploadAFile(string filePath)

@@ -10,10 +10,10 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = "//div[@slot = 'kitchensink/checkbox-license-label']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/checkbox-license-label']")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/checkbox-input']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/checkbox-input']")]
         public IWebElement Checkbox { get; set; }
 
         public void ToggleCheckbox()

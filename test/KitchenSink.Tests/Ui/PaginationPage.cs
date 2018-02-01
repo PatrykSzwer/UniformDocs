@@ -15,13 +15,13 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.CssSelector, Using = ".kitchensink-juicyselect select")]
         public IWebElement DropDown { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//table[@slot = 'kitchensink/pagination-table']/tbody/descendant::tr")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/pagination-table'] tbody > tr")]
         public IList<IWebElement> PaginationResult { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//nav[@slot = 'kitchensink/pagination-navigation']/ul/li")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/pagination-navigation'] ul li")]
         public IWebElement Pagination { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//p[@slot = 'kitchensink/pagination-page-number']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/pagination-page-number']")]
         public IWebElement PaginationInfoLabel { get; set; }
 
         public void DropdownSelect(string option)

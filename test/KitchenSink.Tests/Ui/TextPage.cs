@@ -10,21 +10,21 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/text-listening-input']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-listening-input']")]
         public IWebElement Input { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@slot = 'kitchensink/text-typing-listening-input']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-typing-listening-input']")]
         public IWebElement InputDynamic { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//label[@slot = 'kitchensink/text-listening-label']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-listening-label']")]
         public IWebElement InputInfoLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//label[@slot = 'kitchensink/text-typing-listening-label']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-typing-listening-label']")]
         public IWebElement InputInfoLabelDynamic { get; set; }
 
-        public IWebElement PaperInput => Driver.FindElement(By.XPath("//paper-input[@slot = 'kitchensink/text-listening-paper-input']"));
+        public IWebElement PaperInput => Driver.FindElement(By.CssSelector("[slot = 'kitchensink/text-listening-paper-input']"));
 
-        public IWebElement PaperInputDynamic => Driver.FindElement(By.XPath("//paper-input[@slot = 'kitchensink/text-typing-listening-paper-input']"));
+        public IWebElement PaperInputDynamic => Driver.FindElement(By.CssSelector("[slot = 'kitchensink/text-typing-listening-paper-input']"));
 
         public IWebElement PaperInputInfoLabel => GetPaperInput(PaperInput, "paper-input-label-1");
 
