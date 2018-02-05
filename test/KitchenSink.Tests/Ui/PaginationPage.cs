@@ -12,7 +12,7 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-juicyselect select")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/pagination-juicy-select-items-per-page'] select")]
         public IWebElement DropDown { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/pagination-table'] tbody > tr")]
