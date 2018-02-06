@@ -10,10 +10,10 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-tooglebutton-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/toggleButton-label']")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-tooglebutton")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/toggleButton-toggle-button']")]
         public IWebElement ToogleButton { get; set; }
 
         public void ChangeToggleButtonState()

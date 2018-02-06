@@ -6,7 +6,7 @@
         <h1 slot="kitchensink/pagination-heading" class="kitchensink-heading-1">Pagination</h1>
         
         <p slot="kitchensink/pagination-description">Pagination can be implemented in the code-behind by using <code>FETCH</code> to determine how many entries there should be on every page and <code>OFFSET</code> to retrieve the right entries</p>
-        <juicy-select slot="kitchensink/pagination-juicy-select-items-per-page" class="kitchensink-juicyselect dropdown kitchensink-test-juicy-select" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
+        <juicy-select slot="kitchensink/pagination-juicy-select-items-per-page" class="kitchensink-juicyselect dropdown" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
         </juicy-select>
         <table slot="kitchensink/pagination-table" class="table">
             <thead>
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 <template is="dom-repeat" items="{{model.Library}}" as="book">
-                    <tr class="kitchensink-test-pagination-result-table-row">
+                    <tr>
                         <td>{{book.Title}}</td>
                         <td>{{book.Author}}</td>
                     </tr>
@@ -26,7 +26,7 @@
         </table>
 
         <nav slot="kitchensink/pagination-navigation">
-            <ul class="pagination kitchensink-test-pagination">
+            <ul class="pagination">
                 <li>
                     <span class="kitchensink-pagination-span" id="kitchensink-pagination-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
                 </li>
@@ -46,7 +46,7 @@
                 </li>
             </ul>
         </nav>
-        <p slot="kitchensink/pagination-page-number" class="kitchensink-test-pagination-label">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
+        <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>
         (function () {
