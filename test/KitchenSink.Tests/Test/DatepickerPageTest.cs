@@ -1,9 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using KitchenSink.Tests.Ui;
+﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace KitchenSink.Tests.Test
 {
@@ -32,7 +29,8 @@ namespace KitchenSink.Tests.Test
         {
             WaitUntil(x => _datePicker.DatePicker.Displayed);
 
-            _datePicker.SelectDate("01/01/2016");
+            _datePicker.SelectDate("2016-01-01");
+
             Assert.AreEqual("2016", _datePicker.YearInput.GetAttribute("value"));
             Assert.AreEqual("January", _datePicker.MonthInput.GetAttribute("value"));
             Assert.AreEqual("1", _datePicker.DayInput.GetAttribute("value"));
