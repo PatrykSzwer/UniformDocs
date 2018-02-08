@@ -10,27 +10,25 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-input")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-listening-input']")]
         public IWebElement Input { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-input-dynamic")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-typing-listening-input']")]
         public IWebElement InputDynamic { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-listening-label']")]
         public IWebElement InputInfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-label-dynamic")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/text-typing-listening-label']")]
         public IWebElement InputInfoLabelDynamic { get; set; }
 
-        public IWebElement PaperInput => Driver.FindElement(
-            By.XPath("//paper-input[contains(@class, \"kitchensink-test-name-paper-input\")]"));
+        public IWebElement PaperInput => Driver.FindElement(By.CssSelector("[slot = 'kitchensink/text-listening-paper-input']"));
 
-        public IWebElement PaperInputDynamic => Driver.FindElement(
-            By.XPath("//paper-input[contains(@class, \"kitchensink-test-name-paper-input-dynamic\")]"));
+        public IWebElement PaperInputDynamic => Driver.FindElement(By.CssSelector("[slot = 'kitchensink/text-typing-listening-paper-input']"));
 
-        public IWebElement PaperInputInfoLabel => ExpandShadowRoot(PaperInput).FindElement(By.Id("paper-input-label-1"));
+        public IWebElement PaperInputInfoLabel => GetPaperInput(PaperInput, "paper-input-label-1");
 
-        public IWebElement PaperInputDynamicInfoLabel => ExpandShadowRoot(PaperInputDynamic).FindElement(By.Id("paper-input-label-2"));
+        public IWebElement PaperInputDynamicInfoLabel => GetPaperInput(PaperInputDynamic, "paper-input-label-2");
 
 
         public void FillInput(IWebElement inputElement, string input)
@@ -54,14 +52,12 @@ namespace KitchenSink.Tests.Ui
 
         public IWebElement GetInputForPaperElement(IWebElement paperInput)
         {
-            return ExpandShadowRoot(paperInput).FindElement(By.CssSelector("input"));
+            return GetShadowElementByQuerySelector(paperInput, "input");
         }
 
-        public IWebElement GetLabelForPaperElement(IWebElement paperElement)
+        public IWebElement GetPaperInput(IWebElement paperElement, string id)
         {
-            var shadowRoot = ExpandShadowRoot(paperElement);
-            var content = ExpandShadowRoot(shadowRoot);
-            return content.FindElement(By.XPath("//label"));
+            return GetShadowElementByQuerySelector(paperElement, $"#{id}");
         }
     }
 }
