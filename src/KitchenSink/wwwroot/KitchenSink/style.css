@@ -59,15 +59,6 @@
     pointer-events: none
 }
 
-.kitchensink-add-carrots {
-    display: flex;
-    align-items: baseline;
-}
-
-.kitchensink-add-carrots > * {
-    margin-right: 10px;
-}
-
 .kitchensink-regenerating-carrots {
     display: flex;
     align-items: baseline;

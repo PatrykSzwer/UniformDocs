@@ -1,10 +1,10 @@
 <template>
     <dom-bind><template is="dom-bind">
-                <ul>
+                <ul slot="kitchensink/nav">
                     <li><a href="/KitchenSink/MainPage">Main</a></li>
                 </ul>
-                <h4>Rendering</h4>
-                <ul>
+                <h4 slot="kitchensink/nav-rendering-header">Rendering</h4>
+                <ul slot="kitchensink/nav-rendereing">
                     <li><a href="/KitchenSink/Breadcrumb">Breadcrumb</a></li>
                     <li><a href="/KitchenSink/Chart">Chart</a></li>
                     <li><a href="/KitchenSink/Datagrid">Datagrid</a></li>
@@ -15,8 +15,8 @@
                     <li><a href="/KitchenSink/Pagination">Pagination</a></li>
                     <li><a href="/KitchenSink/Table">Table</a></li>
                 </ul>
-                <h4>Server Push</h4>
-                <ul>
+                <h4 slot="kitchensink/nav-push-header">Server Push</h4>
+                <ul slot="kitchensink/nav-push">
                     <li><a href="/KitchenSink/Callback">Async Response</a></li>
                     <li><a href="/KitchenSink/Cookie">Cookies</a></li>
                     <li><a href="/KitchenSink/Dialog">Dialog Box</a></li>
@@ -27,8 +27,8 @@
                     <li><a href="/KitchenSink/Redirect">Redirect</a></li>
                     <li><a href="/KitchenSink/ClientLocalState">Client Local State</a></li>
                 </ul>
-                <h4>User Input</h4>
-                <ul>
+                <h4 slot="kitchensink/nav-input-header">User Input</h4>
+                <ul slot="kitchensink/nav-input">
                     <li><a href="/KitchenSink/Autocomplete">Autocomplete</a></li>
                     <li><a href="/KitchenSink/Button">Button</a></li>
                     <li><a href="/KitchenSink/Checkbox">Checkbox</a></li>
@@ -49,11 +49,25 @@
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <style>
-            ::slotted(ul) {
+            .kitchensink-nav > ::slotted(ul) {
+                padding: 0 !important;
+                list-style: none !important;
+            }
+            /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
+            .kitchensink-nav > ul {
                 padding: 0 !important;
                 list-style: none !important;
             }
         </style>
-        <slot></slot>
+        <!-- This container is needed for polyfilled browsers only -->
+        <div class="kitchensink-nav">
+            <slot name="kitchensink/nav"></slot>
+            <slot name="kitchensink/nav-rendering-header"></slot>
+            <slot name="kitchensink/nav-rendereing"></slot>
+            <slot name="kitchensink/nav-push-header"></slot>
+            <slot name="kitchensink/nav-push"></slot>
+            <slot name="kitchensink/nav-input-header"></slot>
+            <slot name="kitchensink/nav-input"></slot>
+        </div>
     </template>
 </template>

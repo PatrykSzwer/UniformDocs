@@ -86,7 +86,7 @@
                             399 -118 472 -266 46 -93 48 -281 3 -367 -80 -153 -329 -259 -612 -261 l-88
                             -1 0 448 c0 247 3 452 7 456 4 4 37 4 73 2 36 -3 101 -8 145 -11z"></path>
                 </g>
-            </svg> 
+            </svg>
         </span></button>
         <span slot="kitchensink/buttonpage-binding-issue-label">{{model.OnBuyReaction}}</span>
     </template></dom-bind>
@@ -114,8 +114,16 @@
             .kitchensink-add-carrots ::slotted(*) {
                 margin-right: 10px !important;
             }
+            /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
+            .kitchensink-add-carrots > * {
+                margin-right: 10px;
+            }
 
             .kitchensink-add-carrots__label::slotted(span) {
+                font-weight: bold;
+            }
+            /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
+            span[slot="kitchensink/buttonpage-regular-add-carrots-label"] {
                 font-weight: bold;
             }
         </style>
