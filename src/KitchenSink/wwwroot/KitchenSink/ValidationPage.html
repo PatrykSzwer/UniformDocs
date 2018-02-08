@@ -7,13 +7,13 @@
         <label slot="kitchensink/validation-name-label">Please type your name</label>
 
         <input slot="kitchensink/validation-name-input" type="text" value="{{model.Name$::change}}" placeholder="Name">
-        <label slot="kitchensink/validation-name-error-message" class="error-label">{{model.ErrorName$}}</label>
+        <label slot="kitchensink/validation-name-error-message">{{model.ErrorName$}}</label>
         <br>
 
         <label slot="kitchensink/validation-last-name-label">Please type your last name</label>
 
         <input slot="kitchensink/validation-last-name-input" type="text" value="{{model.LastName$::change}}" placeholder="Last name">
-        <label slot="kitchensink/validation-last-name-error-message" class="error-label">{{model.ErrorLastName$}}</label>
+        <label slot="kitchensink/validation-last-name-error-message">{{model.ErrorLastName$}}</label>
         <br>
 
         <button slot="kitchensink/validation-validate-button" value="{{model.ValidateTrigger$::click}}" onmousedown="++this.value">Validate</button>
@@ -22,6 +22,8 @@
         <style>
             .kitchensink-validation-error-message {
                 margin-bottom: 20px;
+                color: red;
+                font-size: 8pt;
             }
         </style>
         <slot name="kitchensink/validation-heading"></slot>

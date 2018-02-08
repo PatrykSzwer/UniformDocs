@@ -37,7 +37,7 @@
 .kitchensink-breadcrumb-suggestions__item:hover {
     cursor: default;
     background: rgba(255, 255, 255, 0.2);
-}    
+}
 
 .kitchensink-upload-tasks {
     background-color: #F0F0F0;
@@ -162,11 +162,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.error-label {
-    color: red;
-    font-size: 8pt;
 }
 
 .kitchensink-pagination-span,
