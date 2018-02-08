@@ -122,10 +122,18 @@ namespace KitchenSink.Tests.Ui
 
         public IWebElement GetShadowElementByQuerySelector(IWebElement shadowRootElement, string queryArgument)
         {
-            var script = $"return arguments[0].shadowRoot.querySelector('{queryArgument}')";
-            var webElement = (IWebElement)ExecuteScriptOnElement(shadowRootElement, script);
-
-            return webElement;
+            bool shadowTreeParent = (Boolean)((IJavaScriptExecutor)Driver)
+             .ExecuteScript("return !!arguments[0].shadowRoot", shadowRootElement);
+            if (!shadowTreeParent)
+            {
+                //Shadow DOM not supported, fall back to DOM
+                return shadowRootElement.FindElement(By.CssSelector(queryArgument));
+            }
+            else
+            {
+                var script = $"return arguments[0].shadowRoot.querySelector('{queryArgument}')";
+                return (IWebElement)ExecuteScriptOnElement(shadowRootElement, script);
+            }
         }
 
         public void ScrollToTheTop()
