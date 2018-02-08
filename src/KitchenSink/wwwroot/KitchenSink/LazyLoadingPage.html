@@ -32,12 +32,7 @@
         </table>
         <template is="dom-if" if="{{model.DisplayHoverBox$}}">
             <p slot="kitchensink/lazyLoading-message-box-game-label">{{model.SelectedPersonsName$}}'s Favorite game</p>
-            <template is="dom-if" if="{{showLoadSpinner(model.DisplayedData.DataContent$)}}">
-                <div slot="kitchensink/lazyLoading-message-box-game-loading"></div>
-            </template>
-            <template is="dom-if" if="{{!showLoadSpinner(model.DisplayedData.DataContent$)}}">
-                <p slot="kitchensink/lazyLoading-message-box-game-data">{{model.DisplayedData.DataContent$}}</p>
-            </template>
+            <p slot="kitchensink/lazyLoading-message-box-game-data" aria-busy$="[[stillEmpty(model.DisplayedData.DataContent$)]]">{{model.DisplayedData.DataContent$}}</p>
         </template>
     </template></dom-bind>
     <script>
@@ -46,8 +41,8 @@
             var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
             var currentTargetIndex;
 
-            template.showLoadSpinner = function (displayedData) {
-                return displayedData == "";
+            template.stillEmpty = function (displayedData) {
+                return displayedData == ""? "true" : "false";
             }
 
             template.hoverFunction = function (event) {
@@ -90,31 +85,47 @@
     </script>
     <template is="declarative-shadow-dom">
         <style>
-            .kitchensink-lazy-loading__spinning-loading::slotted(*) {
-                border: 5px solid #f3f3f3;
+            .kitchensink-lazy-loading__hover-box {
+                background-color: rgba(255, 255, 255, 0.80);
+                color: #000000;
+                border: 2px solid rgba(255, 133, 0, 1);
+                border-radius: 5px;
+                width: 75%;
+                min-height: 100px;
+                margin-left: 12.5%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-size: 14px;
+            }
+            /*
+                First selector does not work due to Polymer 2.3.1 bug
+            */
+            .kitchensink-lazy-loading__hover-box > ::slotted([aria-busy="true"]),
+            .kitchensink-lazy-loading__hover-box > ::slotted([aria-busy=""]) {
+                border: 4px solid #f3f3f3;
                 border-radius: 50%;
-                border-top: 5px solid rgba(255, 133, 0, 1);
-                border-bottom: 5px solid rgba(255, 133, 0, 1);
-                width: 50px;
-                height: 50px;
-                margin-left: calc(50% - 25px);
+                border-top: 4px solid rgba(255, 133, 0, 1);
+                border-bottom: 4px solid rgba(255, 133, 0, 1);
+                width: calc(22px - 2 * 4px);
+                height: calc(22px - 2 * 4px);
+                box-sizing: content-box;
                 -webkit-animation: spin 2s linear infinite;
                 animation: spin 2s linear infinite;
             }
-
-             .kitchensink-lazy-loading__hover-box {
-                 background-color: rgba(255, 255, 255, 0.80);
-                 color: #000000;
-                 border: 2px solid rgba(255, 133, 0, 1);
-                 border-radius: 5px;
-                 width: 75%;
-                 min-height: 100px;
-                 margin-left: 12.5%;
-             }
-
-            .kitchensink-lazy-loading__hover-box > ::slotted(p) {
-                font-size: 14px;
-                text-align: center;
+            /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
+            .kitchensink-lazy-loading__hover-box > [aria-busy="true"],
+            .kitchensink-lazy-loading__hover-box > [aria-busy=""] {
+                border: 4px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 4px solid rgba(255, 133, 0, 1);
+                border-bottom: 4px solid rgba(255, 133, 0, 1);
+                width: calc(22px - 2 * 4px);
+                height: calc(22px - 2 * 4px);
+                box-sizing: content-box;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
             }
         </style>
         <slot name="kitchensink/lazyLoading-heading"></slot>
