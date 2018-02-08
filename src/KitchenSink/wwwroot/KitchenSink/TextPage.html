@@ -22,17 +22,21 @@
 
         <input slot="kitchensink/text-typing-listening-input" type="text" value="{{model.NameLive$::input}}" placeholder="Name">
 
-        <p slot="kitchensink/text-listening-paper-label" class="kitchensink-text-paper-input-description">You can also use any custom element, such as <a href="https://www.webcomponents.org/element/PolymerElements/paper-input">paper-input</a>. Make sure to observe an event triggered by the custom element after the interaction. For instance, `paper-input` triggers a <code>change</code> event after its value was changed and unfocused:</p> 
+        <p slot="kitchensink/text-listening-paper-input=desc">You can also use any custom element, such as <a href="https://www.webcomponents.org/element/PolymerElements/paper-input">paper-input</a>. Make sure to observe an event triggered by the custom element after the interaction. For instance, `paper-input` triggers a <code>change</code> event after its value was changed and unfocused:</p>
 
         <paper-input slot="kitchensink/text-listening-paper-input" label="{{model.NameForPaperReaction}}" value="{{model.NameForPaper$::change}}"></paper-input>
-        
-        <p slot="kitchensink/text-typing-listening-paper-label">If you need to observe the changes while typing, paper-text triggers <code>value-changed</code> event after each keystroke. This allows to bind it live with the server:</p>       
+
+        <p slot="kitchensink/text-typing-listening-paper-label">If you need to observe the changes while typing, paper-text triggers <code>value-changed</code> event after each keystroke. This allows to bind it live with the server:</p>
 
         <paper-input slot="kitchensink/text-typing-listening-paper-input" label="{{model.NameForPaperLiveReaction}}" value="{{model.NameForPaperLive$::value-changed}}"></paper-input>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <style>
             @import "/sys/uniform.css/uniform.css";
+
+            .kitchensink-text-paper-input-description {
+                margin-top: 20px;
+            }
         </style>
         <slot name="kitchensink/text-heading"></slot>
         <slot name="kitchensink/text-description"></slot>
@@ -48,7 +52,9 @@
             <slot name="kitchensink/text-typing-listening-label"></slot>
             <slot name="kitchensink/text-typing-listening-input"></slot>
         </div>
-        <slot name="kitchensink/text-listening-paper-label"></slot>
+        <div class="kitchensink-text-paper-input-description">
+            <slot name="kitchensink/text-listening-paper-input=desc"></slot>
+        </div>
         <slot name="kitchensink/text-listening-paper-input"></slot>
         <slot name="kitchensink/text-typing-listening-paper-label"></slot>
         <slot name="kitchensink/text-typing-listening-paper-input"></slot>
