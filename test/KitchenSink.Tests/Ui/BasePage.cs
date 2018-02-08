@@ -106,16 +106,26 @@ namespace KitchenSink.Tests.Ui
             element.Click();
         }
 
-        public IWebElement ExpandShadowRoot(IWebElement shadowRootElement)
+        public object ExecuteScriptOnElement(IWebElement shadowRootElement, string script)
         {
-            IWebElement shadowTreeParent = (IWebElement)((IJavaScriptExecutor)Driver)
-           .ExecuteScript("return arguments[0].shadowRoot", shadowRootElement);
-            if (shadowTreeParent == null)
-            {
-                //Shadow DOM not supported, fall back to DOM
-                return shadowRootElement;
-            }
-            return shadowTreeParent;
+            var scriptResult = ((IJavaScriptExecutor)Driver)
+                .ExecuteScript(script, shadowRootElement);
+
+            return scriptResult;
+        }
+
+        public IWebElement GetShadowElementByQuerySelector(By elementSelector, string queryArgument)
+        {
+            var shadowRootElement = Driver.FindElement(elementSelector);
+            return GetShadowElementByQuerySelector(shadowRootElement, queryArgument);
+        }
+
+        public IWebElement GetShadowElementByQuerySelector(IWebElement shadowRootElement, string queryArgument)
+        {
+            var script = $"return arguments[0].shadowRoot.querySelector('{queryArgument}')";
+            var webElement = (IWebElement)ExecuteScriptOnElement(shadowRootElement, script);
+
+            return webElement;
         }
 
         public void ScrollToTheTop()

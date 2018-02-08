@@ -22,8 +22,7 @@ namespace KitchenSink.Tests.Ui
 
         public void UploadAFile(string filePath)
         {
-            var shadowRoot = ExpandShadowRoot(Driver.FindElement(By.XPath("//starcounter-upload")));
-            shadowRoot.FindElement(By.Id("fileElement")).SendKeys(filePath);
+            GetFileElement().SendKeys(filePath);
         }
 
         public int GetUploadedFilesCount()
@@ -33,8 +32,7 @@ namespace KitchenSink.Tests.Ui
 
         public bool CheckFileInputVisible()
         {
-            var shadowRoot = ExpandShadowRoot(Driver.FindElement(By.XPath("//starcounter-upload")));
-            return shadowRoot.FindElement(By.Id("fileElement")).Enabled;
+            return GetFileElement().Enabled;
         }
 
         public void DeleteAllFiles()
@@ -44,5 +42,11 @@ namespace KitchenSink.Tests.Ui
                 ClickOn(deleteButton);
             }
         }
+
+        private IWebElement GetFileElement()
+        {
+            return GetShadowElementByQuerySelector(By.XPath("//starcounter-upload"), "#fileElement");
+        }
+
     }
 }

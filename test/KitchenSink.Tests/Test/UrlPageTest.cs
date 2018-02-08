@@ -84,25 +84,24 @@ namespace KitchenSink.Tests.Test
             Driver.SwitchTo().Window(Driver.WindowHandles[0]);
         }
 
-        // This test was commented because of issue: https://github.com/Starcounter/level1/issues/4441
-        //[Test]
-        //public void UrlPage_ClickLinkWithDownloadAttribute()
-        //{
-        //    string downloadsDirPath = Path.Combine(System.Environment.GetEnvironmentVariable("USERPROFILE"), "Downloads");
-        //    string downloadedFilePath = Path.Combine(downloadsDirPath, "KitchenSinkLogo.svg");
-        //    FileInfo downloadedFile = new FileInfo(downloadedFilePath);
+        [Test]
+        public void UrlPage_ClickLinkWithDownloadAttribute()
+        {
+            string downloadsDirPath = Path.Combine(System.Environment.GetEnvironmentVariable("USERPROFILE"), "Downloads");
+            string downloadedFilePath = Path.Combine(downloadsDirPath, "KitchenSinkLogo.svg");
+            FileInfo downloadedFile = new FileInfo(downloadedFilePath);
 
-        //    if(downloadedFile.Exists)
-        //    {
-        //        downloadedFile.Delete();
-        //    }
+            if(downloadedFile.Exists)
+            {
+                downloadedFile.Delete();
+            }
 
-        //    WaitUntil(x => _urlPage.LinkWithDownloadAttrib.Displayed);
+            WaitUntil(x => _urlPage.LinkWithDownloadAttrib.Displayed);
 
-        //    _urlPage.ClickLinkWithDownloadAttrib();
+            _urlPage.ClickLinkWithDownloadAttrib();
 
-        //    WaitUntil(x => new FileInfo(downloadedFilePath).Exists);
-        //}
+            WaitUntil(x => new FileInfo(downloadedFilePath).Exists);
+        }
 
         [Test]
         public void UrlPage_ClickIframeTargettedLink()

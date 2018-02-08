@@ -26,9 +26,9 @@ namespace KitchenSink.Tests.Ui
 
         public IWebElement PaperInputDynamic => Driver.FindElement(By.CssSelector("[slot = 'kitchensink/text-typing-listening-paper-input']"));
 
-        public IWebElement PaperInputInfoLabel => ExpandShadowRoot(PaperInput).FindElement(By.Id("paper-input-label-1"));
+        public IWebElement PaperInputInfoLabel => GetPaperInput(PaperInput, "paper-input-label-1");
 
-        public IWebElement PaperInputDynamicInfoLabel => ExpandShadowRoot(PaperInputDynamic).FindElement(By.Id("paper-input-label-2"));
+        public IWebElement PaperInputDynamicInfoLabel => GetPaperInput(PaperInputDynamic, "paper-input-label-2");
 
 
         public void FillInput(IWebElement inputElement, string input)
@@ -52,14 +52,12 @@ namespace KitchenSink.Tests.Ui
 
         public IWebElement GetInputForPaperElement(IWebElement paperInput)
         {
-            return ExpandShadowRoot(paperInput).FindElement(By.CssSelector("input"));
+            return GetShadowElementByQuerySelector(paperInput, "input");
         }
 
-        public IWebElement GetLabelForPaperElement(IWebElement paperElement)
+        public IWebElement GetPaperInput(IWebElement paperElement, string id)
         {
-            var shadowRoot = ExpandShadowRoot(paperElement);
-            var content = ExpandShadowRoot(shadowRoot);
-            return content.FindElement(By.XPath("//label"));
+            return GetShadowElementByQuerySelector(paperElement, $"#{id}");
         }
     }
 }
