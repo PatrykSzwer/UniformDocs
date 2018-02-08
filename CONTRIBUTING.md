@@ -48,7 +48,7 @@ Before running the steps, you need to:
 
 - Download and install Visual Studio 2017 to run the tests
 - Download and install Java, required by Selenium Standalone Server
-- Download Selenium Standalone Server and the drivers [Microsoft WebDriver (Edge), Google ChromeDriver (Chrome) and Mozilla GeckoDriver (Firefox)] using [these instructions](https://docs.starcounter.io/guides/web-apps/acceptance-testing-with-selenium/).
+- Download Selenium Standalone Server and the drivers [Microsoft WebDriver (Edge), Google ChromeDriver (Chrome) and Mozilla GeckoDriver (Firefox)] using [these instructions](https://docs.starcounter.io/cookbook/acceptance-testing-with-selenium).
 - Add path to the folder with drivers to system path on your computer
 
 ### Run the test (from Visual Studio)
