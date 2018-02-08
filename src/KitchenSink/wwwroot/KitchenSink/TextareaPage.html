@@ -4,9 +4,9 @@
 
         <p slot="kitchensink/textarea-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>textarea</code>.</p>
 
-        <label slot="kitchensink/textarea-label" class="kitchensink-test-bio-reaction-label">{{model.BioReaction}}</label>
+        <label slot="kitchensink/textarea-label">{{model.BioReaction}}</label>
 
-        <textarea slot="kitchensink/textarea-textarea" test-value$="{{model.Bio$}}" value="{{model.Bio$::input}}" class="kitchensink-test-textarea" rows="3"></textarea>
+        <textarea slot="kitchensink/textarea-textarea" value="{{model.Bio$::input}}" rows="3"></textarea>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/textarea-heading"></slot>

@@ -5,7 +5,7 @@
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/pagination-heading">Pagination</h1>
         <p slot="kitchensink/pagination-description">Pagination can be implemented in the code-behind by using <code>FETCH</code> to determine how many entries there should be on every page and <code>OFFSET</code> to retrieve the right entries</p>
-        <juicy-select slot="kitchensink/pagination-juicy-select-items-per-page" class="kitchensink-juicyselect kitchensink-test-juicy-select" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
+        <juicy-select slot="kitchensink/pagination-juicy-select-items-per-page" class="kitchensink-juicyselect" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
         </juicy-select>
         <table slot="kitchensink/pagination-table">
             <thead>
@@ -16,7 +16,7 @@
             </thead>
             <tbody>
             <template is="dom-repeat" items="{{model.Library}}" as="book">
-                <tr class="kitchensink-test-pagination-result-table-row">
+                <tr>
                     <td>{{book.Title}}</td>
                     <td>{{book.Author}}</td>
                 </tr>
@@ -30,7 +30,7 @@
         </template>
         <span slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}" on-click="onNextPageClick">Next</span>
         <span slot="kitchensink/pagination-navigation-last" class="next" tabindex="0" value="{{model.LastPageTrigger$::click}}" on-click="onLastPageClick">Last</span>
-        <p slot="kitchensink/pagination-page-number" class="kitchensink-test-pagination-label">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
+        <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>
         (function () {

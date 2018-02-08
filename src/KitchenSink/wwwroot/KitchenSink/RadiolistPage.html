@@ -11,12 +11,12 @@
 
         <paper-listbox slot="kitchensink/radiolist-paper-listbox" selected="{{model.SelectedItemIndex$}}">
             <template is="dom-repeat" items="{{model.MenuOptions}}">
-                <paper-item class="kitchensink-test-radio-list" test-value$="{{item.Label}}">{{item.Label}}</paper-item>
+                <paper-item test-value$="{{item.Label}}">{{item.Label}}</paper-item>
             </template>
         </paper-listbox>
 
         <p slot="kitchensink/radiolist-selected-label">Selected item:</p>
-        <span slot="kitchensink/radiolist-selected-item-label" class="kitchensink-test-selected-item-label">{{model.SelectedItemLabel}}</span>
+        <span slot="kitchensink/radiolist-selected-item-label">{{model.SelectedItemLabel}}</span>
         <span slot="kitchensink/radiolist-selected-item-index">({{model.SelectedItemIndex$}})</span>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
@@ -24,7 +24,7 @@
         <slot name="kitchensink/radiolist-description"></slot>
         <slot name="kitchensink/radiolist-description-recommend"></slot>
         <div>
-            <slot name="kitchensink/radiolist-paper-listbox"></slot>           
+            <slot name="kitchensink/radiolist-paper-listbox"></slot>
         </div>
         <slot name="kitchensink/radiolist-selected-label"></slot>
         <slot name="kitchensink/radiolist-selected-item-label"></slot>

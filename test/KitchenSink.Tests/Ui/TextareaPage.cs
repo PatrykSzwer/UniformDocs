@@ -10,10 +10,10 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-textarea")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/textarea-textarea']")]
         public IWebElement Textarea { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-bio-reaction-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/textarea-label']")]
         public IWebElement TextareaInfoLabel { get; set; }
 
         public void FillTextarea(string input)
@@ -23,8 +23,8 @@ namespace KitchenSink.Tests.Ui
 
         public void ClearTextarea()
         {
-            //can't use Clear()
-            var textAreaLength = Textarea.GetAttribute("test-value").Length;
+            // can't use Clear()
+            var textAreaLength = Textarea.GetAttribute("value").Length;
 
             for (var i = 0; i < textAreaLength; i++)
             {

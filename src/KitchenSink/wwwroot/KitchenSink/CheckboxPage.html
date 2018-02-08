@@ -6,9 +6,9 @@
 
         <label slot="kitchensink/checkbox-label">Driver's license</label>
 
-        <input slot="kitchensink/checkbox-input" class="kitchensink-test-driver-license-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
+        <input slot="kitchensink/checkbox-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
 
-        <div slot="kitchensink/checkbox-license-label" class="kitchensink-test-driver-license-label">{{model.DrivingLicenseReaction}}</div>
+        <div slot="kitchensink/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/checkbox-heading"></slot>

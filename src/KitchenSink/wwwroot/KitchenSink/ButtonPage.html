@@ -18,7 +18,7 @@
             <li>Any other element (<code>span</code>, etc) with a helper function</li>
         </ol>
 
-        <pre slot="kitchensink/buttonpage-regular-reaction-label" class="kitchensink-test-carrots-reaction-label">{{model.CarrotsReaction}}</pre>
+        <pre slot="kitchensink/buttonpage-regular-reaction-label">{{model.CarrotsReaction}}</pre>
 
         <span slot="kitchensink/buttonpage-regular-add-carrots-label">Add carrots:</span>
 
@@ -35,7 +35,7 @@
 
         <button slot="kitchensink/buttonpage-switch-button" class="kitchensink-toggle-button" pressed$="{{model.EnableCarrotEngine$}}" on-click="onEnableCarrotEngineClick">Enable carrot engine</button>
 
-        <span slot="kitchensink/buttonpage-switch-reaction-label" class="kitchensink-test-carrot-engine-reaction-label">{{model.CarrotEngineReaction}}</span>
+        <span slot="kitchensink/buttonpage-switch-reaction-label">{{model.CarrotEngineReaction}}</span>
 
         <h2 slot="kitchensink/buttonpage-disable-heading">Disabled button</h2>
 
@@ -44,7 +44,7 @@
 
         <button slot="kitchensink/buttonpage-disable-button" class="kitchensink-toggle-button" value="{{model.AddOneCarrotTrigger$::click}}" onmousedown="++this.value" disabled$="{{model.AddOneCarrotDisabled}}">Add carrots</button>
 
-        <span slot="kitchensink/buttonpage-disable-label" class="kitchensink-test-one-carrot-reaction-label">{{model.OneCarrotReaction}}</span>
+        <span slot="kitchensink/buttonpage-disable-label">{{model.OneCarrotReaction}}</span>
 
         <h2 slot="kitchensink/buttonpage-self-heading">Self Disabling/Enabling Button</h2>
 
@@ -52,14 +52,14 @@
         <div slot="kitchensink/buttonpage-self-button" class="kitchensink-regenerating-carrots">
             <button class="kitchensink-toggle-button" value="{{model.TakeOneRegeneratingCarrotTrigger$::click}}" disabled="{{model.TakeOneRegeneratingCarrotTrigger$}}" onmouseup="++this.value">Take one Regenerating Carrot</button>
             <template is="dom-if" if="{{model.TakeOneRegeneratingCarrotTrigger$}}">
-                <p class="kitchensink-test-self-button-label">Currently Regenerating!</p>
+                <p>Currently Regenerating!</p>
             </template>
         </div>
 
         <h2 slot="kitchensink/buttonpage-binding-issue-heading">Button with children</h2>
         <p slot="kitchensink/buttonpage-binding-issue-description">Because of an <a href="https://github.com/Polymer/polymer/issues/2497">issue in Polymer 1</a>, data bindings for buttons with child elements writes undefined value to the view-model property bound to the buttons, which leads to server disconnection. As a workaround, set the <code>pointer-events</code> property to <code>none</code> on the children of the button.</p>
         <p slot="kitchensink/buttonpage-binding-issue-click-label"><b>Click to buy a carrot!</b></p>
-        <button slot="kitchensink/buttonpage-binding-issue-button" class="kitchensink-toggle-button kitchesink-test-buy-carrot-button" value="{{model.BuyCarrotTrigger$::click}}" onmousedown="++this.value"><span class="kitchensink-buy-carrot">
+        <button slot="kitchensink/buttonpage-binding-issue-button" class="kitchensink-toggle-button" value="{{model.BuyCarrotTrigger$::click}}" onmousedown="++this.value"><span class="kitchensink-buy-carrot">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="16pt" height="16pt" viewBox="0 0 468 468" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0,468) scale(0.078000,-0.078000)" fill="#000000" stroke="none">
                     <path d="M2600 5595 c0 -237 -3 -305 -12 -305 -7 0 -63 -5 -125 -10 -140 -12
@@ -88,7 +88,7 @@
                 </g>
             </svg> 
         </span></button>
-        <span slot="kitchensink/buttonpage-binding-issue-label" class="kitchensink-test-buy-carrot-reaction-label">{{model.OnBuyReaction}}</span>
+        <span slot="kitchensink/buttonpage-binding-issue-label">{{model.OnBuyReaction}}</span>
     </template></dom-bind>
     <script>
         (function () {

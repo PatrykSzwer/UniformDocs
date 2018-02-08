@@ -6,9 +6,9 @@
 
         <p slot="kitchensink/toggleButton-description">JSON's primitive value type <code>boolean</code> can be mapped to a toggle button element.</p>
 
-        <div slot="kitchensink/toggleButton-label" class="kitchensink-test-tooglebutton-label">{{model.AcceptTermsAndConditionsReaction}}</div>
+        <div slot="kitchensink/toggleButton-label">{{model.AcceptTermsAndConditionsReaction}}</div>
 
-        <paper-toggle-button slot="kitchensink/toggleButton-toggle-button" class="kitchensink-test-tooglebutton" checked="{{model.AcceptTermsAndConditions$::change}}"></paper-toggle-button>
+        <paper-toggle-button slot="kitchensink/toggleButton-toggle-button" checked="{{model.AcceptTermsAndConditions$::change}}"></paper-toggle-button>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/toggleButton-heading"></slot>

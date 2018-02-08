@@ -12,10 +12,10 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-selected-item-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/radiolist-selected-item-label']")]
         public IWebElement InfoLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-radio-list")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/radiolist-paper-listbox'] > paper-item")]
         public IList<IWebElement> Radios { get; set; }
 
 

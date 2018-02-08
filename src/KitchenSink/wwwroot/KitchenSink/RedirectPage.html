@@ -13,25 +13,25 @@
 
         <label slot="kitchensink/redirect-current-partial-label">Morph to some: </label>
 
-        <button slot="kitchensink/redirect-current-partial-fruit-button" class="kitchensink-test-fruit-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Fruit'">Fruit</button>
+        <button slot="kitchensink/redirect-current-partial-fruit-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Fruit'">Fruit</button>
 
-        <button slot="kitchensink/redirect-current-partial-vegetable-button" class="kitchensink-test-vegetable-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
+        <button slot="kitchensink/redirect-current-partial-vegetable-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
 
-        <button slot="kitchensink/redirect-current-partial-bread-button" class="kitchensink-test-bread-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
+        <button slot="kitchensink/redirect-current-partial-bread-button"" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
 
-        <div slot="kitchensink/redirect-current-partial-favorite-label" class="kitchensink-test-favourite-food-label">{{model.YourFavoriteFood}}</div>
+        <div slot="kitchensink/redirect-current-partial-favorite-label">{{model.YourFavoriteFood}}</div>
 
         <h2 slot="kitchensink/redirect-another-partial-heading">Morph to another partial</h2>
 
         <p slot="kitchensink/redirect-another-partial-description">Want to morph to another partial? It's as easy.</p>
 
-        <button slot="kitchensink/redirect-another-partial-button" class="kitchensink-test-morph-button" value="{{model.GoToHomePartialTrigger$::click}}" onmousedown="++this.value">Morph to another partial</button>
+        <button slot="kitchensink/redirect-another-partial-button" value="{{model.GoToHomePartialTrigger$::click}}" onmousedown="++this.value">Morph to another partial</button>
 
         <h2 slot="kitchensink/redirect-external-link-heading">Redirect to an external link</h2>
 
         <p slot="kitchensink/redirect-external-link-description">Drop the <code>history</code> attribute to redirect to an external link (without morphing).</p>
 
-        <button slot="kitchensink/redirect-external-link-button" class="kitchensink-test-redirect-button" value="{{model.GoToDocsTrigger$::click}}" onmousedown="++this.value">Redirect to Starcounter.io</button>
+        <button slot="kitchensink/redirect-external-link-button" value="{{model.GoToDocsTrigger$::click}}" onmousedown="++this.value">Redirect to Starcounter.io</button>
 
         <palindrom-redirect slot="kitchensink/redirect-link-morph" is="palindrom-redirect" history url="{{model.MorphUrl$}}"></palindrom-redirect>
         <palindrom-redirect slot="kitchensink/redirect-link-redirect" is="palindrom-redirect" url="{{model.RedirectUrl$}}"></palindrom-redirect>
