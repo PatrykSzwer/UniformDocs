@@ -57,7 +57,7 @@ namespace KitchenSink
                     return;
                 }
 
-                this.SelectedProduct.Data = Db.FromId(DbHelper.Base64DecodeObjectID(value)) as SoftwareProduct;
+                this.SelectedProduct.Data = DbHelper.FromID(DbHelper.Base64DecodeObjectID(value)) as SoftwareProduct;
             }
         }
     }

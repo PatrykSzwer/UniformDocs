@@ -58,7 +58,7 @@ namespace KitchenSink
         protected void PushChanges()
         {
             Transaction.Commit();
-            Session.RunTaskForAll((s, sessionId) =>
+            Session.ForAll((s, sessionId) =>
             {
                 var master = s.Store[nameof(MasterPage)] as MasterPage;
                 if (!(master?.CurrentPage is GeoPage)) return;

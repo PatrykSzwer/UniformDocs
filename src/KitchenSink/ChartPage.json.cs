@@ -1,5 +1,4 @@
 using Starcounter;
-using Starcounter.Advanced.XSON;
 
 namespace KitchenSink
 {
@@ -20,10 +19,10 @@ namespace KitchenSink
         public void AddChartData(string label, int value)
         {
             Json labelItem = Labels.Add();
-            labelItem.SetStringValue(label);
+            labelItem.StringValue = label;
 
             Json temperatureItem = Temperatures.Add();
-            temperatureItem.SetIntegerValue(value);
+            temperatureItem.IntegerValue = value;
         }
     }
 }

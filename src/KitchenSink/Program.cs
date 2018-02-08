@@ -164,7 +164,7 @@ namespace KitchenSink
 
             HandleFile.GET("/KitchenSink/fileupload/upload", task =>
             {
-                Session.RunTask(task.SessionId, (session, id) =>
+                Session.ScheduleTask(task.SessionId, (session, id) =>
                 {
                     var master = session.Store[nameof(MasterPage)] as MasterPage;
 
