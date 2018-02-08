@@ -15,13 +15,17 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.TagName, Using = "juicy-markdown")]
-        public IWebElement JuicyMarkdown { get; set; }
+        [FindsBy(How = How.TagName, Using = "marked-element")]
+        public IWebElement MarkedElement { get; set; }
 
         public string GetHeaderText()
         {
-            var shadowRoot = ExpandShadowRoot(Driver.FindElement(By.TagName("juicy-markdown"))); 
-            return shadowRoot.FindElement(By.TagName("h1")).Text; //BUG in CHROME b.getElementsByTagName is not a function
+            return GetMarkedElement().Text;
+        }
+
+        private IWebElement GetMarkedElement()
+        {
+            return GetShadowElementByQuerySelector(By.TagName("marked-element"), "h1");
         }
     }
 }

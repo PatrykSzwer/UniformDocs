@@ -26,7 +26,7 @@ namespace KitchenSink.Tests.Test
         [Test]
         public void MarkdownPage_CheckPreviewText()
         {
-            WaitUntil(x => _markdown.JuicyMarkdown.Displayed);
+            WaitUntil(x => _markdown.MarkedElement.Displayed);
 
             Assert.AreEqual("This is a structured text", _markdown.GetHeaderText());
         }

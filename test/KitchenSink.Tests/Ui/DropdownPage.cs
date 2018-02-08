@@ -11,19 +11,19 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pets-select")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-pets-dropdown']")]
         public IWebElement PetsSelect { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-pet-like-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-pets-reaction']")]
         public IWebElement PetLikeLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-product-select")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-objects-select']")]
         public IWebElement ProductSelect { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-objects-select-label'] > p")]
         public IWebElement JuicySelectLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-juicy-select select")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-objects-juicy-select'] select")]
         public IWebElement JuicySelect { get; set; }
 
         public void SelectPet(string petName)

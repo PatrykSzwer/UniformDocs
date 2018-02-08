@@ -12,22 +12,22 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-products-input")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-products-input']")]
         public IWebElement ProductsInput { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-places-input")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-places-input']")]
         public IWebElement PlaceInput { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-products-item")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-products-autocomplete'] li")]
         public IList<IWebElement> ProductsAutoComplete { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-places-item")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-places-autocomplete'] li")]
         public IList<IWebElement> PlacesAutoComplete { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-capital")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-places-capital']")]
         public IWebElement PlaceInfoLabel { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "kitchensink-test-autocomplete-price")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-products-price']")]
         public IWebElement ProductsInfoLabel { get; set; }
 
         public void ChoosePlace(string place)

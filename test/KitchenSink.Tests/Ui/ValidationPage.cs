@@ -19,15 +19,15 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Validate']")]
         public IWebElement ValidateButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-name-error-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/validation-name-error-message']")]
         public IWebElement NameErrorLabel { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-lastname-error-label")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/validation-last-name-error-message']")]
         public IWebElement LastNameErrorLabel { get; set; }
 
         public void InsertName(string name)
         {
-            NameInput.SendKeys(name);  
+            NameInput.SendKeys(name);
             NameInput.SendKeys(Keys.Enter);
         }
 
