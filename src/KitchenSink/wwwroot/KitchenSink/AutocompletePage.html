@@ -8,7 +8,7 @@
         <ul slot="kitchensink/autocomplete-products-autocomplete" class="kitchensink-autocomplete">
             <template is="dom-repeat" items="{{model.FoundProducts}}">
                 <!-- Blur fires before click, but after mousedown -->
-                <li on-mousedown="selectProduct" class="kitchensink-autocomplete__item" item="{{item}}">{{item.Name}}</li>
+                <li on-mousedown="selectProduct" item="{{item}}">{{item.Name}}</li>
             </template>
         </ul>
         <p slot="kitchensink/autocomplete-products-price">{{model.ProductsText}}</p>
@@ -17,7 +17,7 @@
         <input slot="kitchensink/autocomplete-places-input" type="text" value="{{model.PlacesSearch$::input}}" placeholder="Poland? Sweden?" on-blur="clearPlaces">
         <ul slot="kitchensink/autocomplete-places-autocomplete" class="kitchensink-autocomplete">
             <template is="dom-repeat" items="{{model.FoundPlaces}}">
-                <li on-mousedown="selectPlace" class="kitchensink-autocomplete__item" item="{{item}}">{{item.Name}}</li>
+                <li on-mousedown="selectPlace" item="{{item}}">{{item.Name}}</li>
             </template>
         </ul>
         <p slot="kitchensink/autocomplete-places-capital">{{model.PlacesText}}</p>
