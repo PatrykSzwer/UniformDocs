@@ -22,7 +22,7 @@
 
         <input slot="kitchensink/text-typing-listening-input" type="text" value="{{model.NameLive$::input}}" placeholder="Name">
 
-        <p slot="kitchensink/text-listening-paper-input=desc">You can also use any custom element, such as <a href="https://www.webcomponents.org/element/PolymerElements/paper-input">paper-input</a>. Make sure to observe an event triggered by the custom element after the interaction. For instance, `paper-input` triggers a <code>change</code> event after its value was changed and unfocused:</p>
+        <p slot="kitchensink/text-listening-paper-input-desc">You can also use any custom element, such as <a href="https://www.webcomponents.org/element/PolymerElements/paper-input">paper-input</a>. Make sure to observe an event triggered by the custom element after the interaction. For instance, `paper-input` triggers a <code>change</code> event after its value was changed and unfocused:</p>
 
         <paper-input slot="kitchensink/text-listening-paper-input" label="{{model.NameForPaperReaction}}" value="{{model.NameForPaper$::change}}"></paper-input>
 
@@ -53,7 +53,7 @@
             <slot name="kitchensink/text-typing-listening-input"></slot>
         </div>
         <div class="kitchensink-text-paper-input-description">
-            <slot name="kitchensink/text-listening-paper-input=desc"></slot>
+            <slot name="kitchensink/text-listening-paper-input-desc"></slot>
         </div>
         <slot name="kitchensink/text-listening-paper-input"></slot>
         <slot name="kitchensink/text-typing-listening-paper-label"></slot>
