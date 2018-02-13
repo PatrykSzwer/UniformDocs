@@ -76,11 +76,11 @@
         <slot name="kitchensink/pagination-juicy-select-items-per-page"></slot>
         <slot name="kitchensink/pagination-table"></slot>
         <div class="uni-pagination">
-            <slot name="kitchensink/pagination-navigation-first"></slot>
-            <slot name="kitchensink/pagination-navigation-previous"></slot>
-            <slot name="kitchensink/pagination-navigation-number"></slot>
-            <slot name="kitchensink/pagination-navigation-next"></slot>
-            <slot name="kitchensink/pagination-navigation-last"></slot>
+            <div class="uni-previous"><slot name="kitchensink/pagination-navigation-first"></slot></div>
+            <div class="uni-previous"><slot name="kitchensink/pagination-navigation-previous"></slot></div>
+            <div class="uni-pages"><slot name="kitchensink/pagination-navigation-number"></slot></div>
+            <div class="uni-next"><slot name="kitchensink/pagination-navigation-next"></slot></div>
+            <div class="uni-next"><slot name="kitchensink/pagination-navigation-last"></slot></div>
         </div>
         <slot name="kitchensink/pagination-page-number"></slot>
     </template>
