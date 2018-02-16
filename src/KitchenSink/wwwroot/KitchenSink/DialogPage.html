@@ -17,7 +17,10 @@
                     This is a<code>paper-dialog</code> demo confirmation. Would you like to <b>Reject</b> or <b>Accept</b> the confirmation?
                 </p>
             </div>
-            <!-- Use paper-dialog specific class to let it style buttons section -->
+            <!--
+                Use paper-dialog specific class to let it style buttons section
+                https://github.com/PolymerElements/paper-dialog-behavior/issues/122
+            -->
             <div class="buttons">
                 <button dialog-dismiss value="{{model.RejectTrigger$::click}}" onmousedown="++this.value;">Reject</button>
                 <span>&nbsp;</span>
