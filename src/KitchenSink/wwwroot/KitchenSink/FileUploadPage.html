@@ -34,7 +34,7 @@
                     </template>
                     </tbody>
                 </table>
-                <div slot="kitchensink/fileupload-files-table-message" class="kitchensink-test-warning alert alert-warning">
+                <div slot="kitchensink/fileupload-files-table-message" class="kitchensink-test-warning">
                     Do not forget to delete files from your temporary folder!
                 </div>
             </template>
@@ -144,7 +144,7 @@
         <slot name="kitchensink/fileupload-upload-file-header"></slot>
         <div>
             <slot name="kitchensink/fileupload-files-table"></slot>
-            <slot name="kitchensink/fileupload-files-table-message"></slot>
+            <div class="uni-alert-warning"><slot name="kitchensink/fileupload-files-table-message"></slot></div>
         </div>
         <slot name="kitchensink/fileupload-no-files-message"></slot>
         <slot name="kitchensink/fileupload-uploading-header"></slot>

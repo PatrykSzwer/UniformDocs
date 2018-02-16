@@ -5,5 +5,5 @@
   "RejectTrigger$": 0,
   "ConfirmTrigger$": 0,
   "Message": "Opend dialog and select an action",
-  "MessageCss": "alert alert-info"
+  "MessageType": "info"
 }

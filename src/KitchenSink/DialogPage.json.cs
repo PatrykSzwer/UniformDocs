@@ -15,14 +15,14 @@ namespace KitchenSink
         {
             this.Opened = false;
             this.Message = "You have accepted the dialog box";
-            this.MessageCss = "alert alert-success";
+            this.MessageType = "success";
         }
 
         void Handle(Input.RejectTrigger Action)
         {
             this.Opened = false;
             this.Message = "You have rejected the dialog box";
-            this.MessageCss = "alert alert-danger";
+            this.MessageType = "danger";
         }
     }
 }

@@ -23,13 +23,13 @@
             </template>
             </tbody>
         </table>
-        <span slot="kitchensink/pagination-navigation-first" class="previous" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
+        <span slot="kitchensink/pagination-navigation-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
         <span slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" on-click="onPreviousPageClick">Previous</span>
         <template is="dom-repeat" items="{{model.Pages}}">
             <span slot="kitchensink/pagination-navigation-number" class$="{{getLiClassActive(item.Active)}}" tabindex="0" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</span>
         </template>
         <span slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}" on-click="onNextPageClick">Next</span>
-        <span slot="kitchensink/pagination-navigation-last" class="next" tabindex="0" value="{{model.LastPageTrigger$::click}}" on-click="onLastPageClick">Last</span>
+        <span slot="kitchensink/pagination-navigation-last" tabindex="0" value="{{model.LastPageTrigger$::click}}" on-click="onLastPageClick">Last</span>
         <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>

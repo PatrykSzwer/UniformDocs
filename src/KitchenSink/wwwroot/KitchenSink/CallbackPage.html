@@ -20,10 +20,10 @@
 
         <h2 slot="kitchensink/callback-save-server-heading">Save button with server side message</h2>
         <template is="dom-if" if="{{model.SuccessMessage$}}">
-            <p slot="kitchensink/callback-save-server-message" class="alert alert-success">{{model.SuccessMessage$}}</p>
+            <p slot="kitchensink/callback-save-server-success-message">{{model.SuccessMessage$}}</p>
         </template>
         <template is="dom-if" if="{{model.ErrorMessage$}}">
-            <p slot="kitchensink/callback-save-server-message" class="alert alert-danger">{{model.ErrorMessage$}}</p>
+            <p slot="kitchensink/callback-save-server-danger-message">{{model.ErrorMessage$}}</p>
         </template>
         <button slot="kitchensink/callback-save-server-button" type="button" value="{{model.SaveAndMessageTrigger$::click}}" disabled="{{model.SaveAndMessageTrigger$}}" onmouseup="++this.value;">Randomly save or fail changes (1s)</button>
         <h2 slot="kitchensink/callback-save-client-heading">Save button with client side message</h2>
@@ -32,13 +32,13 @@
         </p>
 
         <template is="dom-if" if="{{local.InfoMessage$}}">
-            <p slot="kitchensink/callback-save-client-message" class="alert alert-info">{{local.InfoMessage$}}</p>
+            <p slot="kitchensink/callback-save-client-info-message">{{local.InfoMessage$}}</p>
         </template>
         <template is="dom-if" if="{{local.SuccessMessage$}}">
-            <p slot="kitchensink/callback-save-client-message" class="alert alert-success">{{local.SuccessMessage$}}</p>
+            <p slot="kitchensink/callback-save-client-success-message">{{local.SuccessMessage$}}</p>
         </template>
         <template is="dom-if" if="{{local.ErrorMessage$}}">
-            <p slot="kitchensink/callback-save-client-message" class="alert alert-danger">{{local.ErrorMessage$}}</p>
+            <p slot="kitchensink/callback-save-client-danger-message">{{local.ErrorMessage$}}</p>
         </template>
 
         <button slot="kitchensink/callback-save-client-button" type="button" value="{{model.SaveAndClientMessageTrigger$::click}}" disabled="{{model.SaveAndClientMessageTrigger$}}" onmouseup="++this.value;">Randomly save or fail changes (1s)</button>
@@ -137,7 +137,7 @@
 
                     if (new Date().getTime() % 2 == 0) {
                         template.set("local.SuccessMessage$", "The changes are successfully saved");
-                    } else { 
+                    } else {
                         template.set("local.ErrorMessage$", "Failed to save changes");
                     }
                 }
@@ -145,7 +145,8 @@
 
             template.onItemChange = function (e) {
                 var path = e.path.split(".");
-                
+
+
                 if (path[path.length - 1] != "SaveAndClientMessageTrigger$") {
                     return;
                 }
@@ -206,14 +207,23 @@
         <slot name="kitchensink/callback-responsive-button-spin"></slot>
     </div>
     <slot name="kitchensink/callback-save-server-heading"></slot>
-    <div>
-        <slot name="kitchensink/callback-save-server-message"></slot>
+    <div class="uni-alert-success">
+        <slot name="kitchensink/callback-save-server-success-message"></slot>
+    </div>
+    <div class="uni-alert-danger">
+        <slot name="kitchensink/callback-save-server-danger-message"></slot>
     </div>
     <slot name="kitchensink/callback-save-server-button"></slot>
     <slot name="kitchensink/callback-save-client-heading"></slot>
     <slot name="kitchensink/callback-save-client-note"></slot>
-    <div>
-        <slot name="kitchensink/callback-save-client-message"></slot>
+    <div class="uni-alert-info">
+        <slot name="kitchensink/callback-save-client-info-message"></slot>
+    </div>
+    <div class="uni-alert-success">
+        <slot name="kitchensink/callback-save-client-success-message"></slot>
+    </div>
+    <div class="uni-alert-danger">
+        <slot name="kitchensink/callback-save-client-danger-message"></slot>
     </div>
     <p>
         <slot name="kitchensink/callback-save-client-button"></slot>
