@@ -21,7 +21,7 @@
         <button slot="kitchensink/flashMessage-client-button" class="btn btn-default" on-click="showMessage">Trigger message from Client side</button>
         <div slot="kitchensink/flashMessage-client-message">
             <template is="dom-if" if="{{model.ClientMessage$}}">
-                <p class="alert alert-warning">{{model.ClientMessage$}} </p>
+                <p>{{model.ClientMessage$}} </p>
             </template>
         </div>
     </template></dom-bind>

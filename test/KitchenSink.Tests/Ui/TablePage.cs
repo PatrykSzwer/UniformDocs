@@ -14,10 +14,10 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//button[text() = 'Add a pet']")]
         public IWebElement AddPetButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//table[@class='table table-striped']")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/table-table']")]
         public IWebElement PetsTable { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//table[@class='table table-striped']//tbody//tr")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/table-table'] tbody tr")]
         public IList<IWebElement> PetsTableRows { get; set; }
 
         public void AddPet()
