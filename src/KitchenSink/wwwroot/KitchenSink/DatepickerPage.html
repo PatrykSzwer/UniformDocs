@@ -1,7 +1,7 @@
 <link rel="import" href="/sys/vaadin-date-picker/vaadin-date-picker.html">
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/datepicker-heading" class="kitchensink-heading-1">Datepicker</h1>
+        <h1 slot="kitchensink/datepicker-heading">Datepicker</h1>
 
         <p slot="kitchensink/datepicker-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker. In this example we used <code>vaadin-date-picker</code>.</p>
 
@@ -13,17 +13,17 @@
                             placeholder="Pick a date">
         </vaadin-date-picker> 
 
-        <label slot="kitchensink/datepicker-year-label" class="control-label">Year</label>
+        <label slot="kitchensink/datepicker-year-label">Year</label>
 
-        <input slot="kitchensink/datepicker-year-input" type="text" value="{{model.Year}}" readonly="readonly" class="form-control">
+        <input slot="kitchensink/datepicker-year-input" type="text" value="{{model.Year}}" readonly="readonly">
 
-        <label slot="kitchensink/datepicker-month-label" class="control-label">Month</label>
+        <label slot="kitchensink/datepicker-month-label">Month</label>
 
-        <input slot="kitchensink/datepicker-month-input" type="text" value="{{model.Month}}" readonly="readonly" class="form-control">
+        <input slot="kitchensink/datepicker-month-input" type="text" value="{{model.Month}}" readonly="readonly">
 
-        <label slot="kitchensink/datepicker-day-label" class="control-label">Day</label>
+        <label slot="kitchensink/datepicker-day-label">Day</label>
 
-        <input slot="kitchensink/datepicker-day-input" type="text" value="{{model.Day}}" readonly="readonly" class="form-control">
+        <input slot="kitchensink/datepicker-day-input" type="text" value="{{model.Day}}" readonly="readonly">
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/datepicker-heading"></slot>
@@ -31,11 +31,17 @@
         <p>
             <slot name="kitchensink/datepicker-date-picker"></slot>
         </p>
-        <slot name="kitchensink/datepicker-year-label"></slot>
-        <slot name="kitchensink/datepicker-year-input"></slot>
-        <slot name="kitchensink/datepicker-month-label"></slot>
-        <slot name="kitchensink/datepicker-month-input"></slot>
-        <slot name="kitchensink/datepicker-day-label"></slot>
-        <slot name="kitchensink/datepicker-day-input"></slot>
+        <p>
+            <slot name="kitchensink/datepicker-year-label"></slot>
+            <slot name="kitchensink/datepicker-year-input"></slot>
+        </p>
+        <p>
+            <slot name="kitchensink/datepicker-month-label"></slot>
+            <slot name="kitchensink/datepicker-month-input"></slot>
+        </p>
+        <p>
+            <slot name="kitchensink/datepicker-day-label"></slot>
+            <slot name="kitchensink/datepicker-day-input"></slot>
+        </p>
     </template>
 </template>

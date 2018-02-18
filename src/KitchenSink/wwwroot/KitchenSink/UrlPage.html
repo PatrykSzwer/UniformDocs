@@ -1,22 +1,22 @@
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/url-heading" class="kitchensink-heading-1">Link</h1>
+        <h1 slot="kitchensink/url-heading">Link</h1>
 
         <p slot="kitchensink/url-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML <code>a href=""</code>.</p>
 
-        <a slot="kitchensink/url-link" href="{{model.Url}}">{{model.Label}}</a>
+        <a slot="kitchensink/url-link" href="{{model.Url}}">Morphable link: {{model.Label}}</a>
 
         <p slot="kitchensink/url-description-targeted">Setting any target except <code>_self</code> would disable page morphing</p>
 
-        <a slot="kitchensink/targeted-url-link" target="_blank" href="{{model.Url}}">Targetted: {{model.Label}}</a>
+        <a slot="kitchensink/targeted-url-link" target="_blank" href="{{model.Url}}">Non-morphable link: {{model.Label}}</a>
 
         <p slot="kitchensink/url-description-download-attrib">Setting <code>download</code> attribute disables Palindrom page morphing and instructs the browser to download a URL instead of navigating to it, as explained in <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank" rel="noopener">MDN</a>. The URL can be to a static file or to a HTTP GET handler in the app. In some browsers like Firefox, the URL has to be on the same domain for the download to be initiated.</p>
 
-        <a slot="kitchensink/download-attrib-link" download="KitchenSinkLogo.svg" href="/KitchenSink/images/KitchenSink.svg">Download SVG icon</a>
+        <a slot="kitchensink/download-attrib-link" download="KitchenSinkLogo.svg" href="/KitchenSink/images/KitchenSink.svg">Non-morphable downloadable link: SVG icon</a>
 
-        <p slot="kitchensink/url-description-targeted-iframe">iframe targets are also supported</p>
+        <p slot="kitchensink/url-description-targeted-iframe">Links with a target to another window or frame (such as <code>&lt;iframe&gt;</code>) are also supported</p>
 
-        <a slot="kitchensink/url-link-iframe-targetted" target="link-target" href="{{model.Url}}">iframe-targetted: {{model.Label}}</a>
+        <a slot="kitchensink/url-link-iframe-targetted" target="link-target" href="{{model.Url}}">Non-morphable link that opens in a frame: {{model.Label}}</a>
         <iframe slot="kitchensink/url-targeted-iframe" id="link-target" name="link-target"></iframe>
 
     </template></dom-bind>

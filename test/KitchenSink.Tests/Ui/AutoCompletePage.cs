@@ -17,7 +17,6 @@ namespace KitchenSink.Tests.Ui
 
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-places-input']")]
         public IWebElement PlaceInput { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/autocomplete-products-autocomplete'] li")]
         public IList<IWebElement> ProductsAutoComplete { get; set; }
 

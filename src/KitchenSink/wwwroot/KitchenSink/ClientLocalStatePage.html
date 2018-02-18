@@ -1,5 +1,5 @@
 <template>
-    <h1 slot="kitchensink/clientlocalstatepage-heading" class="kitchensink-heading-1">Client Local State</h1>
+    <h1 slot="kitchensink/clientlocalstatepage-heading">Client Local State</h1>
     <p slot="kitchensink/clientlocalstatepage-description">This page demonstrates the ability to keep parts of your state local (unsynced with the server).</p>
     <dom-bind><template is="dom-bind">
         <p slot="kitchensink/clientlocalstatepage-hoverablelist-title"><em>Please hover an item to see it in action</em></p>
@@ -24,7 +24,6 @@
         <slot name="kitchensink/clientlocalstatepage-hoverablelist"></slot>
     </template>
 </template>
-
 <dom-module is="define-local">
     <template>
     </template>
@@ -40,7 +39,7 @@
                     type: String
                 }
             },
-            attached: function() {
+            attached: function () {
                 if (this.prop) {
                     Object.defineProperty(this.public, this.prop, {
                         enumerable: false,
@@ -51,7 +50,6 @@
         })
     </script>
 </dom-module>
-
 <dom-module is="hover-observer">
     <template>
         <slot></slot>
@@ -69,7 +67,7 @@
                     notify: true
                 }
             },
-            toggleHover: function() {
+            toggleHover: function () {
                 this.isHovered = !this.isHovered;
             }
         })
