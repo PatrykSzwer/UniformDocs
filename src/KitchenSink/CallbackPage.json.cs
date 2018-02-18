@@ -47,12 +47,6 @@ namespace KitchenSink
             }
         }
 
-        protected void Handle(Input.SaveAndClientMessageTrigger Action)
-        {
-            Action.Cancel();
-            System.Threading.Thread.CurrentThread.Join(timeout);
-        }
-
         [CallbackPage_json.Items]
         partial class CallbackPageItem
         {
@@ -86,12 +80,6 @@ namespace KitchenSink
                 {
                     this.ErrorMessage = "Failed to save changes";
                 }
-            }
-
-            protected void Handle(Input.SaveAndClientMessageTrigger Action)
-            {
-                Action.Cancel();
-                System.Threading.Thread.CurrentThread.Join(timeout);
             }
         }
     }
