@@ -2,16 +2,14 @@
 
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/multiselect-heading" class="kitchensink-heading-1">Multiselect</h1>
+        <h1 slot="kitchensink/multiselect-heading">Multiselect</h1>
 
         <p slot="kitchensink/multiselect-description">Array of json items in combination with <code>juicy-select</code> can be used as a simple select element with multi select option.</p>
-        <p slot="kitchensink/multiselect-countries-multiselect">
-            <span>Select countries you have visited:</span>
-            <br>
-            <juicy-select class="kitchensink-juicyselect" multiple="true" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name">
-                <select class="form-control" multiple></select>
-            </juicy-select>
-        </p>
+        <span slot="kitchensink/multiselect-countries-multiselect-label">Select countries you have visited:</span>
+        <juicy-select slot="kitchensink/multiselect-countries-multiselect-juicy-select" class="kitchensink-juicyselect" multiple="true" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name">
+            <select class="kitchensink-juicyselect__select" multiple></select>
+        </juicy-select>
+
         <p slot="kitchensink/multiselect-visited-label">
             You have visited:
             <template is="dom-repeat" items="{{model.Countries}}">
@@ -20,10 +18,10 @@
                 </template>
             </template>
         </p>
-            <span slot="kitchensink/multiselect-favorite-country-select-label">Select your favorite country:</span>
-            <juicy-select slot="kitchensink/multiselect-favorite-country-select" class="kitchensink-juicyselect" caption-text="No favorite country" value="{{model.FavoriteCountry$}}" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name">
-                <select class="form-control"></select>
-            </juicy-select>
+        <span slot="kitchensink/multiselect-favorite-country-select-label">Select your favorite country:</span>
+        <juicy-select slot="kitchensink/multiselect-favorite-country-select" class="kitchensink-juicyselect" caption-text="No favorite country" value="{{model.FavoriteCountry$}}" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name">
+            <select></select>
+        </juicy-select>
 
         <p slot="kitchensink/multiselect-favorite-label">
             Your favorite country is: <span>{{model.FavoriteCountry$}}</span>
@@ -32,6 +30,10 @@
     <template is="declarative-shadow-dom">
         <slot name="kitchensink/multiselect-heading"></slot>
         <slot name="kitchensink/multiselect-description"></slot>
+        <p>
+            <slot name="kitchensink/multiselect-countries-multiselect-label"></slot>
+            <slot name="kitchensink/multiselect-countries-multiselect-juicy-select"></slot>
+        </p>
         <slot name="kitchensink/multiselect-countries-multiselect"></slot>
         <slot name="kitchensink/multiselect-visited-label"></slot>
         <slot name="kitchensink/multiselect-favorite-country-select-label"></slot>

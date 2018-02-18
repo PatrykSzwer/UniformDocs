@@ -23,7 +23,7 @@ namespace KitchenSink.Tests.Ui
         {
             /* Hover can only be acheived by Selenium Actions. 
              * Firefox doesn't support Selenium actions, this is JS/Polymer walkaround */
-            string command = 
+            string command =
                 "const item = document.querySelectorAll('hover-observer')[0];" +
                 "item.fire('mouseenter');" +
                 "setTimeout(()=> item.fire('mouseleave'), 500)";

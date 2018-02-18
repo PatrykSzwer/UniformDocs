@@ -20,7 +20,7 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-objects-select']")]
         public IWebElement ProductSelect { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-objects-select-label'] > p")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-objects-select-label']")]
         public IWebElement JuicySelectLabel { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/dropdown-objects-juicy-select'] select")]

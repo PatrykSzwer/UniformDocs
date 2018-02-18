@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace KitchenSink.Tests.Ui
 {
     public class TablePage : BasePage
-    {  
+    {
         public TablePage(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(Driver, this);
