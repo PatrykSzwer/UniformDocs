@@ -26,7 +26,7 @@
 
         <paper-input slot="kitchensink/text-listening-paper-input" label="{{model.NameForPaperReaction}}" value="{{model.NameForPaper$::change}}"></paper-input>
 
-        <p slot="kitchensink/text-typing-listening-paper-label">If you need to observe the changes while typing, paper-text triggers <code>value-changed</code> event after each keystroke. This allows to bind it live with the server:</p>
+        <p slot="kitchensink/text-typing-listening-paper-desc">If you need to observe the changes while typing, paper-text triggers <code>value-changed</code> event after each keystroke. This allows to bind it live with the server:</p>
 
         <paper-input slot="kitchensink/text-typing-listening-paper-input" label="{{model.NameForPaperLiveReaction}}" value="{{model.NameForPaperLive$::value-changed}}"></paper-input>
     </template></dom-bind>
@@ -56,7 +56,7 @@
             <slot name="kitchensink/text-listening-paper-input-desc"></slot>
         </div>
         <slot name="kitchensink/text-listening-paper-input"></slot>
-        <slot name="kitchensink/text-typing-listening-paper-label"></slot>
+        <slot name="kitchensink/text-typing-listening-paper-desc"></slot>
         <slot name="kitchensink/text-typing-listening-paper-input"></slot>
     </template>
 </template>

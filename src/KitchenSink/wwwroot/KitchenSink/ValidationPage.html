@@ -8,18 +8,17 @@
 
         <input slot="kitchensink/validation-name-input" type="text" value="{{model.Name$::change}}" placeholder="Name">
         <label slot="kitchensink/validation-name-error-message">{{model.ErrorName$}}</label>
-        <br>
 
         <label slot="kitchensink/validation-last-name-label">Please type your last name</label>
 
         <input slot="kitchensink/validation-last-name-input" type="text" value="{{model.LastName$::change}}" placeholder="Last name">
         <label slot="kitchensink/validation-last-name-error-message">{{model.ErrorLastName$}}</label>
-        <br>
 
         <button slot="kitchensink/validation-validate-button" value="{{model.ValidateTrigger$::click}}" onmousedown="++this.value">Validate</button>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <style>
+            @import '/sys/uniform.css/uniform.css';
             .kitchensink-validation-error-message {
                 margin-bottom: 20px;
                 color: red;
@@ -28,13 +27,17 @@
         </style>
         <slot name="kitchensink/validation-heading"></slot>
         <slot name="kitchensink/validation-description"></slot>
-        <slot name="kitchensink/validation-name-label"></slot>
-        <slot name="kitchensink/validation-name-input"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/validation-name-label"></slot>
+            <slot name="kitchensink/validation-name-input"></slot>
+        </div>
         <div class="kitchensink-validation-error-message">
             <slot name="kitchensink/validation-name-error-message"></slot>
         </div>
-        <slot name="kitchensink/validation-last-name-label"></slot>
-        <slot name="kitchensink/validation-last-name-input"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/validation-last-name-label"></slot>
+            <slot name="kitchensink/validation-last-name-input"></slot>
+        </div>
         <div class="kitchensink-validation-error-message">
             <slot name="kitchensink/validation-last-name-error-message"></slot>
         </div>

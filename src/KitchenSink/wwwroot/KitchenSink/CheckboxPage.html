@@ -11,10 +11,13 @@
         <div slot="kitchensink/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>@import '/sys/uniform.css/uniform.css';</style>
         <slot name="kitchensink/checkbox-heading"></slot>
         <slot name="kitchensink/checkbox-description"></slot>
-        <slot name="kitchensink/checkbox-label"></slot>
-        <slot name="kitchensink/checkbox-input"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/checkbox-label"></slot>
+            <slot name="kitchensink/checkbox-input"></slot>
+        </div>
         <slot name="kitchensink/checkbox-license-label"></slot>
     </template>
 </template>
