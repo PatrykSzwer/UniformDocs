@@ -4,10 +4,13 @@
             <h1 slot="kitchensink/callback-heading">Async Response</h1>
 
             <p slot="kitchensink/callback-description">
-                This page demonstrates how to achive old fassion <code>callback</code> behaviour using Starcounter.
+                This page demonstrates how to receive and render an async response from the server.
             </p>
 
-            <h2 slot="kitchensink/callback-responsive-label">Responsive save button</h2>
+            <h2 slot="kitchensink/callback-responsive-heading">Async save button</h2>
+
+            <p slot="kitchensink/callback-responsive-text">These buttons go into a <code>disabled</code> state until an updated status is pushed from the server</p>
+
             <button slot="kitchensink/callback-responsive-button" type="button" value="{{model.SaveTrigger$::click}}" disabled="{{model.SaveTrigger$}}" onmouseup="++this.value;">Save changes (1s)</button>
             <button slot="kitchensink/callback-responsive-button-spin" type="button" value="{{model.SaveAndSpinTrigger$::click}}" disabled="{{model.SaveAndSpinTrigger$}}" onmouseup="++this.value;">
                 <template is="dom-if" if="{{model.SaveAndSpinTrigger$}}">
@@ -16,70 +19,20 @@
                     </svg>
                     </i>
                 </template>
-                Save changes with loading icon (1s)
+                Save changes with loading indicator (1s)
             </button>
 
-            <h2 slot="kitchensink/callback-save-server-heading">Save button with server side message</h2>
+            <h2 slot="kitchensink/callback-save-server-heading">Message from the server</h2>
+
+            <p slot="kitchensink/callback-save-server-text">These buttons go into a <code>disabled</code> state until an updated status and a message is pushed from the server</p>
+
             <template is="dom-if" if="{{model.SuccessMessage$}}">
                 <p slot="kitchensink/callback-save-server-success-message">{{model.SuccessMessage$}}</p>
             </template>
             <template is="dom-if" if="{{model.ErrorMessage$}}">
                 <p slot="kitchensink/callback-save-server-danger-message">{{model.ErrorMessage$}}</p>
             </template>
-            <button slot="kitchensink/callback-save-server-button" type="button" value="{{model.SaveAndMessageTrigger$::click}}" disabled="{{model.SaveAndMessageTrigger$}}" onmouseup="++this.value;">Randomly save or fail changes (1s)</button>
-
-            <h2 slot="kitchensink/callback-table-heading">Same things inside table</h2>
-            <p slot="kitchensink/callback-table-note">
-                <small><b>Note:</b> <code>dom-repeat</code> inside <code>table</code> <a href="https://github.com/Polymer/polymer/issues/1567" target="_blank">does not work in Internet Explorer</a>.</small>
-            </p>
-            <table slot="kitchensink/callback-table">
-                <thead>
-                    <tr>
-                        <th rowspan="2">#</th>
-                        <th>Message</th>
-                        <th colspan="2">Responsive button</th>
-                        <th>With message</th>
-                    </tr>
-                    <tr>
-                        <th>Server</th>
-                        <th>Simple</th>
-                        <th>Loading icon</th>
-                        <th>Server</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <template is="dom-repeat" items="{{model.Items}}">
-                        <tr>
-                            <td>{{index}}</td>
-                            <td>
-                                <template is="dom-if" if="{{item.SuccessMessage$}}">
-                                    <span>{{item.SuccessMessage$}}</span>
-                                </template>
-                                <template is="dom-if" if="{{item.ErrorMessage$}}">
-                                    <span>{{item.ErrorMessage$}}</span>
-                                </template>
-                            </td>
-                            <td>
-                                <button type="button" value="{{item.SaveTrigger$::click}}" disabled="{{item.SaveTrigger$}}" onmouseup="++this.value;">Save</button>
-                            </td>
-                            <td>
-                                <button type="button" value="{{item.SaveAndSpinTrigger$::click}}" disabled="{{item.SaveAndSpinTrigger$}}" onmouseup="++this.value;">
-                                    <template is="dom-if" if="{{item.SaveAndSpinTrigger$}}">
-                                        <i class="kitchen-sink-spinner">
-                                            <svg height="14px" style="enable-background: new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="14px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28,16c-1.219,0-1.797,0.859-2,1.766C25.269,21.03,22.167,26,16,26c-5.523,0-10-4.478-10-10S10.477,6,16,6  c2.24,0,4.295,0.753,5.96,2H20c-1.104,0-2,0.896-2,2s0.896,2,2,2h6c1.104,0,2-0.896,2-2V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v0.518  C21.733,2.932,18.977,2,16,2C8.268,2,2,8.268,2,16s6.268,14,14,14c9.979,0,14-9.5,14-11.875C30,16.672,28.938,16,28,16z"></path>
-                                    </svg>
-                                        </i>
-                                    </template>
-                                    Save with icon
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" value="{{item.SaveAndMessageTrigger$::click}}" disabled="{{item.SaveAndMessageTrigger$}}" onmouseup="++this.value;">Save</button>
-                            </td>
-                        </tr>
-                    </template>
-                </tbody>
-            </table>
+            <button slot="kitchensink/callback-save-server-button" type="button" value="{{model.SaveAndMessageTrigger$::click}}" disabled="{{model.SaveAndMessageTrigger$}}" onmouseup="++this.value;">Save and get message (1s)</button>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
@@ -88,12 +41,14 @@
         </style>
         <slot name="kitchensink/callback-heading"></slot>
         <slot name="kitchensink/callback-description"></slot>
-        <slot name="kitchensink/callback-responsive-label"></slot>
+        <slot name="kitchensink/callback-responsive-heading"></slot>
+        <slot name="kitchensink/callback-responsive-text"></slot>
         <div>
             <slot name="kitchensink/callback-responsive-button"></slot>
             <slot name="kitchensink/callback-responsive-button-spin"></slot>
         </div>
         <slot name="kitchensink/callback-save-server-heading"></slot>
+        <slot name="kitchensink/callback-save-server-text"></slot>
         <div class="uni-alert-success">
             <slot name="kitchensink/callback-save-server-success-message"></slot>
         </div>
@@ -101,8 +56,5 @@
             <slot name="kitchensink/callback-save-server-danger-message"></slot>
         </div>
         <slot name="kitchensink/callback-save-server-button"></slot>
-        <slot name="kitchensink/callback-table-heading"></slot>
-        <slot name="kitchensink/callback-table-note"></slot>
-        <slot name="kitchensink/callback-table"></slot>
     </template>
 </template>

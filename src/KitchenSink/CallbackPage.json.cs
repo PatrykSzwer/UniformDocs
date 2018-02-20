@@ -39,11 +39,11 @@ namespace KitchenSink
 
             if (DateTime.Now.Ticks%2 == 0)
             {
-                this.SuccessMessage = "The changes are successfully saved";
+                this.SuccessMessage = "This is a random success alert from the server";
             }
             else
             {
-                this.ErrorMessage = "Failed to save changes";
+                this.ErrorMessage = "This is a random danger alert from the server";
             }
         }
 
