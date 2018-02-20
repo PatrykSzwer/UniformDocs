@@ -5,22 +5,22 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace KitchenSink.Tests.Ui
 {
     public class UrlPage : BasePage
-    {  
+    {
         public UrlPage(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = "//a[text() = 'This a sample link']")]
-        public IWebElement SimpleMorphableLink { get; set;  }
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Morphable link: This a sample link']")]
+        public IWebElement SimpleMorphableLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//a[text() = 'Targetted: This a sample link']")]
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Non-morphable link: This a sample link']")]
         public IWebElement BlankTargettedLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//a[text() = 'Download SVG icon']")]
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Non-morphable downloadable link: SVG icon']")]
         public IWebElement LinkWithDownloadAttrib { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//a[text() = 'iframe-targetted: This a sample link']")]
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Non-morphable link that opens in a frame: This a sample link']")]
         public IWebElement IframeTargettedLink { get; set; }
 
         public void ClickSimpleMorphableLink()
@@ -39,7 +39,7 @@ namespace KitchenSink.Tests.Ui
         {
             ClickOn(LinkWithDownloadAttrib);
         }
-        
+
 
     }
 }

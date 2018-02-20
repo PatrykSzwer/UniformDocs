@@ -32,7 +32,7 @@ namespace KitchenSink.Tests.Ui
 
         internal void GoToPage(string pageNumber)
         {
-            ClickOn(Pagination.FindElement(By.XPath("//span[text() = '" + pageNumber + "']")));
+            ClickOn(Driver.FindElement(By.XPath($"//span[text() = '{pageNumber}']")));
         }
     }
 }

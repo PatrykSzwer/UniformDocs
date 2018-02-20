@@ -2,48 +2,54 @@
 
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/redirect-heading" class="kitchensink-heading-1">Redirect</h1>
+        <h1 slot="kitchensink/redirect-heading">Redirect</h1>
+
 
         <p slot="kitchensink/redirect-description">JSON's primitive value type <code>string</code> can be used to cause the client to morph to a new URL using <code><a href="https://github.com/Palindrom/palindrom-redirect">&lt;palindrom-redirect&gt;</a></code>.</p>
 
-        <h2 slot="kitchensink/redirect-current-partial-heading" class="kitchensink-heading-2">Morph the current partial</h2>
+        <h2 slot="kitchensink/redirect-current-partial-heading">Morph the current partial</h2>
 
         <p slot="kitchensink/redirect-current-partial-description">You can the current partial to a new URL while keeping the state.</p>
 
         <label slot="kitchensink/redirect-current-partial-label">Morph to some: </label>
 
-        <button slot="kitchensink/redirect-current-partial-fruit-button" class="btn btn-sm btn-default" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Fruit'">Fruit</button>
+        <button slot="kitchensink/redirect-current-partial-fruit-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Fruit'">Fruit</button>
 
-        <button slot="kitchensink/redirect-current-partial-vegetable-button" class="btn btn-sm btn-default" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
+        <button slot="kitchensink/redirect-current-partial-vegetable-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
 
-        <button slot="kitchensink/redirect-current-partial-bread-button" class="btn btn-sm btn-default" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
+        <button slot="kitchensink/redirect-current-partial-bread-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
 
         <div slot="kitchensink/redirect-current-partial-favorite-label">{{model.YourFavoriteFood}}</div>
 
-        <h2 slot="kitchensink/redirect-another-partial-heading" class="kitchensink-heading-2">Morph to another partial</h2>
+        <h2 slot="kitchensink/redirect-another-partial-heading">Morph to another partial</h2>
 
         <p slot="kitchensink/redirect-another-partial-description">Want to morph to another partial? It's as easy.</p>
 
-        <button slot="kitchensink/redirect-another-partial-button" class="btn btn-sm btn-default" value="{{model.GoToHomePartialTrigger$::click}}" onmousedown="++this.value">Morph to another partial</button>
+        <button slot="kitchensink/redirect-another-partial-button" value="{{model.GoToHomePartialTrigger$::click}}" onmousedown="++this.value">Morph to another partial</button>
 
-        <h2 slot="kitchensink/redirect-external-link-heading" class="kitchensink-heading-2">Redirect to an external link</h2>
+        <h2 slot="kitchensink/redirect-external-link-heading">Redirect to an external link</h2>
 
         <p slot="kitchensink/redirect-external-link-description">Drop the <code>history</code> attribute to redirect to an external link (without morphing).</p>
 
-        <button slot="kitchensink/redirect-external-link-button" class="btn btn-sm btn-default" value="{{model.GoToDocsTrigger$::click}}" onmousedown="++this.value">Redirect to Starcounter.io</button>
+        <button slot="kitchensink/redirect-external-link-button" value="{{model.GoToDocsTrigger$::click}}" onmousedown="++this.value">Redirect to Starcounter.io</button>
 
         <palindrom-redirect slot="kitchensink/redirect-link-morph" is="palindrom-redirect" history url="{{model.MorphUrl$}}"></palindrom-redirect>
         <palindrom-redirect slot="kitchensink/redirect-link-redirect" is="palindrom-redirect" url="{{model.RedirectUrl$}}"></palindrom-redirect>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>@import '/sys/uniform.css/uniform.css';</style>
         <slot name="kitchensink/redirect-heading"></slot>
         <slot name="kitchensink/redirect-description"></slot>
         <slot name="kitchensink/redirect-current-partial-heading"></slot>
         <slot name="kitchensink/redirect-current-partial-description"></slot>
-        <slot name="kitchensink/redirect-current-partial-label"></slot>
-        <slot name="kitchensink/redirect-current-partial-fruit-button"></slot>
-        <slot name="kitchensink/redirect-current-partial-vegetable-button"></slot>
-        <slot name="kitchensink/redirect-current-partial-bread-button"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/redirect-current-partial-label"></slot>
+            <div>
+                <slot name="kitchensink/redirect-current-partial-fruit-button"></slot>
+                <slot name="kitchensink/redirect-current-partial-vegetable-button"></slot>
+                <slot name="kitchensink/redirect-current-partial-bread-button"></slot>
+            </div>
+        </div>
         <slot name="kitchensink/redirect-current-partial-favorite-label"></slot>
         <slot name="kitchensink/redirect-another-partial-heading"></slot>
         <slot name="kitchensink/redirect-another-partial-description"></slot>

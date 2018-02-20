@@ -3,21 +3,20 @@
 
 <template>
     <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/breadcrumb-heading" class="kitchensink-heading-1">Breadcrumb</h1>
+        <h1 slot="kitchensink/breadcrumb-heading">Breadcrumb</h1>
 
-        <h2 slot="kitchensink/breadcrumb-simple-breadcrumb-heading" class="kitchensink-heading-2">Simple breadcrumb</h2>
+        <h2 slot="kitchensink/breadcrumb-simple-breadcrumb-heading">Simple breadcrumb</h2>
 
         <p slot="kitchensink/breadcrumb-simple-breadcrumb-description">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.
         </p>
-        <div slot="kitchensink/breadcrumb-simple-breadcrumb">
-            <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
-                <template is="dom-if" if="{{index}}" restamp>
-                    &gt;
-                </template>
-                <button class="btn btn-default" value="{{item.SelectTrigger$::mouseup}}" onmousedown="++this.value">{{item.Name}}</button>
+        <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
+            <template is="dom-if" if="{{index}}" restamp>
+                <span slot="kitchensink/breadcrumb-simple-breadcrumb">&gt;</span>
             </template>
-        </div>
-        <h2 slot="kitchensink/breadcrumb-navigation-breadcrumb-heading" class="kitchensink-heading-2">Breadcrumb with navigation</h2>
+            <button slot="kitchensink/breadcrumb-simple-breadcrumb" value="{{item.SelectTrigger$::mouseup}}" onmousedown="++this.value">{{item.Name}}</button>
+        </template>
+
+        <h2 slot="kitchensink/breadcrumb-navigation-breadcrumb-heading">Breadcrumb with navigation</h2>
 
         <p slot="kitchensink/breadcrumb-navigation-breadcrumb-description">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.
         </p>
@@ -44,24 +43,33 @@
                 <h5>Editing <strong>{{model.CurrentTreeItem.Name$}}</strong></h5>
             </template>
         </div>
-        <label slot="kitchensink/breadcrumb-name-heading" class="control-label">Name</label>
+        <label slot="kitchensink/breadcrumb-name-heading">Name</label>
 
-        <input slot="kitchensink/breadcrumb-name-input" type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name" class="form-control">
+        <input slot="kitchensink/breadcrumb-name-input" type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name">
 
-        <button slot="kitchensink/breadcrumb-name-save" class="btn btn-sm btn-default" value="{{model.CurrentTreeItem.SaveTrigger$::click}}" onmousedown="++this.value">Save</button>
+        <button slot="kitchensink/breadcrumb-name-save" value="{{model.CurrentTreeItem.SaveTrigger$::click}}" onmousedown="++this.value">Save</button>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>
+            @import "/sys/uniform.css/uniform.css";
+        </style>
         <slot name="kitchensink/breadcrumb-heading"></slot>
         <slot name="kitchensink/breadcrumb-simple-breadcrumb-heading"></slot>
         <slot name="kitchensink/breadcrumb-simple-breadcrumb-description"></slot>
-        <slot name="kitchensink/breadcrumb-simple-breadcrumb"></slot>
+        <div>
+            <slot name="kitchensink/breadcrumb-simple-breadcrumb"></slot>
+        </div>
         <slot name="kitchensink/breadcrumb-navigation-breadcrumb-heading"></slot>
         <slot name="kitchensink/breadcrumb-navigation-breadcrumb-description"></slot>
         <slot name="kitchensink/breadcrumb-navigation-breadcrumb"></slot>
         <slot name="kitchensink/breadcrumb-adding-heading"></slot>
         <slot name="kitchensink/breadcrumb-editing-heading"></slot>
-        <slot name="kitchensink/breadcrumb-name-heading"></slot>
-        <slot name="kitchensink/breadcrumb-name-input"></slot>
-        <slot name="kitchensink/breadcrumb-name-save"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/breadcrumb-name-heading"></slot>
+            <slot name="kitchensink/breadcrumb-name-input"></slot>
+        </div>
+        <div class="uni-success-button-wrapper">
+            <slot name="kitchensink/breadcrumb-name-save"></slot>
+        </div>
     </template>
 </template>
