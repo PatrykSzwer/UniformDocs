@@ -11,10 +11,13 @@
         <input slot="kitchensink/integer-input" type="number" value="{{model.Age$::input}}" placeholder="Age">
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>@import '/sys/uniform.css/uniform.css';</style>
         <slot name="kitchensink/integer-heading"></slot>
         <slot name="kitchensink/integer-description"></slot>
         <slot name="kitchensink/integer-info"></slot>
-        <slot name="kitchensink/integer-label"></slot>
-        <slot name="kitchensink/integer-input"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/integer-label"></slot>
+            <slot name="kitchensink/integer-input"></slot>
+        </div>
     </template>
 </template>

@@ -9,9 +9,12 @@
         <textarea slot="kitchensink/textarea-textarea" value="{{model.Bio$::input}}" rows="3"></textarea>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>@import '/sys/uniform.css/uniform.css';</style>
         <slot name="kitchensink/textarea-heading"></slot>
         <slot name="kitchensink/textarea-description"></slot>
-        <slot name="kitchensink/textarea-label"></slot>
-        <slot name="kitchensink/textarea-textarea"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/textarea-label"></slot>
+            <slot name="kitchensink/textarea-textarea"></slot>
+        </div>
     </template>
 </template>
