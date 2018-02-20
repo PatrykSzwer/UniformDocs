@@ -5,13 +5,13 @@
 
         <p slot="kitchensink/datepicker-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker. In this example we used <code>vaadin-date-picker</code>.</p>
 
-        <vaadin-date-picker slot="kitchensink/datepicker-date-picker" 
+        <vaadin-date-picker slot="kitchensink/datepicker-date-picker"
                             label="Date"
                             min="1920-01-01"
                             initial-position="2017-06-01"
                             value="{{model.Value$}}"
                             placeholder="Pick a date">
-        </vaadin-date-picker> 
+        </vaadin-date-picker>
 
         <label slot="kitchensink/datepicker-year-label">Year</label>
 
@@ -26,22 +26,23 @@
         <input slot="kitchensink/datepicker-day-input" type="text" value="{{model.Day}}" readonly="readonly">
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>@import '/sys/uniform.css/uniform.css';</style>
         <slot name="kitchensink/datepicker-heading"></slot>
         <slot name="kitchensink/datepicker-description"></slot>
-        <p>
+        <div class="uni-label-control">
             <slot name="kitchensink/datepicker-date-picker"></slot>
-        </p>
-        <p>
+        </div>
+        <div class="uni-label-control">
             <slot name="kitchensink/datepicker-year-label"></slot>
             <slot name="kitchensink/datepicker-year-input"></slot>
-        </p>
-        <p>
+        </div>
+        <div class="uni-label-control">
             <slot name="kitchensink/datepicker-month-label"></slot>
             <slot name="kitchensink/datepicker-month-input"></slot>
-        </p>
-        <p>
+        </div>
+        <div class="uni-label-control">
             <slot name="kitchensink/datepicker-day-label"></slot>
             <slot name="kitchensink/datepicker-day-input"></slot>
-        </p>
+        </div>
     </template>
 </template>

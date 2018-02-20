@@ -3,7 +3,7 @@
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/redirect-heading">Redirect</h1>
-        
+
 
         <p slot="kitchensink/redirect-description">JSON's primitive value type <code>string</code> can be used to cause the client to morph to a new URL using <code><a href="https://github.com/Palindrom/palindrom-redirect">&lt;palindrom-redirect&gt;</a></code>.</p>
 
@@ -17,7 +17,7 @@
 
         <button slot="kitchensink/redirect-current-partial-vegetable-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Vegetable'">Vegetable</button>
 
-        <button slot="kitchensink/redirect-current-partial-bread-button"" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
+        <button slot="kitchensink/redirect-current-partial-bread-button" value="{{model.ChooseFood$::click}}" onmousedown="this.value = 'Bread'">Bread</button>
 
         <div slot="kitchensink/redirect-current-partial-favorite-label">{{model.YourFavoriteFood}}</div>
 
@@ -37,14 +37,19 @@
         <palindrom-redirect slot="kitchensink/redirect-link-redirect" is="palindrom-redirect" url="{{model.RedirectUrl$}}"></palindrom-redirect>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <style>@import '/sys/uniform.css/uniform.css';</style>
         <slot name="kitchensink/redirect-heading"></slot>
         <slot name="kitchensink/redirect-description"></slot>
         <slot name="kitchensink/redirect-current-partial-heading"></slot>
         <slot name="kitchensink/redirect-current-partial-description"></slot>
-        <slot name="kitchensink/redirect-current-partial-label"></slot>
-        <slot name="kitchensink/redirect-current-partial-fruit-button"></slot>
-        <slot name="kitchensink/redirect-current-partial-vegetable-button"></slot>
-        <slot name="kitchensink/redirect-current-partial-bread-button"></slot>
+        <div class="uni-label-control">
+            <slot name="kitchensink/redirect-current-partial-label"></slot>
+            <div>
+                <slot name="kitchensink/redirect-current-partial-fruit-button"></slot>
+                <slot name="kitchensink/redirect-current-partial-vegetable-button"></slot>
+                <slot name="kitchensink/redirect-current-partial-bread-button"></slot>
+            </div>
+        </div>
         <slot name="kitchensink/redirect-current-partial-favorite-label"></slot>
         <slot name="kitchensink/redirect-another-partial-heading"></slot>
         <slot name="kitchensink/redirect-another-partial-description"></slot>
