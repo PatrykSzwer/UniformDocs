@@ -11,7 +11,7 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".kitchensink-test-warning")]
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/fileupload-files-table-message']")]
         public IWebElement InfoLabel { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/fileupload-files-table'] tbody tr")]
