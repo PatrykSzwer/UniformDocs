@@ -4,9 +4,9 @@
 
         <p slot="kitchensink/checkbox-description">JSON's primitive value type <code>boolean</code> can be mapped directly to HTML form elements <code>input type="checkbox"</code>.</p>
 
-        <label slot="kitchensink/checkbox-label">Driver's license</label>
+        <label for="kitchensink-checkbox-input" slot="kitchensink/checkbox-label">Driver's license</label>
 
-        <input slot="kitchensink/checkbox-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
+        <input id="kitchensink-checkbox-input" slot="kitchensink/checkbox-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
 
         <div slot="kitchensink/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
     </template></dom-bind>
