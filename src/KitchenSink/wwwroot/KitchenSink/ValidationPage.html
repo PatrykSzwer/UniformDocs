@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/validation-heading">Validation</h1>
@@ -17,30 +19,36 @@
         <button slot="kitchensink/validation-validate-button" value="{{model.ValidateTrigger$::click}}" onmousedown="++this.value">Validate</button>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
-            @import '/sys/uniform.css/uniform.css';
             .kitchensink-validation-error-message {
                 margin-bottom: 20px;
                 color: red;
                 font-size: 8pt;
             }
         </style>
-        <slot name="kitchensink/validation-heading"></slot>
-        <slot name="kitchensink/validation-description"></slot>
-        <div class="uni-label-control">
-            <slot name="kitchensink/validation-name-label"></slot>
-            <slot name="kitchensink/validation-name-input"></slot>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/validation-heading"></slot>
         </div>
-        <div class="kitchensink-validation-error-message">
-            <slot name="kitchensink/validation-name-error-message"></slot>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/validation-description"></slot>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/validation-name-label"></slot>
+                    <slot name="kitchensink/validation-name-input"></slot>
+                </div>
+                <div class="kitchensink-validation-error-message">
+                    <slot name="kitchensink/validation-name-error-message"></slot>
+                </div>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/validation-last-name-label"></slot>
+                    <slot name="kitchensink/validation-last-name-input"></slot>
+                </div>
+                <div class="kitchensink-validation-error-message">
+                    <slot name="kitchensink/validation-last-name-error-message"></slot>
+                </div>
+                <slot name="kitchensink/validation-validate-button"></slot>
+            </div>
         </div>
-        <div class="uni-label-control">
-            <slot name="kitchensink/validation-last-name-label"></slot>
-            <slot name="kitchensink/validation-last-name-input"></slot>
-        </div>
-        <div class="kitchensink-validation-error-message">
-            <slot name="kitchensink/validation-last-name-error-message"></slot>
-        </div>
-        <slot name="kitchensink/validation-validate-button"></slot>
     </template>
 </template>

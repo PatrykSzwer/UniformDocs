@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/paper-radio-group/paper-radio-group.html">
 <link rel="import" href="/sys/paper-radio-button/paper-radio-button.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -15,10 +16,17 @@
         <div slot="kitchensink/radio-reaction-label">{{model.PetReaction}}</div>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/radio-heading"></slot>
-        <slot name="kitchensink/radio-description"></slot>
-        <slot name="kitchensink/radio-description-recommend"></slot>
-        <slot name="kitchensink/radio-paper-radio-group"></slot>
-        <slot name="kitchensink/radio-reaction-label"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/radio-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/radio-description"></slot>
+                <slot name="kitchensink/radio-description-recommend"></slot>
+                <slot name="kitchensink/radio-paper-radio-group"></slot>
+                <slot name="kitchensink/radio-reaction-label"></slot>
+            </div>
+        </div>
     </template>
 </template>

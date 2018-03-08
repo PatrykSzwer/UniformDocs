@@ -1,4 +1,5 @@
 <link rel="import" href="/sys/palindrom-redirect/palindrom-redirect.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -37,27 +38,51 @@
         <palindrom-redirect slot="kitchensink/redirect-link-redirect" is="palindrom-redirect" url="{{model.RedirectUrl$}}"></palindrom-redirect>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <style>@import '/sys/uniform.css/uniform.css';</style>
-        <slot name="kitchensink/redirect-heading"></slot>
-        <slot name="kitchensink/redirect-description"></slot>
-        <slot name="kitchensink/redirect-current-partial-heading"></slot>
-        <slot name="kitchensink/redirect-current-partial-description"></slot>
-        <div class="uni-label-control">
-            <slot name="kitchensink/redirect-current-partial-label"></slot>
-            <div>
-                <slot name="kitchensink/redirect-current-partial-fruit-button"></slot>
-                <slot name="kitchensink/redirect-current-partial-vegetable-button"></slot>
-                <slot name="kitchensink/redirect-current-partial-bread-button"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .kitchensink-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical);
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/redirect-heading"></slot>
+        </div>
+        <div class="uni-section-primary kitchensink-section-primary-grid">
+            <div class="uni-card">
+                <slot name="kitchensink/redirect-description"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/redirect-current-partial-heading"></slot>
+                </div>
+                <slot name="kitchensink/redirect-current-partial-description"></slot>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/redirect-current-partial-label"></slot>
+                    <div>
+                        <slot name="kitchensink/redirect-current-partial-fruit-button"></slot>
+                        <slot name="kitchensink/redirect-current-partial-vegetable-button"></slot>
+                        <slot name="kitchensink/redirect-current-partial-bread-button"></slot>
+                    </div>
+                </div>
+                <slot name="kitchensink/redirect-current-partial-favorite-label"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/redirect-another-partial-heading"></slot>
+                </div>
+                <slot name="kitchensink/redirect-another-partial-description"></slot>
+                <slot name="kitchensink/redirect-another-partial-button"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/redirect-external-link-heading"></slot>
+                </div>
+                <slot name="kitchensink/redirect-external-link-description"></slot>
+                <slot name="kitchensink/redirect-external-link-button"></slot>
+                <slot name="kitchensink/redirect-link-morph"></slot>
+                <slot name="kitchensink/redirect-link-redirect"></slot>
             </div>
         </div>
-        <slot name="kitchensink/redirect-current-partial-favorite-label"></slot>
-        <slot name="kitchensink/redirect-another-partial-heading"></slot>
-        <slot name="kitchensink/redirect-another-partial-description"></slot>
-        <slot name="kitchensink/redirect-another-partial-button"></slot>
-        <slot name="kitchensink/redirect-external-link-heading"></slot>
-        <slot name="kitchensink/redirect-external-link-description"></slot>
-        <slot name="kitchensink/redirect-external-link-button"></slot>
-        <slot name="kitchensink/redirect-link-morph"></slot>
-        <slot name="kitchensink/redirect-link-redirect"></slot>
     </template>
 </template>

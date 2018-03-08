@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/autocomplete-heading">Autocomplete</h1>
@@ -51,23 +53,30 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
             .kitchensink-autocomplete-products {
                 margin-bottom: 40px;
             }
         </style>
-        <slot name="kitchensink/autocomplete-heading"></slot>
-        <div title="products" class="kitchensink-autocomplete-products">
-            <slot name="kitchensink/autocomplete-products-description"></slot>
-            <slot name="kitchensink/autocomplete-products-input"></slot>
-            <slot name="kitchensink/autocomplete-products-autocomplete"></slot>
-            <slot name="kitchensink/autocomplete-products-price"></slot>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/autocomplete-heading"></slot>
         </div>
-        <div title="places">
-            <slot name="kitchensink/autocomplete-places-description"></slot>
-            <slot name="kitchensink/autocomplete-places-input"></slot>
-            <slot name="kitchensink/autocomplete-places-autocomplete"></slot>
-            <slot name="kitchensink/autocomplete-places-capital"></slot>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <div title="products" class="kitchensink-autocomplete-products">
+                    <slot name="kitchensink/autocomplete-products-description"></slot>
+                    <slot name="kitchensink/autocomplete-products-input"></slot>
+                    <slot name="kitchensink/autocomplete-products-autocomplete"></slot>
+                    <slot name="kitchensink/autocomplete-products-price"></slot>
+                </div>
+                <div title="places">
+                    <slot name="kitchensink/autocomplete-places-description"></slot>
+                    <slot name="kitchensink/autocomplete-places-input"></slot>
+                    <slot name="kitchensink/autocomplete-places-autocomplete"></slot>
+                    <slot name="kitchensink/autocomplete-places-capital"></slot>
+                </div>
+            </div>
         </div>
     </template>
 </template>

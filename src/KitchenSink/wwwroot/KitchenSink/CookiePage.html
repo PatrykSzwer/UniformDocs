@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/cookie-heading">Cookies</h1>
@@ -33,10 +35,17 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/cookie-heading"></slot>
-        <slot name="kitchensink/cookie-description"></slot>
-        <slot name="kitchensink/cookie-request-label"></slot>
-        <slot name="kitchensink/cookie-side-label"></slot>
-        <slot name="kitchensink/cookie-button"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/cookie-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/cookie-description"></slot>
+                <slot name="kitchensink/cookie-request-label"></slot>
+                <slot name="kitchensink/cookie-side-label"></slot>
+                <slot name="kitchensink/cookie-button"></slot>
+            </div>
+        </div>
     </template>
 </template>

@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/table-heading">Table</h1>
@@ -23,9 +25,17 @@
         <button slot="kitchensink/table-button" value="{{model.AddPetTrigger$::click}}" onmousedown="++this.value">Add a pet</button>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/table-heading"></slot>
-        <slot name="kitchensink/table-description"></slot>
-        <slot name="kitchensink/table-table"></slot>
-        <slot name="kitchensink/table-button"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/table-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/table-description"></slot>
+                <slot name="kitchensink/table-table"></slot>
+                <slot name="kitchensink/table-button"></slot>
+            </div>
+        </div>
+
     </template>
 </template>

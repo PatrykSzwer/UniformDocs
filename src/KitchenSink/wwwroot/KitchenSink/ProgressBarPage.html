@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/progressBar-heading">Progress Bar</h1>
@@ -17,13 +19,20 @@
         </template>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/progressBar-heading"></slot>
-        <slot name="kitchensink/progressBar-description"></slot>
-        <slot name="kitchensink/progressBar-read-more"></slot>
-        <slot name="kitchensink/progressBar-progress-bar"></slot>
-        <p>
-            <slot name="kitchensink/progressBar-button"></slot>
-            <slot name="kitchensink/progressBar-button-text"></slot>
-        </p>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/progressBar-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/progressBar-description"></slot>
+                <slot name="kitchensink/progressBar-read-more"></slot>
+                <slot name="kitchensink/progressBar-progress-bar"></slot>
+                <p>
+                    <slot name="kitchensink/progressBar-button"></slot>
+                    <slot name="kitchensink/progressBar-button-text"></slot>
+                </p>
+            </div>
+        </div>
     </template>
 </template>

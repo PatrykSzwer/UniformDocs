@@ -52,24 +52,41 @@
     <template is="declarative-shadow-dom">
         <style>
             @import "/sys/uniform.css/uniform.css";
+
+            .kitchensink-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical);
+            }
         </style>
-        <slot name="kitchensink/breadcrumb-heading"></slot>
-        <slot name="kitchensink/breadcrumb-simple-breadcrumb-heading"></slot>
-        <slot name="kitchensink/breadcrumb-simple-breadcrumb-description"></slot>
-        <div>
-            <slot name="kitchensink/breadcrumb-simple-breadcrumb"></slot>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/breadcrumb-heading"></slot>
         </div>
-        <slot name="kitchensink/breadcrumb-navigation-breadcrumb-heading"></slot>
-        <slot name="kitchensink/breadcrumb-navigation-breadcrumb-description"></slot>
-        <slot name="kitchensink/breadcrumb-navigation-breadcrumb"></slot>
-        <slot name="kitchensink/breadcrumb-adding-heading"></slot>
-        <slot name="kitchensink/breadcrumb-editing-heading"></slot>
-        <div class="uni-label-control">
-            <slot name="kitchensink/breadcrumb-name-heading"></slot>
-            <slot name="kitchensink/breadcrumb-name-input"></slot>
-        </div>
-        <div class="uni-success-button-wrapper">
-            <slot name="kitchensink/breadcrumb-name-save"></slot>
+        <div class="uni-section-primary kitchensink-section-primary-grid">
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/breadcrumb-simple-breadcrumb-heading"></slot>
+                </div>
+                <slot name="kitchensink/breadcrumb-simple-breadcrumb-description"></slot>
+                <div>
+                    <slot name="kitchensink/breadcrumb-simple-breadcrumb"></slot>
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/breadcrumb-navigation-breadcrumb-heading"></slot>
+                </div>
+                <slot name="kitchensink/breadcrumb-navigation-breadcrumb-description"></slot>
+                <slot name="kitchensink/breadcrumb-navigation-breadcrumb"></slot>
+                <slot name="kitchensink/breadcrumb-adding-heading"></slot>
+                <slot name="kitchensink/breadcrumb-editing-heading"></slot>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/breadcrumb-name-heading"></slot>
+                    <slot name="kitchensink/breadcrumb-name-input"></slot>
+                </div>
+                <div class="uni-success-button-wrapper">
+                    <slot name="kitchensink/breadcrumb-name-save"></slot>
+                </div>
+            </div>
         </div>
     </template>
 </template>

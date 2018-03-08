@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/google-map/google-map.html">
 <link rel="import" href="/sys/google-map/google-map-marker.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -14,11 +15,18 @@
         <button slot="kitchensink/geo-reset-button" value="{{model.Position.ResetTrigger$::click}}" onclick="this.value++">Reset</button>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/geo-heading"></slot>
-        <slot name="kitchensink/geo-description"></slot>
-        <slot name="kitchensink/geo-google-map"></slot>
-        <p>
-            <slot name="kitchensink/geo-reset-button"></slot>
-        </p>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/geo-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/geo-description"></slot>
+                <slot name="kitchensink/geo-google-map"></slot>
+                <p>
+                    <slot name="kitchensink/geo-reset-button"></slot>
+                </p>
+            </div>
+        </div>
     </template>
 </template>

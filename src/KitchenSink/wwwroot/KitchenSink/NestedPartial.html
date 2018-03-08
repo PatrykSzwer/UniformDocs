@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/nested-heading">Nested Views</h1>
@@ -8,19 +10,26 @@
         <starcounter-include slot="kitchensink/nested-child-partial" view-model="{{model.ChildPartial}}"></starcounter-include>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
             .kitchensink-nested-child {
                 padding: 10px;
                 border: 1px solid #eeeeee;
             }
         </style>
-        <slot name="kitchensink/nested-heading"></slot>
-        <slot name="kitchensink/nested-description"></slot>
-        <div class="kitchensink-nested-child">
-            <slot name="kitchensink/nested-add-child-button"></slot>
-            <slot name="kitchensink/nested-child-label"></slot>
-            <div>
-                <slot name="kitchensink/nested-child-partial"></slot>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/nested-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/nested-description"></slot>
+                <div class="kitchensink-nested-child">
+                    <slot name="kitchensink/nested-add-child-button"></slot>
+                    <slot name="kitchensink/nested-child-label"></slot>
+                    <div>
+                        <slot name="kitchensink/nested-child-partial"></slot>
+                    </div>
+                </div>
             </div>
         </div>
     </template>
