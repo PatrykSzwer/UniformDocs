@@ -17,7 +17,7 @@
     "components"
   ],
   "license": [
-    "BSD",
+    "0BSD",
     "MIT"
   ],
   "homepage": "http://dbushell.github.io/Pikaday/",
@@ -25,14 +25,14 @@
     "type": "git",
     "url": "https://github.com/dbushell/Pikaday.git"
   },
-  "version": "1.5.1",
-  "_release": "1.5.1",
+  "version": "1.6.1",
+  "_release": "1.6.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.5.1",
-    "commit": "5f15c0e454035dd074f3477dd65e2790faa24ee5"
+    "tag": "1.6.1",
+    "commit": "2216628502e986368362af7420f9afee9cc30d1c"
   },
   "_source": "https://github.com/dbushell/Pikaday.git",
-  "_target": "1.5.*",
+  "_target": "^1.3.2",
   "_originalSource": "pikaday"
 }

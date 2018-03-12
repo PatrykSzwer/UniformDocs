@@ -28,12 +28,12 @@
   "devDependencies": {
     "web-component-tester": "^6.4.1"
   },
-  "version": "1.1.0",
-  "_release": "1.1.0",
+  "version": "1.1.3",
+  "_release": "1.1.3",
   "_resolution": {
     "type": "version",
-    "tag": "1.1.0",
-    "commit": "eb16663e400be4297f725e1befdd8cbf2b7de406"
+    "tag": "1.1.3",
+    "commit": "21ec321751bee928637160e4e7cc8837590ae35e"
   },
   "_source": "https://github.com/Juicy/juicy-select.git",
   "_target": "^1.1.0",
