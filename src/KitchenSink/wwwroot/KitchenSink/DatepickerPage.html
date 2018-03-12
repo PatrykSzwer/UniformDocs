@@ -1,4 +1,6 @@
 <link rel="import" href="/sys/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/datepicker-heading">Datepicker</h1>
@@ -26,23 +28,29 @@
         <input slot="kitchensink/datepicker-day-input" type="text" value="{{model.Day}}" readonly="readonly">
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <style>@import '/sys/uniform.css/uniform.css';</style>
-        <slot name="kitchensink/datepicker-heading"></slot>
-        <slot name="kitchensink/datepicker-description"></slot>
-        <div class="uni-label-control">
-            <slot name="kitchensink/datepicker-date-picker"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/datepicker-heading"></slot>
         </div>
-        <div class="uni-label-control">
-            <slot name="kitchensink/datepicker-year-label"></slot>
-            <slot name="kitchensink/datepicker-year-input"></slot>
-        </div>
-        <div class="uni-label-control">
-            <slot name="kitchensink/datepicker-month-label"></slot>
-            <slot name="kitchensink/datepicker-month-input"></slot>
-        </div>
-        <div class="uni-label-control">
-            <slot name="kitchensink/datepicker-day-label"></slot>
-            <slot name="kitchensink/datepicker-day-input"></slot>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/datepicker-description"></slot>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/datepicker-date-picker"></slot>
+                </div>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/datepicker-year-label"></slot>
+                    <slot name="kitchensink/datepicker-year-input"></slot>
+                </div>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/datepicker-month-label"></slot>
+                    <slot name="kitchensink/datepicker-month-input"></slot>
+                </div>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/datepicker-day-label"></slot>
+                    <slot name="kitchensink/datepicker-day-input"></slot>
+                </div>
+            </div>
         </div>
     </template>
 </template>

@@ -1,4 +1,6 @@
 <link rel="import" href="/sys/juicy-html/juicy-html.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/html-heading">HTML</h1>
@@ -11,8 +13,15 @@
         </div>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/html-heading"></slot>
-        <slot name="kitchensink/html-description"></slot>
-        <slot name="kitchensink/html-juicy-html"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/html-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/html-description"></slot>
+                <slot name="kitchensink/html-juicy-html"></slot>
+            </div>
+        </div>
     </template>
 </template>

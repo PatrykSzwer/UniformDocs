@@ -1,4 +1,5 @@
 <link rel="import" href="/sys/polymer/polymer.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -84,6 +85,7 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
             .kitchensink-lazy-loading__hover-box {
                 background-color: rgba(255, 255, 255, 0.80);
@@ -128,14 +130,20 @@
                 animation: spin 2s linear infinite;
             }
         </style>
-        <slot name="kitchensink/lazyLoading-heading"></slot>
-        <slot name="kitchensink/lazyLoading-scheduling-description"></slot>
-        <slot name="kitchensink/lazyLoading-table-description"></slot>
-        <slot name="kitchensink/lazyLoading-table"></slot>
-        <div class="kitchensink-lazy-loading__hover-box">
-            <slot name="kitchensink/lazyLoading-message-box-game-label"></slot>
-            <slot class="kitchensink-lazy-loading__spinning-loading" name="kitchensink/lazyLoading-message-box-game-loading"></slot>
-            <slot name="kitchensink/lazyLoading-message-box-game-data"></slot>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/lazyLoading-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/lazyLoading-scheduling-description"></slot>
+                <slot name="kitchensink/lazyLoading-table-description"></slot>
+                <slot name="kitchensink/lazyLoading-table"></slot>
+                <div class="kitchensink-lazy-loading__hover-box">
+                    <slot name="kitchensink/lazyLoading-message-box-game-label"></slot>
+                    <slot class="kitchensink-lazy-loading__spinning-loading" name="kitchensink/lazyLoading-message-box-game-loading"></slot>
+                    <slot name="kitchensink/lazyLoading-message-box-game-data"></slot>
+                </div>
+            </div>
         </div>
     </template>
 </template>

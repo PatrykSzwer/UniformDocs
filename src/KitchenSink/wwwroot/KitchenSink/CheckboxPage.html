@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/checkbox-heading">Checkbox</h1>
@@ -11,13 +13,20 @@
         <div slot="kitchensink/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <style>@import '/sys/uniform.css/uniform.css';</style>
-        <slot name="kitchensink/checkbox-heading"></slot>
-        <slot name="kitchensink/checkbox-description"></slot>
-        <slot name="kitchensink/checkbox-input"></slot>
-        <slot name="kitchensink/checkbox-label"></slot>
-        <div class="uni-alert-info">
-            <slot name="kitchensink/checkbox-license-label"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/checkbox-heading"></slot>
         </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/checkbox-description"></slot>
+                <slot name="kitchensink/checkbox-input"></slot>
+                <slot name="kitchensink/checkbox-label"></slot>
+                <div class="uni-alert-info">
+                    <slot name="kitchensink/checkbox-license-label"></slot>
+                </div>
+            </div>
+        </div>
+
     </template>
 </template>

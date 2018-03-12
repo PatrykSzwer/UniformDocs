@@ -1,3 +1,4 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/url-heading">Link</h1>
@@ -21,34 +22,43 @@
 
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/url-heading"></slot>
-        <div>
-            <slot name="kitchensink/url-description"></slot>
-            <p>
-                <slot name="kitchensink/url-link"></slot>
-            </p>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/url-heading"></slot>
         </div>
-        <div>
-            <slot name="kitchensink/url-description-targeted"></slot>
-            <p>
-                <slot name="kitchensink/targeted-url-link"></slot>
-            </p>
-        </div>
-        <div>
-            <slot name="kitchensink/url-description-download-attrib"></slot>
-            <p>
-                <slot name="kitchensink/download-attrib-link"></slot>
-            </p>
-        </div>
-        <div>
-            <slot name="kitchensink/url-description-targeted-iframe"></slot>
-            <p>
-                <slot name="kitchensink/url-link-iframe-targetted"></slot>
-            </p>
-            <p>
-                <slot name="kitchensink/url-targeted-iframe"></slot>
-            </p>
-            <p><em><small>demo iframe</small></em></p>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <div>
+                    <slot name="kitchensink/url-description"></slot>
+                    <p>
+                        <slot name="kitchensink/url-link"></slot>
+                    </p>
+                </div>
+                <div>
+                    <slot name="kitchensink/url-description-targeted"></slot>
+                    <p>
+                        <slot name="kitchensink/targeted-url-link"></slot>
+                    </p>
+                </div>
+                <div>
+                    <slot name="kitchensink/url-description-download-attrib"></slot>
+                    <p>
+                        <slot name="kitchensink/download-attrib-link"></slot>
+                    </p>
+                </div>
+                <div>
+                    <slot name="kitchensink/url-description-targeted-iframe"></slot>
+                    <p>
+                        <slot name="kitchensink/url-link-iframe-targetted"></slot>
+                    </p>
+                    <p>
+                        <slot name="kitchensink/url-targeted-iframe"></slot>
+                    </p>
+                    <p>
+                        <em><small>demo iframe</small></em>
+                    </p>
+                </div>
+            </div>
         </div>
     </template>
 </template>

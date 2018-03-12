@@ -1,4 +1,6 @@
 <link rel="import" href="/sys/marked-element/marked-element.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/markdown-heading">Markdown</h1>
@@ -7,8 +9,15 @@
         <marked-element slot="kitchensink/markdown-marked-element" markdown="{{model.Bio}}"></marked-element>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/markdown-heading"></slot>
-        <slot name="kitchensink/markdown-description"></slot>
-        <slot name="kitchensink/markdown-marked-element"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/markdown-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/markdown-description"></slot>
+                <slot name="kitchensink/markdown-marked-element"></slot>
+            </div>
+        </div>
     </template>
 </template>

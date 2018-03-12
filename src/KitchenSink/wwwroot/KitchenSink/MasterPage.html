@@ -1,31 +1,64 @@
 <link rel="stylesheet" href="/KitchenSink/style.css">
 <template>
     <dom-bind><template id="root" is="dom-bind">
-        <starcounter-include slot="kitchensink/nav" view-model="{{model.NavPage}}"></starcounter-include>
+        <!--<starcounter-include slot="kitchensink/nav" view-model="{{model.NavPage}}"></starcounter-include>-->
         <starcounter-include slot="kitchensink/current" view-model="{{model.CurrentPage}}"></starcounter-include>
+        
+        <a slot="kitchensink/menu-item" href="/KitchenSink/MainPage">Main</a>
+        <h4 slot="kitchensink/menu-item">Rendering</h4>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Breadcrumb">Breadcrumb</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Chart">Chart</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Datagrid">Datagrid</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Html">HTML</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Url">Link</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Geo">Map</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Markdown">Markdown</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Pagination">Pagination</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Table">Table</a>
+        <h4 slot="kitchensink/menu-item">Server Push</h4>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Callback">Async Response</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Cookie">Cookies</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Dialog">Dialog Box</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/FlashMessage">Flash Message</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/LazyLoading"> Lazy Loading</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Nested">Nested Views</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/ProgressBar">Progress Bar</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Redirect">Redirect</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/ClientLocalState">Client Local State</a>
+        <h4 slot="kitchensink/menu-item">User Input</h4>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Autocomplete">Autocomplete</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Button">Button</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Checkbox">Checkbox</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Datepicker">Datepicker</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Dropdown">Dropdown</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Decimal">Decimal Input</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/FileUpload">File Upload</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Integer">Integer Input</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Multiselect">Multiselect</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Password">Password</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Radio">Radio Button</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Radiolist">Radiolist</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Text">Text Input</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Textarea">Textarea</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/ToggleButton">Toggle Button</a>
+        <a slot="kitchensink/menu-item" href="/KitchenSink/Validation">Validation</a>
+
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        
+        <!--<link rel="stylesheet" href="/sys/uniform.css/uniform.css">-->
         <style>
-            .kitchensink-layout {
-                display: flex;
-            }
-
-            .kitchensink-layout__column-left {
-                flex: 0 0 160px;
-                margin-right: 20px;
-            }
-
-            .kitchensink-layout__column-right {
-                flex: 0 1 600px;
-            }
+            @import "/sys/uniform.css/uniform.css";
+             :host {
+                 --uni-section-padding-horizontal: 20px;
+                 --uni-section-padding-vertical: 20px;
+             }
         </style>
-        <div class="kitchensink-layout">
-            <nav class="kitchensink-layout__column-left">
-                <slot name="kitchensink/nav"></slot>
+        <div class="uni-layout-left-nav">
+            <nav>
+                <slot name="kitchensink/menu-item"></slot>
             </nav>
-            <div class="kitchensink-layout__column-right">
-                <slot name="kitchensink/current"></slot>
-            </div>
+            <slot name="kitchensink/current"></slot>
         </div>
     </template>
 </template>

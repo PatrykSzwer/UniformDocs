@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/integer-heading">Integer Input</h1>
@@ -11,13 +13,19 @@
         <input slot="kitchensink/integer-input" type="number" value="{{model.Age$::input}}" placeholder="Age">
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <style>@import '/sys/uniform.css/uniform.css';</style>
-        <slot name="kitchensink/integer-heading"></slot>
-        <slot name="kitchensink/integer-description"></slot>
-        <slot name="kitchensink/integer-info"></slot>
-        <div class="uni-label-control">
-            <slot name="kitchensink/integer-label"></slot>
-            <slot name="kitchensink/integer-input"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/integer-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/integer-description"></slot>
+                <slot name="kitchensink/integer-info"></slot>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/integer-label"></slot>
+                    <slot name="kitchensink/integer-input"></slot>
+                </div>
+            </div>
         </div>
     </template>
 </template>

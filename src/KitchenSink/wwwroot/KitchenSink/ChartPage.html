@@ -1,4 +1,5 @@
 <link rel="import" href="/sys/chart-elements/chart-line.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -9,9 +10,16 @@
         <kitchensink-chart slot="kitchensink/chartpage-chart" temperatures="{{model.Temperatures}}" labels="{{model.Labels}}"></kitchensink-chart>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/chartpage-heading"></slot>
-        <slot name="kitchensink/chartpage-description"></slot>
-        <slot name="kitchensink/chartpage-chart"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/chartpage-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/chartpage-description"></slot>
+                <slot name="kitchensink/chartpage-chart"></slot> 
+            </div>
+        </div>
     </template>
 </template>
 

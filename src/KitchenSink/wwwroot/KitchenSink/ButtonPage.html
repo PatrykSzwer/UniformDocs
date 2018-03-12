@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/buttonpage-heading">Button</h1>
@@ -105,6 +107,7 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
             .kitchensink-add-carrots {
                 display: flex;
@@ -126,36 +129,67 @@
             span[slot="kitchensink/buttonpage-regular-add-carrots-label"] {
                 font-weight: bold;
             }
+
+            .kitchensink-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
+            }
         </style>
-        <slot name="kitchensink/buttonpage-heading"></slot>
-        <slot name="kitchensink/buttonpage-description"></slot>
-        <slot name="kitchensink/buttonpage-regular-heading"></slot>
-        <slot name="kitchensink/buttonpage-regular-description"></slot>
-        <slot name="kitchensink/buttonpage-regular-increment-label"></slot>
-        <slot name="kitchensink/buttonpage-regular-increment-ways"></slot>
-        <slot name="kitchensink/buttonpage-regular-reaction-label"></slot>
-        <p class="kitchensink-add-carrots">
-            <slot class="kitchensink-add-carrots__label" name="kitchensink/buttonpage-regular-add-carrots-label"></slot>
-            <slot name="kitchensink/buttonpage-regular-add-carrots-button"></slot>
-            <slot name="kitchensink/buttonpage-regular-add-carrots-button-function"></slot>
-            <slot name="kitchensink/buttonpage-regular-add-carrots-span-function"></slot>
-        </p>
-        <slot name="kitchensink/buttonpage-regular-add-carrots"></slot>
-        <slot name="kitchensink/buttonpage-switch-heading"></slot>
-        <slot name="kitchensink/buttonpage-switch-description"></slot>
-        <slot name="kitchensink/buttonpage-switch-button"></slot>
-        <slot name="kitchensink/buttonpage-switch-reaction-label"></slot>
-        <slot name="kitchensink/buttonpage-disable-heading"></slot>
-        <slot name="kitchensink/buttonpage-disable-description"></slot>
-        <slot name="kitchensink/buttonpage-disable-button"></slot>
-        <slot name="kitchensink/buttonpage-disable-label"></slot>
-        <slot name="kitchensink/buttonpage-self-heading"></slot>
-        <slot name="kitchensink/buttonpage-self-reaction-label"></slot>
-        <slot name="kitchensink/buttonpage-self-button"></slot>
-        <slot name="kitchensink/buttonpage-binding-issue-heading"></slot>
-        <slot name="kitchensink/buttonpage-binding-issue-description"></slot>
-        <slot name="kitchensink/buttonpage-binding-issue-click-label"></slot>
-        <slot name="kitchensink/buttonpage-binding-issue-button"></slot>
-        <slot name="kitchensink/buttonpage-binding-issue-label"></slot>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/buttonpage-heading"></slot>
+        </div>
+        <div class="uni-section-primary kitchensink-section-primary-grid">
+            <div class="uni-card">
+                <slot name="kitchensink/buttonpage-description"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/buttonpage-regular-heading"></slot>
+                </div>
+                <slot name="kitchensink/buttonpage-regular-description"></slot>
+                <slot name="kitchensink/buttonpage-regular-increment-label"></slot>
+                <slot name="kitchensink/buttonpage-regular-increment-ways"></slot>
+                <slot name="kitchensink/buttonpage-regular-reaction-label"></slot>
+                <p class="kitchensink-add-carrots">
+                    <slot class="kitchensink-add-carrots__label" name="kitchensink/buttonpage-regular-add-carrots-label"></slot>
+                    <slot name="kitchensink/buttonpage-regular-add-carrots-button"></slot>
+                    <slot name="kitchensink/buttonpage-regular-add-carrots-button-function"></slot>
+                    <slot name="kitchensink/buttonpage-regular-add-carrots-span-function"></slot>
+                </p>
+                <slot name="kitchensink/buttonpage-regular-add-carrots"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/buttonpage-switch-heading"></slot>
+                </div>
+                <slot name="kitchensink/buttonpage-switch-description"></slot>
+                <slot name="kitchensink/buttonpage-switch-button"></slot>
+                <slot name="kitchensink/buttonpage-switch-reaction-label"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/buttonpage-disable-heading"></slot>
+                </div>
+                <slot name="kitchensink/buttonpage-disable-description"></slot>
+                <slot name="kitchensink/buttonpage-disable-button"></slot>
+                <slot name="kitchensink/buttonpage-disable-label"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/buttonpage-self-heading"></slot>
+                </div>
+                <slot name="kitchensink/buttonpage-self-reaction-label"></slot>
+                <slot name="kitchensink/buttonpage-self-button"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/buttonpage-binding-issue-heading"></slot>
+                </div>
+                <slot name="kitchensink/buttonpage-binding-issue-description"></slot>
+                <slot name="kitchensink/buttonpage-binding-issue-click-label"></slot>
+                <slot name="kitchensink/buttonpage-binding-issue-button"></slot>
+                <slot name="kitchensink/buttonpage-binding-issue-label"></slot>
+            </div>
+        </div>
     </template>
 </template>

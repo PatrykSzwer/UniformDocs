@@ -1,4 +1,5 @@
 <link rel="import" href="/sys/juicy-select/juicy-select.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -35,30 +36,48 @@
         </template>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
             .kitchensink-dropdown-margin {
                 margin-bottom: 20px;
             }
+
+            .kitchensink-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical);
+            }
         </style>
-        <slot name="kitchensink/dropdown-heading"></slot>
-        <slot name="kitchensink/dropdown-primitive-array-heading"></slot>
-        <slot name="kitchensink/dropdown-pets-description"></slot>
-        <slot name="kitchensink/dropdown-pets-dropdown"></slot>
-        <div class="kitchensink-dropdown-margin">
-            <slot name="kitchensink/dropdown-pets-reaction"></slot>
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/dropdown-heading"></slot>
         </div>
-        <slot name="kitchensink/dropdown-objects-heading"></slot>
-        <slot name="kitchensink/dropdown-objects-description"></slot>
-        <slot name="kitchensink/dropdown-objects-select-description" class="kitchensink-dropdown-margin"></slot>
-        <div class="kitchensink-dropdown-margin">
-            <slot name="kitchensink/dropdown-objects-select"></slot>
-        </div>
-        <slot name="kitchensink/dropdown-objects-juicy-select-description" class="kitchensink-dropdown-margin"></slot>
-        <div class="kitchensink-dropdown-margin">
-            <slot name="kitchensink/dropdown-objects-juicy-select"></slot>
-        </div>
-        <div>
-            <slot name="kitchensink/dropdown-objects-select-label"></slot>
+        <div class="uni-section-primary kitchensink-section-primary-grid">
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/dropdown-primitive-array-heading"></slot>
+                </div>
+                <slot name="kitchensink/dropdown-pets-description"></slot>
+                <slot name="kitchensink/dropdown-pets-dropdown"></slot>
+                <div class="kitchensink-dropdown-margin">
+                    <slot name="kitchensink/dropdown-pets-reaction"></slot>
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/dropdown-objects-heading"></slot>
+                </div>
+                <slot name="kitchensink/dropdown-objects-description"></slot>
+                <slot name="kitchensink/dropdown-objects-select-description" class="kitchensink-dropdown-margin"></slot>
+                <div class="kitchensink-dropdown-margin">
+                    <slot name="kitchensink/dropdown-objects-select"></slot>
+                </div>
+                <slot name="kitchensink/dropdown-objects-juicy-select-description" class="kitchensink-dropdown-margin"></slot>
+                <div class="kitchensink-dropdown-margin">
+                    <slot name="kitchensink/dropdown-objects-juicy-select"></slot>
+                </div>
+                <div>
+                    <slot name="kitchensink/dropdown-objects-select-label"></slot>
+                </div>
+            </div>
         </div>
     </template>
 </template>

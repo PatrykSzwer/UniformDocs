@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/paper-listbox/paper-listbox.html">
 <link rel="import" href="/sys/paper-item/paper-item.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -20,14 +21,21 @@
         <span slot="kitchensink/radiolist-selected-item-index">({{model.SelectedItemIndex$}})</span>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/radiolist-heading"></slot>
-        <slot name="kitchensink/radiolist-description"></slot>
-        <slot name="kitchensink/radiolist-description-recommend"></slot>
-        <div>
-            <slot name="kitchensink/radiolist-paper-listbox"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/radiolist-heading"></slot>
         </div>
-        <slot name="kitchensink/radiolist-selected-label"></slot>
-        <slot name="kitchensink/radiolist-selected-item-label"></slot>
-        <slot name="kitchensink/radiolist-selected-item-index"></slot>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/radiolist-description"></slot>
+                <slot name="kitchensink/radiolist-description-recommend"></slot>
+                <div>
+                    <slot name="kitchensink/radiolist-paper-listbox"></slot>
+                </div>
+                <slot name="kitchensink/radiolist-selected-label"></slot>
+                <slot name="kitchensink/radiolist-selected-item-label"></slot>
+                <slot name="kitchensink/radiolist-selected-item-index"></slot>
+            </div>
+        </div>
     </template>
 </template>

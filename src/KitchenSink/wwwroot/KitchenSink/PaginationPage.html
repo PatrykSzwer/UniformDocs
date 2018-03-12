@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/polymer/polymer.html">
 <link rel="import" href="/sys/juicy-select/juicy-select.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -55,6 +56,7 @@
             };
 
             template.onNextPageClick = function (event) {
+                debugger;
                 triggerModelAction("NextPageTrigger$");
             };
 
@@ -68,20 +70,24 @@
         })();
     </script>
     <template is="declarative-shadow-dom">
-        <style>
-            @import "/sys/uniform.css/uniform.css";
-        </style>
-        <slot name="kitchensink/pagination-heading"></slot>
-        <slot name="kitchensink/pagination-description"></slot>
-        <slot name="kitchensink/pagination-juicy-select-items-per-page"></slot>
-        <slot name="kitchensink/pagination-table"></slot>
-        <div class="uni-pagination">
-            <div class="uni-previous"><slot name="kitchensink/pagination-navigation-first"></slot></div>
-            <div class="uni-previous"><slot name="kitchensink/pagination-navigation-previous"></slot></div>
-            <div class="uni-pages"><slot name="kitchensink/pagination-navigation-number"></slot></div>
-            <div class="uni-next"><slot name="kitchensink/pagination-navigation-next"></slot></div>
-            <div class="uni-next"><slot name="kitchensink/pagination-navigation-last"></slot></div>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/pagination-heading"></slot>
         </div>
-        <slot name="kitchensink/pagination-page-number"></slot>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/pagination-description"></slot>
+                <slot name="kitchensink/pagination-juicy-select-items-per-page"></slot>
+                <slot name="kitchensink/pagination-table"></slot>
+                <div class="uni-pagination">
+                    <div class="uni-previous"><slot name="kitchensink/pagination-navigation-first"></slot></div>
+                    <div class="uni-previous"><slot name="kitchensink/pagination-navigation-previous"></slot></div>
+                    <div class="uni-pages"><slot name="kitchensink/pagination-navigation-number"></slot></div>
+                    <div class="uni-next"><slot name="kitchensink/pagination-navigation-next"></slot></div>
+                    <div class="uni-next"><slot name="kitchensink/pagination-navigation-last"></slot></div>
+                </div>
+                <slot name="kitchensink/pagination-page-number"></slot>
+            </div>
+        </div>
     </template>
 </template>

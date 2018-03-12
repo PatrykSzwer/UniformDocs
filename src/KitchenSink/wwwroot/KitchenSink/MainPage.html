@@ -1,10 +1,17 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <h1 slot="kitchensink/main-heading">Welcome to KitchenSink</h1>
 
     <p slot="kitchensink/main-description">Use the menu on the left to browse various examples of how to build web-based UI with Starcounter and Polymer.</p>
 
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/main-heading"></slot>
-        <slot name="kitchensink/main-description"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/main-heading"></slot>
+                <slot name="kitchensink/main-description"></slot>
+            </div>
+        </div>
     </template>
 </template>

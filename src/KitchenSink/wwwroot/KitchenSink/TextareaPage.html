@@ -1,3 +1,5 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
 <template>
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/textarea-heading">Textarea</h1>
@@ -9,12 +11,18 @@
         <textarea slot="kitchensink/textarea-textarea" value="{{model.Bio$::input}}" rows="3"></textarea>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <style>@import '/sys/uniform.css/uniform.css';</style>
-        <slot name="kitchensink/textarea-heading"></slot>
-        <slot name="kitchensink/textarea-description"></slot>
-        <div class="uni-label-control">
-            <slot name="kitchensink/textarea-label"></slot>
-            <slot name="kitchensink/textarea-textarea"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/textarea-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/textarea-description"></slot>
+                <div class="uni-label-control">
+                    <slot name="kitchensink/textarea-label"></slot>
+                    <slot name="kitchensink/textarea-textarea"></slot>
+                </div>
+            </div>
         </div>
     </template>
 </template>

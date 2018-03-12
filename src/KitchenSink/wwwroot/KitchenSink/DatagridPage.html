@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/hot-table/hot-table.html">
 <link rel="import" href="/sys/hot-table/src/hot-table-style.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
     <!-- this works with Shady DOM (not Shadow DOM). You don't have to use it in Shadow DOM -->
@@ -29,13 +30,21 @@
         <button slot="kitchensink/datagrid-button" value="{{model.AddPetTrigger$::click}}" onmousedown="++this.value">Add a pet</button>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
-        <slot name="kitchensink/datagrid-heading"></slot>
-        <slot name="kitchensink/datagrid-description"></slot>
-        <slot name="kitchensink/datagrid-demo-description"></slot>
-        <slot name="kitchensink/datagrid-demo-columns"></slot>
-        <slot name="kitchensink/datagrid-table"></slot>
-        <div style="margin-top: 0.5em">
-            <slot name="kitchensink/datagrid-button"></slot>
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/datagrid-heading"></slot>
         </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/datagrid-description"></slot>
+                <slot name="kitchensink/datagrid-demo-description"></slot>
+                <slot name="kitchensink/datagrid-demo-columns"></slot>
+                <slot name="kitchensink/datagrid-table"></slot>
+                <div style="margin-top: 0.5em">
+                    <slot name="kitchensink/datagrid-button"></slot>
+                </div>
+            </div>
+        </div>
+
     </template>
 </template>
