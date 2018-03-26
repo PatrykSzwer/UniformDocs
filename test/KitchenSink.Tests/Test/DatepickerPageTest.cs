@@ -33,9 +33,9 @@ namespace KitchenSink.Tests.Test
             WaitUntil(x => _datePicker.DatePicker.Displayed);
 
             _datePicker.SelectDate("01/01/2016");
-            Assert.AreEqual("2016", _datePicker.YearInput.GetAttribute("value"));
-            Assert.AreEqual("January", _datePicker.MonthInput.GetAttribute("value"));
-            Assert.AreEqual("1", _datePicker.DayInput.GetAttribute("value"));
+            WaitUntil(x => _datePicker.YearInput.GetAttribute("value") == "2016");
+            WaitUntil(x => _datePicker.MonthInput.GetAttribute("value") == "January");
+            WaitUntil(x => _datePicker.DayInput.GetAttribute("value") == "1");
         }
     }
 }
