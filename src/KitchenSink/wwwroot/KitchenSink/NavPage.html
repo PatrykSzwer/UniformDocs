@@ -1,73 +1,40 @@
 <template>
-    <dom-bind><template is="dom-bind">
-                <ul slot="kitchensink/nav">
-                    <li><a href="/KitchenSink/MainPage">Main</a></li>
-                </ul>
-                <h4 slot="kitchensink/nav-rendering-header">Rendering</h4>
-                <ul slot="kitchensink/nav-rendering">
-                    <li><a href="/KitchenSink/Breadcrumb">Breadcrumb</a></li>
-                    <li><a href="/KitchenSink/Chart">Chart</a></li>
-                    <li><a href="/KitchenSink/Datagrid">Datagrid</a></li>
-                    <li><a href="/KitchenSink/Html">HTML</a></li>
-                    <li><a href="/KitchenSink/Url">Link</a></li>
-                    <li><a href="/KitchenSink/Geo">Map</a></li>
-                    <li><a href="/KitchenSink/Markdown">Markdown</a></li>
-                    <li><a href="/KitchenSink/Pagination">Pagination</a></li>
-                    <li><a href="/KitchenSink/Table">Table</a></li>
-                </ul>
-                <h4 slot="kitchensink/nav-push-header">Server Push</h4>
-                <ul slot="kitchensink/nav-push">
-                    <li><a href="/KitchenSink/Callback">Async Response</a></li>
-                    <li><a href="/KitchenSink/Cookie">Cookies</a></li>
-                    <li><a href="/KitchenSink/Dialog">Dialog Box</a></li>
-                    <li><a href="/KitchenSink/FlashMessage">Flash Message</a></li>
-                    <li><a href="/KitchenSink/LazyLoading"> Lazy Loading</a></li>
-                    <li><a href="/KitchenSink/Nested">Nested Views</a></li>
-                    <li><a href="/KitchenSink/ProgressBar">Progress Bar</a></li>
-                    <li><a href="/KitchenSink/Redirect">Redirect</a></li>
-                    <li><a href="/KitchenSink/ClientLocalState">Client Local State</a></li>
-                </ul>
-                <h4 slot="kitchensink/nav-input-header">User Input</h4>
-                <ul slot="kitchensink/nav-input">
-                    <li><a href="/KitchenSink/Autocomplete">Autocomplete</a></li>
-                    <li><a href="/KitchenSink/Button">Button</a></li>
-                    <li><a href="/KitchenSink/Checkbox">Checkbox</a></li>
-                    <li><a href="/KitchenSink/Datepicker">Datepicker</a></li>
-                    <li><a href="/KitchenSink/Dropdown">Dropdown</a></li>
-                    <li><a href="/KitchenSink/Decimal">Decimal Input</a></li>
-                    <li><a href="/KitchenSink/FileUpload">File Upload</a></li>
-                    <li><a href="/KitchenSink/Integer">Integer Input</a></li>
-                    <li><a href="/KitchenSink/Multiselect">Multiselect</a></li>
-                    <li><a href="/KitchenSink/Password">Password</a></li>
-                    <li><a href="/KitchenSink/Radio">Radio Button</a></li>
-                    <li><a href="/KitchenSink/Radiolist">Radiolist</a></li>
-                    <li><a href="/KitchenSink/Text">Text Input</a></li>
-                    <li><a href="/KitchenSink/Textarea">Textarea</a></li>
-                    <li><a href="/KitchenSink/ToggleButton">Toggle Button</a></li>
-                    <li><a href="/KitchenSink/Validation">Validation</a></li>
-                </ul>
-    </template></dom-bind>
-    <template is="declarative-shadow-dom">
-        <style>
-            .kitchensink-nav > ::slotted(ul) {
-                padding: 0 !important;
-                list-style: none !important;
-            }
-            /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
-            .kitchensink-nav > ul {
-                padding: 0 !important;
-                list-style: none !important;
-            }
-        </style>
-        <!-- This container is needed for polyfilled browsers only -->
-        <div class="kitchensink-nav">
-            <slot name="kitchensink/nav"></slot>
-            <slot name="kitchensink/nav-rendering-header"></slot>
-            <slot name="kitchensink/nav-rendering"></slot>
-            <slot name="kitchensink/nav-push-header"></slot>
-            <slot name="kitchensink/nav-push"></slot>
-            <slot name="kitchensink/nav-input-header"></slot>
-            <slot name="kitchensink/nav-input"></slot>
-        </div>
-    </template>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/MainPage">Main</a>
+    <h4 slot="kitchensink/menu-item">Rendering</h4>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Breadcrumb">Breadcrumb</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Chart">Chart</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Datagrid">Datagrid</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Html">HTML</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Url">Link</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Geo">Map</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Markdown">Markdown</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Pagination">Pagination</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Table">Table</a>
+    <h4 slot="kitchensink/menu-item">Server Push</h4>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Callback">Async Response</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Cookie">Cookies</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Dialog">Dialog Box</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/FlashMessage">Flash Message</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/LazyLoading"> Lazy Loading</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Nested">Nested Views</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/ProgressBar">Progress Bar</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Redirect">Redirect</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/ClientLocalState">Client Local State</a>
+    <h4 slot="kitchensink/menu-item">User Input</h4>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Autocomplete">Autocomplete</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Button">Button</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Checkbox">Checkbox</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Datepicker">Datepicker</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Dropdown">Dropdown</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Decimal">Decimal Input</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/FileUpload">File Upload</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Integer">Integer Input</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Multiselect">Multiselect</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Password">Password</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Radio">Radio Button</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Radiolist">Radiolist</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Text">Text Input</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Textarea">Textarea</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/ToggleButton">Toggle Button</a>
+    <a slot="kitchensink/menu-item" href="/KitchenSink/Validation">Validation</a>
 </template>
