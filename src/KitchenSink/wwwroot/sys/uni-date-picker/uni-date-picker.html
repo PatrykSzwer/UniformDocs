@@ -1,0 +1,132 @@
+<!-- juicy-element @version: 0.0.0 @license: MIT -->
+<link rel="import" href="../vaadin-date-picker/vaadin-date-picker.html">
+<script>
+    customElements.define('uni-date-picker', class extends HTMLElement {
+        // List of attributes observed for attributeChangedCallback
+        static get observedAttributes() {
+            return ['initial-position'];
+        }
+
+        /*
+         Fires when an instance of the element is created
+         listen to slotChange to observe label and input elements
+         */
+        constructor() {
+            super();
+            this.attachShadow({
+                mode: 'open'
+            });
+            this.slotChangedCallback = this.slotChangedCallback.bind(this);
+            this.vaadinElement = document.createElement('vaadin-date-picker');
+            this.slotElement = document.createElement('slot');
+            this.slotElement.addEventListener('slotchange', (ev)=>this.slotChangedCallback(ev));
+
+            const hiddenBox = document.createElement('div');
+            hiddenBox.style.display = 'none';
+            hiddenBox.appendChild(this.slotElement);
+            this.shadowRoot.appendChild(hiddenBox);
+            this.shadowRoot.appendChild(this.vaadinElement);
+
+        }
+        connectedCallback() {
+        }
+        /**
+         Assign new input and label if changed
+        */
+        slotChangedCallback(ev){
+            // Use assignedNodes whtn polyfill does not support assignedElements -
+            // even though we are interested in elements only.
+            const flattenedChildren = this.slotElement.assignedElements ?
+                this.slotElement.assignedElements({flatten: true}) :
+                this.slotElement.assignedNodes({flatten: true});
+            const input = flattenedChildren.length && flattenedChildren.find(e=>e.matches('input[type="date"]')) || undefined;
+            const label = flattenedChildren.length && flattenedChildren.find(e=>e.matches('label')) || undefined;
+
+            if(this.input !== input){
+                this._unobserveInput();
+                this.input = input;
+                this._observeInput();
+                this.copyInputsData(input);
+            }
+            if(this.label !== label){
+                this._unobserveLabel();
+                this.label = label;
+                this._observeLabel();
+                this.copyLabelsData(label);
+            }
+        }
+        /*
+         Disconnect all mutation observers
+        */
+        disconnectedCallback() {
+            this._unobserveInput();
+            this._unobserveLabel();
+        }
+
+        /*
+         Handle vaadin specific `initial-position` attribute
+        */
+        attributeChangedCallback(attr, oldVal, newVal) {
+            switch(attr){
+                case 'initial-position':
+                    // this.vaadinElement.initialPosition = this.hasAttribute('initial-position') ? this.getAttribute('initial-position') : undefined;
+                    this.vaadinElement.initialPosition = newVal !== null ? newVal : undefined;
+                    break;
+            }
+        }
+        /*
+         Copy all native, semantics to vaadin API
+        */
+        copyInputsData(input){
+            this.vaadinElement.autofocus = input.autofocus !== undefined && input.autofocus;
+            this.vaadinElement.disabled = input.disabled !== undefined && input.disabled;
+            // this.vaadinElement.errorMessage = input.getAttribute('errorMessage');
+            // this.vaadinElement.i18n = input.getAttribute('i18n');
+            // moved to element's attributes handling flow
+            //     this.vaadinElement.initialPosition = this.hasAttribute('initial-position') ? this.getAttribute('initial-position') : undefined;
+            // this.vaadinElement.invalid = input.getAttribute('invalid');
+            // this.vaadinElement.label = input.getAttribute('label');
+            this.vaadinElement.max = input.max !== undefined && input.max;
+            this.vaadinElement.min = input.min !== undefined && input.min;
+            this.vaadinElement.name = input.name !== undefined && input.name;
+            // this.vaadinElement.opened = input.getAttribute('opened');
+            this.vaadinElement.placeholder = input.placeholder !== undefined && input.placeholder;
+            this.vaadinElement.readonly = input.hasAttribute('readonly');
+            this.vaadinElement.required = input.required !== undefined && input.required;
+            // this.vaadinElement.showWeekNumbers = input.getAttribute('showWeekNumbers');
+            this.vaadinElement.value = input.value !== undefined && input.value;
+        }
+        /*
+         Copy label's content into vaadin label attribute
+        */
+        copyLabelsData(label){
+            this.vaadinElement.label = label.textContent;
+        }
+        _observeInput(){
+            this._inputObserver = new MutationObserver(()=>{
+                this.copyInputsData(this.input);
+            });
+            this._inputObserver.observe(this.input, {
+                attributes: true,
+                attributeOldValue: true
+            });
+
+        }
+        _unobserveInput(){
+            this._inputObserver && this._inputObserver.disconnect();
+        }
+        _observeLabel(){
+            this._labelObserver = new MutationObserver(()=>{
+                this.copyLabelsData(this.label)
+            });
+            this._labelObserver.observe(this.label, {
+                characterData: true,
+                childList: true,
+                subtree: true
+            });
+        }
+        _unobserveLabel(){
+            this._labelObserver && this._labelObserver.disconnect();
+        }
+    });
+</script>
