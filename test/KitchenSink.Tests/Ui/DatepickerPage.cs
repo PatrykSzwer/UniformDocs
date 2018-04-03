@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Ui
 {
@@ -11,8 +12,8 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.TagName, Using = "uni-date-picker")]
-        public IWebElement DatePicker { get; set; }
+        [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/datepicker-date']")]
+        public IWebElement DateInput { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@class = 'pika-lendar']//table//tbody//td[@class = 'is-selected']//button[@class = 'pika-button pika-day']")]
         public IWebElement SelectedDay { get; set; }
@@ -28,13 +29,9 @@ namespace KitchenSink.Tests.Ui
 
         public void SelectDate(string date)
         {
-            DatePicker = Driver.FindElement(By.TagName("uni-date-picker")); // Has to be found again due to incorrect type - EventFiringWebElement of current DatePicker object
-            var vaadinDatePicker = GetShadowElementByQuerySelector(DatePicker, "vaadin-date-picker");
-            var vaadinTextFieldElement = GetShadowElementByQuerySelector(vaadinDatePicker, "vaadin-text-field");
-            var pickerInput = GetShadowElementByQuerySelector(vaadinTextFieldElement, "input[autocomplete=\"off\"]");
-            pickerInput.Clear();
-            pickerInput.SendKeys(date);
-            pickerInput.SendKeys(Keys.Enter);
+            DateInput.Clear();
+            DateInput.SendKeys(date);
+            DateInput.SendKeys(Keys.Enter);
         }
     }
 }

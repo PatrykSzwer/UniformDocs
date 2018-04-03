@@ -30,7 +30,7 @@ namespace KitchenSink.Tests.Test
         [Test]
         public void DatepickerPage_SelectDate()
         {
-            WaitUntil(x => _datePicker.DatePicker.Displayed);
+            WaitUntil(x => _datePicker.YearInput.Displayed);
 
             _datePicker.SelectDate("01/01/2016");
             Assert.AreEqual("2016", _datePicker.YearInput.GetAttribute("value"));
