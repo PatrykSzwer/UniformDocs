@@ -33,6 +33,7 @@ namespace KitchenSink.Tests.Test
             WaitUntil(x => _datePicker.DatePicker.Displayed);
 
             _datePicker.SelectDate("01/01/2016");
+
             WaitUntil(x => _datePicker.YearInput.GetAttribute("value") == "2016", $"Expected: 2016, but was: {_datePicker.YearInput.GetAttribute("value")}");
             WaitUntil(x => _datePicker.MonthInput.GetAttribute("value") == "January", $"Expected: January, but was: {_datePicker.MonthInput.GetAttribute("value")}");
             WaitUntil(x => _datePicker.DayInput.GetAttribute("value") == "1", $"Expected: 1, but was: {_datePicker.DayInput.GetAttribute("value")}");
