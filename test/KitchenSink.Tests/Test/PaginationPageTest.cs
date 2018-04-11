@@ -50,20 +50,17 @@ namespace KitchenSink.Tests.Test
 
             WaitUntil(x => _paginationPage.DropDown.Displayed);
             _paginationPage.DropdownSelect("Show 15 items per page");
-            Assert.IsTrue(WaitForText(_paginationPage.PaginationInfoLabel, "page 1 of 7", 5));
-            Assert.AreEqual(15, _paginationPage.PaginationResult.Count);
+            WaitForText(_paginationPage.PaginationInfoLabel, "page 1 of 7", 5);
+            WaitUntil(x => _paginationPage.PaginationResult.Count == 15);
             _paginationPage.GoToPage("Last");
-            Assert.AreEqual("Arbitrary Book 99 Arbitrary Author", _paginationPage.PaginationResult.
-                Where(x => x.Text.Contains("99")).
-                Select(x => x.Text).First());
+            WaitUntil(y => _paginationPage.PaginationResult.Where(x => x.Text.Contains("99")).
+                Select(x => x.Text).First() == "Arbitrary Book 99 Arbitrary Author");
             _paginationPage.GoToPage("3");
-            Assert.AreEqual("Arbitrary Book 40 Arbitrary Author", _paginationPage.PaginationResult.
-                Where(x => x.Text.Contains("40")).
-                Select(x => x.Text).First());
+            WaitUntil(y => _paginationPage.PaginationResult.Where(x => x.Text.Contains("40")).
+                Select(x => x.Text).First() == "Arbitrary Book 40 Arbitrary Author");
             _paginationPage.GoToPage("First");
-            Assert.AreEqual("Arbitrary Book 1 Arbitrary Author", _paginationPage.PaginationResult.
-                Where(x => x.Text.Contains("1")).
-                Select(x => x.Text).First());
+            WaitUntil(y => _paginationPage.PaginationResult.Where(x => x.Text.Contains("1")).
+                Select(x => x.Text).First() == "Arbitrary Book 1 Arbitrary Author");
         }
     }
 }
