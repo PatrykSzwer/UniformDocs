@@ -5,7 +5,7 @@
     <dom-bind><template is="dom-bind">
         <h1 slot="kitchensink/datepicker-heading">Datepicker</h1>
 
-        <p slot="kitchensink/datepicker-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker. In this example we used <code>uni-date-picker</code>(<code>vaadin-date-picker</code> inside).</p>
+        <p slot="kitchensink/datepicker-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with a datepicker. In this example we used <code>uni-date-picker</code>, which is distributed with Starcounter and gives a consistent-looking date picker among all apps.</p>
 
         <label slot="kitchensink/datepicker-label">Date</label>
         <input slot="kitchensink/datepicker-date"
@@ -36,8 +36,7 @@
             <div class="uni-card">
                 <slot name="kitchensink/datepicker-description"></slot>
                 <div class="uni-label-control">
-                    <uni-date-picker slot="kitchensink/datepicker-date-picker"
-                                        initial-position="2017-06-01">
+                    <uni-date-picker slot="kitchensink/datepicker-date-picker">
                         <slot name="kitchensink/datepicker-label"></slot>
                         <slot name="kitchensink/datepicker-date"></slot>
                     </uni-date-picker>
