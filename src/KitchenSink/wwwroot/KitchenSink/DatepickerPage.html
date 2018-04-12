@@ -1,4 +1,4 @@
-<link rel="import" href="/sys/uni-date-picker/uni-date-picker.html">
+<link rel="import" href="/sys/uniform.css/components/uni-date-picker/uni-date-picker.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
@@ -12,7 +12,7 @@
             type="date"
             label="Date"
             min="1920-01-01"
-            value="{{model.Value$}}"
+            value="{{model.Value$::change}}"
             placeholder="Pick a date"/>
 
         <label slot="kitchensink/datepicker-year-label">Year</label>
