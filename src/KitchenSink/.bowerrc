@@ -10,6 +10,7 @@
     "starcounter-debug-aid",
     "puppet-client",
     "bootswatch",
-    "polymer"
+    "polymer",
+    "uniform.css"
   ]
 }

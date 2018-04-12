@@ -30,7 +30,7 @@
     "paper-input": "PolymerElements/paper-input#^2.0.1",
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^2.0.0",
     "starcounter-upload": "Starcounter/starcounter-upload#^1.0.0",
-    "uni-date-picker": "tomalec/uni-date-picker#master"
+    "uniform.css": "Starcounter/uniform.css#KitchenSink/issues/271-uni-date-picker"
   },
   "resolutions": {
 	"iron-selector" : "latest",
