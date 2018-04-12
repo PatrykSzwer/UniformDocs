@@ -33,6 +33,7 @@ namespace KitchenSink.Tests.Test
             WaitUntil(x => _datePicker.DatePicker.Displayed);
 
             _datePicker.SelectDate("01/01/2016");
+
             WaitUntil(x => _datePicker.YearInput.GetAttribute("value") == "2016", $"Expected: 2016, but was: {_datePicker.YearInput.GetAttribute("value")}");
             StringAssert.AreEqualIgnoringCase("January", _datePicker.MonthInput.GetAttribute("value"));
             StringAssert.AreEqualIgnoringCase("1", _datePicker.DayInput.GetAttribute("value"));
