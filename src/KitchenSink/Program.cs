@@ -9,7 +9,7 @@ namespace KitchenSink
         static void Main()
         {
             var app = Application.Current;
-            app.Use(new HtmlFromJsonProvider());
+            app.Use(new HtmlFromJsonProvider2());
             app.Use(new PartialToStandaloneHtmlProvider());
 
             DummyData.Create();
