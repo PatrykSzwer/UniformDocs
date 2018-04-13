@@ -25,6 +25,15 @@ namespace Starcounter {
         }
 
         void IMiddleware.Register(Application application) {
+
+            application.Use(request =>
+            {
+                if (!request.HeadersDictionary.ContainsKey("Accept") || request.HeadersDictionary["Accept"] == "*/*")
+                {
+                    request.HeadersDictionary["Accept"] = "text/html";
+                }
+                return null;
+            });
             application.Use(MimeProvider.Html(this.Invoke));
         }
 
