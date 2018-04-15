@@ -76,9 +76,9 @@ namespace KitchenSink.Tests.Test
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
 
-        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
+        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, string errorMessage = null, int timeToWait = 10)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeToWait)) { Message = errorMessage };
             return wait.Until(condition);
         }
 
