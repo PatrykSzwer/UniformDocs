@@ -18,6 +18,10 @@ The guidelines for this project are:
 
 It is recommended to follow these guidelines for Starcounter apps in general.
 
+## Demo
+
+You can find a hosted demo of the KitchenSink app on [kitchensink.starcounter.io](https://kitchensink.starcounter.io/).
+
 ## Requirements
 
 This repository uses features from C# 7. Thus, **Visual Studio 2017** is required to build. 
