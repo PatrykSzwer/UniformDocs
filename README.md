@@ -20,7 +20,7 @@ It is recommended to follow these guidelines for Starcounter apps in general.
 
 ## Demo
 
-You can find hosted demo of KitchenSink app [here](https://kitchensink.starcounter.io/)
+You can find a hosted demo of the KitchenSink app on [kitchensink.starcounter.io](https://kitchensink.starcounter.io/).
 
 ## Requirements
 
