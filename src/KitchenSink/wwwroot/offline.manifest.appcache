@@ -1,0 +1,23 @@
+CACHE MANIFEST
+
+# BeeBole Mobile AppCache v9
+
+CACHE:
+/KitchenSink
+/sys/palindrom-client/palindrom-client.html
+/sys/starcounter-include/starcounter-include.html
+/sys/webcomponentsjs/webcomponents-lite.js
+/KitchenSink/style.css
+/sys/Palindrom/dist/palindrom-dom.min.js
+/sys/imported-template/imported-template.html
+/sys/juicy-html/juicy-html.html
+/sys/uniform.css/uniform.css
+/sys/underwear.css/underwear.css
+/sys/polymer/polymer.html
+/sys/starcounter.html
+/sys/underwear.css/fonts/roboto-v18-latin_latin-ext-regular.woff2
+/sc/htmlmerger?KitchenSink_0=%2FKitchenSink%2FMasterPage.html
+/sc/htmlmerger?KitchenSink_0=%2FKitchenSink%2FMainPage.html
+
+NETWORK:
+*

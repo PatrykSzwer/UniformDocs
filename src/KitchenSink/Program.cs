@@ -14,6 +14,16 @@ namespace KitchenSink
 
             DummyData.Create();
 
+            Handle.GET("/manifest.appcache", () =>
+            {
+                var r = new Response()
+                {
+                    Body = Self.GET("/offline.manifest.appcache").Body
+                };
+                r.Headers["Content-Type"] = "text/cache-manifest";
+                return r;
+            });
+
             Handle.GET("/KitchenSink/json", () => { return new Json(); });
 
             Handle.GET("/KitchenSink/partial/mainpage", () => new MainPage());
