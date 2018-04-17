@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html manifest="/manifest.appcache">
+<head>
+    <meta charset="utf-8">
+    <title>{0}</title>
+
+    <script src="/sys/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/sys/polymer/polymer.html">
+    <link rel="import" href="/sys/starcounter.html">
+    <link rel="stylesheet" href="/sys/underwear.css/underwear.css">    
+    <link rel="manifest">
+</head>
+<body>
+    <dom-bind id="palindrom-root">
+        <template>
+            <starcounter-include view-model="{{{{model}}}}"></starcounter-include>
+        </template>
+    </dom-bind>
+    
+    <palindrom-client ref="palindrom-root" remote-url="{1}"></palindrom-client>
+
+    <script>
+        //Check if a new cache is available on page load.
+        window.addEventListener('load', function( ) {{
+          window.applicationCache.addEventListener('updateready', function( ) {{
+            if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {{
+                window.applicationCache.swapCache();
+                window.location.reload( true ); 
+            }} else {{
+              // Manifest didn't changed. Nothing new to server.
+            }}
+          }}, false);
+        }}, false);
+    </script>
+</body>
+</html>
