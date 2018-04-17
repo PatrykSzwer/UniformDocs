@@ -24,45 +24,19 @@
             </template>
             </tbody>
         </table>
-        <span slot="kitchensink/pagination-navigation-first" tabindex="0" on-click="onFirstPageClick" href="">First</span>
-        <span slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" on-click="onPreviousPageClick">Previous</span>
+        <span slot="kitchensink/pagination-navigation-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
+        <span slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}">Previous</span>
         <template is="dom-repeat" items="{{model.Pages}}">
             <span slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" tabindex="0" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</span>
         </template>
-        <span slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" on-click="onNextPageClick">Next</span>
-        <span slot="kitchensink/pagination-navigation-last" tabindex="0" on-click="onLastPageClick">Last</span>
+        <span slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}">Next</span>
+        <span slot="kitchensink/pagination-navigation-last" tabindex="0" value="{{model.LastPageTrigger$::click}}">Last</span>
         <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>
         (function () {
             var script = document._currentScript || document.currentScript;
-            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
-
-            triggerModelAction = function (prop) {
-                template.set("model." + prop, parseInt(template.get("model." + prop), 10) + 1);
-            };
-
-            template.onChangePageClick = function (event) {
-                var span = event.currentTarget;
-                template.set("model.ChangePage$", span.pageNumber);
-            };
-
-            template.onFirstPageClick = function (event) {
-                triggerModelAction("FirstPageTrigger$");
-            };
-
-            template.onLastPageClick = function (event) {
-                triggerModelAction("LastPageTrigger$");
-            };
-
-            template.onNextPageClick = function (event) {
-                debugger;
-                triggerModelAction("NextPageTrigger$");
-            };
-
-            template.onPreviousPageClick = function (event) {
-                triggerModelAction("PreviousPageTrigger$");
-            };
+            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;         
 
             template.workaroundPolymerBooleans = function (active) {
                 return active ? "true" : "false";
