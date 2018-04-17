@@ -38,6 +38,11 @@
             var script = document._currentScript || document.currentScript;
             var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;         
 
+            template.onChangePageClick = function (event) {
+                var span = event.currentTarget;
+                template.set("model.ChangePage$", span.pageNumber);
+            };
+
             template.workaroundPolymerBooleans = function (active) {
                 return active ? "true" : "false";
             };
