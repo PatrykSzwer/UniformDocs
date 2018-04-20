@@ -240,6 +240,7 @@
     <Content Include="wwwroot\KitchenSink\MainPage.html">
       <SubType>Component</SubType>
     </Content>
+    <Content Include="wwwroot\KitchenSink\NavPage.html" />
     <Content Include="wwwroot\KitchenSink\PaginationPage.html" />
     <Content Include="wwwroot\KitchenSink\ProgressBarPage.html" />
     <Content Include="wwwroot\KitchenSink\ValidationPage.html" />
@@ -261,7 +262,6 @@
     <Content Include="wwwroot\KitchenSink\MultiselectPage.html" />
     <Content Include="wwwroot\KitchenSink\RadiolistPage.html" />
     <Content Include="wwwroot\KitchenSink\DropdownPage.html" />
-    <Content Include="wwwroot\KitchenSink\NavPage.html" />
     <Content Include="wwwroot\KitchenSink\IntegerPage.html" />
     <Content Include="wwwroot\KitchenSink\RadioPage.html" />
     <Content Include="wwwroot\KitchenSink\RedirectPage.html" />
