@@ -11,7 +11,7 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
-        [FindsBy(How = How.TagName, Using = "input[type='date']")]
+        [FindsBy(How = How.CssSelector, Using = "input[type='date']")]
         public IWebElement DateInput { get; set; }
         
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/datepicker-year-input']")]

@@ -32,8 +32,8 @@ namespace KitchenSink.Tests.Test
         {
             WaitUntil(x => _datePicker.YearInput.Displayed);
 
-            _datePicker.DateInput.Clear();
-            _datePicker.DateInput.SendKeys("2016-01-01");
+            // _datePicker.DateInput.Clear();
+            _datePicker.DateInput.SendKeys("01/01/2016");
             _datePicker.DateInput.SendKeys(Keys.Enter);
 
             WaitUntil(x => _datePicker.YearInput.GetAttribute("value") == "2016", $"Expected: 2016, but was: {_datePicker.YearInput.GetAttribute("value")}");
