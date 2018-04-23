@@ -54,7 +54,7 @@ namespace KitchenSink.Tests.Test
 
             var compositionsAfter = _nestedPartialsPage.ChildCompositions.Count;
 
-            WaitUntil(x => compositionsBefore + 2 == compositionsAfter);
+            WaitUntil(x => compositionsBefore + 2 == compositionsAfter, $"Expected: {compositionsAfter}, but was: {compositionsBefore + 2}");
         }
     }
 }
