@@ -10,10 +10,8 @@ namespace KitchenSink.Tests.Ui
         {
             PageFactory.InitElements(Driver, this);
         }
+        public IWebElement DateInput => Driver.FindElement(By.CssSelector("input[type='date']"));
 
-        [FindsBy(How = How.CssSelector, Using = "input[type='date']")]
-        public IWebElement DateInput { get; set; }
-        
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/datepicker-year-input']")]
         public IWebElement YearInput { get; set; }
 
@@ -25,14 +23,13 @@ namespace KitchenSink.Tests.Ui
 
         public void SelectThroughUniDatePicker(string date)
         {
-            var script = $"return arguments[0].assignedSlot.parentElement.shadowRoot.querySelector('vaadin-date-picker')";
+            var script = "return arguments[0].assignedSlot.parentElement.shadowRoot.querySelector('vaadin-date-picker')";
             var vaadinPicker = (IWebElement)ExecuteScriptOnElement(DateInput, script);
             var vaadinTextFieldElement = GetShadowElementByQuerySelector(vaadinPicker, "vaadin-text-field");
             var pickerInput = GetShadowElementByQuerySelector(vaadinTextFieldElement, "input[autocomplete=\"off\"]");
             pickerInput.Clear();
             pickerInput.SendKeys(date);
             pickerInput.SendKeys(Keys.Enter);
-            
         }
     }
 }
