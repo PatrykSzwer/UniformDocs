@@ -30,16 +30,14 @@ namespace KitchenSink.Tests.Test
         [Test]
         public void DatepickerPage_SelectDate()
         {
+
             WaitUntil(x => _datePicker.YearInput.Displayed);
 
-            // _datePicker.DateInput.Clear();
-            _datePicker.DateInput.SendKeys("01/01/2016");
-            _datePicker.DateInput.SendKeys(Keys.Enter);
+            _datePicker.SelectThroughUniDatePicker("01/01/2016");
 
             WaitUntil(x => _datePicker.YearInput.GetAttribute("value") == "2016", $"Expected: 2016, but was: {_datePicker.YearInput.GetAttribute("value")}");
             StringAssert.AreEqualIgnoringCase("January", _datePicker.MonthInput.GetAttribute("value"));
             StringAssert.AreEqualIgnoringCase("1", _datePicker.DayInput.GetAttribute("value"));
         }
-        // TODO: write tests that clicks through uni-date-picker -> vaadin-date-picker
     }
 }
