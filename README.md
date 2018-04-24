@@ -2,7 +2,13 @@
 
 Present typical UI patterns in a form that is easy to apply in any Starcounter app.
 
-Features:
+## Demo
+
+You can find a hosted demo of the KitchenSink app on [kitchensink.starcounter.io](https://kitchensink.starcounter.io/).
+
+[![](docs/screenshot.png)](https://kitchensink.starcounter.io/)
+
+## Features
 
 - Rendering (Breadcrumb, Chart, Datagrid, HTML, Link, Map, Markdown, Pagination, Table)
 - Server Push (Async Response, Cookies, Dialog Box, Flash Message, Lazy Loading, Nested Views, Progress Bar, Redirect, Client Local State)
@@ -18,10 +24,6 @@ The guidelines for this project are:
 
 It is recommended to follow these guidelines for Starcounter apps in general.
 
-## Demo
-
-You can find a hosted demo of the KitchenSink app on [kitchensink.starcounter.io](https://kitchensink.starcounter.io/).
-
 ## Requirements
 
 This repository uses features from C# 7. Thus, **Visual Studio 2017** is required to build. 
@@ -31,14 +33,6 @@ If you really want to use VS 2015 and you don't care about IntelliSense warnings
 ## Developer instructions - Contributing
 
 For developer instructions, go to [CONTRIBUTING](CONTRIBUTING.md).
-
-## Video
-
-Intended for 13 October 2015 webinar: http://starcounter.io/video-expressing-your-ui-in-json-plain-data-binding-advanced-data-binding/
-
-## Screenshot
-
-![](KitchenSink.PNG)
 
 ## License
 
