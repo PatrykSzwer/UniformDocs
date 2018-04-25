@@ -1,0 +1,39 @@
+<script>
+(function(){
+    customElements.define('kitchensink-code-sample', class extends HTMLElement{
+        constructor(){
+            super();
+            this.attachShadow({mode: 'open'});
+            // TODO(tomalec): make it look nicer, use ace editors etc.
+            this.shadowRoot.innerHTML = '<pre id="html"><code><slot></slot></code></pre><pre id="json"><code><slot name="json"></slot></code></pre><pre id="c#"><code><slot name="c#"></slot></code></pre>';
+        }
+        connectedCallback(){
+        }
+        disconnectedCallback(){
+        }
+    });
+    customElements.define('kitchensink-sample-provider', class extends HTMLElement{
+        constructor(){
+            super();
+            this.attachShadow({mode: 'open'});
+        }
+        connectedCallback(){
+            // find view to add sample to
+            // we could later consider finding all nested pages
+            // or use it in light dom in "samples employing page" so it will decorate whatever is attached into.
+            const view = this.parentNode;
+            // find a spot where to put actual sample
+            const dSD = view.querySelector('template').content.querySelector('template[is="declarative-shadow-dom"]');
+
+            const sample = document.createElement('kitchensink-code-sample');
+            // feed sample element with the source
+            // TODO(tomalec): consider fetching from sourcefile using HTTP request or even via **view-model of employing page**
+            sample.textContent = view.innerHTML;
+            dSD.content.appendChild(sample);
+            this.previousElementSibling.outerHTML;
+        }
+        disconnectedCallback(){
+        }
+    });
+}());
+</script>
