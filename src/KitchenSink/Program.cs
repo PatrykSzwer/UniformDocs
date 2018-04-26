@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using KitchenSink.ViewModels.Design;
 using Starcounter;
 
 namespace KitchenSink
@@ -14,12 +15,13 @@ namespace KitchenSink
 
             DummyData.Create();
 
-            Handle.GET("/KitchenSink/json", () => { return new Json(); });
+            Handle.GET("/KitchenSink/json", () => new Json());
 
             Handle.GET("/KitchenSink/partial/mainpage", () => new MainPage());
             Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
 
-            Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/mainpage"); });
+            Handle.GET("/KitchenSink", () => Self.GET("/KitchenSink/mainpage"));
+
             #region Design
 
             Handle.GET("/KitchenSink/partial/sections", () => new Sections());
@@ -46,7 +48,7 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));
 
             Handle.GET("/KitchenSink/partial/breadcrumb",
-                () => { return Db.Scope(() => { return new BreadcrumbPage(); }); });
+                () => { return Db.Scope(() => new BreadcrumbPage()); });
             Handle.GET("/KitchenSink/breadcrumb", () => WrapPage<BreadcrumbPage>("/KitchenSink/partial/breadcrumb"));
 
             Handle.GET("/KitchenSink/partial/chart", () => new ChartPage());
@@ -170,10 +172,10 @@ namespace KitchenSink
                     page.RequestCookie = cookie.Value;
                 }
 
-                cookie = new Cookie()
+                cookie = new Cookie
                 {
                     Name = name,
-                    Value = string.Format("KitchenSinkCookie-{0}", DateTime.Now.ToString()),
+                    Value = $"KitchenSinkCookie-{DateTime.Now.ToString()}",
                     Expires = DateTime.Now.AddDays(1)
                 };
 
@@ -189,12 +191,7 @@ namespace KitchenSink
                 {
                     var master = session.Store[nameof(MasterPage)] as MasterPage;
 
-                    if (master == null)
-                    {
-                        return;
-                    }
-
-                    var page = master.CurrentPage as FileUploadPage;
+                    var page = master?.CurrentPage as FileUploadPage;
 
                     if (page == null)
                     {
@@ -203,41 +200,36 @@ namespace KitchenSink
 
                     var item = page.Tasks.FirstOrDefault(x => x.FileName == task.FileName);
 
-                    if (task.State == HandleFile.UploadTaskState.Error)
+                    switch (task.State)
                     {
-                        if (item != null)
-                        {
-                            page.Tasks.Remove(item);
-                        }
-                    }
-                    else if (task.State == HandleFile.UploadTaskState.Completed)
-                    {
-                        if (item != null)
-                        {
-                            page.Tasks.Remove(item);
-                        }
+                        case HandleFile.UploadTaskState.Error:
+                            if (item != null)
+                            {
+                                page.Tasks.Remove(item);
+                            }
+                            break;
+                        case HandleFile.UploadTaskState.Completed:
+                            if (item != null)
+                            {
+                                page.Tasks.Remove(item);
+                            }
 
-                        var file = page.Files.FirstOrDefault(x => x.FileName == task.FileName);
+                            var file = page.Files.FirstOrDefault(x => x.FileName == task.FileName) ?? page.Files.Add();
 
-                        if (file == null)
-                        {
-                            file = page.Files.Add();
-                        }
+                            file.FileName = task.FileName;
+                            file.FileSize = task.FileSize;
+                            file.FilePath = task.FilePath;
+                            break;
+                        default:
+                            if (item == null)
+                            {
+                                item = page.Tasks.Add();
+                            }
 
-                        file.FileName = task.FileName;
-                        file.FileSize = task.FileSize;
-                        file.FilePath = task.FilePath;
-                    }
-                    else
-                    {
-                        if (item == null)
-                        {
-                            item = page.Tasks.Add();
-                        }
-
-                        item.FileName = task.FileName;
-                        item.FileSize = task.FileSize;
-                        item.Progress = task.Progress;
+                            item.FileName = task.FileName;
+                            item.FileSize = task.FileSize;
+                            item.Progress = task.Progress;
+                            break;
                     }
 
                     session.CalculatePatchAndPushOnWebSocket();
@@ -247,11 +239,11 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage()));
             Handle.GET("/KitchenSink/autocomplete", () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
 
-            Handle.GET("/KitchenSink/nav", () => { return new NavPage(); }, new HandlerOptions() { SelfOnly = true });
+            Handle.GET("/KitchenSink/nav", () => new NavPage(), new HandlerOptions() { SelfOnly = true });
 
-            Handle.GET("/KitchenSink/app-name", () => { return new AppName(); });
+            Handle.GET("/KitchenSink/app-name", () => new AppName());
 
-            Handle.GET("/KitchenSink/menu", () => { return new AppMenuPage(); });
+            Handle.GET("/KitchenSink/menu", () => new AppMenuPage());
 
             Blender.MapUri("/KitchenSink/menu", string.Empty, new string[] { "menu" });
             Blender.MapUri("/KitchenSink/app-name", string.Empty, new string[] { "app", "icon" });
@@ -261,7 +253,7 @@ namespace KitchenSink
         {
             var master = GetMasterPageFromSession();
 
-            if (master.CurrentPage != null && master.CurrentPage.GetType().Equals(typeof(T)))
+            if (master.CurrentPage != null && master.CurrentPage.GetType() == typeof(T))
             {
                 return master;
             }
