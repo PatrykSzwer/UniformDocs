@@ -20,6 +20,27 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
 
             Handle.GET("/KitchenSink", () => { return Self.GET("/KitchenSink/mainpage"); });
+            #region Design
+
+            Handle.GET("/KitchenSink/partial/sections", () => new Sections());
+            Handle.GET("/KitchenSink/sections", () => WrapPage<Sections>("/KitchenSink/partial/sections"));
+
+            Handle.GET("/KitchenSink/partial/card", () => new Card());
+            Handle.GET("/KitchenSink/card", () => WrapPage<Card>("/KitchenSink/partial/card"));
+
+            Handle.GET("/KitchenSink/partial/title", () => new Title());
+            Handle.GET("/KitchenSink/title", () => WrapPage<Title>("/KitchenSink/partial/title"));
+
+            Handle.GET("/KitchenSink/partial/alerts", () => new Alerts());
+            Handle.GET("/KitchenSink/alerts", () => WrapPage<Alerts>("/KitchenSink/partial/alerts"));
+
+            Handle.GET("/KitchenSink/partial/typography", () => new Typography());
+            Handle.GET("/KitchenSink/typography", () => WrapPage<Typography>("/KitchenSink/partial/typography"));
+
+            Handle.GET("/KitchenSink/partial/leftnavlayout", () => new LeftNavLayout());
+            Handle.GET("/KitchenSink/leftnavlayout", () => WrapPage<LeftNavLayout>("/KitchenSink/partial/leftnavlayout"));
+
+            #endregion
 
             Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
             Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));

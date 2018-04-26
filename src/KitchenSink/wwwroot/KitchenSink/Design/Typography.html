@@ -1,0 +1,15 @@
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/typography-heading">Typography</h1>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="kitchensink/typography-heading"></slot>
+        </div>
+    </template>
+</template>
