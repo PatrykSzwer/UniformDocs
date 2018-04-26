@@ -4,12 +4,53 @@
     <dom-bind>
         <template is="dom-bind">
             <h1 slot="kitchensink/sections-heading">Sections</h1>
+            <p slot="kitchensink/sections-description">You can create different kinds of sections to improve readability and overall look of your app.</p>
+            <h2 slot="kitchensink/sections-primary-heading">Primary section</h2>
+            
+            <h2 slot="kitchensink/sections-secondary-heading">Secondary section</h2>
+            
+            <h2 slot="kitchensink/sections-tertiary-heading">Tertiary section</h2>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .kitchensink-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
+            }
+        </style>
         <div class="uni-section-secondary uni-title">
             <slot name="kitchensink/sections-heading"></slot>
+        </div>
+        <div class="uni-section-primary kitchensink-section-primary-grid">
+            <div class="uni-card">
+                <slot name="kitchensink/sections-description"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/sections-primary-heading"></slot>
+                </div>
+                <div class="uni-section-primary">
+                    Primary section looks like this.
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/sections-secondary-heading"></slot>
+                </div>
+                <div class="uni-section-secondary">
+                    Secondary section looks like this.
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="kitchensink/sections-tertiary-heading"></slot>
+                </div>
+                <div class="uni-section-tertiary">
+                    Tertiary section looks like this.
+                </div>
+            </div>
         </div>
     </template>
 </template>
