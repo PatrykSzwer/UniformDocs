@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>{0}</title>
-
+    <script>
+    if ('serviceWorker' in navigator) {{
+        navigator.serviceWorker.register('/service-worker.js');
+    }}
+    </script>
     <script src="/sys/webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="/sys/polymer/polymer.html">
     <link rel="import" href="/sys/starcounter.html">
