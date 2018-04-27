@@ -24,13 +24,13 @@
             </template>
             </tbody>
         </table>
-        <a slot="kitchensink/pagination-navigation-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</a>
-        <a slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="1" value="{{model.PreviousPageTrigger$::click}}">Previous</a>
+        <a slot="kitchensink/pagination-navigation-first" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</a>
+        <a slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" value="{{model.PreviousPageTrigger$::click}}">Previous</a>
         <template is="dom-repeat" items="{{model.Pages}}">
-            <a slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" tabindex$="[[add(index, 2)]]" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
+            <a slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
         </template>
-        <a slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex$="{{add(model.Pages.length, 2)}}" value="{{model.NextPageTrigger$::click}}">Next</a>
-        <a slot="kitchensink/pagination-navigation-last" tabindex$="{{add(model.Pages.length, 3}}" value="{{model.LastPageTrigger$::click}}">Last</a>
+        <a slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" value="{{model.NextPageTrigger$::click}}">Next</a>
+        <a slot="kitchensink/pagination-navigation-last" value="{{model.LastPageTrigger$::click}}">Last</a>
         <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>
@@ -38,9 +38,6 @@
             var script = document._currentScript || document.currentScript;
             var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;         
 
-            template.add = function(n, m) {
-                return n + m
-            }
             template.onChangePageClick = function (event) {
                 var span = event.currentTarget;
                 template.set("model.ChangePage$", span.pageNumber);
