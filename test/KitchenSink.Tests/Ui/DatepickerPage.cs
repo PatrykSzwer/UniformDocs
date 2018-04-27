@@ -10,12 +10,7 @@ namespace KitchenSink.Tests.Ui
         {
             PageFactory.InitElements(Driver, this);
         }
-
-        [FindsBy(How = How.TagName, Using = "vaadin-date-picker")]
-        public IWebElement DatePicker { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//div[@class = 'pika-lendar']//table//tbody//td[@class = 'is-selected']//button[@class = 'pika-button pika-day']")]
-        public IWebElement SelectedDay { get; set; }
+        public IWebElement DateInput => Driver.FindElement(By.CssSelector("input[type='date']"));
 
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/datepicker-year-input']")]
         public IWebElement YearInput { get; set; }
@@ -26,10 +21,11 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.CssSelector, Using = "[slot = 'kitchensink/datepicker-day-input']")]
         public IWebElement DayInput { get; set; }
 
-        public void SelectDate(string date)
+        public void SelectThroughUniDatePicker(string date)
         {
-            DatePicker = Driver.FindElement(By.TagName("vaadin-date-picker")); // Has to be found again due to incorrect type - EventFiringWebElement of current DatePicker object
-            var vaadinTextFieldElement = GetShadowElementByQuerySelector(DatePicker, "vaadin-text-field");
+            var script = "return arguments[0].assignedSlot.parentElement.shadowRoot.querySelector('vaadin-date-picker')";
+            var vaadinPicker = (IWebElement)ExecuteScriptOnElement(DateInput, script);
+            var vaadinTextFieldElement = GetShadowElementByQuerySelector(vaadinPicker, "vaadin-text-field");
             var pickerInput = GetShadowElementByQuerySelector(vaadinTextFieldElement, "input[autocomplete=\"off\"]");
             pickerInput.Clear();
             pickerInput.SendKeys(date);
