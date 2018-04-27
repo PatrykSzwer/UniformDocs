@@ -4,7 +4,6 @@ using NUnit.Framework;
 
 namespace KitchenSink.Tests.Test
 {
-    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
     class MarkdownPageTest : BaseTest
