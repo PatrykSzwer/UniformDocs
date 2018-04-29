@@ -45,7 +45,8 @@ namespace KitchenSink.Tests.Test
             Assert.IsTrue(WaitForText(_textPage.InputInfoLabelDynamic, "Hi, K!", 5));
             _textPage.ClearInput(_textPage.InputDynamic);
             WaitUntil(x => _textPage.InputDynamic.Text == string.Empty);
-            Assert.AreEqual("What's your name?", _textPage.InputInfoLabelDynamic.Text);
+            WaitUntil(x => "What's your name?" == _textPage.InputInfoLabelDynamic.Text, 
+                $"Expected: What's your name?, but was: {_textPage.InputInfoLabelDynamic.Text}");
         }
 
         [Test]
@@ -60,7 +61,8 @@ namespace KitchenSink.Tests.Test
             Assert.IsTrue(WaitForText(_textPage.PaperInputInfoLabel, "Hi, Krystian!", 5));
             _textPage.ClearInput(shadowInput);
             WaitUntil(x => shadowInput.Text == string.Empty);
-            Assert.AreEqual("What's your name?", _textPage.PaperInputInfoLabel.Text);
+            WaitUntil(x => "What's your name?" == _textPage.PaperInputInfoLabel.Text,
+                $"Expected: What's your name?, but was: {_textPage.PaperInputInfoLabel.Text}");
         }
 
         [Test]
