@@ -4,12 +4,39 @@
     <dom-bind>
         <template is="dom-bind">
             <h1 slot="kitchensink/leftnavlayout-heading">Layout with left side navigation</h1>
+            <p slot="kitchensink/leftnavlayout-description">To implement a commonly used two-column layout, that you can see in this app, use <code>.uni-layout-left-nav</code> class.</p>
+            <p slot="kitchensink/leftnavlayout-description">It uses two child elements:
+                <ul slot="kitchensink/leftnavlayout-description">
+                    <li>first element child is the left column used for navigation</li>
+                    <li>second element is the right column used for the main content</li>
+                </ul>
+            </p>
+            <p slot="kitchensink/leftnavlayout-description">Anchor elements <code>&lt;a&gt;</code>  element within the left column that have the attribute <code>aria-current="page"</code> will be highlighted.</p>
+            
+            <a slot="kitchensink/leftnavlayout-navigation">First link goes here</a>
+            <a slot="kitchensink/leftnavlayout-navigation" aria-current="page">This link is highlighted</a>
+            <a slot="kitchensink/leftnavlayout-navigation">Third link goes here</a>
+
+            <label slot="kitchensink/leftnavlayout-navigation-content">Main content goes here</label>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
             <slot name="kitchensink/leftnavlayout-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="kitchensink/leftnavlayout-description"></slot>
+                <div class="uni-layout-left-nav">
+                    <nav>
+                        <slot name="kitchensink/leftnavlayout-navigation"></slot>
+                    </nav>
+                    <div class="uni-section-primary">
+                        <slot name="kitchensink/leftnavlayout-navigation-content"></slot>
+                    </div>
+                </div>
+            </div>
         </div>
     </template>
 </template>

@@ -5,11 +5,15 @@
         <template is="dom-bind">
             <h1 slot="kitchensink/sections-heading">Sections</h1>
             <p slot="kitchensink/sections-description">You can create different kinds of sections to improve readability and overall look of your app.</p>
+
             <h2 slot="kitchensink/sections-primary-heading">Primary section</h2>
-            
+            <div slot="kitchensink/sections-primary-text">Primary section looks like this.</div>
+
             <h2 slot="kitchensink/sections-secondary-heading">Secondary section</h2>
+            <div slot="kitchensink/sections-secondary-text">Secondary section looks like this.</div>
             
             <h2 slot="kitchensink/sections-tertiary-heading">Tertiary section</h2>
+            <div slot="kitchensink/sections-tertiary-text">Tertiary section looks like this.</div>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
@@ -32,7 +36,7 @@
                     <slot name="kitchensink/sections-primary-heading"></slot>
                 </div>
                 <div class="uni-section-primary">
-                    Primary section looks like this.
+                    <slot name="kitchensink/sections-primary-text"></slot>
                 </div>
             </div>
             <div class="uni-card">
@@ -40,7 +44,7 @@
                     <slot name="kitchensink/sections-secondary-heading"></slot>
                 </div>
                 <div class="uni-section-secondary">
-                    Secondary section looks like this.
+                    <slot name="kitchensink/sections-secondary-text"></slot>
                 </div>
             </div>
             <div class="uni-card">
@@ -48,7 +52,7 @@
                     <slot name="kitchensink/sections-tertiary-heading"></slot>
                 </div>
                 <div class="uni-section-tertiary">
-                    Tertiary section looks like this.
+                    <slot name="kitchensink/sections-tertiary-text"></slot>
                 </div>
             </div>
         </div>
