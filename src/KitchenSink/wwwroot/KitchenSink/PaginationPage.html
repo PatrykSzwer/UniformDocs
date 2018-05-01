@@ -24,14 +24,14 @@
             </template>
             </tbody>
         </table>
-        <a slot="kitchensink/pagination-navigation-first" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</a>
-        <a slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" value="{{model.PreviousPageTrigger$::click}}">Previous</a>
+        <a tabindex="0" slot="kitchensink/pagination-navigation-first" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</a>
+        <a tabindex="0" slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" value="{{model.PreviousPageTrigger$::click}}">Previous</a>
         <template is="dom-repeat" items="{{model.Pages}}">
-            <a slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
+            <a tabindex="0" slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
         </template>
-        <a slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" value="{{model.NextPageTrigger$::click}}">Next</a>
-        <a slot="kitchensink/pagination-navigation-last" value="{{model.LastPageTrigger$::click}}">Last</a>
-        <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
+        <a tabindex="0" slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" value="{{model.NextPageTrigger$::click}}">Next</a>
+        <a tabindex="0" slot="kitchensink/pagination-navigation-last" value="{{model.LastPageTrigger$::click}}">Last</a>
+        <p tabindex="0" slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
     </template></dom-bind>
     <script>
         (function () {
