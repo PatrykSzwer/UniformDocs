@@ -209,9 +209,6 @@
     <Compile Include="ViewModels\Design\LeftNavLayout.json.cs">
       <DependentUpon>LeftNavLayout.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\Typography.json.cs">
-      <DependentUpon>Typography.json</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Design\Card.json.cs">
       <DependentUpon>Card.json</DependentUpon>
     </Compile>
@@ -248,9 +245,6 @@
     <TypedJSON Include="ViewModels\Design\Alerts.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\Typography.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
     <TypedJSON Include="ViewModels\Design\LeftNavLayout.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
@@ -276,7 +270,6 @@
     <None Include="wwwroot\KitchenSink\Design\Card.html" />
     <None Include="wwwroot\KitchenSink\Design\Title.html" />
     <None Include="wwwroot\KitchenSink\Design\Alerts.html" />
-    <None Include="wwwroot\KitchenSink\Design\Typography.html" />
     <None Include="wwwroot\KitchenSink\Design\LeftNavLayout.html" />
     <Content Include="wwwroot\KitchenSink\LazyLoadingPage.html" />
     <Content Include="wwwroot\KitchenSink\MainPage.html">

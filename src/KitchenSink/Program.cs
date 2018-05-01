@@ -36,9 +36,6 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/alerts", () => new Alerts());
             Handle.GET("/KitchenSink/alerts", () => WrapPage<Alerts>("/KitchenSink/partial/alerts"));
 
-            Handle.GET("/KitchenSink/partial/typography", () => new Typography());
-            Handle.GET("/KitchenSink/typography", () => WrapPage<Typography>("/KitchenSink/partial/typography"));
-
             Handle.GET("/KitchenSink/partial/leftnavlayout", () => new LeftNavLayout());
             Handle.GET("/KitchenSink/leftnavlayout", () => WrapPage<LeftNavLayout>("/KitchenSink/partial/leftnavlayout"));
 
