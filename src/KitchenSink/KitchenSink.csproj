@@ -215,6 +215,9 @@
     <Compile Include="ViewModels\Design\Alerts.json.cs">
       <DependentUpon>Alerts.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Design\Native.json.cs">
+      <DependentUpon>Native.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Design\Title.json.cs">
       <DependentUpon>Title.json</DependentUpon>
     </Compile>
@@ -248,6 +251,9 @@
     <TypedJSON Include="ViewModels\Design\LeftNavLayout.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="ViewModels\Design\Native.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -271,6 +277,7 @@
     <None Include="wwwroot\KitchenSink\Design\Title.html" />
     <None Include="wwwroot\KitchenSink\Design\Alerts.html" />
     <None Include="wwwroot\KitchenSink\Design\LeftNavLayout.html" />
+    <None Include="wwwroot\KitchenSink\Design\Native.html" />
     <Content Include="wwwroot\KitchenSink\LazyLoadingPage.html" />
     <Content Include="wwwroot\KitchenSink\MainPage.html">
       <SubType>Component</SubType>

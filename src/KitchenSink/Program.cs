@@ -39,6 +39,9 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/leftnavlayout", () => new LeftNavLayout());
             Handle.GET("/KitchenSink/leftnavlayout", () => WrapPage<LeftNavLayout>("/KitchenSink/partial/leftnavlayout"));
 
+            Handle.GET("/KitchenSink/partial/native", () => new Native());
+            Handle.GET("/KitchenSink/native", () => WrapPage<Native>("/KitchenSink/partial/native"));
+
             #endregion
 
             Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
