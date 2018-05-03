@@ -3,26 +3,39 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/flashMessage-heading">Flash Message</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/flashMessage-heading">Flash Message</h1>
 
-        <p slot="kitchensink/flashMessage-description">By pressing the buttons below, you will trigger a message to be displayed for 3 seconds. It is possible to trigger a message both from the server side, and the client side!</p>
-        <p slot="kitchensink/flashMessage-dom-if-description">By using <code>&lt;template is="dom-if"&gt;</code> it is possible to hide or show an element in the HTML depending on the result of the if-statement.</p>
+            <p slot="kitchensink/flashMessage-description">By pressing the buttons below, you will trigger a message to be displayed for 3 seconds. It is possible to trigger a message both from the server side, and the client side!</p>
+            <p slot="kitchensink/flashMessage-dom-if-description">
+                By using
+                <code>&lt;template is="dom-if"&gt;</code> it is possible to hide or show an element in the HTML depending on the result of the if-statement.
+            </p>
 
-        <p slot="kitchensink/flashMessage-schedule-task-description">And if you combine that with <code>Scheduling.ScheduleTask</code> and <code>Session.ScheduleTask</code> you can make a server side message appear.</p>
+            <p slot="kitchensink/flashMessage-schedule-task-description">
+                And if you combine that with
+                <code>Scheduling.ScheduleTask</code> and
+                <code>Session.ScheduleTask</code> you can make a server side message appear.
+            </p>
 
-        <button slot="kitchensink/flashMessage-server-button" value="{{model.ShowMessageTrigger$::click}}" onmousedown="++this.value">Trigger message from Server side</button>
-        <template is="dom-if" if="{{model.ServerMessage}}">
-            <p slot="kitchensink/flashMessage-server-message">{{model.ServerMessage}} </p>
+            <button slot="kitchensink/flashMessage-server-button" value="{{model.ShowMessageTrigger$::click}}" onmousedown="++this.value">Trigger message from Server side</button>
+            <template is="dom-if" if="{{model.ServerMessage}}">
+                <p slot="kitchensink/flashMessage-server-message">{{model.ServerMessage}} </p>
+            </template>
+
+            <p slot="kitchensink/flashMessage-client-description">
+                And by combining
+                <code>&lt;template is="dom-if"&gt;</code> with a click event and a timed function, by using
+                <code>setTimeout</code> you can achieve the same behavior.
+            </p>
+            <button slot="kitchensink/flashMessage-client-button" on-click="showMessage">Trigger message from Client side</button>
+            <template is="dom-if" if="{{model.ClientMessage$}}">
+                <p slot="kitchensink/flashMessage-client-message">{{model.ClientMessage$}} </p>
+            </template>
+            <github-source-links></github-source-links>
         </template>
-
-        <p slot="kitchensink/flashMessage-client-description">And by combining <code>&lt;template is="dom-if"&gt;</code> with a click event and a timed function, by using <code>setTimeout</code> you can achieve the same behavior.</p>
-        <button slot="kitchensink/flashMessage-client-button" on-click="showMessage">Trigger message from Client side</button>
-        <template is="dom-if" if="{{model.ClientMessage$}}">
-            <p slot="kitchensink/flashMessage-client-message">{{model.ClientMessage$}} </p>
-        </template>
-                  <github-source-links></github-source-links>
-    </template></dom-bind>
+    </dom-bind>
     <script>
         (function () {
             var script = document._currentScript || document.currentScript;

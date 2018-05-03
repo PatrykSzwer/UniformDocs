@@ -3,34 +3,39 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/dialog-heading">Dialog Box</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/dialog-heading">Dialog Box</h1>
 
-        <p slot="kitchensink/dialog-description">Modal dialog box example</p>
+            <p slot="kitchensink/dialog-description">Modal dialog box example</p>
 
-        <button slot="kitchensink/dialog-button" value="{{model.OpenTrigger$::click}}" onmousedown="++this.value">Open dialog box</button>
+            <button slot="kitchensink/dialog-button" value="{{model.OpenTrigger$::click}}" onmousedown="++this.value">Open dialog box</button>
 
-        <p slot="kitchensink/dialog-message-{{model.MessageType}}">{{model.Message}}</p>
+            <p slot="kitchensink/dialog-message-{{model.MessageType}}">{{model.Message}}</p>
 
-        <paper-dialog slot="kitchensink/dialog-paper-dialog" id="actions" opened="[[model.Opened]]" modal="true">
-            <div>
-                <h2>Confirmation</h2>
-                <p>
-                    This is a<code>paper-dialog</code> demo confirmation. Would you like to <b>Reject</b> or <b>Accept</b> the confirmation?
-                </p>
-            </div>
-            <!--
-                Use paper-dialog specific class to let it style buttons section
-                https://github.com/PolymerElements/paper-dialog-behavior/issues/122
-            -->
-            <div class="buttons">
-                <button dialog-dismiss value="{{model.RejectTrigger$::click}}" onmousedown="++this.value;">Reject</button>
-                <span>&nbsp;</span>
-                <button dialog-confirm autofocus value="{{model.ConfirmTrigger$::click}}" onmousedown="++this.value;">Accept</button>
-            </div>
-        </paper-dialog>
-                  <github-source-links></github-source-links>
-    </template></dom-bind>
+            <paper-dialog slot="kitchensink/dialog-paper-dialog" id="actions" opened="[[model.Opened]]" modal="true">
+                <div>
+                    <h2>Confirmation</h2>
+                    <p>
+                        This is a
+                        <code>paper-dialog</code> demo confirmation. Would you like to
+                        <b>Reject</b> or
+                        <b>Accept</b> the confirmation?
+                    </p>
+                </div>
+                <!--
+                    Use paper-dialog specific class to let it style buttons section
+                    https://github.com/PolymerElements/paper-dialog-behavior/issues/122
+                -->
+                <div class="buttons">
+                    <button dialog-dismiss value="{{model.RejectTrigger$::click}}" onmousedown="++this.value;">Reject</button>
+                    <span>&nbsp;</span>
+                    <button dialog-confirm autofocus value="{{model.ConfirmTrigger$::click}}" onmousedown="++this.value;">Accept</button>
+                </div>
+            </paper-dialog>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
@@ -42,9 +47,15 @@
                 <p>
                     <slot name="kitchensink/dialog-button"></slot>
                 </p>
-                <div class="uni-alert-info"><slot name="kitchensink/dialog-message-info"></slot></div>
-                <div class="uni-alert-danger"><slot name="kitchensink/dialog-message-danger"></slot></div>
-                <div class="uni-alert-success"><slot name="kitchensink/dialog-message-success"></slot></div>
+                <div class="uni-alert-info">
+                    <slot name="kitchensink/dialog-message-info"></slot>
+                </div>
+                <div class="uni-alert-danger">
+                    <slot name="kitchensink/dialog-message-danger"></slot>
+                </div>
+                <div class="uni-alert-success">
+                    <slot name="kitchensink/dialog-message-success"></slot>
+                </div>
                 <slot name="kitchensink/dialog-paper-dialog"></slot>
             </div>
         </div>

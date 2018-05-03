@@ -2,18 +2,27 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/integer-heading">Integer Input</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/integer-heading">Integer Input</h1>
 
-        <p slot="kitchensink/integer-description">JSON's primitive value type <code>number</code> can be mapped directly to HTML form elements <code>input type="number"</code>.</p>
+            <p slot="kitchensink/integer-description">
+                JSON's primitive value type
+                <code>number</code> can be mapped directly to HTML form elements
+                <code>input type="number"</code>.
+            </p>
 
-        <p slot="kitchensink/integer-info">A integer value is declared in Starcounter's JSON-by-example by providing an integer value, e.g. <code>0</code></p>
+            <p slot="kitchensink/integer-info">
+                A integer value is declared in Starcounter's JSON-by-example by providing an integer value, e.g.
+                <code>0</code>
+            </p>
 
-        <label slot="kitchensink/integer-label">{{model.AgeReaction}}</label>
+            <label slot="kitchensink/integer-label">{{model.AgeReaction}}</label>
 
-        <input slot="kitchensink/integer-input" type="number" value="{{model.Age$::input}}" placeholder="Age">
-                  <github-source-links></github-source-links>
-    </template></dom-bind>
+            <input slot="kitchensink/integer-input" type="number" value="{{model.Age$::input}}" placeholder="Age">
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">

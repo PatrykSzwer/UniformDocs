@@ -2,20 +2,27 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/decimal-heading">Decimal Input</h1>
-        
-        <p slot="kitchensink/decimal-description">JSON's primitive value type <code>number</code> can be mapped directly to HTML form elements <code>input type="number"</code>.
-        </p>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/decimal-heading">Decimal Input</h1>
 
-        <p slot="kitchensink/decimal-info">A decimal value is declared in Starcounter's JSON-by-example by including a dot in the number, e.g. <code>0.0</code>
-        </p>
+            <p slot="kitchensink/decimal-description">
+                JSON's primitive value type
+                <code>number</code> can be mapped directly to HTML form elements
+                <code>input type="number"</code>.
+            </p>
 
-        <label slot="kitchensink/decimal-label">{{model.PriceReaction}}</label>
+            <p slot="kitchensink/decimal-info">
+                A decimal value is declared in Starcounter's JSON-by-example by including a dot in the number, e.g.
+                <code>0.0</code>
+            </p>
 
-        <input slot="kitchensink/decimal-input" type="number" step="0.01" value="{{model.Price$::input}}" placeholder="Price">
-                  <github-source-links></github-source-links>
-    </template></dom-bind>
+            <label slot="kitchensink/decimal-label">{{model.PriceReaction}}</label>
+
+            <input slot="kitchensink/decimal-input" type="number" step="0.01" value="{{model.Price$::input}}" placeholder="Price">
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">

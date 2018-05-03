@@ -2,36 +2,38 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template id="root" is="dom-bind">
-        <imported-template href="{{model.NavPage.KitchenSink_0.Html}}"></imported-template>
-        <starcounter-include slot="kitchensink/current" view-model="{{model.CurrentPage}}"></starcounter-include>
-    </template></dom-bind>
+    <dom-bind>
+        <template id="root" is="dom-bind">
+            <imported-template href="{{model.NavPage.KitchenSink_0.Html}}"></imported-template>
+            <starcounter-include slot="kitchensink/current" view-model="{{model.CurrentPage}}"></starcounter-include>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
-        .kitchensink-nav.uni-layout-left-nav > nav > ::slotted(h4) {
-            font-size: 1em !important;
-            letter-spacing: normal !important;
-            font-weight: bold !important;
-            margin: 1.4em 0 1em 0 !important;
-        }
+            .kitchensink-nav.uni-layout-left-nav > nav > ::slotted(h4) {
+                font-size: 1em !important;
+                letter-spacing: normal !important;
+                font-weight: bold !important;
+                margin: 1.4em 0 1em 0 !important;
+            }
 
-        .kitchensink-nav.uni-layout-left-nav > nav > h4 {
-            font-size: 1em !important;
-            letter-spacing: normal !important;
-            font-weight: bold !important;
-            margin: 1.4em 0 1em 0 !important;
-        }
+            .kitchensink-nav.uni-layout-left-nav > nav > h4 {
+                font-size: 1em !important;
+                letter-spacing: normal !important;
+                font-weight: bold !important;
+                margin: 1.4em 0 1em 0 !important;
+            }
 
-        .kitchensink-nav.uni-layout-left-nav > nav > ::slotted(a) {
-            padding-top: 3px !important;
-            padding-bottom: 3px !important;
-        }
+            .kitchensink-nav.uni-layout-left-nav > nav > ::slotted(a) {
+                padding-top: 3px !important;
+                padding-bottom: 3px !important;
+            }
 
-        .kitchensink-nav.uni-layout-left-nav > nav > a {
-            padding-top: 3px !important;
-            padding-bottom: 3px !important;
-        }
+            .kitchensink-nav.uni-layout-left-nav > nav > a {
+                padding-top: 3px !important;
+                padding-bottom: 3px !important;
+            }
         </style>
         <div class="uni-layout-left-nav kitchensink-nav">
             <nav>

@@ -1,18 +1,24 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/checkbox-heading">Checkbox</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/checkbox-heading">Checkbox</h1>
 
-        <p slot="kitchensink/checkbox-description">JSON's primitive value type <code>boolean</code> can be mapped directly to HTML form elements <code>input type="checkbox"</code>.</p>
+            <p slot="kitchensink/checkbox-description">
+                JSON's primitive value type
+                <code>boolean</code> can be mapped directly to HTML form elements
+                <code>input type="checkbox"</code>.
+            </p>
 
-        <label for="kitchensink-checkbox-input" slot="kitchensink/checkbox-label">Driver's license</label>
+            <label for="kitchensink-checkbox-input" slot="kitchensink/checkbox-label">Driver's license</label>
 
-        <input id="kitchensink-checkbox-input" slot="kitchensink/checkbox-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
+            <input id="kitchensink-checkbox-input" slot="kitchensink/checkbox-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
 
-        <div slot="kitchensink/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
-                  <github-source-links></github-source-links>
-    </template></dom-bind>
+            <div slot="kitchensink/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">

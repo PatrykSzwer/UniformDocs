@@ -12,7 +12,10 @@
 
             <h2 slot="kitchensink/callback-responsive-heading">Async save button</h2>
 
-            <p slot="kitchensink/callback-responsive-text">These buttons go into a <code>disabled</code> state until an updated status is pushed from the server</p>
+            <p slot="kitchensink/callback-responsive-text">
+                These buttons go into a
+                <code>disabled</code> state until an updated status is pushed from the server
+            </p>
 
             <button slot="kitchensink/callback-responsive-button" type="button" value="{{model.SaveTrigger$::click}}" disabled="{{model.SaveTrigger$}}" onmouseup="++this.value;">Save changes (1s)</button>
             <button slot="kitchensink/callback-responsive-button-spin" type="button" value="{{model.SaveAndSpinTrigger$::click}}" disabled="{{model.SaveAndSpinTrigger$}}" onmouseup="++this.value;">
@@ -27,7 +30,10 @@
 
             <h2 slot="kitchensink/callback-save-server-heading">Message from the server</h2>
 
-            <p slot="kitchensink/callback-save-server-text">These buttons go into a <code>disabled</code> state until an updated status and a message is pushed from the server</p>
+            <p slot="kitchensink/callback-save-server-text">
+                These buttons go into a
+                <code>disabled</code> state until an updated status and a message is pushed from the server
+            </p>
 
             <template is="dom-if" if="{{model.SuccessMessage$}}">
                 <p slot="kitchensink/callback-save-server-success-message">{{model.SuccessMessage$}}</p>

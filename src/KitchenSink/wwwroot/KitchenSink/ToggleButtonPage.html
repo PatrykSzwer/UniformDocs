@@ -3,16 +3,21 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/toggleButton-heading">Toggle Button</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/toggleButton-heading">Toggle Button</h1>
 
-        <p slot="kitchensink/toggleButton-description">JSON's primitive value type <code>boolean</code> can be mapped to a toggle button element.</p>
+            <p slot="kitchensink/toggleButton-description">
+                JSON's primitive value type
+                <code>boolean</code> can be mapped to a toggle button element.
+            </p>
 
-        <div slot="kitchensink/toggleButton-label">{{model.AcceptTermsAndConditionsReaction}}</div>
+            <div slot="kitchensink/toggleButton-label">{{model.AcceptTermsAndConditionsReaction}}</div>
 
-        <paper-toggle-button slot="kitchensink/toggleButton-toggle-button" checked="{{model.AcceptTermsAndConditions$::change}}"></paper-toggle-button>
-                  <github-source-links></github-source-links>
-        </template></dom-bind>
+            <paper-toggle-button slot="kitchensink/toggleButton-toggle-button" checked="{{model.AcceptTermsAndConditions$::change}}"></paper-toggle-button>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
@@ -22,7 +27,7 @@
             <div class="uni-card">
                 <slot name="kitchensink/toggleButton-description"></slot>
                 <slot name="kitchensink/toggleButton-label"></slot>
-                <slot name="kitchensink/toggleButton-toggle-button"></slot> 
+                <slot name="kitchensink/toggleButton-toggle-button"></slot>
             </div>
         </div>
     </template>

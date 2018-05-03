@@ -2,15 +2,23 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/nested-heading">Nested Views</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/nested-heading">Nested Views</h1>
 
-        <p slot="kitchensink/nested-description">JSON's primitive value type <code>object</code> can be used for nesting of the partials. This also works for recursive nesting.</p>
-        <button slot="kitchensink/nested-add-child-button" value="{{model.AddChildTrigger$::click}}" onmousedown="++this.value">Add child</button>
-        <div slot="kitchensink/nested-child-label">Hi, <span>{{model.Name}}</span></div>
-        <starcounter-include slot="kitchensink/nested-child-partial" view-model="{{model.ChildPartial}}"></starcounter-include>
-                  <github-source-links></github-source-links>
-    </template></dom-bind>
+            <p slot="kitchensink/nested-description">
+                JSON's primitive value type
+                <code>object</code> can be used for nesting of the partials. This also works for recursive nesting.
+            </p>
+            <button slot="kitchensink/nested-add-child-button" value="{{model.AddChildTrigger$::click}}" onmousedown="++this.value">Add child</button>
+            <div slot="kitchensink/nested-child-label">
+                Hi,
+                <span>{{model.Name}}</span>
+            </div>
+            <starcounter-include slot="kitchensink/nested-child-partial" view-model="{{model.ChildPartial}}"></starcounter-include>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>

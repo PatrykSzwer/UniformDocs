@@ -3,14 +3,20 @@
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/chartpage-heading">Chart</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/chartpage-heading">Chart</h1>
 
-        <p slot="kitchensink/chartpage-description">JSON's <code>array</code> can be used to create a chart with a helper custom element, e.g. <a href="http://robdodson.github.io/chart-elements">chart-elements</a>.</p>
-        
-        <kitchensink-chart slot="kitchensink/chartpage-chart" temperatures="{{model.Temperatures}}" labels="{{model.Labels}}"></kitchensink-chart>
-                  <github-source-links></github-source-links>
-    </template></dom-bind>
+            <p slot="kitchensink/chartpage-description">
+                JSON's
+                <code>array</code> can be used to create a chart with a helper custom element, e.g.
+                <a href="http://robdodson.github.io/chart-elements">chart-elements</a>.
+            </p>
+
+            <kitchensink-chart slot="kitchensink/chartpage-chart" temperatures="{{model.Temperatures}}" labels="{{model.Labels}}"></kitchensink-chart>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
@@ -19,7 +25,7 @@
         <div class="uni-section-primary">
             <div class="uni-card">
                 <slot name="kitchensink/chartpage-description"></slot>
-                <slot name="kitchensink/chartpage-chart"></slot> 
+                <slot name="kitchensink/chartpage-chart"></slot>
             </div>
         </div>
     </template>
