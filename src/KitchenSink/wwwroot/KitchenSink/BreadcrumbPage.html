@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/x-breadcrumb/x-breadcrumb.html">
 <link rel="import" href="/sys/x-breadcrumb/x-crumb.html">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -48,6 +49,7 @@
         <input slot="kitchensink/breadcrumb-name-input" type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name">
 
         <button slot="kitchensink/breadcrumb-name-save" value="{{model.CurrentTreeItem.SaveTrigger$::click}}" onmousedown="++this.value">Save</button>
+                  <github-source-links></github-source-links>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <style>

@@ -1,6 +1,7 @@
 <link rel="import" href="/sys/polymer/polymer.html">
 <link rel="import" href="/sys/juicy-select/juicy-select.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -32,6 +33,7 @@
         <span slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}">Next</span>
         <span slot="kitchensink/pagination-navigation-last" tabindex="0" value="{{model.LastPageTrigger$::click}}">Last</span>
         <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
+                  <github-source-links></github-source-links>
     </template></dom-bind>
     <script>
         (function () {

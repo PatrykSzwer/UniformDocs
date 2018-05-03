@@ -1,6 +1,7 @@
 <link rel="import" href="/sys/google-map/google-map.html">
 <link rel="import" href="/sys/google-map/google-map-marker.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -13,7 +14,8 @@
             <google-map-marker id="kitchensink-geopage-marker" draggable="true" title="Hi Stockholm!" latitude="{{model.Position.Latitude$}}" longitude="{{model.Position.Longitude$}}"></google-map-marker>
         </google-map>
         <button slot="kitchensink/geo-reset-button" value="{{model.Position.ResetTrigger$::click}}" onclick="this.value++">Reset</button>
-    </template></dom-bind>
+                  <github-source-links></github-source-links>
+        </template></dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">

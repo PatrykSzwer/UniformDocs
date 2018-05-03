@@ -1,4 +1,5 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <dom-bind>
@@ -35,6 +36,7 @@
                 <p slot="kitchensink/callback-save-server-danger-message">{{model.ErrorMessage$}}</p>
             </template>
             <button slot="kitchensink/callback-save-server-button" type="button" value="{{model.SaveAndMessageTrigger$::click}}" disabled="{{model.SaveAndMessageTrigger$}}" onmouseup="++this.value;">Save and get message (1s)</button>
+            <github-source-links></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

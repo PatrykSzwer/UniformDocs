@@ -1,4 +1,5 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -9,6 +10,8 @@
         <label slot="kitchensink/textarea-label">{{model.BioReaction}}</label>
 
         <textarea slot="kitchensink/textarea-textarea" value="{{model.Bio$::input}}" rows="3"></textarea>
+
+         <github-source-links></github-source-links>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">

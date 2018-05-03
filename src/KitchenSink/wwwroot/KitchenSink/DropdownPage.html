@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/juicy-select/juicy-select.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -34,6 +35,7 @@
         <template is="dom-if" if="{{model.SelectedProduct.Name}}">
             <p slot="kitchensink/dropdown-objects-select-label">You have selected: <strong>{{model.SelectedProduct.Name}}</strong></p>
         </template>
+                  <github-source-links></github-source-links>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">

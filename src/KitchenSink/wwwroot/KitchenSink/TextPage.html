@@ -1,5 +1,6 @@
 <link rel="import" href="/sys/paper-input/paper-input.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <dom-bind><template is="dom-bind">
@@ -30,6 +31,7 @@
         <p slot="kitchensink/text-typing-listening-paper-desc">If you need to observe the changes while typing, paper-text triggers <code>value-changed</code> event after each keystroke. This allows to bind it live with the server:</p>
 
         <paper-input slot="kitchensink/text-typing-listening-paper-input" label="{{model.NameForPaperLiveReaction}}" value="{{model.NameForPaperLive$::value-changed}}"></paper-input>
+                  <github-source-links></github-source-links>
     </template></dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
