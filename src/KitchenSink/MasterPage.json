@@ -1,5 +1,7 @@
 {
   "Html": "/KitchenSink/MasterPage.html",
   "NavPage": {},
-  "CurrentPage": {}
+  "CurrentPage": {},
+  "appVersion": "",
+  "starcounterVersion": ""
 }

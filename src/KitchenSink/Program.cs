@@ -7,6 +7,16 @@ namespace KitchenSink
 {
     class Program
     {
+        static string getAppVersionFromAssemblyFile()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+           return fvi.FileVersion;
+        }
+        static string getStarcounterVersion()
+        {
+            return Starcounter.Internal.CurrentVersion.Version;
+        }
         static void Main()
         {
             var app = Application.Current;
@@ -17,7 +27,14 @@ namespace KitchenSink
 
             Handle.GET("/KitchenSink/json", () => new Json());
 
-            Handle.GET("/KitchenSink/partial/mainpage", () => new MainPage());
+            Handle.GET("/KitchenSink/partial/mainpage", () => {
+                return new MainPage
+                {
+                    starcounterVersion = getStarcounterVersion(),
+                    appVersion = getAppVersionFromAssemblyFile()
+                };
+            });
+
             Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
 
             Handle.GET("/KitchenSink", () => Self.GET("/KitchenSink/mainpage"));
@@ -276,6 +293,8 @@ namespace KitchenSink
             {
                 master = new MasterPage
                 {
+                    appVersion = getAppVersionFromAssemblyFile(),
+                    starcounterVersion = getStarcounterVersion(),
                     NavPage = Self.GET("/kitchensink/nav")
                 };
                 Session.Current.Store[nameof(MasterPage)] = master;
