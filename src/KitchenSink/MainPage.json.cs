@@ -4,7 +4,7 @@ namespace KitchenSink
 {
     partial class MainPage : Json
     {
-        public string StarcounterVersion => Program.GetAppVersionFromAssemblyFile();
-        public string AppVersion => Starcounter.Internal.CurrentVersion.Version;
+        public string AppVersion => Program.GetAppVersionFromAssemblyFile();
+        public string StarcounterVersion => Starcounter.Internal.CurrentVersion.Version;
     }
 }

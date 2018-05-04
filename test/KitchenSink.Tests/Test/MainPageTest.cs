@@ -17,12 +17,11 @@ namespace KitchenSink.Tests.Test
 
         static string GetAppVersionFromAssemblyFile()
         {
-            var currentDir = Directory.GetCurrentDirectory();
-            var fullPath = Path.Combine(currentDir, @"src\KitchenSink\Properties\AssemblyInfo.cs");
-            var match = Regex.Match(File.ReadAllText(fullPath), @"AssemblyFileVersion\(""(.+)""\)");
-            var version = match.Groups[1].ToString();
+            var Path =  @"src\KitchenSink\Properties\AssemblyInfo.cs";
+            var Match = Regex.Match(File.ReadAllText(Path), @"AssemblyFileVersion\(""(.+)""\)");
+            var Version = Match.Groups[1].ToString();
 
-            return version;
+            return Version;
         }
 
         public MainPageTest(Config.Browser browser) : base(browser)
