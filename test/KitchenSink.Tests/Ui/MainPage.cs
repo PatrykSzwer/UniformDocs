@@ -10,10 +10,10 @@ namespace KitchenSink.Tests.Ui
         {
         }
 
-        [FindsBy(How = How.CssSelector, Using = "[data-app-version]")]
+        [FindsBy(How = How.CssSelector, Using = "[slot='kitchensink/main-app-version'] span:nth-child(1)")]
         public IWebElement AppVersionSpan { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[data-sc-version]")]
+        [FindsBy(How = How.CssSelector, Using = "[slot='kitchensink/main-app-version'] span:nth-child(2)")]
         public IWebElement SCVersionSpan { get; set; }
 
         public MainPage GoToMainPage()

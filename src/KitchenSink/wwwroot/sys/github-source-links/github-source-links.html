@@ -30,56 +30,60 @@
     </div>
 </template>
 <script>
-    async function getBaselink() {
-        const appVersion = await fetch('/KitchenSink/kitchensink-app-version').then(res => res.text());
-        const baseLink = `https://github.com/Starcounter/KitchenSink/blob/${appVersion}/src/KitchenSink/`;
-        return baseLink;
-    }
-    function createAnchor(text, url) {
-        const anchor = document.createElement('a');
-        anchor.href = url;
-        anchor.innerHTML = text;
-        return anchor;
-    }
-    function createElements(baseLink) {
-        const page = guessCurrentPage();
-
-        const json = baseLink + page + '.json';
-        const csharp = json + '.cs';
-        const view = baseLink + 'wwwroot/KitchenSink/' + page + '.html';
-
-        const content = template.content.cloneNode(true);
-        const card = content.querySelector('.uni-card');
-
-        card.appendChild(createAnchor('C# Code', csharp));
-        card.appendChild(createAnchor('JSON code-behind code', json));
-        card.appendChild(createAnchor('HTML view code', view));
-
-        return content;
-    }
-    function guessCurrentPage() {
-        const pathname = window.location.pathname;
-        let lastPartOfPathName = pathname.substr(pathname.indexOf('/', 1) + 1);
-
-        // /KitchenSink === /KitchenSink/MainPage
-        if(lastPartOfPathName === "KitchenSink") {
-            lastPartOfPathName = "MainPage";
+    (function () {
+        let cachedBaseLink;
+        async function getBaselink() {
+            if(cachedBaseLink) return cachedBaseLink;
+            const appVersion = await fetch('/KitchenSink/kitchensink-app-version').then(res => res.text());
+            const baseLink = `https://github.com/Starcounter/KitchenSink/blob/${appVersion}/src/KitchenSink/`;
+            return (cachedBaseLink = baseLink);
         }
-
-        const fullPageName = lastPartOfPathName.endsWith('Page') ? lastPartOfPathName : lastPartOfPathName + 'Page';
-        return fullPageName;
-    }
-    const template = document.currentScript.previousElementSibling;
-
-    class GTSL extends HTMLElement {
-        constructor() {
-            super();
-            this.attachShadow({ mode: 'open' });
+        function createAnchor(text, url) {
+            const anchor = document.createElement('a');
+            anchor.href = url;
+            anchor.innerHTML = text;
+            return anchor;
         }
-        async connectedCallback() {
-            const baseLink = await getBaselink();
-            this.shadowRoot.appendChild(createElements(baseLink));
+        function createElements(baseLink) {
+            const page = guessCurrentPage();
+
+            const json = baseLink + page + '.json';
+            const csharp = json + '.cs';
+            const view = baseLink + 'wwwroot/KitchenSink/' + page + '.html';
+
+            const content = template.content.cloneNode(true);
+            const card = content.querySelector('.uni-card');
+
+            card.appendChild(createAnchor('C# Code', csharp));
+            card.appendChild(createAnchor('JSON code-behind code', json));
+            card.appendChild(createAnchor('HTML view code', view));
+
+            return content;
         }
-    }
-    customElements.define('github-source-links', GTSL)
+        function guessCurrentPage() {
+            const pathname = window.location.pathname;
+            let lastPartOfPathName = pathname.substr(pathname.indexOf('/', 1) + 1);
+
+            // /KitchenSink === /KitchenSink/MainPage
+            if (lastPartOfPathName === "KitchenSink") {
+                lastPartOfPathName = "MainPage";
+            }
+
+            const fullPageName = lastPartOfPathName.endsWith('Page') ? lastPartOfPathName : lastPartOfPathName + 'Page';
+            return fullPageName;
+        }
+        const template = document.currentScript.previousElementSibling;
+
+        class GTSL extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+            }
+            async connectedCallback() {
+                const baseLink = await getBaselink();
+                this.shadowRoot.appendChild(createElements(baseLink));
+            }
+        }
+        customElements.define('github-source-links', GTSL);
+    })();
 </script>
