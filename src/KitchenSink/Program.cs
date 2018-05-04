@@ -7,15 +7,11 @@ namespace KitchenSink
 {
     class Program
     {
-        static string getAppVersionFromAssemblyFile()
+        public static string GetAppVersionFromAssemblyFile()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
-           return fvi.FileVersion;
-        }
-        static string getStarcounterVersion()
-        {
-            return Starcounter.Internal.CurrentVersion.Version;
+            return fvi.FileVersion;
         }
         static void Main()
         {
@@ -25,15 +21,11 @@ namespace KitchenSink
 
             DummyData.Create();
 
-            Handle.GET("/KitchenSink/json", () => new Json());
+            // just to offer a REST endpoint that gives the app version, usable for diagnostics
+            // (currently used in github-source-links)
+            Handle.GET("/KitchenSink/kitchensink-app-version", () => GetAppVersionFromAssemblyFile());
 
-            Handle.GET("/KitchenSink/partial/mainpage", () => {
-                return new MainPage
-                {
-                    starcounterVersion = getStarcounterVersion(),
-                    appVersion = getAppVersionFromAssemblyFile()
-                };
-            });
+            Handle.GET("/KitchenSink/partial/mainpage", () => new MainPage());
 
             Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
 
@@ -293,8 +285,6 @@ namespace KitchenSink
             {
                 master = new MasterPage
                 {
-                    appVersion = getAppVersionFromAssemblyFile(),
-                    starcounterVersion = getStarcounterVersion(),
                     NavPage = Self.GET("/kitchensink/nav")
                 };
                 Session.Current.Store[nameof(MasterPage)] = master;

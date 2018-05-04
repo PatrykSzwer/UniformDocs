@@ -15,7 +15,7 @@ namespace KitchenSink.Tests.Test
     {
         private MainPage _mainPage;
 
-        static string getAppVersionFromAssemblyFile()
+        static string GetAppVersionFromAssemblyFile()
         {
             var currentDir = Directory.GetCurrentDirectory();
             var fullPath = Path.Combine(currentDir, @"src\KitchenSink\Properties\AssemblyInfo.cs");
@@ -40,7 +40,7 @@ namespace KitchenSink.Tests.Test
         public void MainPage_AppVersion()
         {            
             WaitUntil(x => _mainPage.AppVersionSpan.Displayed);
-            Assert.AreEqual(getAppVersionFromAssemblyFile(), _mainPage.AppVersionSpan.Text);
+            Assert.AreEqual(GetAppVersionFromAssemblyFile(), _mainPage.AppVersionSpan.Text);
         }
 
         [Test]
