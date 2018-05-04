@@ -1,5 +1,6 @@
 ﻿using KitchenSink.Tests.Utilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace KitchenSink.Tests.Ui
 {
@@ -8,6 +9,12 @@ namespace KitchenSink.Tests.Ui
         public MainPage(IWebDriver driver) : base(driver)
         {
         }
+
+        [FindsBy(How = How.CssSelector, Using = "[data-app-version]")]
+        public IWebElement AppVersionSpan { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "[data-sc-version]")]
+        public IWebElement SCVersionSpan { get; set; }
 
         public MainPage GoToMainPage()
         {
