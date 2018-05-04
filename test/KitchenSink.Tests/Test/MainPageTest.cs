@@ -15,13 +15,9 @@ namespace KitchenSink.Tests.Test
     {
         private MainPage _mainPage;
 
-        static string GetAppVersionFromAssemblyFile()
+        static string GetAppVersionFromEndPoint()
         {
-            var Path =  @"src\KitchenSink\Properties\AssemblyInfo.cs";
-            var Match = Regex.Match(File.ReadAllText(Path), @"AssemblyFileVersion\(""(.+)""\)");
-            var Version = Match.Groups[1].ToString();
-
-            return Version;
+            return new System.Net.WebClient().DownloadString(Config.KitchenSinkUrl + "/kitchensink-app-version");
         }
 
         public MainPageTest(Config.Browser browser) : base(browser)
@@ -39,7 +35,10 @@ namespace KitchenSink.Tests.Test
         public void MainPage_AppVersion()
         {            
             WaitUntil(x => _mainPage.AppVersionSpan.Displayed);
-            Assert.AreEqual(GetAppVersionFromAssemblyFile(), _mainPage.AppVersionSpan.Text);
+            Assert.AreEqual(GetAppVersionFromEndPoint(), _mainPage.AppVersionSpan.Text);
+
+            // make sure it's a semver
+            Assert.True(Regex.IsMatch(GetAppVersionFromEndPoint(), @"\d+\.\d+\.\d+"));
         }
 
         [Test]
