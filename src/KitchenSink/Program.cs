@@ -33,23 +33,23 @@ namespace KitchenSink
 
             #region Design
 
-            Handle.GET("/KitchenSink/partial/sections", () => new Sections());
-            Handle.GET("/KitchenSink/sections", () => WrapPage<Sections>("/KitchenSink/partial/sections"));
+            Handle.GET("/KitchenSink/partial/sections", () => new SectionsPage());
+            Handle.GET("/KitchenSink/sections", () => WrapPage<SectionsPage>("/KitchenSink/partial/sections"));
 
-            Handle.GET("/KitchenSink/partial/card", () => new Card());
-            Handle.GET("/KitchenSink/card", () => WrapPage<Card>("/KitchenSink/partial/card"));
+            Handle.GET("/KitchenSink/partial/card", () => new CardPage());
+            Handle.GET("/KitchenSink/card", () => WrapPage<CardPage>("/KitchenSink/partial/card"));
 
-            Handle.GET("/KitchenSink/partial/title", () => new Title());
-            Handle.GET("/KitchenSink/title", () => WrapPage<Title>("/KitchenSink/partial/title"));
+            Handle.GET("/KitchenSink/partial/title", () => new TitlePage());
+            Handle.GET("/KitchenSink/title", () => WrapPage<TitlePage>("/KitchenSink/partial/title"));
 
-            Handle.GET("/KitchenSink/partial/alerts", () => new Alerts());
-            Handle.GET("/KitchenSink/alerts", () => WrapPage<Alerts>("/KitchenSink/partial/alerts"));
+            Handle.GET("/KitchenSink/partial/alerts", () => new AlertsPage());
+            Handle.GET("/KitchenSink/alerts", () => WrapPage<AlertsPage>("/KitchenSink/partial/alerts"));
 
-            Handle.GET("/KitchenSink/partial/leftnavlayout", () => new LeftNavLayout());
-            Handle.GET("/KitchenSink/leftnavlayout", () => WrapPage<LeftNavLayout>("/KitchenSink/partial/leftnavlayout"));
+            Handle.GET("/KitchenSink/partial/leftnavlayout", () => new LeftNavLayoutPage());
+            Handle.GET("/KitchenSink/leftnavlayout", () => WrapPage<LeftNavLayoutPage>("/KitchenSink/partial/leftnavlayout"));
 
-            Handle.GET("/KitchenSink/partial/native", () => new Native());
-            Handle.GET("/KitchenSink/native", () => WrapPage<Native>("/KitchenSink/partial/native"));
+            Handle.GET("/KitchenSink/partial/native", () => new NativePage());
+            Handle.GET("/KitchenSink/native", () => WrapPage<NativePage>("/KitchenSink/partial/native"));
 
             #endregion
 

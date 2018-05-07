@@ -2,7 +2,7 @@ using Starcounter;
 
 namespace KitchenSink.ViewModels.Design
 {
-    partial class Title : Json
+    partial class NativePage : Json
     {
     }
 }

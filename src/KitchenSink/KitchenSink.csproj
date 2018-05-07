@@ -206,23 +206,23 @@
     <Compile Include="FlashMessagePage.json.cs">
       <DependentUpon>FlashMessagePage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\LeftNavLayout.json.cs">
-      <DependentUpon>LeftNavLayout.json</DependentUpon>
+    <Compile Include="ViewModels\Design\LeftNavLayoutPage.json.cs">
+      <DependentUpon>LeftNavLayoutPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\Card.json.cs">
-      <DependentUpon>Card.json</DependentUpon>
+    <Compile Include="ViewModels\Design\CardPage.json.cs">
+      <DependentUpon>CardPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\Alerts.json.cs">
-      <DependentUpon>Alerts.json</DependentUpon>
+    <Compile Include="ViewModels\Design\AlertsPage.json.cs">
+      <DependentUpon>AlertsPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\Native.json.cs">
-      <DependentUpon>Native.json</DependentUpon>
+    <Compile Include="ViewModels\Design\NativePage.json.cs">
+      <DependentUpon>NativePage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\Title.json.cs">
-      <DependentUpon>Title.json</DependentUpon>
+    <Compile Include="ViewModels\Design\TitlePage.json.cs">
+      <DependentUpon>TitlePage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\Sections.json.cs">
-      <DependentUpon>Sections.json</DependentUpon>
+    <Compile Include="ViewModels\Design\SectionsPage.json.cs">
+      <DependentUpon>SectionsPage.json</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -236,22 +236,22 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="ViewModels\Design\Sections.json">
+    <TypedJSON Include="ViewModels\Design\SectionsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\Card.json">
+    <TypedJSON Include="ViewModels\Design\CardPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\Title.json">
+    <TypedJSON Include="ViewModels\Design\TitlePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\Alerts.json">
+    <TypedJSON Include="ViewModels\Design\AlertsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\LeftNavLayout.json">
+    <TypedJSON Include="ViewModels\Design\LeftNavLayoutPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\Native.json">
+    <TypedJSON Include="ViewModels\Design\NativePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <None Include="weaver.ignore">
@@ -272,12 +272,12 @@
     <None Include="app.config" />
     <None Include="wwwroot\KitchenSink\FlashMessagePage.html" />
     <Content Include="wwwroot\KitchenSink\ClientLocalStatePage.html" />
-    <None Include="wwwroot\KitchenSink\Design\Sections.html" />
-    <None Include="wwwroot\KitchenSink\Design\Card.html" />
-    <None Include="wwwroot\KitchenSink\Design\Title.html" />
-    <None Include="wwwroot\KitchenSink\Design\Alerts.html" />
-    <None Include="wwwroot\KitchenSink\Design\LeftNavLayout.html" />
-    <None Include="wwwroot\KitchenSink\Design\Native.html" />
+    <None Include="wwwroot\KitchenSink\Design\SectionsPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\CardPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\TitlePage.html" />
+    <None Include="wwwroot\KitchenSink\Design\AlertsPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\LeftNavLayoutPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\NativePage.html" />
     <Content Include="wwwroot\KitchenSink\LazyLoadingPage.html" />
     <Content Include="wwwroot\KitchenSink\MainPage.html">
       <SubType>Component</SubType>
