@@ -5,15 +5,9 @@ using Starcounter;
 
 namespace KitchenSink
 {
-    class Program
+    internal class Program
     {
-        public static string GetAppVersionFromAssemblyFile()
-        {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
-            return fvi.FileVersion;
-        }
-        static void Main()
+        private static void Main()
         {
             var app = Application.Current;
             app.Use(new HtmlFromJsonProvider());
@@ -254,8 +248,15 @@ namespace KitchenSink
 
             Handle.GET("/KitchenSink/menu", () => new AppMenuPage());
 
-            Blender.MapUri("/KitchenSink/menu", string.Empty, new string[] { "menu" });
-            Blender.MapUri("/KitchenSink/app-name", string.Empty, new string[] { "app", "icon" });
+            Blender.MapUri("/KitchenSink/menu", string.Empty, new[] { "menu" });
+            Blender.MapUri("/KitchenSink/app-name", string.Empty, new[] { "app", "icon" });
+        }
+
+        public static string GetAppVersionFromAssemblyFile()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            return fvi.FileVersion;
         }
 
         private static Json WrapPage<T>(string partialPath) where T : Json
@@ -277,7 +278,7 @@ namespace KitchenSink
             return master;
         }
 
-        public static MasterPage GetMasterPageFromSession()
+        private static MasterPage GetMasterPageFromSession()
         {
             var master = Session.Ensure().Store[nameof(MasterPage)] as MasterPage;
 
