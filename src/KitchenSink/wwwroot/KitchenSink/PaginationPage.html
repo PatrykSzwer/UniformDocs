@@ -30,22 +30,17 @@
                     </template>
                 </tbody>
             </table>
-            <span slot="kitchensink/pagination-navigation-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</span>
-            <span slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}">Previous</span>
+            <!-- href="#page" is needed to make pressing enter on the anchor effective (By tab navigating then pressing enter, as opposed to mouse clicking) -->
+            <a slot="kitchensink/pagination-navigation-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="#page">First</a>
+            <a slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" href="#page">Previous</a>
             <template is="dom-repeat" items="{{model.Pages}}">
-                <span slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" tabindex="0" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</span>
+                <a slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" tabindex="0" on-click="onChangePageClick" href="#page" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
             </template>
-            </tbody>
-        </table>
-        <a tabindex="0" slot="kitchensink/pagination-navigation-first" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="">First</a>
-        <a tabindex="0" slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" value="{{model.PreviousPageTrigger$::click}}">Previous</a>
-        <template is="dom-repeat" items="{{model.Pages}}">
-            <a tabindex="0" slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" on-click="onChangePageClick" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
-        </template>
-        <a tabindex="0" slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" value="{{model.NextPageTrigger$::click}}">Next</a>
-        <a tabindex="0" slot="kitchensink/pagination-navigation-last" value="{{model.LastPageTrigger$::click}}">Last</a>
-        <p tabindex="0" slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
-        <github-source-links></github-source-links>
+            <a slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}" href="#page">Next</a>
+            <a slot="kitchensink/pagination-navigation-last" tabindex="0" value="{{model.LastPageTrigger$::click}}" href="#page">Last</a>
+            <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
+
+        
       </template></dom-bind>
     <script>
         (function () {
@@ -62,6 +57,7 @@
             };
         })();
     </script>
+    <github-source-links></github-source-links>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
