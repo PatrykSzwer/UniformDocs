@@ -30,14 +30,14 @@
                     </template>
                 </tbody>
             </table>
-            <!-- href="#page" is needed to make pressing enter on the anchor effective (By tab navigating then pressing enter, as opposed to mouse clicking) -->
-            <a slot="kitchensink/pagination-navigation-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="#page">First</a>
-            <a slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" href="#page">Previous</a>
+            <!-- href="javascript:;" is needed to make pressing enter on the anchor effective (By tab navigating then pressing enter, as opposed to mouse clicking) -->
+            <a slot="kitchensink/pagination-navigation-first" tabindex="0" value="{{model.FirstPageTrigger$::click}}" on-click="onFirstPageClick" href="javascript:;">First</a>
+            <a slot="kitchensink/pagination-navigation-previous" disabled$="{{model.DisableFirst}}" tabindex="0" value="{{model.PreviousPageTrigger$::click}}" href="javascript:;">Previous</a>
             <template is="dom-repeat" items="{{model.Pages}}">
-                <a slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" tabindex="0" on-click="onChangePageClick" href="#page" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
+                <a slot="kitchensink/pagination-navigation-number" aria-current$="{{workaroundPolymerBooleans(item.Active)}}" tabindex="0" on-click="onChangePageClick" href="javascript:;" page-number="{{item.PageNumber}}">{{item.PageNumber}}</a>
             </template>
-            <a slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}" href="#page">Next</a>
-            <a slot="kitchensink/pagination-navigation-last" tabindex="0" value="{{model.LastPageTrigger$::click}}" href="#page">Last</a>
+            <a slot="kitchensink/pagination-navigation-next" disabled$="{{model.DisableLast}}" tabindex="0" value="{{model.NextPageTrigger$::click}}" href="javascript:;">Next</a>
+            <a slot="kitchensink/pagination-navigation-last" tabindex="0" value="{{model.LastPageTrigger$::click}}" href="javascript:;">Last</a>
             <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
 
         
