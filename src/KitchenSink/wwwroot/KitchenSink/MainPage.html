@@ -1,17 +1,25 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <h1 slot="kitchensink/main-heading">Welcome to KitchenSink</h1>
-    
     <p slot="kitchensink/main-description">In this app you can take a look on typical UI patterns in a form that is easy to apply in any Starcounter app.</p>
     <p slot="kitchensink/main-description">Use the menu on the left to browse various examples of how to build web-based UI with Starcounter and Polymer.</p>
-
+    <dom-bind>
+        <template is="dom-bind">
+            <p slot="kitchensink/main-app-version">
+                <em>App version: <span>{{model.AppVersion}}</span>, running on Starcounter: <span>{{model.StarcounterVersion}}</span></em>
+            </p>
+        </template>
+    </dom-bind>
+    <github-source-links></github-source-links>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-primary">
             <div class="uni-card">
                 <slot name="kitchensink/main-heading"></slot>
                 <slot name="kitchensink/main-description"></slot>
+                <slot name="kitchensink/main-app-version"></slot>
             </div>
         </div>
     </template>

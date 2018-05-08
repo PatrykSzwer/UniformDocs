@@ -1,24 +1,30 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
     <h1 slot="kitchensink/clientlocalstatepage-heading">Client Local State</h1>
     <p slot="kitchensink/clientlocalstatepage-description">This page demonstrates the ability to keep parts of your state local (unsynced with the server).</p>
-    <dom-bind><template is="dom-bind">
-        <p slot="kitchensink/clientlocalstatepage-hoverablelist-title"><em>Please hover an item to see it in action</em></p>
-        <ul slot="kitchensink/clientlocalstatepage-hoverablelist">
-            <template is="dom-repeat" items="{{model.People}}">
-                <li>
-                    <define-local public="{{item}}" prop="_local"></define-local>
-                    <hover-observer is-hovered="{{item._local.isHovered}}">
-                        <span>{{item.Name}}</span>
-                        <template is="dom-if" if="{{item._local.isHovered}}">
-                            <span>Hovered</span>
-                        </template>
-                    </hover-observer>
-                </li>
-            </template>
-        </ul>
-    </template></dom-bind>
+    <dom-bind>
+        <template is="dom-bind">
+            <p slot="kitchensink/clientlocalstatepage-hoverablelist-title">
+                <em>Please hover an item to see it in action</em>
+            </p>
+            <ul slot="kitchensink/clientlocalstatepage-hoverablelist">
+                <template is="dom-repeat" items="{{model.People}}">
+                    <li>
+                        <define-local public="{{item}}" prop="_local"></define-local>
+                        <hover-observer is-hovered="{{item._local.isHovered}}">
+                            <span>{{item.Name}}</span>
+                            <template is="dom-if" if="{{item._local.isHovered}}">
+                                <span>Hovered</span>
+                            </template>
+                        </hover-observer>
+                    </li>
+                </template>
+            </ul>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">

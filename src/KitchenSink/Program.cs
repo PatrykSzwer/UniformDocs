@@ -5,9 +5,9 @@ using Starcounter;
 
 namespace KitchenSink
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             var app = Application.Current;
             app.Use(new HtmlFromJsonProvider());
@@ -15,32 +15,35 @@ namespace KitchenSink
 
             DummyData.Create();
 
-            Handle.GET("/KitchenSink/json", () => new Json());
+            // just to offer a REST endpoint that gives the app version, usable for diagnostics
+            // (currently used in github-source-links)
+            Handle.GET("/KitchenSink/kitchensink-app-version", () => GetAppVersionFromAssemblyFile());
 
             Handle.GET("/KitchenSink/partial/mainpage", () => new MainPage());
+
             Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
 
             Handle.GET("/KitchenSink", () => Self.GET("/KitchenSink/mainpage"));
 
             #region Design
 
-            Handle.GET("/KitchenSink/partial/sections", () => new Sections());
-            Handle.GET("/KitchenSink/sections", () => WrapPage<Sections>("/KitchenSink/partial/sections"));
+            Handle.GET("/KitchenSink/partial/sections", () => new SectionsPage());
+            Handle.GET("/KitchenSink/sections", () => WrapPage<SectionsPage>("/KitchenSink/partial/sections"));
 
-            Handle.GET("/KitchenSink/partial/card", () => new Card());
-            Handle.GET("/KitchenSink/card", () => WrapPage<Card>("/KitchenSink/partial/card"));
+            Handle.GET("/KitchenSink/partial/card", () => new CardPage());
+            Handle.GET("/KitchenSink/card", () => WrapPage<CardPage>("/KitchenSink/partial/card"));
 
-            Handle.GET("/KitchenSink/partial/title", () => new Title());
-            Handle.GET("/KitchenSink/title", () => WrapPage<Title>("/KitchenSink/partial/title"));
+            Handle.GET("/KitchenSink/partial/title", () => new TitlePage());
+            Handle.GET("/KitchenSink/title", () => WrapPage<TitlePage>("/KitchenSink/partial/title"));
 
-            Handle.GET("/KitchenSink/partial/alerts", () => new Alerts());
-            Handle.GET("/KitchenSink/alerts", () => WrapPage<Alerts>("/KitchenSink/partial/alerts"));
+            Handle.GET("/KitchenSink/partial/alerts", () => new AlertsPage());
+            Handle.GET("/KitchenSink/alerts", () => WrapPage<AlertsPage>("/KitchenSink/partial/alerts"));
 
-            Handle.GET("/KitchenSink/partial/leftnavlayout", () => new LeftNavLayout());
-            Handle.GET("/KitchenSink/leftnavlayout", () => WrapPage<LeftNavLayout>("/KitchenSink/partial/leftnavlayout"));
+            Handle.GET("/KitchenSink/partial/leftnavlayout", () => new LeftNavLayoutPage());
+            Handle.GET("/KitchenSink/leftnavlayout", () => WrapPage<LeftNavLayoutPage>("/KitchenSink/partial/leftnavlayout"));
 
-            Handle.GET("/KitchenSink/partial/native", () => new Native());
-            Handle.GET("/KitchenSink/native", () => WrapPage<Native>("/KitchenSink/partial/native"));
+            Handle.GET("/KitchenSink/partial/native", () => new NativePage());
+            Handle.GET("/KitchenSink/native", () => WrapPage<NativePage>("/KitchenSink/partial/native"));
 
             #endregion
 
@@ -245,8 +248,15 @@ namespace KitchenSink
 
             Handle.GET("/KitchenSink/menu", () => new AppMenuPage());
 
-            Blender.MapUri("/KitchenSink/menu", string.Empty, new string[] { "menu" });
-            Blender.MapUri("/KitchenSink/app-name", string.Empty, new string[] { "app", "icon" });
+            Blender.MapUri("/KitchenSink/menu", string.Empty, new[] { "menu" });
+            Blender.MapUri("/KitchenSink/app-name", string.Empty, new[] { "app", "icon" });
+        }
+
+        public static string GetAppVersionFromAssemblyFile()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            return fvi.FileVersion;
         }
 
         private static Json WrapPage<T>(string partialPath) where T : Json
@@ -268,7 +278,7 @@ namespace KitchenSink
             return master;
         }
 
-        public static MasterPage GetMasterPageFromSession()
+        private static MasterPage GetMasterPageFromSession()
         {
             var master = Session.Ensure().Store[nameof(MasterPage)] as MasterPage;
 

@@ -1,54 +1,72 @@
 <link rel="import" href="/sys/x-breadcrumb/x-breadcrumb.html">
 <link rel="import" href="/sys/x-breadcrumb/x-crumb.html">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/breadcrumb-heading">Breadcrumb</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/breadcrumb-heading">Breadcrumb</h1>
 
-        <h2 slot="kitchensink/breadcrumb-simple-breadcrumb-heading">Simple breadcrumb</h2>
+            <h2 slot="kitchensink/breadcrumb-simple-breadcrumb-heading">Simple breadcrumb</h2>
 
-        <p slot="kitchensink/breadcrumb-simple-breadcrumb-description">A JSON <code>array</code> of <code>objects</code> can used as a breadcrumb navigation. The below example uses <code>template is="dom-repeat"</code> with <code>span</code>.
-        </p>
-        <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
-            <template is="dom-if" if="{{index}}" restamp>
-                <span slot="kitchensink/breadcrumb-simple-breadcrumb">&gt;</span>
-            </template>
-            <button slot="kitchensink/breadcrumb-simple-breadcrumb" value="{{item.SelectTrigger$::mouseup}}" onmousedown="++this.value">{{item.Name}}</button>
-        </template>
-
-        <h2 slot="kitchensink/breadcrumb-navigation-breadcrumb-heading">Breadcrumb with navigation</h2>
-
-        <p slot="kitchensink/breadcrumb-navigation-breadcrumb-description">It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses <code>template is="dom-repeat"</code> with <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.
-        </p>
-
-        <x-breadcrumb slot="kitchensink/breadcrumb-navigation-breadcrumb" class="kitchensink-x-breadcrumb">
+            <p slot="kitchensink/breadcrumb-simple-breadcrumb-description">
+                A JSON
+                <code>array</code> of
+                <code>objects</code> can used as a breadcrumb navigation. The below example uses
+                <code>template is="dom-repeat"</code> with
+                <code>span</code>.
+            </p>
             <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
-                <x-crumb value="{{item.Name}}" search-query="{{item.SearchQuery$}}" dropdown="true" active$="{{item.IsActive}}" ghost$="{{item.IsGhost}}">
-                    <ul class="kitchensink-breadcrumb-suggestions">
-                        <template is="dom-repeat" items="{{item.Siblings}}" restamp>
-                            <li class="kitchensink-breadcrumb-suggestions__item" value="{{item.SelectTrigger$::click}}" onmousedown="++this.value">{{item.Name}}</li>
-                        </template>
-                        <li class="kitchensink-breadcrumb-suggestions__item" value="{{item.AddSiblingTrigger$::click}}" onmousedown="++this.value">+ Add a new type</li>
-                    </ul>
-                </x-crumb>
+                <template is="dom-if" if="{{index}}" restamp>
+                    <span slot="kitchensink/breadcrumb-simple-breadcrumb">&gt;</span>
+                </template>
+                <button slot="kitchensink/breadcrumb-simple-breadcrumb" value="{{item.SelectTrigger$::mouseup}}" onmousedown="++this.value">{{item.Name}}</button>
             </template>
-        </x-breadcrumb>
-        <div slot="kitchensink/breadcrumb-adding-heading">
-            <template is="dom-if" if="{{model.CurrentTreeItem.IsAdd}}" restamp>
-                <h5>Adding a new type in <strong>{{model.CurrentTreeItem.ParentName}}</strong></h5>
-            </template>
-        </div>
-        <div slot="kitchensink/breadcrumb-editing-heading">
-            <template is="dom-if" if="{{!model.CurrentTreeItem.IsAdd}}" restamp>
-                <h5>Editing <strong>{{model.CurrentTreeItem.Name$}}</strong></h5>
-            </template>
-        </div>
-        <label slot="kitchensink/breadcrumb-name-heading">Name</label>
 
-        <input slot="kitchensink/breadcrumb-name-input" type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name">
+            <h2 slot="kitchensink/breadcrumb-navigation-breadcrumb-heading">Breadcrumb with navigation</h2>
 
-        <button slot="kitchensink/breadcrumb-name-save" value="{{model.CurrentTreeItem.SaveTrigger$::click}}" onmousedown="++this.value">Save</button>
-    </template></dom-bind>
+            <p slot="kitchensink/breadcrumb-navigation-breadcrumb-description">
+                It doesn't take much more to add a multidimensional navigation to the breadcrumb. The below example uses
+                <code>template is="dom-repeat"</code> with
+                <code><a href="https://github.com/Juicy/x-breadcrumb">x-breadcrumb</a></code> custom element.
+            </p>
+
+            <x-breadcrumb slot="kitchensink/breadcrumb-navigation-breadcrumb" class="kitchensink-x-breadcrumb">
+                <template is="dom-repeat" items="{{model.Breadcrumbs}}" restamp>
+                    <x-crumb value="{{item.Name}}" search-query="{{item.SearchQuery$}}" dropdown="true" active$="{{item.IsActive}}" ghost$="{{item.IsGhost}}">
+                        <ul class="kitchensink-breadcrumb-suggestions">
+                            <template is="dom-repeat" items="{{item.Siblings}}" restamp>
+                                <li class="kitchensink-breadcrumb-suggestions__item" value="{{item.SelectTrigger$::click}}" onmousedown="++this.value">{{item.Name}}</li>
+                            </template>
+                            <li class="kitchensink-breadcrumb-suggestions__item" value="{{item.AddSiblingTrigger$::click}}" onmousedown="++this.value">+ Add a new type</li>
+                        </ul>
+                    </x-crumb>
+                </template>
+            </x-breadcrumb>
+            <div slot="kitchensink/breadcrumb-adding-heading">
+                <template is="dom-if" if="{{model.CurrentTreeItem.IsAdd}}" restamp>
+                    <h5>
+                        Adding a new type in
+                        <strong>{{model.CurrentTreeItem.ParentName}}</strong>
+                    </h5>
+                </template>
+            </div>
+            <div slot="kitchensink/breadcrumb-editing-heading">
+                <template is="dom-if" if="{{!model.CurrentTreeItem.IsAdd}}" restamp>
+                    <h5>
+                        Editing
+                        <strong>{{model.CurrentTreeItem.Name$}}</strong>
+                    </h5>
+                </template>
+            </div>
+            <label slot="kitchensink/breadcrumb-name-heading">Name</label>
+
+            <input slot="kitchensink/breadcrumb-name-input" type="text" value="{{model.CurrentTreeItem.Name$::change}}" placeholder="Name">
+
+            <button slot="kitchensink/breadcrumb-name-save" value="{{model.CurrentTreeItem.SaveTrigger$::click}}" onmousedown="++this.value">Save</button>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <style>
             @import "/sys/uniform.css/uniform.css";
