@@ -206,6 +206,24 @@
     <Compile Include="FlashMessagePage.json.cs">
       <DependentUpon>FlashMessagePage.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Design\LeftNavLayoutPage.json.cs">
+      <DependentUpon>LeftNavLayoutPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Design\CardPage.json.cs">
+      <DependentUpon>CardPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Design\AlertsPage.json.cs">
+      <DependentUpon>AlertsPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Design\NativePage.json.cs">
+      <DependentUpon>NativePage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Design\TitlePage.json.cs">
+      <DependentUpon>TitlePage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Design\SectionsPage.json.cs">
+      <DependentUpon>SectionsPage.json</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="TextPage.json">
@@ -218,6 +236,24 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
+    <TypedJSON Include="ViewModels\Design\SectionsPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\Design\CardPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\Design\TitlePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\Design\AlertsPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\Design\LeftNavLayoutPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\Design\NativePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -236,6 +272,12 @@
     <None Include="app.config" />
     <None Include="wwwroot\KitchenSink\FlashMessagePage.html" />
     <Content Include="wwwroot\KitchenSink\ClientLocalStatePage.html" />
+    <None Include="wwwroot\KitchenSink\Design\SectionsPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\CardPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\TitlePage.html" />
+    <None Include="wwwroot\KitchenSink\Design\AlertsPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\LeftNavLayoutPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\NativePage.html" />
     <Content Include="wwwroot\KitchenSink\LazyLoadingPage.html" />
     <Content Include="wwwroot\KitchenSink\MainPage.html">
       <SubType>Component</SubType>
@@ -441,6 +483,7 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

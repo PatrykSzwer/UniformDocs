@@ -3,6 +3,7 @@ using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System.IO;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test
 {
@@ -69,6 +70,7 @@ namespace KitchenSink.Tests.Test
             //control test 
             Assert.AreEqual(Driver.WindowHandles.Count, 1);
 
+            WaitUntil(x => ExpectedConditions.ElementToBeClickable(_urlPage.BlankTargettedLink));
             _urlPage.ClickBlankTargettedLink();
 
             System.Threading.Thread.Sleep(500);

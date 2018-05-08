@@ -1,23 +1,31 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/validation-heading">Validation</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/validation-heading">Validation</h1>
 
-        <p slot="kitchensink/validation-description">JSON's primitive value type <code>string</code> can be mapped directly to HTML form <code>input type="text"</code> with require validation.</p>
+            <p slot="kitchensink/validation-description">
+                JSON's primitive value type
+                <code>string</code> can be mapped directly to HTML form
+                <code>input type="text"</code> with require validation.
+            </p>
 
-        <label slot="kitchensink/validation-name-label">Please type your name</label>
+            <label slot="kitchensink/validation-name-label">Please type your name</label>
 
-        <input slot="kitchensink/validation-name-input" type="text" value="{{model.Name$::change}}" placeholder="Name">
-        <label slot="kitchensink/validation-name-error-message">{{model.ErrorName$}}</label>
+            <input slot="kitchensink/validation-name-input" type="text" value="{{model.Name$::change}}" placeholder="Name">
+            <label slot="kitchensink/validation-name-error-message">{{model.ErrorName$}}</label>
 
-        <label slot="kitchensink/validation-last-name-label">Please type your last name</label>
+            <label slot="kitchensink/validation-last-name-label">Please type your last name</label>
 
-        <input slot="kitchensink/validation-last-name-input" type="text" value="{{model.LastName$::change}}" placeholder="Last name">
-        <label slot="kitchensink/validation-last-name-error-message">{{model.ErrorLastName$}}</label>
+            <input slot="kitchensink/validation-last-name-input" type="text" value="{{model.LastName$::change}}" placeholder="Last name">
+            <label slot="kitchensink/validation-last-name-error-message">{{model.ErrorLastName$}}</label>
 
-        <button slot="kitchensink/validation-validate-button" value="{{model.ValidateTrigger$::click}}" onmousedown="++this.value">Validate</button>
-    </template></dom-bind>
+            <button slot="kitchensink/validation-validate-button" value="{{model.ValidateTrigger$::click}}" onmousedown="++this.value">Validate</button>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>

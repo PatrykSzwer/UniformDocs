@@ -1,25 +1,39 @@
 <link rel="import" href="/sys/paper-listbox/paper-listbox.html">
 <link rel="import" href="/sys/paper-item/paper-item.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/github-source-links/github-source-links.html">
 
 <template>
-    <dom-bind><template is="dom-bind">
-        <h1 slot="kitchensink/radiolist-heading">Radiolist</h1>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="kitchensink/radiolist-heading">Radiolist</h1>
 
-        <p slot="kitchensink/radiolist-description">A combination of JSON's primitive value types <code>array</code>, <code>object</code> and <code>number</code> can be mapped to a multiselect control.</p>
+            <p slot="kitchensink/radiolist-description">
+                A combination of JSON's primitive value types
+                <code>array</code>,
+                <code>object</code> and
+                <code>number</code> can be mapped to a multiselect control.
+            </p>
 
-        <p slot="kitchensink/radiolist-description-recommend">We recommend using <a href="https://elements.polymer-project.org/elements/paper-radio-group">paper-radio-group</a> and <a href="https://elements.polymer-project.org/elements/paper-radio">paper-radio</a>, because native <code>input type="radio"</code> lacks an onuncheck event, which makes unchecking not detectable with pure HTML.</p>
+            <p slot="kitchensink/radiolist-description-recommend">
+                We recommend using
+                <a href="https://elements.polymer-project.org/elements/paper-radio-group">paper-radio-group</a> and
+                <a href="https://elements.polymer-project.org/elements/paper-radio">paper-radio</a>, because native
+                <code>input type="radio"</code> lacks an onuncheck event, which makes unchecking not detectable with pure HTML.
+            </p>
 
-        <paper-listbox slot="kitchensink/radiolist-paper-listbox" selected="{{model.SelectedItemIndex$}}">
-            <template is="dom-repeat" items="{{model.MenuOptions}}">
-                <paper-item test-value$="{{item.Label}}">{{item.Label}}</paper-item>
-            </template>
-        </paper-listbox>
+            <paper-listbox slot="kitchensink/radiolist-paper-listbox" selected="{{model.SelectedItemIndex$}}">
+                <template is="dom-repeat" items="{{model.MenuOptions}}">
+                    <paper-item test-value$="{{item.Label}}">{{item.Label}}</paper-item>
+                </template>
+            </paper-listbox>
 
-        <p slot="kitchensink/radiolist-selected-label">Selected item:</p>
-        <span slot="kitchensink/radiolist-selected-item-label">{{model.SelectedItemLabel}}</span>
-        <span slot="kitchensink/radiolist-selected-item-index">({{model.SelectedItemIndex$}})</span>
-    </template></dom-bind>
+            <p slot="kitchensink/radiolist-selected-label">Selected item:</p>
+            <span slot="kitchensink/radiolist-selected-item-label">{{model.SelectedItemLabel}}</span>
+            <span slot="kitchensink/radiolist-selected-item-index">({{model.SelectedItemIndex$}})</span>
+            <github-source-links></github-source-links>
+        </template>
+    </dom-bind>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">

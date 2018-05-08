@@ -4,9 +4,7 @@ namespace KitchenSink
 {
     partial class MainPage : Json
     {
-        protected override void OnData()
-        {
-            base.OnData();
-        }
+        public string AppVersion => Program.GetAppVersionFromAssemblyFile();
+        public string StarcounterVersion => Starcounter.Internal.CurrentVersion.Version;
     }
 }
