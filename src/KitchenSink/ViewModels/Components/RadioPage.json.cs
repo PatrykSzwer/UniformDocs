@@ -8,8 +8,7 @@ namespace KitchenSink.ViewModels.Components
         {
             base.OnData();
 
-            RadioPage.PetsElementJson pet;
-            pet = this.Pets.Add();
+            var pet = this.Pets.Add();
             pet.Label = "dogs";
 
             pet = this.Pets.Add();
