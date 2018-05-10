@@ -14,7 +14,7 @@ namespace KitchenSink.Helpers
         public static readonly ConcurrentDictionary<ulong, UploadTask> Uploads =
             new ConcurrentDictionary<ulong, UploadTask>();
 
-        public static void GET(string Url, Action<UploadTask> UploadingAction)
+        public static void GET(string Url, Action<UploadTask> uploadingAction)
         {
             string url = Url + "?{?}";
 
@@ -42,7 +42,7 @@ namespace KitchenSink.Helpers
                 WebSocket ws = request.SendUpgrade(WebSocketGroupName);
                 var task = new UploadTask(sessionId, fileName, fileSize, parameters);
 
-                task.StateChange += (s, a) => UploadingAction(s as UploadTask);
+                task.StateChange += (s, a) => uploadingAction(s as UploadTask);
 
                 if (!Uploads.TryAdd(ws.ToUInt64(), task))
                 {
@@ -56,7 +56,7 @@ namespace KitchenSink.Helpers
                 return HandlerStatus.Handled;
             }, new HandlerOptions() { SkipRequestFilters = true });
 
-            Handle.WebSocket(WebSocketGroupName, (byte[] data, WebSocket ws) =>
+            Handle.WebSocket(WebSocketGroupName, (data, ws) =>
             {
                 if (!Uploads.ContainsKey(ws.ToUInt64()))
                 {
@@ -86,37 +86,37 @@ namespace KitchenSink.Helpers
         }
 
         private static bool ResolveUploadParameters(
-            string Parameters,
-            out string SessionId,
-            out string FileName,
-            out long FileSize,
-            out string Error)
+            string parameters,
+            out string sessionId,
+            out string fileName,
+            out long fileSize,
+            out string error)
         {
-            FileName = null;
-            FileSize = -1;
-            Error = null;
+            fileName = null;
+            fileSize = -1;
+            error = null;
 
-            NameValueCollection values = HttpUtility.ParseQueryString(Parameters);
+            NameValueCollection values = HttpUtility.ParseQueryString(parameters);
 
-            SessionId = values["sessionid"];
+            sessionId = values["sessionid"];
 
-            if (string.IsNullOrEmpty(SessionId))
+            if (string.IsNullOrEmpty(sessionId))
             {
-                Error = "Invalid or missing sessionid url parameter";
+                error = "Invalid or missing sessionid url parameter";
                 return false;
             }
 
-            FileName = values["filename"];
+            fileName = values["filename"];
 
-            if (string.IsNullOrEmpty(FileName))
+            if (string.IsNullOrEmpty(fileName))
             {
-                Error = "Invalid or missing filename url parameter";
+                error = "Invalid or missing filename url parameter";
                 return false;
             }
 
-            if (!long.TryParse(values["filesize"], out FileSize))
+            if (!long.TryParse(values["filesize"], out fileSize))
             {
-                Error = "Invalid or missing filesize url parameter";
+                error = "Invalid or missing filesize url parameter";
                 return false;
             }
 
@@ -167,12 +167,12 @@ namespace KitchenSink.Helpers
 
             protected FileStream FileStream;
 
-            public UploadTask(string SessionId, string FileName, long FileSize, string QueryString)
+            public UploadTask(string sessionId, string fileName, long fileSize, string queryString)
             {
-                this.SessionId = SessionId;
-                this.FileName = FileName;
-                this.FileSize = FileSize;
-                this.QueryString = QueryString;
+                this.SessionId = sessionId;
+                this.FileName = fileName;
+                this.FileSize = fileSize;
+                this.QueryString = queryString;
 
                 this.State = UploadTaskState.Connected;
                 this.FilePath = Path.GetTempFileName();
@@ -206,29 +206,19 @@ namespace KitchenSink.Helpers
                 }
             }
 
-            public void Write(byte[] Data)
+            public void Write(byte[] data)
             {
                 this.State = UploadTaskState.Uploading;
-                this.FileStream.Write(Data, 0, Data.Length);
+                this.FileStream.Write(data, 0, data.Length);
                 this.FileStream.Flush(true);
                 this.OnUploading();
             }
 
             public void Close()
             {
-                if (this.Progress >= 100)
-                {
-                    this.State = UploadTaskState.Completed;
-                }
-                else
-                {
-                    this.State = UploadTaskState.Error;
-                }
+                this.State = this.Progress >= 100 ? UploadTaskState.Completed : UploadTaskState.Error;
 
-                if (this.FileStream != null)
-                {
-                    this.FileStream.Dispose();
-                }
+                FileStream?.Dispose();
 
                 this.OnUploading();
             }

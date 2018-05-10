@@ -27,8 +27,7 @@ namespace KitchenSink.ViewModels.HowTo
 
         private void CreatePerson(int order, string firstName, string lastName, string favoriteGame = "")
         {
-            LazyLoadingPagePeople person;
-            person = People.Add();
+            var person = People.Add();
             person.Order = order;
             person.FirstName = firstName;
             person.LastName = lastName;
@@ -38,8 +37,8 @@ namespace KitchenSink.ViewModels.HowTo
         [LazyLoadingPage_json.People]
         partial class LazyLoadingPagePeople : Json
         {
-            protected int minDataRetrievalDelay = 300;
-            protected int maxDataRetrievalDelay = 1000;
+            protected int MinDataRetrievalDelay = 300;
+            protected int MaxDataRetrievalDelay = 1000;
 
             public LazyLoadingPage ParentPage => this.Parent.Parent as LazyLoadingPage;
 
@@ -50,9 +49,8 @@ namespace KitchenSink.ViewModels.HowTo
                 if (!this.DataIsLoaded && action.Value != 0)
                 {
                     Random rnd = new Random();
-                    AsyncInputHandlers.Run(() => StartDataRetrieval(rnd.Next(minDataRetrievalDelay, maxDataRetrievalDelay)));
+                    AsyncInputHandlers.Run(() => StartDataRetrieval(rnd.Next(MinDataRetrievalDelay, MaxDataRetrievalDelay)));
                 }
-
             }
 
             private async Task StartDataRetrieval(int delayMilliseconds)

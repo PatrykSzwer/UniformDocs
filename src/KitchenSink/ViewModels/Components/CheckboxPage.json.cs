@@ -9,19 +9,6 @@ namespace KitchenSink.ViewModels.Components
             DefaultTemplate.DrivingLicenseReaction.Bind = nameof(CalculatedDrivingLicenseReaction);
         }
 
-        public string CalculatedDrivingLicenseReaction
-        {
-            get
-            {
-                if (DrivingLicense == true)
-                {
-                    return "You can drive";
-                }
-                else
-                {
-                    return "You can't drive";
-                }
-            }
-        }
+        public string CalculatedDrivingLicenseReaction => DrivingLicense ? "You can drive" : "You can't drive";
     }
 }

@@ -4,14 +4,14 @@ namespace KitchenSink.ViewModels.HowTo
 {
     partial class RedirectPage : Json
     {
-        void Handle(Input.GoToHomePartialTrigger Action)
+        void Handle(Input.GoToHomePartialTrigger action)
         {
             this.MorphUrl = "/KitchenSink";
         }
 
-        void Handle(Input.ChooseFood Action)
+        void Handle(Input.ChooseFood action)
         {
-            switch (Action.Value)
+            switch (action.Value)
             {
                 case "Fruit":
                     this.MorphUrl = "/KitchenSink/Redirect/apple";
@@ -27,7 +27,7 @@ namespace KitchenSink.ViewModels.HowTo
             }
         }
 
-        void Handle(Input.GoToDocsTrigger Action)
+        void Handle(Input.GoToDocsTrigger action)
         {
             this.RedirectUrl = "https://starcounter.io/";
         }

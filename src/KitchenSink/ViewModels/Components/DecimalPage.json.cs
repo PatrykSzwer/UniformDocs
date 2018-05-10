@@ -16,9 +16,6 @@ namespace KitchenSink.ViewModels.Components
             DefaultTemplate.PriceReaction.Bind = nameof(CalculatedPriceReaction);
         }
 
-        public string CalculatedPriceReaction
-        {
-            get { return "5% of tax is " + (Price/20); }
-        }
+        public string CalculatedPriceReaction => "5% of tax is " + (Price / 20);
     }
 }

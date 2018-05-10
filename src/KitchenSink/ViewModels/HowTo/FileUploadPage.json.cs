@@ -13,17 +13,17 @@ namespace KitchenSink.ViewModels.HowTo
             this.SessionId = Session.Current.SessionId;
         }
 
-        public string GetFileSizeString(long Size)
+        public string GetFileSizeString(long inputSize)
         {
-            string[] sizes = new string[] { "Bytes", "KB", "MB", "GB", "TB" };
+            string[] sizes = { "Bytes", "KB", "MB", "GB", "TB" };
 
-            if (Size == 0)
+            if (inputSize == 0)
             {
                 return "0 Byte";
             }
 
-            int i = (int)(Math.Floor(Math.Log(Size) / Math.Log(1024)));
-            string size = Math.Round(Size / Math.Pow(1024, i), 2) + " " + sizes[i];
+            int i = (int)(Math.Floor(Math.Log(inputSize) / Math.Log(1024)));
+            string size = Math.Round(inputSize / Math.Pow(1024, i), 2) + " " + sizes[i];
 
             return size;
         }
@@ -36,17 +36,11 @@ namespace KitchenSink.ViewModels.HowTo
                 DefaultTemplate.FileSizeString.Bind = nameof(FileSizeStringBind);
             }
 
-            public FileUploadPage ParentPage
-            {
-                get { return this.Parent.Parent as FileUploadPage; }
-            }
+            public FileUploadPage ParentPage => this.Parent.Parent as FileUploadPage;
 
-            public string FileSizeStringBind
-            {
-                get { return this.ParentPage.GetFileSizeString(this.FileSize); }
-            }
+            public string FileSizeStringBind => this.ParentPage.GetFileSizeString(this.FileSize);
 
-            void Handle(Input.DeleteTrigger Action)
+            void Handle(Input.DeleteTrigger action)
             {
                 if (File.Exists(this.FilePath))
                 {
@@ -65,15 +59,9 @@ namespace KitchenSink.ViewModels.HowTo
                 DefaultTemplate.FileSizeString.Bind = "FileSizeStringBind";
             }
 
-            public FileUploadPage ParentPage
-            {
-                get { return this.Parent.Parent as FileUploadPage; }
-            }
+            public FileUploadPage ParentPage => this.Parent.Parent as FileUploadPage;
 
-            public string FileSizeStringBind
-            {
-                get { return this.ParentPage.GetFileSizeString(this.FileSize); }
-            }
+            public string FileSizeStringBind => this.ParentPage.GetFileSizeString(this.FileSize);
         }
     }
 }

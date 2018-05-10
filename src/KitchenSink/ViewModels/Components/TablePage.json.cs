@@ -8,8 +8,7 @@ namespace KitchenSink.ViewModels.Components
         {
             base.OnData();
 
-            TablePage.PetsElementJson pet;
-            pet = this.Pets.Add();
+            var pet = this.Pets.Add();
             pet.Name = "Rocky";
             pet.Kind = "Dog";
 

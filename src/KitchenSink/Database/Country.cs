@@ -10,7 +10,7 @@ namespace KitchenSink.Database
             CapitalName = capitalName;
         }
 
-        public String Name { get; set; }
-        public String CapitalName { get; set; }
+        public string Name { get; set; }
+        public string CapitalName { get; set; }
     }
 }

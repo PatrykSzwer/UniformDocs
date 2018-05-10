@@ -9,9 +9,6 @@ namespace KitchenSink.ViewModels.Components
             DefaultTemplate.BioReaction.Bind = nameof(CalculatedBioReaction);
         }
 
-        public string CalculatedBioReaction
-        {
-            get { return "Length of your bio: " + Bio.Length + " chars"; }
-        }
+        public string CalculatedBioReaction => "Length of your bio: " + Bio.Length + " chars";
     }
 }

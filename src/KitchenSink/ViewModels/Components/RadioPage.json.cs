@@ -26,9 +26,6 @@ namespace KitchenSink.ViewModels.Components
             DefaultTemplate.PetReaction.Bind = nameof(CalculatedPetReaction);
         }
 
-        public string CalculatedPetReaction
-        {
-            get { return "You like " + SelectedPet; }
-        }
+        public string CalculatedPetReaction => "You like " + SelectedPet;
     }
 }

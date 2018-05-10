@@ -8,8 +8,7 @@ namespace KitchenSink.ViewModels.HowTo
         {
             base.OnData();
 
-            ClientLocalStatePage.PeopleElementJson person;
-            person = this.People.Add();
+            var person = this.People.Add();
             person.Name = "John Doe";
 
             person = this.People.Add();

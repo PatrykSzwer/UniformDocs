@@ -5,7 +5,7 @@ namespace KitchenSink.ViewModels.HowTo
 {
     partial class CallbackPage : Page
     {
-        protected int timeout = 1000;
+        protected int Timeout = 1000;
 
         protected override void OnData()
         {
@@ -17,25 +17,25 @@ namespace KitchenSink.ViewModels.HowTo
             this.Items.Add();
         }
 
-        protected void Handle(Input.SaveTrigger Action)
+        protected void Handle(Input.SaveTrigger action)
         {
-            Action.Cancel();
-            System.Threading.Thread.CurrentThread.Join(timeout);
+            action.Cancel();
+            System.Threading.Thread.CurrentThread.Join(Timeout);
         }
 
-        protected void Handle(Input.SaveAndSpinTrigger Action)
+        protected void Handle(Input.SaveAndSpinTrigger action)
         {
-            Action.Cancel();
-            System.Threading.Thread.CurrentThread.Join(timeout);
+            action.Cancel();
+            System.Threading.Thread.CurrentThread.Join(Timeout);
         }
 
-        protected void Handle(Input.SaveAndMessageTrigger Action)
+        protected void Handle(Input.SaveAndMessageTrigger action)
         {
-            Action.Cancel();
+            action.Cancel();
 
             this.ErrorMessage = string.Empty;
             this.SuccessMessage = string.Empty;
-            System.Threading.Thread.CurrentThread.Join(timeout);
+            System.Threading.Thread.CurrentThread.Join(Timeout);
 
             if (DateTime.Now.Ticks % 2 == 0)
             {
@@ -50,27 +50,27 @@ namespace KitchenSink.ViewModels.HowTo
         [CallbackPage_json.Items]
         partial class CallbackPageItem
         {
-            protected int timeout = 1000;
+            protected int Timeout = 1000;
 
-            protected void Handle(Input.SaveTrigger Action)
+            protected void Handle(Input.SaveTrigger action)
             {
-                Action.Cancel();
-                System.Threading.Thread.CurrentThread.Join(timeout);
+                action.Cancel();
+                System.Threading.Thread.CurrentThread.Join(Timeout);
             }
 
-            protected void Handle(Input.SaveAndSpinTrigger Action)
+            protected void Handle(Input.SaveAndSpinTrigger action)
             {
-                Action.Cancel();
-                System.Threading.Thread.CurrentThread.Join(timeout);
+                action.Cancel();
+                System.Threading.Thread.CurrentThread.Join(Timeout);
             }
 
-            protected void Handle(Input.SaveAndMessageTrigger Action)
+            protected void Handle(Input.SaveAndMessageTrigger action)
             {
-                Action.Cancel();
+                action.Cancel();
 
                 this.ErrorMessage = string.Empty;
                 this.SuccessMessage = string.Empty;
-                System.Threading.Thread.CurrentThread.Join(timeout);
+                System.Threading.Thread.CurrentThread.Join(Timeout);
 
                 if (DateTime.Now.Ticks % 2 == 0)
                 {

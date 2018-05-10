@@ -7,8 +7,7 @@ namespace KitchenSink.ViewModels.Components
 {
     partial class AutocompletePage
     {
-        private static readonly Country[] AvailableCountries = new[]
-        {
+        private static readonly Country[] AvailableCountries = {
             new Country("Poland", "Warsaw"),
             new Country("Sweden", "Stockholm"),
             new Country("Germany", "Berlin"),
