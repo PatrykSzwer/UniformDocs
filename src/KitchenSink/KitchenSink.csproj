@@ -85,20 +85,20 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutocompletePage.json.cs">
+    <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
     </Compile>
-    <Compile Include="BreadcrumbPage.json.cs">
+    <Compile Include="ViewModels\Components\BreadcrumbPage.json.cs">
       <DependentUpon>BreadcrumbPage.json</DependentUpon>
     </Compile>
     <Compile Include="BreadcrumbTestData.cs" />
-    <Compile Include="ButtonPage.json.cs">
+    <Compile Include="ViewModels\Components\ButtonPage.json.cs">
       <DependentUpon>ButtonPage.json</DependentUpon>
     </Compile>
     <Compile Include="CallbackPage.json.cs">
       <DependentUpon>CallbackPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ChartPage.json.cs">
+    <Compile Include="ViewModels\Components\ChartPage.json.cs">
       <DependentUpon>ChartPage.json</DependentUpon>
     </Compile>
     <Compile Include="ClientLocalStatePage.json.cs">
@@ -111,7 +111,7 @@
     <Compile Include="MainPage.json.cs">
       <DependentUpon>MainPage.json</DependentUpon>
     </Compile>
-    <Compile Include="PaginationPage.json.cs">
+    <Compile Include="ViewModels\Components\PaginationPage.json.cs">
       <DependentUpon>PaginationPage.json</DependentUpon>
     </Compile>
     <Compile Include="ProgressBarPage.json.cs">
@@ -120,17 +120,17 @@
     <Compile Include="ValidationPage.json.cs">
       <DependentUpon>ValidationPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ToggleButtonPage.json.cs">
+    <Compile Include="ViewModels\Components\ToggleButtonPage.json.cs">
       <DependentUpon>ToggleButtonPage.json</DependentUpon>
     </Compile>
-    <Compile Include="CheckboxPage.json.cs">
+    <Compile Include="ViewModels\Components\CheckboxPage.json.cs">
       <DependentUpon>CheckboxPage.json</DependentUpon>
     </Compile>
     <Compile Include="CookiePage.json.cs">
       <DependentUpon>CookiePage.json</DependentUpon>
     </Compile>
     <Compile Include="Country.cs" />
-    <Compile Include="DatepickerPage.json.cs">
+    <Compile Include="ViewModels\Components\DatepickerPage.json.cs">
       <DependentUpon>DatepickerPage.json</DependentUpon>
     </Compile>
     <Compile Include="DialogPage.json.cs">
@@ -140,52 +140,52 @@
       <DependentUpon>FileUploadPage.json</DependentUpon>
     </Compile>
     <Compile Include="HandleFile.cs" />
-    <Compile Include="HtmlPage.json.cs">
+    <Compile Include="ViewModels\Components\HtmlPage.json.cs">
       <DependentUpon>HtmlPage.json</DependentUpon>
     </Compile>
-    <Compile Include="GeoPage.json.cs">
+    <Compile Include="ViewModels\Components\GeoPage.json.cs">
       <DependentUpon>GeoPage.json</DependentUpon>
     </Compile>
-    <Compile Include="MarkdownPage.json.cs">
+    <Compile Include="ViewModels\Components\MarkdownPage.json.cs">
       <DependentUpon>MarkdownPage.json</DependentUpon>
     </Compile>
     <Compile Include="AppMenuPage.json.cs">
       <DependentUpon>AppMenuPage.json</DependentUpon>
     </Compile>
-    <Compile Include="MultiselectPage.json.cs">
+    <Compile Include="ViewModels\Components\MultiselectPage.json.cs">
       <DependentUpon>MultiselectPage.json</DependentUpon>
     </Compile>
     <Compile Include="NestedPartial.json.cs">
       <DependentUpon>NestedPartial.json</DependentUpon>
     </Compile>
-    <Compile Include="PasswordPage.json.cs">
+    <Compile Include="ViewModels\Components\PasswordPage.json.cs">
       <DependentUpon>PasswordPage.json</DependentUpon>
     </Compile>
-    <Compile Include="IntegerPage.json.cs">
+    <Compile Include="ViewModels\Components\IntegerPage.json.cs">
       <DependentUpon>IntegerPage.json</DependentUpon>
     </Compile>
-    <Compile Include="RadiolistPage.json.cs">
+    <Compile Include="ViewModels\Components\RadiolistPage.json.cs">
       <DependentUpon>RadiolistPage.json</DependentUpon>
     </Compile>
-    <Compile Include="DropdownPage.json.cs">
+    <Compile Include="ViewModels\Components\DropdownPage.json.cs">
       <DependentUpon>DropdownPage.json</DependentUpon>
     </Compile>
     <Compile Include="NavPage.json.cs">
       <DependentUpon>NavPage.json</DependentUpon>
     </Compile>
-    <Compile Include="RadioPage.json.cs">
+    <Compile Include="ViewModels\Components\RadioPage.json.cs">
       <DependentUpon>RadioPage.json</DependentUpon>
     </Compile>
     <Compile Include="RedirectPage.json.cs">
       <DependentUpon>RedirectPage.json</DependentUpon>
     </Compile>
-    <Compile Include="TablePage.json.cs">
+    <Compile Include="ViewModels\Components\TablePage.json.cs">
       <DependentUpon>TablePage.json</DependentUpon>
     </Compile>
-    <Compile Include="TextareaPage.json.cs">
+    <Compile Include="ViewModels\Components\TextareaPage.json.cs">
       <DependentUpon>TextareaPage.json</DependentUpon>
     </Compile>
-    <Compile Include="TextPage.json.cs">
+    <Compile Include="ViewModels\Components\TextPage.json.cs">
       <DependentUpon>TextPage.json</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.json.cs">
@@ -193,13 +193,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UrlPage.json.cs">
+    <Compile Include="ViewModels\Components\UrlPage.json.cs">
       <DependentUpon>UrlPage.json</DependentUpon>
     </Compile>
-    <Compile Include="DecimalPage.json.cs">
+    <Compile Include="ViewModels\Components\DecimalPage.json.cs">
       <DependentUpon>DecimalPage.json</DependentUpon>
     </Compile>
-    <Compile Include="DatagridPage.json.cs">
+    <Compile Include="ViewModels\Components\DatagridPage.json.cs">
       <DependentUpon>DatagridPage.json</DependentUpon>
     </Compile>
     <Compile Include="ValidatorHelper.cs" />
@@ -226,7 +226,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="TextPage.json">
+    <TypedJSON Include="ViewModels\Components\TextPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -259,10 +259,10 @@
     </None>
     <Content Include="wwwroot\KitchenSink\AppIcon.html" />
     <Content Include="wwwroot\KitchenSink\AppMenuPage.html" />
-    <Content Include="wwwroot\KitchenSink\BreadcrumbPage.html" />
-    <Content Include="wwwroot\KitchenSink\ButtonPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\BreadcrumbPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\ButtonPage.html" />
     <Content Include="wwwroot\KitchenSink\CallbackPage.html" />
-    <Content Include="wwwroot\KitchenSink\ChartPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\ChartPage.html" />
     <TypedJSON Include="FlashMessagePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
@@ -283,38 +283,38 @@
       <SubType>Component</SubType>
     </Content>
     <Content Include="wwwroot\KitchenSink\NavPage.html" />
-    <Content Include="wwwroot\KitchenSink\PaginationPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\PaginationPage.html" />
     <Content Include="wwwroot\KitchenSink\ProgressBarPage.html" />
     <Content Include="wwwroot\KitchenSink\ValidationPage.html" />
-    <Content Include="wwwroot\KitchenSink\ToggleButtonPage.html" />
-    <Content Include="wwwroot\KitchenSink\CheckboxPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\ToggleButtonPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\CheckboxPage.html" />
     <Content Include="wwwroot\KitchenSink\CookiePage.html" />
-    <Content Include="wwwroot\KitchenSink\DatagridPage.html" />
-    <Content Include="wwwroot\KitchenSink\DatepickerPage.html" />
-    <Content Include="wwwroot\KitchenSink\DecimalPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\DatagridPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\DatepickerPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\DecimalPage.html" />
     <Content Include="wwwroot\KitchenSink\DialogPage.html" />
-    <Content Include="wwwroot\KitchenSink\AutocompletePage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\AutocompletePage.html" />
     <Content Include="wwwroot\KitchenSink\FileUploadPage.html" />
-    <Content Include="wwwroot\KitchenSink\HtmlPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\HtmlPage.html" />
     <Content Include="wwwroot\KitchenSink\MasterPage.html" />
-    <Content Include="wwwroot\KitchenSink\GeoPage.html" />
-    <Content Include="wwwroot\KitchenSink\MarkdownPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\GeoPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\MarkdownPage.html" />
     <Content Include="wwwroot\KitchenSink\NestedPartial.html" />
-    <Content Include="wwwroot\KitchenSink\PasswordPage.html" />
-    <Content Include="wwwroot\KitchenSink\MultiselectPage.html" />
-    <Content Include="wwwroot\KitchenSink\RadiolistPage.html" />
-    <Content Include="wwwroot\KitchenSink\DropdownPage.html" />
-    <Content Include="wwwroot\KitchenSink\IntegerPage.html" />
-    <Content Include="wwwroot\KitchenSink\RadioPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\PasswordPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\MultiselectPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\RadiolistPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\DropdownPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\IntegerPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\RadioPage.html" />
     <Content Include="wwwroot\KitchenSink\RedirectPage.html" />
-    <Content Include="wwwroot\KitchenSink\TablePage.html" />
-    <Content Include="wwwroot\KitchenSink\TextareaPage.html" />
-    <Content Include="wwwroot\KitchenSink\TextPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\TablePage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\TextareaPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\TextPage.html" />
     <Content Include="wwwroot\KitchenSink\style.css" />
-    <Content Include="wwwroot\KitchenSink\UrlPage.html" />
+    <Content Include="wwwroot\KitchenSink\Components\UrlPage.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="RadiolistPage.json">
+    <TypedJSON Include="ViewModels\Components\RadiolistPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -324,77 +324,77 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="PasswordPage.json">
+    <TypedJSON Include="ViewModels\Components\PasswordPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="IntegerPage.json">
+    <TypedJSON Include="ViewModels\Components\IntegerPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="DropdownPage.json">
+    <TypedJSON Include="ViewModels\Components\DropdownPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="CheckboxPage.json">
+    <TypedJSON Include="ViewModels\Components\CheckboxPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="TextareaPage.json">
+    <TypedJSON Include="ViewModels\Components\TextareaPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="UrlPage.json">
+    <TypedJSON Include="ViewModels\Components\UrlPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="MarkdownPage.json">
+    <TypedJSON Include="ViewModels\Components\MarkdownPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="HtmlPage.json">
+    <TypedJSON Include="ViewModels\Components\HtmlPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="RadioPage.json">
+    <TypedJSON Include="ViewModels\Components\RadioPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="ButtonPage.json">
+    <TypedJSON Include="ViewModels\Components\ButtonPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="DecimalPage.json">
+    <TypedJSON Include="ViewModels\Components\DecimalPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="TablePage.json">
+    <TypedJSON Include="ViewModels\Components\TablePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="DatagridPage.json">
+    <TypedJSON Include="ViewModels\Components\DatagridPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="ChartPage.json">
+    <TypedJSON Include="ViewModels\Components\ChartPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="GeoPage.json">
+    <TypedJSON Include="ViewModels\Components\GeoPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -404,12 +404,12 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="MultiselectPage.json">
+    <TypedJSON Include="ViewModels\Components\MultiselectPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="DatepickerPage.json">
+    <TypedJSON Include="ViewModels\Components\DatepickerPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -424,7 +424,7 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="BreadcrumbPage.json">
+    <TypedJSON Include="ViewModels\Components\BreadcrumbPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -454,12 +454,12 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="AutocompletePage.json">
+    <TypedJSON Include="ViewModels\Components\AutocompletePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="ToggleButtonPage.json">
+    <TypedJSON Include="ViewModels\Components\ToggleButtonPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
@@ -476,7 +476,7 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <None Include="packages.config" />
-    <TypedJSON Include="PaginationPage.json">
+    <TypedJSON Include="ViewModels\Components\PaginationPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <TypedJSON Include="ProgressBarPage.json">

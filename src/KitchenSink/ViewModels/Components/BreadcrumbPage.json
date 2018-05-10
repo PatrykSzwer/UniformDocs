@@ -1,0 +1,27 @@
+{
+  "Html": "/KitchenSink/Components/BreadcrumbPage.html",
+
+  "Breadcrumbs": [
+    {
+      "Name": "",
+      "SearchQuery$": "",
+      "IsActive": false,
+      "IsGhost": false,
+      "IsAdd": false,
+      "SelectTrigger$": 0,
+      "Siblings": [
+        {
+          "Name": "",
+          "SelectTrigger$": 0
+        }
+      ],
+      "AddSiblingTrigger$": 0
+    }
+  ],
+  "CurrentTreeItem": {
+    "Name$": "",
+    "IsAdd": false,
+    "ParentName": "",
+    "SaveTrigger$": 0
+  }
+}

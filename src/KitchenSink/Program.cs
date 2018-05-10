@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using KitchenSink.ViewModels.Components;
 using KitchenSink.ViewModels.Design;
 using Starcounter;
 

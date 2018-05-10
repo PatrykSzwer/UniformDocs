@@ -1,0 +1,11 @@
+{
+  "Html": "/KitchenSink/Components/RadioPage.html",
+
+  "Pets": [
+    { "Label": "" }
+  ],
+
+  "SelectedPet$": "",
+
+  "PetReaction": ""
+}

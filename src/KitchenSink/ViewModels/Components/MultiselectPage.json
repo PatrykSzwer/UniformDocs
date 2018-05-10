@@ -1,0 +1,10 @@
+{
+  "Html": "/KitchenSink/Components/MultiselectPage.html",
+  "Countries": [
+    {
+      "Name": "",
+      "Selected$": false
+    }
+  ],
+  "FavoriteCountry$": ""
+}
