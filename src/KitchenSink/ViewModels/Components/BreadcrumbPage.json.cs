@@ -2,26 +2,17 @@ using Starcounter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KitchenSink.Database;
 
-namespace KitchenSink
+namespace KitchenSink.ViewModels.Components
 {
-    [Database]
-    public class TreeItem
-    {
-        public string Name { get; set; }
-        public TreeItem Parent { get; set; }
-
-        public IEnumerable<TreeItem> Children =>
-            Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ?", this);
-    }
-
     partial class BreadcrumbPage : Json
     {
         protected override void OnData()
         {
             base.OnData();
 
-            var treeItem = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent IS NOT NULL FETCH ?", 1).FirstOrDefault();
+            var treeItem = Db.SQL<TreeItem>("SELECT i FROM KitchenSink.Database.TreeItem i WHERE Parent IS NOT NULL FETCH ?", 1).FirstOrDefault();
             SetActiveItem(treeItem);
         }
 
@@ -30,7 +21,7 @@ namespace KitchenSink
             RebuildBreadcrumb(treeItem, isAdd);
             CurrentTreeItem.Data = treeItem;
             CurrentTreeItem.IsAdd = isAdd;
-            CurrentTreeItem.ParentName = treeItem.Parent.Name; 
+            CurrentTreeItem.ParentName = treeItem.Parent.Name;
         }
 
         public void RebuildBreadcrumb(TreeItem treeItem, bool isAdd)
@@ -90,7 +81,7 @@ namespace KitchenSink
                 }
                 else if (IsGhost)
                 {
-                    var count = Db.SlowSQL<Int64>("SELECT COUNT(*) FROM TreeItem i WHERE Parent = ?", ParentItem).FirstOrDefault();
+                    var count = Db.SlowSQL<Int64>("SELECT COUNT(*) FROM KitchenSink.Database.TreeItem i WHERE Parent = ?", ParentItem).FirstOrDefault();
                     return count + " children";
                 }
                 else if (Data != null)
@@ -112,14 +103,14 @@ namespace KitchenSink
         {
             if (Data != null)
             {
-                var breadcrumbPage = (BreadcrumbPage) Parent.Parent;
+                var breadcrumbPage = (BreadcrumbPage)Parent.Parent;
                 breadcrumbPage.SetActiveItem(Data);
             }
         }
 
         void Handle(Input.AddSiblingTrigger action)
         {
-            var breadcrumbPage = (BreadcrumbPage) Parent.Parent;
+            var breadcrumbPage = (BreadcrumbPage)Parent.Parent;
             var item = new TreeItem()
             {
                 Parent = ParentItem
@@ -139,12 +130,12 @@ namespace KitchenSink
             IEnumerable<TreeItem> result;
             if (query.Length > 0)
             {
-                result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? AND Name LIKE ? FETCH ?",
+                result = Db.SQL<TreeItem>("SELECT i FROM KitchenSink.Database.TreeItem i WHERE Parent = ? AND Name LIKE ? FETCH ?",
                     ParentItem, query + "%", 5);
             }
             else
             {
-                result = Db.SQL<TreeItem>("SELECT i FROM TreeItem i WHERE Parent = ? FETCH ?", ParentItem, 5);
+                result = Db.SQL<TreeItem>("SELECT i FROM KitchenSink.Database.TreeItem i WHERE Parent = ? FETCH ?", ParentItem, 5);
             }
 
             Siblings.Data = result;
@@ -156,7 +147,7 @@ namespace KitchenSink
     {
         void Handle(Input.SelectTrigger action)
         {
-            var breadcrumbPage = (BreadcrumbPage) Parent.Parent.Parent.Parent;
+            var breadcrumbPage = (BreadcrumbPage)Parent.Parent.Parent.Parent;
             breadcrumbPage.SetActiveItem(Data);
         }
     }
@@ -167,7 +158,7 @@ namespace KitchenSink
         void Handle(Input.SaveTrigger action)
         {
             Transaction.Commit();
-            var breadcrumbPage = (BreadcrumbPage) Parent;
+            var breadcrumbPage = (BreadcrumbPage)Parent;
             breadcrumbPage.SetActiveItem(Data);
         }
     }

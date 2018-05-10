@@ -1,16 +1,9 @@
 using Starcounter;
 using System.Linq;
+using KitchenSink.Database;
 
 namespace KitchenSink.ViewModels.Components
 {
-    [Database]
-    public class Book
-    {
-        public string Author { get; set; }
-        public string Title { get; set; }
-        public long Position { get; set; }
-    }
-
     partial class PaginationPage : Json
     {
         protected override void OnData()
@@ -23,7 +16,7 @@ namespace KitchenSink.ViewModels.Components
             SetPageEntries();
         }
 
-        public long TotalEntries = Db.SQL<long>("SELECT COUNT(e) FROM KitchenSink.ViewModels.Components.Book e").FirstOrDefault();
+        public long TotalEntries = Db.SQL<long>("SELECT COUNT(e) FROM KitchenSink.Database.Book e").FirstOrDefault();
 
         void Handle(Input.EntriesPerPage action)
         {
@@ -149,7 +142,7 @@ namespace KitchenSink.ViewModels.Components
 
         private void GetNewPage()
         {
-            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.ViewModels.Components.Book b ORDER BY b.Position FETCH ? OFFSET ?", this.EntriesPerPage, this.CurrentOffset);
+            this.Library.Data = Db.SQL<Book>("SELECT b FROM KitchenSink.Database.Book b ORDER BY b.Position FETCH ? OFFSET ?", this.EntriesPerPage, this.CurrentOffset);
             CreateNavButtons();
         }
     }

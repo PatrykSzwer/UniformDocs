@@ -1,26 +1,14 @@
 using System.Linq;
+using KitchenSink.Database;
 using Starcounter;
 
 namespace KitchenSink.ViewModels.Components
 {
-    [Database]
-    public class SoftwareProduct
-    {
-        public string Name { get; set; }
-        public string Key
-        {
-            get
-            {
-                return this.GetObjectID();
-            }
-        }
-    }
-
     partial class DropdownPage : Json
     {
         static DropdownPage()
         {
-            DropdownPage.DefaultTemplate.SelectedProductKey.Bind = nameof(SelectedProductKeyBind);
+            DefaultTemplate.SelectedProductKey.Bind = nameof(SelectedProductKeyBind);
             DefaultTemplate.PetReaction.Bind = nameof(CalculatedPetReaction);
         }
 
@@ -28,8 +16,7 @@ namespace KitchenSink.ViewModels.Components
         {
             base.OnData();
 
-            DropdownPage.PetsElementJson pet;
-            pet = this.Pets.Add();
+            DropdownPage.PetsElementJson pet = this.Pets.Add();
             pet.Label = "dogs";
 
             pet = this.Pets.Add();
@@ -40,8 +27,8 @@ namespace KitchenSink.ViewModels.Components
 
             this.SelectedPet = "dogs";
 
-            this.Products.Data = Db.SQL("SELECT p FROM KitchenSink.ViewModels.Components.SoftwareProduct p ORDER BY p.Name");
-            this.SelectedProduct.Data = Db.SQL("SELECT p FROM KitchenSink.ViewModels.Components.SoftwareProduct p WHERE p.Name = ?", "Starcounter Database").FirstOrDefault();
+            this.Products.Data = Db.SQL("SELECT p FROM KitchenSink.Database.SoftwareProduct p ORDER BY p.Name");
+            this.SelectedProduct.Data = Db.SQL("SELECT p FROM KitchenSink.Database.SoftwareProduct p WHERE p.Name = ?", "Starcounter Database").FirstOrDefault();
         }
 
         public string CalculatedPetReaction => $"You like { SelectedPet}";

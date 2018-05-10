@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
+using KitchenSink.Helpers;
+using KitchenSink.ViewModels;
 using KitchenSink.ViewModels.Components;
 using KitchenSink.ViewModels.Design;
+using KitchenSink.ViewModels.HowTo;
 using Starcounter;
 
 namespace KitchenSink

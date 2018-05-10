@@ -1,16 +1,10 @@
 using System;
 using System.Linq;
+using KitchenSink.Database;
 using Starcounter;
 
 namespace KitchenSink.ViewModels.Components
 {
-    [Database]
-    public class GroceryProduct
-    {
-        public decimal Price { get; set; }
-        public string Name { get; set; }
-    }
-
     partial class AutocompletePage
     {
         private static readonly Country[] AvailableCountries = new[]
@@ -27,7 +21,7 @@ namespace KitchenSink.ViewModels.Components
         public void Handle(Input.ProductsSearch action)
         {
             var searchTerm = action.Value == "*" ? "%" : $"%{action.Value}%";
-            this.FoundProducts.Data = Db.SQL("SELECT i FROM KitchenSink.ViewModels.Components.GroceryProduct i WHERE Name LIKE ?", searchTerm);
+            this.FoundProducts.Data = Db.SQL("SELECT i FROM KitchenSink.Database.GroceryProduct i WHERE Name LIKE ?", searchTerm);
             foreach (var product in FoundProducts)
             {
                 product.SelectAction = () =>

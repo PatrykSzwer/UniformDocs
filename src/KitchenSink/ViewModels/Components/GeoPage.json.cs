@@ -1,15 +1,9 @@
 using System.Linq;
+using KitchenSink.Database;
 using Starcounter;
 
 namespace KitchenSink.ViewModels.Components
 {
-    [Database]
-    public class GeoCoordinates
-    {
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-    }
-
     partial class GeoPage : Json
     {
         //Stockholm coordinates
@@ -18,8 +12,8 @@ namespace KitchenSink.ViewModels.Components
 
         public void Init()
         {
-            Position.Data = Db.SQL<GeoCoordinates>("SELECT gp FROM GeoCoordinates gp").FirstOrDefault()
-                            ?? new GeoCoordinates
+            Position.Data = Db.SQL<MapCoordinates>("SELECT gp FROM KitchenSink.Database.MapCoordinates gp").FirstOrDefault()
+                            ?? new MapCoordinates
                             {
                                 Latitude = DefaultLatitude,
                                 Longitude = DefaultLongitude
@@ -28,16 +22,17 @@ namespace KitchenSink.ViewModels.Components
     }
 
     [GeoPage_json.Position]
-    partial class GeoPagePosition : Json, IBound<GeoCoordinates>
+    partial class GeoPagePosition : Json, IBound<MapCoordinates>
     {
-        static GeoPagePosition() {
+        static GeoPagePosition()
+        {
             DefaultTemplate.Latitude.InstanceType = typeof(double);
             DefaultTemplate.Longitude.InstanceType = typeof(double);
         }
 
         public void Handle(Input.ResetTrigger action)
         {
-            var geoPageParent = (GeoPage) Parent;
+            var geoPageParent = (GeoPage)Parent;
             Latitude = geoPageParent.DefaultLatitude;
             Longitude = geoPageParent.DefaultLongitude;
             PushChanges();
