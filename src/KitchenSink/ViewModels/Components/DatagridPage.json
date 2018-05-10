@@ -1,0 +1,13 @@
+{
+  "Html": "/KitchenSink/Components/DatagridPage.html",
+
+  "Pets": [
+    {
+      "Name$": "",
+      "Kind$": "",
+      "Feature": ""
+    }
+  ],
+
+  "AddPetTrigger$": 0
+}

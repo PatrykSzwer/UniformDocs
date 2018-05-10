@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Linq;
+using KitchenSink.Helpers;
+using KitchenSink.ViewModels;
+using KitchenSink.ViewModels.Components;
 using KitchenSink.ViewModels.Design;
+using KitchenSink.ViewModels.HowTo;
 using Starcounter;
 
 namespace KitchenSink
@@ -15,6 +19,9 @@ namespace KitchenSink
 
             DummyData.Create();
 
+            Blender.MapUri("/KitchenSink/menu", string.Empty, new[] { "menu" });
+            Blender.MapUri("/KitchenSink/app-name", string.Empty, new[] { "app", "icon" });
+
             // just to offer a REST endpoint that gives the app version, usable for diagnostics
             // (currently used in github-source-links)
             Handle.GET("/KitchenSink/kitchensink-app-version", () => GetAppVersionFromAssemblyFile());
@@ -24,6 +31,12 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/mainpage", () => WrapPage<MainPage>("/KitchenSink/partial/mainpage"));
 
             Handle.GET("/KitchenSink", () => Self.GET("/KitchenSink/mainpage"));
+
+            Handle.GET("/KitchenSink/nav", () => new NavPage(), new HandlerOptions() { SelfOnly = true });
+
+            Handle.GET("/KitchenSink/app-name", () => new AppName());
+
+            Handle.GET("/KitchenSink/menu", () => new AppMenuPage());
 
             #region Design
 
@@ -47,12 +60,17 @@ namespace KitchenSink
 
             #endregion
 
-            Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
-            Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));
+            #region Components
+
+            Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage()));
+            Handle.GET("/KitchenSink/autocomplete", () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
 
             Handle.GET("/KitchenSink/partial/breadcrumb",
                 () => { return Db.Scope(() => new BreadcrumbPage()); });
             Handle.GET("/KitchenSink/breadcrumb", () => WrapPage<BreadcrumbPage>("/KitchenSink/partial/breadcrumb"));
+
+            Handle.GET("/KitchenSink/partial/button", () => new ButtonPage());
+            Handle.GET("/KitchenSink/button", () => WrapPage<ButtonPage>("/KitchenSink/partial/button"));
 
             Handle.GET("/KitchenSink/partial/chart", () => new ChartPage());
             Handle.GET("/KitchenSink/chart", () => WrapPage<ChartPage>("/KitchenSink/partial/chart"));
@@ -60,24 +78,26 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/checkbox", () => new CheckboxPage());
             Handle.GET("/KitchenSink/checkbox", () => WrapPage<CheckboxPage>("/KitchenSink/partial/checkbox"));
 
-            Handle.GET("/KitchenSink/partial/togglebutton", () => new ToggleButtonPage());
-            Handle.GET("/KitchenSink/togglebutton",
-                () => WrapPage<ToggleButtonPage>("/KitchenSink/partial/togglebutton"));
-
             Handle.GET("/KitchenSink/partial/datagrid", () => new DatagridPage());
             Handle.GET("/KitchenSink/datagrid", () => WrapPage<DatagridPage>("/KitchenSink/partial/datagrid"));
 
-            Handle.GET("/KitchenSink/partial/decimal", () => new DecimalPage());
-            Handle.GET("/KitchenSink/decimal", () => WrapPage<DecimalPage>("/KitchenSink/partial/decimal"));
+            Handle.GET("/KitchenSink/partial/datepicker", () => new DatepickerPage());
+            Handle.GET("/KitchenSink/datepicker", () => WrapPage<DatepickerPage>("/KitchenSink/partial/datepicker"));
 
             Handle.GET("/KitchenSink/partial/dropdown", () => new DropdownPage());
             Handle.GET("/KitchenSink/dropdown", () => WrapPage<DropdownPage>("/KitchenSink/partial/dropdown"));
+
+            Handle.GET("/KitchenSink/partial/decimal", () => new DecimalPage());
+            Handle.GET("/KitchenSink/decimal", () => WrapPage<DecimalPage>("/KitchenSink/partial/decimal"));
 
             Handle.GET("/KitchenSink/partial/html", () => new HtmlPage());
             Handle.GET("/KitchenSink/html", () => WrapPage<HtmlPage>("/KitchenSink/partial/html"));
 
             Handle.GET("/KitchenSink/partial/integer", () => new IntegerPage());
             Handle.GET("/KitchenSink/integer", () => WrapPage<IntegerPage>("/KitchenSink/partial/integer"));
+
+            Handle.GET("/KitchenSink/partial/url", () => new UrlPage());
+            Handle.GET("/KitchenSink/url", () => WrapPage<UrlPage>("/KitchenSink/partial/url"));
 
             Handle.GET("/KitchenSink/partial/Geo", () =>
             {
@@ -93,20 +113,20 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/markdown", () => new MarkdownPage());
             Handle.GET("/KitchenSink/markdown", () => WrapPage<MarkdownPage>("/KitchenSink/partial/markdown"));
 
-            Handle.GET("/KitchenSink/partial/nested", () => new NestedPartial
-            {
-                Data = new AnyData()
-            });
-            Handle.GET("/KitchenSink/nested", () => WrapPage<NestedPartial>("/KitchenSink/partial/nested"));
-
-            Handle.GET("/KitchenSink/partial/radiolist", () => new RadiolistPage());
-            Handle.GET("/KitchenSink/radiolist", () => WrapPage<RadiolistPage>("/KitchenSink/partial/radiolist"));
-
             Handle.GET("/KitchenSink/partial/multiselect", () => new MultiselectPage());
             Handle.GET("/KitchenSink/multiselect", () => WrapPage<MultiselectPage>("/KitchenSink/partial/multiselect"));
 
+            Handle.GET("/KitchenSink/partial/pagination", () => new PaginationPage());
+            Handle.GET("/Kitchensink/pagination", () => WrapPage<PaginationPage>("/KitchenSink/partial/pagination"));
+
             Handle.GET("/KitchenSink/partial/password", () => new PasswordPage());
             Handle.GET("/KitchenSink/password", () => WrapPage<PasswordPage>("/KitchenSink/partial/password"));
+
+            Handle.GET("/KitchenSink/partial/radio", () => new RadioPage());
+            Handle.GET("/KitchenSink/radio", () => WrapPage<RadioPage>("/KitchenSink/partial/radio"));
+
+            Handle.GET("/KitchenSink/partial/radiolist", () => new RadiolistPage());
+            Handle.GET("/KitchenSink/radiolist", () => WrapPage<RadiolistPage>("/KitchenSink/partial/radiolist"));
 
             Handle.GET("/KitchenSink/partial/table", () => new TablePage());
             Handle.GET("/KitchenSink/table", () => WrapPage<TablePage>("/KitchenSink/partial/table"));
@@ -117,49 +137,16 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/textarea", () => new TextareaPage());
             Handle.GET("/KitchenSink/textarea", () => WrapPage<TextareaPage>("/KitchenSink/partial/textarea"));
 
-            Handle.GET("/KitchenSink/partial/radio", () => new RadioPage());
-            Handle.GET("/KitchenSink/radio", () => WrapPage<RadioPage>("/KitchenSink/partial/radio"));
+            Handle.GET("/KitchenSink/partial/togglebutton", () => new ToggleButtonPage());
+            Handle.GET("/KitchenSink/togglebutton",
+                () => WrapPage<ToggleButtonPage>("/KitchenSink/partial/togglebutton"));
 
-            Handle.GET("/KitchenSink/partial/Redirect", () => new RedirectPage());
-            Handle.GET("/KitchenSink/Redirect", () => WrapPage<RedirectPage>("/KitchenSink/partial/Redirect"));
+            #endregion
 
-            Handle.GET("/KitchenSink/partial/Validation", () => new ValidationPage());
-            Handle.GET("/KitchenSink/Validation", () => WrapPage<ValidationPage>("/KitchenSink/partial/Validation"));
-
-            Handle.GET("/KitchenSink/Redirect/{?}", (string param) =>
-            {
-                var master = WrapPage<RedirectPage>("/KitchenSink/partial/Redirect") as MasterPage;
-                var page = master.CurrentPage as RedirectPage;
-                page.YourFavoriteFood = "You've got some tasty " + param;
-                return master;
-            });
-
-            Handle.GET("/KitchenSink/partial/url", () => new UrlPage());
-            Handle.GET("/KitchenSink/url", () => WrapPage<UrlPage>("/KitchenSink/partial/url"));
-
-            Handle.GET("/KitchenSink/partial/datepicker", () => new DatepickerPage());
-            Handle.GET("/KitchenSink/datepicker", () => WrapPage<DatepickerPage>("/KitchenSink/partial/datepicker"));
-
-            Handle.GET("/KitchenSink/partial/fileupload", () => new FileUploadPage());
-            Handle.GET("/KitchenSink/fileupload", () => WrapPage<FileUploadPage>("/KitchenSink/partial/fileupload"));
+            #region How to
 
             Handle.GET("/KitchenSink/partial/callback", () => new CallbackPage());
             Handle.GET("/KitchenSink/callback", () => WrapPage<CallbackPage>("/KitchenSink/partial/callback"));
-
-            Handle.GET("/KitchenSink/partial/dialog", () => new DialogPage());
-            Handle.GET("/KitchenSink/dialog", () => WrapPage<DialogPage>("/KitchenSink/partial/dialog"));
-
-            Handle.GET("/KitchenSink/partial/progressbar", () => new ProgressBarPage());
-            Handle.GET("/Kitchensink/progressbar", () => WrapPage<ProgressBarPage>("/KitchenSink/partial/progressbar"));
-
-            Handle.GET("/KitchenSink/partial/lazyloading", () => new LazyLoadingPage());
-            Handle.GET("/Kitchensink/lazyloading", () => WrapPage<LazyLoadingPage>("/KitchenSink/partial/lazyloading"));
-
-            Handle.GET("/KitchenSink/partial/pagination", () => new PaginationPage());
-            Handle.GET("/Kitchensink/pagination", () => WrapPage<PaginationPage>("/KitchenSink/partial/pagination"));
-
-            Handle.GET("/KitchenSink/partial/flashmessage", () => new FlashMessagePage());
-            Handle.GET("/Kitchensink/flashmessage", () => WrapPage<FlashMessagePage>("/KitchenSink/partial/flashmessage"));
 
             Handle.GET("/KitchenSink/partial/clientlocalstate", () => new ClientLocalStatePage());
             Handle.GET("/KitchenSink/clientlocalstate", () => WrapPage<ClientLocalStatePage>("/KitchenSink/partial/clientlocalstate"));
@@ -188,6 +175,11 @@ namespace KitchenSink
             });
             Handle.GET("/KitchenSink/cookie", () => WrapPage<CookiePage>("/KitchenSink/partial/cookie"));
 
+            Handle.GET("/KitchenSink/partial/dialog", () => new DialogPage());
+            Handle.GET("/KitchenSink/dialog", () => WrapPage<DialogPage>("/KitchenSink/partial/dialog"));
+
+            Handle.GET("/KitchenSink/partial/fileupload", () => new FileUploadPage());
+            Handle.GET("/KitchenSink/fileupload", () => WrapPage<FileUploadPage>("/KitchenSink/partial/fileupload"));
             HandleFile.GET("/KitchenSink/fileupload/upload", task =>
             {
                 Session.RunTask(task.SessionId, (session, id) =>
@@ -239,17 +231,35 @@ namespace KitchenSink
                 });
             });
 
-            Handle.GET("/KitchenSink/partial/autocomplete", () => Db.Scope(() => new AutocompletePage()));
-            Handle.GET("/KitchenSink/autocomplete", () => WrapPage<AutocompletePage>("/KitchenSink/partial/autocomplete"));
+            Handle.GET("/KitchenSink/partial/flashmessage", () => new FlashMessagePage());
+            Handle.GET("/Kitchensink/flashmessage", () => WrapPage<FlashMessagePage>("/KitchenSink/partial/flashmessage"));
 
-            Handle.GET("/KitchenSink/nav", () => new NavPage(), new HandlerOptions() { SelfOnly = true });
+            Handle.GET("/KitchenSink/partial/lazyloading", () => new LazyLoadingPage());
+            Handle.GET("/Kitchensink/lazyloading", () => WrapPage<LazyLoadingPage>("/KitchenSink/partial/lazyloading"));
 
-            Handle.GET("/KitchenSink/app-name", () => new AppName());
+            Handle.GET("/KitchenSink/partial/nested", () => new NestedPartial
+            {
+                Data = new AnyData()
+            });
+            Handle.GET("/KitchenSink/nested", () => WrapPage<NestedPartial>("/KitchenSink/partial/nested"));
 
-            Handle.GET("/KitchenSink/menu", () => new AppMenuPage());
+            Handle.GET("/KitchenSink/partial/progressbar", () => new ProgressBarPage());
+            Handle.GET("/Kitchensink/progressbar", () => WrapPage<ProgressBarPage>("/KitchenSink/partial/progressbar"));
 
-            Blender.MapUri("/KitchenSink/menu", string.Empty, new[] { "menu" });
-            Blender.MapUri("/KitchenSink/app-name", string.Empty, new[] { "app", "icon" });
+            Handle.GET("/KitchenSink/partial/Redirect", () => new RedirectPage());
+            Handle.GET("/KitchenSink/Redirect", () => WrapPage<RedirectPage>("/KitchenSink/partial/Redirect"));
+            Handle.GET("/KitchenSink/Redirect/{?}", (string param) =>
+            {
+                var master = WrapPage<RedirectPage>("/KitchenSink/partial/Redirect") as MasterPage;
+                var page = master.CurrentPage as RedirectPage;
+                page.YourFavoriteFood = "You've got some tasty " + param;
+                return master;
+            });
+
+            Handle.GET("/KitchenSink/partial/Validation", () => new ValidationPage());
+            Handle.GET("/KitchenSink/Validation", () => WrapPage<ValidationPage>("/KitchenSink/partial/Validation"));
+
+            #endregion
         }
 
         public static string GetAppVersionFromAssemblyFile()
