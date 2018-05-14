@@ -63,10 +63,13 @@
         function guessCurrentPage() {
             const pathname = window.location.pathname;
             let lastPartOfPathName = pathname.substr(pathname.indexOf('/', 1) + 1);
-
+    
             // /KitchenSink === /KitchenSink/MainPage
             if (lastPartOfPathName === "KitchenSink") {
                 lastPartOfPathName = "MainPage";
+            }
+            if(['Card', 'Sections', 'Title', 'Native', 'Alerts', 'LeftNavLayout'].includes(lastPartOfPathName)) {
+                lastPartOfPathName = 'Design/' + lastPartOfPathName;
             }
 
             const fullPageName = lastPartOfPathName.endsWith('Page') ? lastPartOfPathName : lastPartOfPathName + 'Page';
