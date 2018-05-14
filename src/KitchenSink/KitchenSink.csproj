@@ -53,8 +53,8 @@
       <HintPath>..\..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Joozek78.Starcounter.Async, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Joozek78.Starcounter.Async.1.0.1\lib\net461\Joozek78.Starcounter.Async.dll</HintPath>
+    <Reference Include="Joozek78.Starcounter.Async, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Joozek78.Starcounter.Async.2.0.0\lib\net461\Joozek78.Starcounter.Async.dll</HintPath>
     </Reference>
     <Reference Include="Nito.AsyncEx.Tasks, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.AsyncEx.Tasks.1.1.0\lib\net46\Nito.AsyncEx.Tasks.dll</HintPath>
