@@ -57,6 +57,9 @@ namespace KitchenSink.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Password']")]
         public IWebElement PasswordPageLink { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Progress Bar']")]
+        public IWebElement ProgressBarPageLink { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Pagination']")]
         public IWebElement PaginationPageLink { get; set; }
 
