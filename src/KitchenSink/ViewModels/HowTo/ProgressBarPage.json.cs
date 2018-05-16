@@ -17,7 +17,7 @@ namespace KitchenSink.ViewModels.HowTo
             AsyncInputHandlers.Run(StartSimpleProgressBarAsync);
         }
 
-        private async Task StartSimpleProgressBarAsync()
+        private async void StartSimpleProgressBarAsync()
         {
             // Set up view-model properties
             this.Progress = 0;

@@ -46,7 +46,7 @@ namespace KitchenSink.Tests.Ui
             return new TablePage(Driver);
         }
         public UrlPage GoToUrlPage()
-        {            
+        {
             ClickOn(UrlPageLink);
             return new UrlPage(Driver);
         }
@@ -96,6 +96,12 @@ namespace KitchenSink.Tests.Ui
         {
             ClickOn(PasswordPageLink);
             return new PasswordPage(Driver);
+        }
+
+        public ProgressBarPage GoToProgressBarPage()
+        {
+            ClickOn(ProgressBarPageLink);
+            return new ProgressBarPage(Driver);
         }
 
         public RedirectPage GoToRedirectPage()
