@@ -65,6 +65,6 @@
     "commit": "f2825e1b736df465b4a172ac5d33ac655e9e0e80"
   },
   "_source": "https://github.com/PolymerElements/paper-toggle-button.git",
-  "_target": "^2.0.0",
+  "_target": "^2.1.1",
   "_originalSource": "PolymerElements/paper-toggle-button"
 }
