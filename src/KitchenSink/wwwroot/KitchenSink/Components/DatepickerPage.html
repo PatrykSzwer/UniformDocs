@@ -1,4 +1,5 @@
 <link rel="import" href="/sys/uniform.css/components/uni-date-picker/uni-date-picker.html">
+<link rel="import" href="/sys/vaadin-dropdown-menu/vaadin-dropdown-menu.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
 
@@ -33,6 +34,18 @@
 
             <input slot="kitchensink/datepicker-day-input" type="text" value="{{model.Day}}" readonly="readonly">
             <github-source-links></github-source-links>
+
+            <vaadin-dropdown-menu slot="kitchensink/dropdown" label="Label" placeholder="Placeholder" value="Option one">
+              <template>
+                <vaadin-list-box>
+                  <vaadin-item>Data binding: {{model.Year}}</vaadin-item>
+                  <vaadin-item>Data binding: {{model.Month}}</vaadin-item>
+                  <vaadin-item>Data binding: {{model.Day}}</vaadin-item>
+                  <hr>
+                  <vaadin-item disabled>Option: {{model.Value$}}</vaadin-item>
+                </vaadin-list-box>
+              </template>
+            </vaadin-dropdown-menu>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
@@ -61,6 +74,9 @@
                     <slot name="kitchensink/datepicker-day-label"></slot>
                     <slot name="kitchensink/datepicker-day-input"></slot>
                 </div>
+
+
+                <slot name="kitchensink/dropdown"></slot>
             </div>
         </div>
     </template>
