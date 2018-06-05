@@ -24,7 +24,7 @@ namespace KitchenSink.Tests.Test
         }
 
         [Test]
-        public void ButtonPage_RegularButton()
+        public void RadioPage_RegularButton()
         {
             WaitUntil(x => _radioPage.InfoLabel.Displayed);
             Assert.IsTrue(WaitForText(_radioPage.InfoLabel, "You like dogs", 5));
@@ -37,6 +37,12 @@ namespace KitchenSink.Tests.Test
 
             _radioPage.SelectRadio("dogs");
             Assert.IsTrue(WaitForText(_radioPage.InfoLabel, "You like dogs", 5));
+        }
+        [Test]
+        public void RadioPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _radioPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
         }
     }
 }

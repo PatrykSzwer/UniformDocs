@@ -84,5 +84,11 @@ namespace KitchenSink.Tests.Test
             Assert.IsTrue(WaitForText(_buttonPage.BuyCarrotLabel,
                 "You bought a carrot!", 5));
         }
+        [Test]
+        public void ButtonPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _buttonPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

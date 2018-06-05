@@ -61,5 +61,11 @@ namespace KitchenSink.Tests.Test
             WaitUntil(y => _paginationPage.PaginationResult.Where(x => x.Text.Contains("1")).
                 Select(x => x.Text).First() == "Arbitrary Book 1 Arbitrary Author");
         }
+        [Test]
+        public void PaginationPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _paginationPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

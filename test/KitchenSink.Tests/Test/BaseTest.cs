@@ -7,6 +7,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
 using System.IO;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace KitchenSink.Tests.Test
 {
@@ -86,6 +88,22 @@ namespace KitchenSink.Tests.Test
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
             return wait.Until(ExpectedConditions.TextToBePresentInElement(elementName, text));
+        }
+        private bool IsURLStatus200(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "HEAD";
+            return (request.GetResponse() as HttpWebResponse)?.StatusCode == HttpStatusCode.OK;
+        }
+        public void TestGitHubSourceLinkURLs()
+        {
+            IJavaScriptExecutor jsExecuter = (IJavaScriptExecutor)Driver;
+            string urlsString = (string)jsExecuter.ExecuteScript("return Array.from(document.querySelector('github-source-links').shadowRoot.querySelectorAll('a[href]')).map(el => el.href).join('|')");
+            var URLs = urlsString.Split(new char[] { '|' });
+
+            foreach(string URL in URLs) {
+                Assert.True(IsURLStatus200(URL));
+            }
         }
     }
 }

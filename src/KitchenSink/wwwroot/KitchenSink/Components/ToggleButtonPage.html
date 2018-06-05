@@ -15,7 +15,7 @@
             <div slot="kitchensink/toggleButton-label">{{model.AcceptTermsAndConditionsReaction}}</div>
 
             <paper-toggle-button slot="kitchensink/toggleButton-toggle-button" checked="{{model.AcceptTermsAndConditions$::change}}"></paper-toggle-button>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

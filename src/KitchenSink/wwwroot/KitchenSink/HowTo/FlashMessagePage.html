@@ -33,7 +33,7 @@
             <template is="dom-if" if="{{model.ClientMessage$}}">
                 <p slot="kitchensink/flashMessage-client-message">{{model.ClientMessage$}} </p>
             </template>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <script>

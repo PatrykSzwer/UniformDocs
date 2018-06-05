@@ -68,6 +68,12 @@ namespace KitchenSink.Tests.Ui
             return new ButtonPage(Driver);
         }
 
+        public CardPage GoToCardPage()
+        {
+            ClickOn(CardPageLink);
+            return new CardPage(Driver);
+
+        }
         public TextPage GoToTextPage()
         {
             ClickOn(TextPageLink);

@@ -44,5 +44,11 @@ namespace KitchenSink.Tests.Test
             Assert.AreEqual(2, _datagridPage.GetCatsCount());
             Assert.AreEqual(2, _datagridPage.GetMeowsCount());
         }
+        [Test]
+        public void TablePage_GitHubSourceURL()
+        {
+            WaitUntil(x => _datagridPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

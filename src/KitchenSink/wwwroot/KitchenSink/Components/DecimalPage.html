@@ -20,7 +20,7 @@
             <label slot="kitchensink/decimal-label">{{model.PriceReaction}}</label>
 
             <input slot="kitchensink/decimal-input" type="number" step="0.01" value="{{model.Price$::input}}" placeholder="Price">
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

@@ -66,6 +66,12 @@ namespace KitchenSink.Tests.Test
             Assert.IsTrue(WaitForText(_dropDownPage.JuicySelectLabel, "You have selected: Polymer JavaScript library", 5));
             Assert.IsTrue(WaitForText(new SelectElement(_dropDownPage.JuicySelect).SelectedOption, "Polymer JavaScript library", 5));
         }
+        [Test]
+        public void DropdownPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _dropDownPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }
 

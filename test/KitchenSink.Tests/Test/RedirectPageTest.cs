@@ -54,5 +54,11 @@ namespace KitchenSink.Tests.Test
             WaitUntil(x => Driver.Url == "https://starcounter.io/");
             Assert.AreEqual("https://starcounter.io/", Driver.Url);
         }
+        [Test]
+        public void RedirectPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _redirectPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

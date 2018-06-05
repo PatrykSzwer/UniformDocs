@@ -61,6 +61,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Test\CardPageTest.cs" />
     <Compile Include="Test\MainPageTest.cs" />
     <Compile Include="Test\ClientLocalStatePageTest.cs" />
     <Compile Include="Test\DatagridPageTest.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Test\TextareaPageTest.cs" />
     <Compile Include="Test\TextPageTest.cs" />
     <Compile Include="Test\ValidationPageTest.cs" />
+    <Compile Include="Ui\CardPage.cs" />
     <Compile Include="Ui\ClientLocalStatePage.cs" />
     <Compile Include="Ui\DatagridPage.cs" />
     <Compile Include="Ui\ProgressBarPage.cs" />

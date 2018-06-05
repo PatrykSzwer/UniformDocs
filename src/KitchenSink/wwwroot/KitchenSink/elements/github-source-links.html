@@ -31,12 +31,12 @@
 </template>
 <script>
     (function () {
-        let cachedBaseLink;
-        async function getBaselink() {
-            if(cachedBaseLink) return cachedBaseLink;
+        let cachedGitHubBaseURI;
+        async function getGitHubBaseURI() {
+            if(cachedGitHubBaseURI) return cachedGitHubBaseURI;
             const appVersion = await fetch('/KitchenSink/kitchensink-app-version').then(res => res.text());
-            const baseLink = `https://github.com/Starcounter/KitchenSink/blob/${appVersion}/src/KitchenSink/`;
-            return (cachedBaseLink = baseLink);
+            const GitHubBaseURI = `https://github.com/Starcounter/KitchenSink/blob/${appVersion}/src/KitchenSink/`;
+            return (cachedGitHubBaseURI = GitHubBaseURI);
         }
         function createAnchor(text, url) {
             const anchor = document.createElement('a');
@@ -44,12 +44,10 @@
             anchor.innerHTML = text;
             return anchor;
         }
-        function createElements(baseLink, hideHTML, hideCSharp, hideJSON) {
-            const page = guessCurrentPage();
-
-            const json = baseLink + page + '.json';
+        function createElements(GitHubBaseURI, page, hideHTML, hideCSharp, hideJSON) {
+            const json = GitHubBaseURI + page.replace('/KitchenSink', 'ViewModels').replace('.html', '.json');
             const csharp = json + '.cs';
-            const view = baseLink + 'wwwroot/KitchenSink/' + page + '.html';
+            const view = GitHubBaseURI + 'wwwroot' + page;
 
             const content = template.content.cloneNode(true);
             const card = content.querySelector('.uni-card');
@@ -60,36 +58,20 @@
 
             return content;
         }
-        function guessCurrentPage() {
-            const pathname = window.location.pathname;
-            let lastPartOfPathName = pathname.substr(pathname.indexOf('/', 1) + 1);
-    
-            // /KitchenSink === /KitchenSink/MainPage
-            if (lastPartOfPathName === "KitchenSink") {
-                lastPartOfPathName = "MainPage";
-            }
-            if(['Card', 'Sections', 'Title', 'Native', 'Alerts', 'LeftNavLayout'].includes(lastPartOfPathName)) {
-                lastPartOfPathName = 'Design/' + lastPartOfPathName;
-            }
-
-            const fullPageName = lastPartOfPathName.endsWith('Page') ? lastPartOfPathName : lastPartOfPathName + 'Page';
-            return fullPageName;
-        }
         const template = document.currentScript.previousElementSibling;
 
         class GTSL extends HTMLElement {
             constructor() {
                 super();
-                this.attachShadow({ mode: 'open' });                
+                this.attachShadow({ mode: 'open' });
             }
             async connectedCallback() {
-
                 const hideHTML = this.hasAttribute('hide-html');
                 const hideCSharp = this.hasAttribute('hide-csharp');
                 const hideJSON = this.hasAttribute('hide-json');
 
-                const baseLink = await getBaselink();
-                this.shadowRoot.appendChild(createElements(baseLink, hideHTML, hideCSharp, hideJSON));
+                const GitHubBaseURI = await getGitHubBaseURI();
+                this.shadowRoot.appendChild(createElements(GitHubBaseURI, this.base, hideHTML, hideCSharp, hideJSON));
             }
         }
         customElements.define('github-source-links', GTSL);

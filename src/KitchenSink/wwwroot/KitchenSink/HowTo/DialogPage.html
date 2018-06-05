@@ -33,7 +33,7 @@
                     <button dialog-confirm autofocus value="{{model.ConfirmTrigger$::click}}" onmousedown="++this.value;">Accept</button>
                 </div>
             </paper-dialog>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

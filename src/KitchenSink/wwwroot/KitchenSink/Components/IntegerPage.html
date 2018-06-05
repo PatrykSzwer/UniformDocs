@@ -20,7 +20,7 @@
             <label slot="kitchensink/integer-label">{{model.AgeReaction}}</label>
 
             <input slot="kitchensink/integer-input" type="number" value="{{model.Age$::input}}" placeholder="Age">
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

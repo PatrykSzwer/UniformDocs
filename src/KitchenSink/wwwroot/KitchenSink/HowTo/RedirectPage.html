@@ -46,7 +46,7 @@
             <palindrom-redirect slot="kitchensink/redirect-link-morph" is="palindrom-redirect" history url="{{model.MorphUrl$}}"></palindrom-redirect>
             <palindrom-redirect slot="kitchensink/redirect-link-redirect" is="palindrom-redirect" url="{{model.RedirectUrl$}}"></palindrom-redirect>
 
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

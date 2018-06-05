@@ -34,5 +34,11 @@ namespace KitchenSink.Tests.Test
             _toggleButtonPage.ChangeToggleButtonState();
             Assert.IsTrue(WaitForText(_toggleButtonPage.InfoLabel, "I accept terms and conditions", 5));
         }
+        [Test]
+        public void ToggleButtonPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _toggleButtonPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

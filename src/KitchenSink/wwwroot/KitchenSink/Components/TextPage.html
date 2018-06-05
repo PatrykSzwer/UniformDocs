@@ -50,7 +50,7 @@
             </p>
 
             <paper-input slot="kitchensink/text-typing-listening-paper-input" label="{{model.NameForPaperLiveReaction}}" value="{{model.NameForPaperLive$::value-changed}}"></paper-input>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

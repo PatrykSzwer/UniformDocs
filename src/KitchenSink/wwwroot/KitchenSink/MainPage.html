@@ -10,9 +10,10 @@
             <p slot="kitchensink/main-app-version">
                 <em>App version: <span>{{model.AppVersion}}</span>, running on Starcounter: <span>{{model.StarcounterVersion}}</span></em>
             </p>
+
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
-    <github-source-links></github-source-links>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-primary">

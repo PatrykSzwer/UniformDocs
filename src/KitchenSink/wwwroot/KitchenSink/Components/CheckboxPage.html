@@ -16,7 +16,7 @@
             <input id="kitchensink-checkbox-input" slot="kitchensink/checkbox-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
 
             <div slot="kitchensink/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

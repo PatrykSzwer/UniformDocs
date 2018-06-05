@@ -55,5 +55,11 @@ namespace KitchenSink.Tests.Test
 
             WaitUntil(x => compositionsBefore + 2 == compositionsAfter, $"Expected: {compositionsAfter}, but was: {compositionsBefore + 2}");
         }
+        [Test]
+        public void NestedPartialsPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _nestedPartialsPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

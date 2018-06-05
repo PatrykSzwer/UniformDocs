@@ -42,7 +42,7 @@
                 <p slot="kitchensink/callback-save-server-danger-message">{{model.ErrorMessage$}}</p>
             </template>
             <button slot="kitchensink/callback-save-server-button" type="button" value="{{model.SaveAndMessageTrigger$::click}}" disabled="{{model.SaveAndMessageTrigger$}}" onmouseup="++this.value;">Save and get message (1s)</button>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

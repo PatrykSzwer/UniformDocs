@@ -45,5 +45,11 @@ namespace KitchenSink.Tests.Test
             Assert.False(_clientLocalStatePage.GetFirstHoverObservor().Text.Contains("Hovered"));
 
         }
+        [Test]
+        public void ClientLocalStatePage_GitHubSourceURL()
+        {
+            WaitUntil(x => _clientLocalStatePage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

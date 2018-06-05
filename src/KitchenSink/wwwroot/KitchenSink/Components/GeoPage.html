@@ -18,7 +18,7 @@
                 <google-map-marker id="kitchensink-geopage-marker" draggable="true" title="Hi Stockholm!" latitude="{{model.Position.Latitude$}}" longitude="{{model.Position.Longitude$}}"></google-map-marker>
             </google-map>
             <button slot="kitchensink/geo-reset-button" value="{{model.Position.ResetTrigger$::click}}" onclick="this.value++">Reset</button>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

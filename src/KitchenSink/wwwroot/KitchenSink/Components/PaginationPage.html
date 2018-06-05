@@ -40,7 +40,8 @@
             <a slot="kitchensink/pagination-navigation-last" tabindex="0" value="{{model.LastPageTrigger$::click}}" href="javascript:;">Last</a>
             <p slot="kitchensink/pagination-page-number">page {{model.CurrentPage}} of {{model.TotalPages}}</p>
 
-        
+            <github-source-links base="{{model.Html}}"></github-source-links>
+
       </template></dom-bind>
     <script>
         (function () {
@@ -57,7 +58,6 @@
             };
         })();
     </script>
-    <github-source-links></github-source-links>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">

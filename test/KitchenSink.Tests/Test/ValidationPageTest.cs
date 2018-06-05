@@ -50,5 +50,11 @@ namespace KitchenSink.Tests.Test
             Assert.AreEqual(string.Empty, _validationPage.NameErrorLabel.Text);
             Assert.AreEqual(string.Empty, _validationPage.LastNameErrorLabel.Text);
         }
+        [Test]
+        public void ValidationPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _validationPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

@@ -14,7 +14,7 @@
             </p>
 
             <kitchensink-chart slot="kitchensink/chartpage-chart" temperatures="{{model.Temperatures}}" labels="{{model.Labels}}"></kitchensink-chart>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

@@ -79,5 +79,11 @@ namespace KitchenSink.Tests.Test
             WaitUntil(x => shadowInput.Text == string.Empty);
             Assert.AreEqual("What's your name?", _textPage.PaperInputDynamicInfoLabel.Text);
         }
+        [Test]
+        public void TextPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _textPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

@@ -23,7 +23,7 @@
             <label slot="kitchensink/validation-last-name-error-message">{{model.ErrorLastName$}}</label>
 
             <button slot="kitchensink/validation-validate-button" value="{{model.ValidateTrigger$::click}}" onmousedown="++this.value">Validate</button>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

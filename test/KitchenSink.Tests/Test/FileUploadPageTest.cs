@@ -65,5 +65,11 @@ namespace KitchenSink.Tests.Test
 
             Assert.IsTrue(!_fileUploadPage.InfoLabel.Displayed);
         }
+        [Test]
+        public void FileUploadPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _fileUploadPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

@@ -19,7 +19,7 @@
                 <strong>{{getCookie()}}</strong>
             </p>
             <button slot="kitchensink/cookie-button" type="button" on-click="reload">Reload this page and set a cookie</button>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <script>

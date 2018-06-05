@@ -40,7 +40,7 @@
                 <p slot="kitchensink/lazyLoading-message-box-game-label">{{model.SelectedPersonsName$}}'s Favorite game</p>
                 <p slot="kitchensink/lazyLoading-message-box-game-data" aria-busy$="[[stillEmpty(model.DisplayedData.DataContent$)]]">{{model.DisplayedData.DataContent$}}</p>
             </template>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <script>
