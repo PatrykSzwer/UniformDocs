@@ -80,9 +80,20 @@ namespace KitchenSink.Tests.Test
 
         protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, string errorMessage = null, int timeToWait = 10)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeToWait)) { Message = errorMessage };
-            wait.IgnoreExceptionTypes(new Type[] { typeof(NoSuchElementException), typeof(StaleElementReferenceException) });
-            return wait.Until(condition);
+            int tries = 5;
+            Exception lastException = null;
+            while(tries-- > 0)
+            {
+                // sometimes the github-source-element reference refers to the old now-stale page,
+                // which throws an excpetion. This gives it 4 more chances
+                // this is an alternative for IgnoreExceptionTypes because it doesn't work (see https://github.com/SeleniumHQ/selenium/issues/4240)
+                try
+                {
+                    WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeToWait)) { Message = errorMessage };
+                    return wait.Until(condition);
+                } catch (Exception exp) { lastException = exp; }
+            }
+            throw lastException;
         }
 
         public bool WaitForText(IWebElement elementName, string text, int seconds)
