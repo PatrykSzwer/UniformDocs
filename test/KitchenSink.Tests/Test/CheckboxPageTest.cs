@@ -35,7 +35,7 @@ namespace KitchenSink.Tests.Test
             Assert.IsTrue(WaitForText(_checkboxPage.InfoLabel, "You can drive", 5));
         }
         [Test]
-        public void ButtonPage_GitHubSourceURL()
+        public void CheckboxPage_GitHubSourceURL()
         {
             WaitUntil(x => _checkboxPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
