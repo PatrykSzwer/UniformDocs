@@ -31,12 +31,13 @@
 </template>
 <script>
     (function () {
-        let cachedGitHubBaseURI;
-        async function getGitHubBaseURI() {
-            if(cachedGitHubBaseURI) return cachedGitHubBaseURI;
+        let cachedGitHubBaseURL;
+        async function getGitHubBaseURL() {
+            if(cachedGitHubBaseURL) return cachedGitHubBaseURL;
             const appVersion = await fetch('/KitchenSink/kitchensink-app-version').then(res => res.text());
-            const GitHubBaseURI = `https://github.com/Starcounter/KitchenSink/blob/${appVersion}/src/KitchenSink/`;
-            return (cachedGitHubBaseURI = GitHubBaseURI);
+            const GitHubBaseURL = `https://github.com/Starcounter/KitchenSink/blob/${appVersion}/src/KitchenSink/`;
+            cachedGitHubBaseURL = GitHubBaseURL;
+            return GitHubBaseURL;
         }
         function createAnchor(text, url) {
             const anchor = document.createElement('a');
@@ -44,10 +45,10 @@
             anchor.innerHTML = text;
             return anchor;
         }
-        function createElements(GitHubBaseURI, page, hideHTML, hideCSharp, hideJSON) {
-            const json = GitHubBaseURI + page.replace('/KitchenSink', 'ViewModels').replace('.html', '.json');
+        function createElements(GitHubBaseURL, page, hideHTML, hideCSharp, hideJSON) {
+            const json = GitHubBaseURL + page.replace('/KitchenSink', 'ViewModels').replace('.html', '.json');
             const csharp = json + '.cs';
-            const view = GitHubBaseURI + 'wwwroot' + page;
+            const view = GitHubBaseURL + 'wwwroot' + page;
 
             const content = template.content.cloneNode(true);
             const card = content.querySelector('.uni-card');
@@ -70,8 +71,8 @@
                 const hideCSharp = this.hasAttribute('hide-csharp');
                 const hideJSON = this.hasAttribute('hide-json');
 
-                const GitHubBaseURI = await getGitHubBaseURI();
-                this.shadowRoot.appendChild(createElements(GitHubBaseURI, this.base, hideHTML, hideCSharp, hideJSON));
+                const GitHubBaseURL = await getGitHubBaseURL();
+                this.shadowRoot.appendChild(createElements(GitHubBaseURL, this.base, hideHTML, hideCSharp, hideJSON));
             }
         }
         customElements.define('github-source-links', GTSL);
