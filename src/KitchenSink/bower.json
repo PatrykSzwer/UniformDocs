@@ -30,10 +30,12 @@
     "paper-input": "PolymerElements/paper-input#^2.2.2",
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^2.1.1",
     "starcounter-upload": "Starcounter/starcounter-upload#^1.0.0",
-    "uniform.css": "^0.1.0"
+    "uniform.css": "^0.1.0",
+    "vaadin-dropdown-menu": "^1.0.0",
+    "vaadin-list-box": "^1.0.2"
   },
   "resolutions": {
-	"iron-selector" : "latest",
-	"iron-resizable-behavior" : "latest"
+    "iron-selector": "latest",
+    "iron-resizable-behavior": "latest"
   }
 }

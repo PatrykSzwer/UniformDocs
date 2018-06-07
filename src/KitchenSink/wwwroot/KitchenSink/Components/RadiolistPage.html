@@ -2,6 +2,8 @@
 <link rel="import" href="/sys/paper-item/paper-item.html">
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 <link rel="import" href="/sys/github-source-links/github-source-links.html">
+<link rel="import" href="/sys/vaadin-dropdown-menu/vaadin-dropdown-menu.html">
+<link rel="import" href="/sys/vaadin-list-box/vaadin-list-box.html">
 
 <template>
     <dom-bind>
@@ -21,17 +23,35 @@
                 <a href="https://elements.polymer-project.org/elements/paper-radio">paper-radio</a>, because native
                 <code>input type="radio"</code> lacks an onuncheck event, which makes unchecking not detectable with pure HTML.
             </p>
-
+<!--
             <paper-listbox slot="kitchensink/radiolist-paper-listbox" selected="{{model.SelectedItemIndex$}}">
                 <template is="dom-repeat" items="{{model.MenuOptions}}">
                     <paper-item test-value$="{{item.Label}}">{{item.Label}}</paper-item>
                 </template>
-            </paper-listbox>
+            </paper-listbox> -->
+
+
+			<vaadin-dropdown-menu id="selectUser" placeholder="no user signed in"  slot="co-common/test_user/component" class="wide" value="{{model.LoginUser$}}">
+             <template>
+               <vaadin-list-box>
+                 <template is="dom-repeat" items="[[model.TestUsers]]">
+                   <vaadin-item value="[[item.Username]]">
+                     <div style="display:flex;align-items:center" title="[[item.Name]]">
+                       <co-avatar url$="[[item.Avatar]]" size="20" style="margin:0px 3px;"></co-avatar>
+                       <span>[[item.Name]]</span>
+                     </div>
+                   </vaadin-item>
+                 </template>
+               </vaadin-list-box>
+             </template>
+           </vaadin-dropdown-menu>
+
+
 
             <p slot="kitchensink/radiolist-selected-label">Selected item:</p>
-            <span slot="kitchensink/radiolist-selected-item-label">{{model.SelectedItemLabel}}</span>
-            <span slot="kitchensink/radiolist-selected-item-index">({{model.SelectedItemIndex$}})</span>
+            <span slot="kitchensink/radiolist-selected-item-index">({{model.LoginUser$}})</span>
             <github-source-links></github-source-links>
+
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
@@ -45,6 +65,9 @@
                 <slot name="kitchensink/radiolist-description-recommend"></slot>
                 <div>
                     <slot name="kitchensink/radiolist-paper-listbox"></slot>
+                </div>
+                <div>
+                    <slot name="co-common/test_user/component"></slot>
                 </div>
                 <slot name="kitchensink/radiolist-selected-label"></slot>
                 <slot name="kitchensink/radiolist-selected-item-label"></slot>
