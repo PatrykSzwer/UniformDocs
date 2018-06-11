@@ -54,13 +54,13 @@ namespace KitchenSink.Helpers
                 // For DataTable page
                 if (!Db.SQL("SELECT r FROM KitchenSink.Database.TableRow r").Any())
                 {
-                    for (int i = 0; i < 500; i++)
+                    for (int i = 500; i > 0; i--)
                     {
                         new TableRow
                         {
-                            FirstName = $"Member {i} first name",
-                            LastName = $"Member {i} last name",
-                            Email = $"Member {i} email"
+                            FirstName = $"{i} member first name",
+                            LastName = $"{i} member last name",
+                            Email = $"{i} member email"
                         };
                     }
                 }

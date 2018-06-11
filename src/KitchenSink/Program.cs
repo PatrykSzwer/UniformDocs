@@ -63,7 +63,7 @@ namespace KitchenSink
                 return Db.Scope(() =>
                 {
                     var dataTablePage = new DataTablePage();
-                    dataTablePage.PopulateColumns();
+                    dataTablePage.Init();
                     return dataTablePage;
                 });
             });

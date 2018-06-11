@@ -26,7 +26,8 @@
                 </template>
                 </tbody>
             </table>
-            <button slot="kitchensink/datatable-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+            <button slot="kitchensink/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+            <button slot="kitchensink/datatable-simulate-button" value="{{model.Page$::click}}" onmousedown="++this.value">Symulate next page</button>
 
             <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
@@ -38,6 +39,8 @@
         </div>
         <div class="uni-section-primary">
             <div class="uni-card">
+                <slot name="kitchensink/datatable-add-button"></slot>
+                <slot name="kitchensink/datatable-simulate-button"></slot>
                 <slot name="kitchensink/datatable-table"></slot>
             </div>
         </div>
