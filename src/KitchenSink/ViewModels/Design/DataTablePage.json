@@ -1,0 +1,20 @@
+{
+  "Html": "/KitchenSink/Design/DataTablePage.html",
+  "Columns": [
+    {
+      "Header": "",
+      "SortDirection": "",
+      "Filter": ""
+    }
+  ],
+  "Rows": [
+    {
+      "FirstName": "",
+      "LastName": "",
+      "Email$": "",
+      "DeleteTrigger$": 0
+    }
+  ],
+  "Page": 0,
+  "AddNewRowTrigger$": 0
+}

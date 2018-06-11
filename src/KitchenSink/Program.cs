@@ -58,6 +58,17 @@ namespace KitchenSink
             Handle.GET("/KitchenSink/partial/native", () => new NativePage());
             Handle.GET("/KitchenSink/native", () => WrapPage<NativePage>("/KitchenSink/partial/native"));
 
+            Handle.GET("/KitchenSink/partial/datatable", () =>
+            {
+                return Db.Scope(() =>
+                {
+                    var dataTablePage = new DataTablePage();
+                    dataTablePage.PopulateColumns();
+                    return dataTablePage;
+                });
+            });
+            Handle.GET("/KitchenSink/datatable", () => WrapPage<DataTablePage>("/KitchenSink/partial/datatable"));
+
             #endregion
 
             #region Components

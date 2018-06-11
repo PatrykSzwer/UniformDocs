@@ -89,6 +89,7 @@
     <Compile Include="Database\GroceryProduct.cs" />
     <Compile Include="Database\MapCoordinates.cs" />
     <Compile Include="Database\SoftwareProduct.cs" />
+    <Compile Include="Database\TableRow.cs" />
     <Compile Include="Database\TreeItem.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
@@ -99,6 +100,9 @@
     <Compile Include="Helpers\BreadcrumbTestData.cs" />
     <Compile Include="ViewModels\Components\ButtonPage.json.cs">
       <DependentUpon>ButtonPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Design\DataTablePage.json.cs">
+      <DependentUpon>DataTablePage.json</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HowTo\CallbackPage.json.cs">
       <DependentUpon>CallbackPage.json</DependentUpon>
@@ -259,6 +263,9 @@
     <TypedJSON Include="ViewModels\Design\NativePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="ViewModels\Design\DataTablePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -266,6 +273,7 @@
     <Content Include="wwwroot\KitchenSink\AppMenuPage.html" />
     <Content Include="wwwroot\KitchenSink\Components\BreadcrumbPage.html" />
     <Content Include="wwwroot\KitchenSink\Components\ButtonPage.html" />
+    <None Include="wwwroot\KitchenSink\Design\DataTablePage.html" />
     <Content Include="wwwroot\KitchenSink\HowTo\CallbackPage.html" />
     <Content Include="wwwroot\KitchenSink\Components\ChartPage.html" />
     <TypedJSON Include="ViewModels\HowTo\FlashMessagePage.json">

@@ -50,6 +50,20 @@ namespace KitchenSink.Helpers
                     new GroceryProduct { Name = "Milk", Price = 5 };
                     new GroceryProduct { Name = "Boiled Mutton", Price = 7 };
                 }
+
+                // For DataTable page
+                if (!Db.SQL("SELECT r FROM KitchenSink.Database.TableRow r").Any())
+                {
+                    for (int i = 0; i < 500; i++)
+                    {
+                        new TableRow
+                        {
+                            FirstName = $"Member {i} first name",
+                            LastName = $"Member {i} last name",
+                            Email = $"Member {i} email"
+                        };
+                    }
+                }
             });
         }
     }
