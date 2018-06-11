@@ -37,5 +37,11 @@ namespace KitchenSink.Tests.Test
             StringAssert.AreEqualIgnoringCase("January", _datePicker.MonthInput.GetAttribute("value"));
             StringAssert.AreEqualIgnoringCase("1", _datePicker.DayInput.GetAttribute("value"));
         }
+        [Test]
+        public void DatepickerPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _datePicker.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

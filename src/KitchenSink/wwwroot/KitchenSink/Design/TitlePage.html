@@ -1,4 +1,5 @@
 ﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/KitchenSink/elements/github-source-links.html">
 
 <template>
     <dom-bind>
@@ -8,9 +9,10 @@
             <p slot="kitchensink/title-description"> We recommend using semantic HTML elements for the title content, such as <code>h1</code> for the page title and <code>h2</code> for the card title.</p>
             <h1 slot="kitchensink/title-section-title">Section title</h1>
             <h2 slot="kitchensink/title-card-title">Card title</h2>
+
+            <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
     </dom-bind>
-    <github-source-links hide-csharp hide-json></github-source-links>
 
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">

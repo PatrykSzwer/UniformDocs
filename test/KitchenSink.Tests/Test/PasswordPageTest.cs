@@ -59,5 +59,11 @@ namespace KitchenSink.Tests.Test
             _passwordPage.FillPassword("123");
             Assert.IsTrue(WaitForText(_passwordPage.PaswordInputInfoLabel, "Password must be at least 6 chars long", 5));
         }
+        [Test]
+        public void PasswordPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _passwordPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

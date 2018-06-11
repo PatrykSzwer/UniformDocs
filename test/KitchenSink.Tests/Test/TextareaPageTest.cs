@@ -47,5 +47,11 @@ namespace KitchenSink.Tests.Test
             _textareaPage.ClearTextarea();
             Assert.IsTrue(WaitForText(_textareaPage.TextareaInfoLabel, "Length of your bio: 0 chars", 5));
         }
+        [Test]
+        public void TextareaPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _textareaPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

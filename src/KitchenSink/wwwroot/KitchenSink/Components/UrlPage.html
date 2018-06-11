@@ -1,5 +1,5 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
-<link rel="import" href="/sys/github-source-links/github-source-links.html">
+<link rel="import" href="/KitchenSink/elements/github-source-links.html">
 
 <template>
     <dom-bind>
@@ -36,7 +36,7 @@
 
             <a slot="kitchensink/url-link-iframe-targetted" target="link-target" href="{{model.Url}}">Non-morphable link that opens in a frame: {{model.Label}}</a>
             <iframe slot="kitchensink/url-targeted-iframe" id="link-target" name="link-target"></iframe>
-            <github-source-links></github-source-links>
+            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">

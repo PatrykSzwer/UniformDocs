@@ -32,5 +32,11 @@ namespace KitchenSink.Tests.Test
             _progressBarPage.ProgressBarButton.Click();
             WaitUntil(x => _progressBarPage.ProgressBarPercentage.Text == "100%");
         }
+        [Test]
+        public void ProgressBarPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _progressBarPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

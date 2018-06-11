@@ -30,5 +30,11 @@ namespace KitchenSink.Tests.Test
             _tablePage.AddPet();
             WaitUntil(x => _tablePage.PetsTableRows.Count == 4);
         }
+        [Test]
+        public void TablePage_GitHubSourceURL()
+        {
+            WaitUntil(x => _tablePage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

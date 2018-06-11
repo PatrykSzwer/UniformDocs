@@ -60,5 +60,11 @@ namespace KitchenSink.Tests.Test
             _autoCompletePage.ChooseProducts("Bread");
             Assert.IsTrue(WaitForText(_autoCompletePage.ProductsInfoLabel, "Bread costs $1", 20));
         }
+        [Test]
+        public void AutoCompletePage_GitHubSourceURL()
+        {
+            WaitUntil(x => _autoCompletePage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

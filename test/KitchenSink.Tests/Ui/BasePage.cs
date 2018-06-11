@@ -15,6 +15,9 @@ namespace KitchenSink.Tests.Ui
             PageFactory.InitElements(Driver, this);
         }
 
+        [FindsBy(How = How.TagName, Using = "github-source-links")]
+        public IWebElement GitHubSourceLinks { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//a[text() = 'MainPage']")]
         public IWebElement MainPageLink { get; set; }
 
@@ -41,6 +44,10 @@ namespace KitchenSink.Tests.Ui
 
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Button']")]
         public IWebElement ButtonPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[text() = 'Card']")]
+        public IWebElement CardPageLink { get; set; }
+
 
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Checkbox']")]
         public IWebElement CheckboxPageLink { get; set; }

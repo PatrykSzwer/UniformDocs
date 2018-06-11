@@ -61,7 +61,7 @@ namespace KitchenSink.Tests.Test
             Assert.AreEqual(true, jsExecuter.ExecuteScript("return window.footprintExists"));
 
         }
-        
+
         [Test]
         public void UrlPage_ClickBlankTargettedLink()
         {
@@ -92,7 +92,7 @@ namespace KitchenSink.Tests.Test
             string downloadedFilePath = Path.Combine(downloadsDirPath, "KitchenSinkLogo.svg");
             FileInfo downloadedFile = new FileInfo(downloadedFilePath);
 
-            if(downloadedFile.Exists)
+            if (downloadedFile.Exists)
             {
                 downloadedFile.Delete();
             }
@@ -117,6 +117,12 @@ namespace KitchenSink.Tests.Test
             System.Threading.Thread.Sleep(500);
 
             Assert.AreEqual(GetIframeCurrentURL(), Config.KitchenSinkUrl.ToString());
+        }
+        [Test]
+        public void UrlPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _urlPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
         }
     }
 }

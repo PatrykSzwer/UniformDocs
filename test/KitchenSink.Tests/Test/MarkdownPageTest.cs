@@ -29,5 +29,11 @@ namespace KitchenSink.Tests.Test
 
             Assert.AreEqual("This is a structured text", _markdown.GetHeaderText());
         }
+        [Test]
+        public void MarkdownPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _markdown.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }

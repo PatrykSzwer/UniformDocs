@@ -1,6 +1,7 @@
 ﻿using KitchenSink.Tests.Ui;
 using KitchenSink.Tests.Utilities;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
 
 namespace KitchenSink.Tests.Test
 {
@@ -33,6 +34,12 @@ namespace KitchenSink.Tests.Test
             Assert.IsTrue(WaitForText(_checkboxPage.InfoLabel, "You can't drive", 5));
             _checkboxPage.ToggleCheckbox();
             Assert.IsTrue(WaitForText(_checkboxPage.InfoLabel, "You can drive", 5));
+        }
+        [Test]
+        public void CheckboxPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _checkboxPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
         }
     }
 }

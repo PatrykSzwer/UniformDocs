@@ -47,5 +47,11 @@ namespace KitchenSink.Tests.Test
             WaitUntil(x => _mainPage.SCVersionSpan.Displayed);
             Assert.AreEqual(Starcounter.Internal.CurrentVersion.Version, _mainPage.SCVersionSpan.Text);
         }
+        [Test]
+        public void MainPage_GitHubSourceURL()
+        {
+            WaitUntil(x => _mainPage.GitHubSourceLinks.Displayed);
+            TestGitHubSourceLinkURLs();
+        }
     }
 }
