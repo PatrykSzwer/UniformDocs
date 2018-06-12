@@ -1,39 +1,51 @@
-﻿<template>
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table.html">
+
+<template>
     <dom-bind>
         <template is="dom-bind">
             <h1 slot="kitchensink/datatable-heading">Data table</h1>
-            <table slot="kitchensink/datatable-table"> <!-- TODO: Replace this with uni-data-table -->
-                <thead>
-                <tr>
-                    <template is="dom-repeat" items="{{model.Columns}}" as="column">
-                        <th>{{column.Header}}</th>
-                    </template>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <template is="dom-repeat" items="{{model.Rows}}" as="row">
-                    <tr>
-                        <td>{{row.FirstName}}</td>
-                        <td>{{row.LastName}}</td>
-                        <td>
-                            <input type="text" value="{{row.Email$::change}}" placeholder="Email">
-                        </td>
-                        <td>
-                            <button value="{{row.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
-                        </td>
-                    </tr>
-                </template>
-                </tbody>
-            </table>
             <button slot="kitchensink/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
-            <button slot="kitchensink/datatable-simulate-button" value="{{model.Page$::click}}" onmousedown="++this.value">Symulate next page</button>
-
+            <uni-data-table slot="kitchensink/datatable-data-table"
+                            rows="{{model.Rows}}"
+                            size="{{model.Size}}"
+                            page-size="{{model.PageSize}}"
+                            page="{{model.Page$}}">
+                <!-- TODO: Use model.Columns (or not) -->
+                <uni-data-table-column>
+                    <template slot="header">
+                        First Name
+                    </template>
+                    <template>
+                        {{item.FirstName}}
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template slot="header">
+                        Last Name
+                    </template>
+                    <template>
+                        {{item.LastName}}
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template slot="header">
+                        Email
+                    </template>
+                    <template>
+                        <input type="email" value="{{item.Email$::change}}" placeholder="Email">
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template>
+                        <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
+                    </template>
+                </uni-data-table-column>
+            </uni-data-table>
             <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
-        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
             <slot name="kitchensink/datatable-heading"></slot>
         </div>
@@ -41,8 +53,8 @@
             <div class="uni-card">
                 <slot name="kitchensink/datatable-add-button"></slot>
                 <slot name="kitchensink/datatable-simulate-button"></slot>
-                <slot name="kitchensink/datatable-table"></slot>
             </div>
         </div>
+        <slot name="kitchensink/datatable-data-table"></slot>
     </template>
 </template>
