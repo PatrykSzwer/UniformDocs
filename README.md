@@ -1,12 +1,12 @@
-# KitchenSink
+# UniformDocs
 
 Present typical UI patterns in a form that is easy to apply in any Starcounter app.
 
 ## Demo
 
-You can find a hosted demo of the KitchenSink app on [kitchensink.starcounter.io](https://kitchensink.starcounter.io/).
+You can find a hosted demo of the UniformDocs app on [uniformdocs.starcounter.io](https://uniformdocs.starcounter.io/).
 
-[![](docs/screenshot.png)](https://kitchensink.starcounter.io/)
+[![](docs/screenshot.png)](https://uniformdocs.starcounter.io/)
 
 ## Features
 

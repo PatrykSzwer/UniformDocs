@@ -1,0 +1,156 @@
+<link rel="import" href="/sys/polymer/polymer.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/lazyLoading-heading">Lazy Loading</h1>
+
+            <p slot="uniformdocs/lazyLoading-scheduling-description">
+                By using
+                <code>Scheduling.RunTask</code> it is possible to achieve asynchronous data loading.
+            </p>
+            <p slot="uniformdocs/lazyLoading-table-description"> In the table below, one can retrieve data for every person by hovering them. As a person gets hovered, it will automatically start loading that persons data. Once the data has been loaded, it will fill the "Favorite Game" column. </p>
+
+            <table slot="uniformdocs/lazyLoading-table">
+                <thead>
+                    <tr>
+                        <th> Order </th>
+                        <th> Name </th>
+                        <th> Favorite Game </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template is="dom-repeat" items="{{model.People}}" as="people">
+                        <tr class="uniformdocs-lazy-loading__tooltip" onmouseover="{{hoverFunction}}" onmouseout="{{hoverOutFunction}}">
+                            <td>{{people.Order}}</td>
+                            <td>{{people.FirstName}} {{people.LastName}} </td>
+                            <template is="dom-if" if="{{people.DataIsLoaded}}">
+                                <td>{{people.FavoriteGame}}</td>
+                            </template>
+                            <template is="dom-if" if="{{!people.DataIsLoaded}}">
+                                <td> </td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <template is="dom-if" if="{{model.DisplayHoverBox$}}">
+                <p slot="uniformdocs/lazyLoading-message-box-game-label">{{model.SelectedPersonsName$}}'s Favorite game</p>
+                <p slot="uniformdocs/lazyLoading-message-box-game-data" aria-busy$="[[stillEmpty(model.DisplayedData.DataContent$)]]">{{model.DisplayedData.DataContent$}}</p>
+            </template>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
+            var currentTargetIndex;
+
+            template.stillEmpty = function (displayedData) {
+                return displayedData == "" ? "true" : "false";
+            }
+
+            template.hoverFunction = function (event) {
+                currentTargetIndex = event.currentTarget.rowIndex - 1;
+                template.set("model.DisplayHoverBox$", true);
+                template.set("model.SelectedPersonsName$", template.model.People[currentTargetIndex].FirstName);
+                template.set("model.DisplayedData.DataContent$", template.model.People[currentTargetIndex].DataToShow);
+                startDataRetrievalTest = setTimeout(template.startDataRetrievalTest.bind(null, event), 300);
+            };
+
+            template.startDataRetrievalTest = function (event) {
+                template.set("model.People." + currentTargetIndex + ".IsHovered$", 1);
+                triggerMouseup(event.currentTarget); // Triggers a mouse event, to trigger a JSON patch
+            };
+
+            template.hoverOutFunction = function () {
+                clearTimeout(startDataRetrievalTest);
+                template.set("model.DisplayHoverBox$", false);
+                template.set("model.People." + currentTargetIndex + ".IsHovered$", 0);
+                triggerMouseup(event.currentTarget);
+            };
+
+            // Fakes a mouseclick, Is called on hover.
+            // https://github.com/Palindrom/Palindrom/blob/gh-pages/test/SpecHelper.js
+            function triggerMouseup(elem) {
+                fireEvent((elem || document.body), 'mouseup')
+            }
+            function fireEvent(obj, evt) {
+                var fireOnThis = obj;
+                if (document.createEvent) {
+                    var evObj = document.createEvent('MouseEvents');
+                    evObj.initEvent(evt, true, false);
+                    fireOnThis.dispatchEvent(evObj);
+                } else if (document.createEventObject) {
+                    var evObj = document.createEventObject();
+                    fireOnThis.fireEvent('on' + evt, evObj);
+                }
+            }
+        })();
+    </script>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-lazy-loading__hover-box {
+                background-color: rgba(255, 255, 255, 0.80);
+                color: #000000;
+                border: 2px solid rgba(255, 133, 0, 1);
+                border-radius: 5px;
+                width: 75%;
+                min-height: 100px;
+                margin-left: 12.5%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-size: 14px;
+            }
+                /*
+                First selector does not work due to Polymer 2.3.1 bug
+            */
+                .uniformdocs-lazy-loading__hover-box > ::slotted([aria-busy="true"]),
+                .uniformdocs-lazy-loading__hover-box > ::slotted([aria-busy=""]) {
+                    border: 4px solid #f3f3f3;
+                    border-radius: 50%;
+                    border-top: 4px solid rgba(255, 133, 0, 1);
+                    border-bottom: 4px solid rgba(255, 133, 0, 1);
+                    width: calc(22px - 2 * 4px);
+                    height: calc(22px - 2 * 4px);
+                    box-sizing: content-box;
+                    -webkit-animation: spin 2s linear infinite;
+                    animation: spin 2s linear infinite;
+                }
+                /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
+                .uniformdocs-lazy-loading__hover-box > [aria-busy="true"],
+                .uniformdocs-lazy-loading__hover-box > [aria-busy=""] {
+                    border: 4px solid #f3f3f3;
+                    border-radius: 50%;
+                    border-top: 4px solid rgba(255, 133, 0, 1);
+                    border-bottom: 4px solid rgba(255, 133, 0, 1);
+                    width: calc(22px - 2 * 4px);
+                    height: calc(22px - 2 * 4px);
+                    box-sizing: content-box;
+                    -webkit-animation: spin 2s linear infinite;
+                    animation: spin 2s linear infinite;
+                }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/lazyLoading-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/lazyLoading-scheduling-description"></slot>
+                <slot name="uniformdocs/lazyLoading-table-description"></slot>
+                <slot name="uniformdocs/lazyLoading-table"></slot>
+                <div class="uniformdocs-lazy-loading__hover-box">
+                    <slot name="uniformdocs/lazyLoading-message-box-game-label"></slot>
+                    <slot class="uniformdocs-lazy-loading__spinning-loading" name="uniformdocs/lazyLoading-message-box-game-loading"></slot>
+                    <slot name="uniformdocs/lazyLoading-message-box-game-data"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,72 @@
+<link rel="import" href="/sys/chart-elements/chart-line.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/chartpage-heading">Chart</h1>
+
+            <p slot="uniformdocs/chartpage-description">
+                JSON's
+                <code>array</code> can be used to create a chart with a helper custom element, e.g.
+                <a href="http://robdodson.github.io/chart-elements">chart-elements</a>.
+            </p>
+
+            <uniformdocs-chart slot="uniformdocs/chartpage-chart" temperatures="{{model.Temperatures}}" labels="{{model.Labels}}"></uniformdocs-chart>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/chartpage-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/chartpage-description"></slot>
+                <slot name="uniformdocs/chartpage-chart"></slot>
+            </div>
+        </div>
+    </template>
+</template>
+
+<dom-module id="uniformdocs-chart">
+    <template>
+        <chart-line id="chrt" data="[[chartData]]"></chart-line>
+    </template>
+    <script>
+        Polymer({
+            is: "uniformdocs-chart",
+            properties: {
+                temperatures: {
+                    type: Array,
+                    observer: 'updateChartData'
+                },
+
+                labels: {
+                    type: Array,
+                    observer: 'updateChartData'
+                }
+            },
+
+            updateChartData: function () {
+                this.chartData = {
+                    labels: this.labels,
+                    datasets: [
+                        {
+                            label: "My First dataset",
+                            fillColor: "rgba(220,220,220,0.2)",
+                            strokeColor: "rgba(220,220,220,1)",
+                            pointColor: "rgba(220,220,220,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(220,220,220,1)",
+                            data: this.temperatures
+                        }
+                    ]
+                };
+            }
+        });
+    </script>
+</dom-module>

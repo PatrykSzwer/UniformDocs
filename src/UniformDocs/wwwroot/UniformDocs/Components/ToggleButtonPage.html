@@ -1,0 +1,34 @@
+<link rel="import" href="/sys/paper-toggle-button/paper-toggle-button.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/toggleButton-heading">Toggle Button</h1>
+
+            <p slot="uniformdocs/toggleButton-description">
+                JSON's primitive value type
+                <code>boolean</code> can be mapped to a toggle button element.
+            </p>
+
+            <div slot="uniformdocs/toggleButton-label">{{model.AcceptTermsAndConditionsReaction}}</div>
+
+            <paper-toggle-button slot="uniformdocs/toggleButton-toggle-button" checked="{{model.AcceptTermsAndConditions$::change}}"></paper-toggle-button>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/toggleButton-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/toggleButton-description"></slot>
+                <slot name="uniformdocs/toggleButton-label"></slot>
+                <slot name="uniformdocs/toggleButton-toggle-button"></slot>
+            </div>
+        </div>
+    </template>
+</template>

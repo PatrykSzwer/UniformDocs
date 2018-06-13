@@ -1,0 +1,89 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/autocomplete-heading">Autocomplete</h1>
+
+            <p slot="uniformdocs/autocomplete-products-description">
+                This autocomplete field uses DB as source. Enter
+                <code>'*'</code> to show all available items
+            </p>
+
+            <input slot="uniformdocs/autocomplete-products-input" type="text" value="{{model.ProductsSearch$::input}}" placeholder="Whiskey? Whisky?" on-blur="clearProducts">
+            <ul slot="uniformdocs/autocomplete-products-autocomplete" class="uniformdocs-autocomplete">
+                <template is="dom-repeat" items="{{model.FoundProducts}}">
+                    <!-- Blur fires before click, but after mousedown -->
+                    <li on-mousedown="selectProduct" item="{{item}}">{{item.Name}}</li>
+                </template>
+            </ul>
+            <p slot="uniformdocs/autocomplete-products-price">{{model.ProductsText}}</p>
+
+            <p slot="uniformdocs/autocomplete-places-description">This autocomplete field uses pre-defined list of places (although it's usually better to use DB as source).</p>
+            <input slot="uniformdocs/autocomplete-places-input" type="text" value="{{model.PlacesSearch$::input}}" placeholder="Poland? Sweden?" on-blur="clearPlaces">
+            <ul slot="uniformdocs/autocomplete-places-autocomplete" class="uniformdocs-autocomplete">
+                <template is="dom-repeat" items="{{model.FoundPlaces}}">
+                    <li on-mousedown="selectPlace" item="{{item}}">{{item.Name}}</li>
+                </template>
+            </ul>
+            <p slot="uniformdocs/autocomplete-places-capital">{{model.PlacesText}}</p>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
+
+            template.clearPlaces = function () {
+                template.set("model.ClearPlaces$", ++template.model.ClearPlaces$);
+            };
+
+            template.clearProducts = function () {
+                template.set("model.ClearProducts$", ++template.model.ClearProducts$);
+            };
+
+            template.selectProduct = function (ev) {
+                var item = ev.currentTarget.item;
+                var index = template.model.FoundProducts.indexOf(item);
+                template.set("model.FoundProducts." + index + ".Select$",
+                    ++template.model.FoundProducts[index].Select$);
+            };
+
+            template.selectPlace = function (ev) {
+                var item = ev.currentTarget.item;
+                var index = template.model.FoundPlaces.indexOf(item);
+                template.set("model.FoundPlaces." + index + ".Select$",
+                    ++template.model.FoundPlaces[index].Select$);
+            };
+        })();
+    </script>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-autocomplete-products {
+                margin-bottom: 40px;
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/autocomplete-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <div title="products" class="uniformdocs-autocomplete-products">
+                    <slot name="uniformdocs/autocomplete-products-description"></slot>
+                    <slot name="uniformdocs/autocomplete-products-input"></slot>
+                    <slot name="uniformdocs/autocomplete-products-autocomplete"></slot>
+                    <slot name="uniformdocs/autocomplete-products-price"></slot>
+                </div>
+                <div title="places">
+                    <slot name="uniformdocs/autocomplete-places-description"></slot>
+                    <slot name="uniformdocs/autocomplete-places-input"></slot>
+                    <slot name="uniformdocs/autocomplete-places-autocomplete"></slot>
+                    <slot name="uniformdocs/autocomplete-places-capital"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

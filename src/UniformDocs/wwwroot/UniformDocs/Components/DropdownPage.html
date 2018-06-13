@@ -1,0 +1,100 @@
+<link rel="import" href="/sys/juicy-select/juicy-select.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/dropdown-heading">Dropdown</h1>
+            <h2 slot="uniformdocs/dropdown-primitive-array-heading">Primitive array</h2>
+            <p slot="uniformdocs/dropdown-pets-description">
+                A combination of JSON's primitive value types
+                <code>array</code>,
+                <code>object</code> and
+                <code>number</code> can be mapped to an HTML
+                <code>select</code> element.
+            </p>
+
+            <select slot="uniformdocs/dropdown-pets-dropdown" class="uniformdocs-select" value="{{model.SelectedPet$::change}}">
+                <template is="dom-repeat" items="{{model.Pets}}">
+                    <option value="{{item.Label}}">{{item.Label}}</option>
+                </template>
+            </select>
+
+            <div slot="uniformdocs/dropdown-pets-reaction">{{model.PetReaction}}</div>
+
+            <h2 slot="uniformdocs/dropdown-objects-heading">Objects array</h2>
+
+            <p slot="uniformdocs/dropdown-objects-description">
+                A combination of object
+                <code>array</code> and bound JSON string property can be mapped to an HTML
+                <code>select</code> element.
+            </p>
+
+            <small slot="uniformdocs/dropdown-objects-select-description">Polymer 1.x executes the <code>value</code> binding in the <code>select</code> element before evaluating <code>dom-repeat</code>. This makes it impossible to preselect an <code>option</code> element, which is illustrated below ("Starcounter Database" should be preselected).</small>
+
+            <select slot="uniformdocs/dropdown-objects-select" class="uniformdocs-select" value="{{model.SelectedProductKey$::change}}">
+                <template is="dom-repeat" items="{{model.Products}}">
+                    <option value="{{item.Key}}">{{item.Name}}</option>
+                </template>
+            </select>
+
+            <small slot="uniformdocs/dropdown-objects-juicy-select-description">You can use custom element <code>juicy-select</code> to workaround the above issue.</small>
+
+            <juicy-select slot="uniformdocs/dropdown-objects-juicy-select" class="uniformdocs-juicyselect" caption-text="" value="{{model.SelectedProductKey$}}" options="{{model.Products}}" text-property="Name" value-property="Key"></juicy-select>
+
+            <template is="dom-if" if="{{model.SelectedProduct.Name}}">
+                <p slot="uniformdocs/dropdown-objects-select-label">
+                    You have selected:
+                    <strong>{{model.SelectedProduct.Name}}</strong>
+                </p>
+            </template>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-dropdown-margin {
+                margin-bottom: 20px;
+            }
+
+            .uniformdocs-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/dropdown-heading"></slot>
+        </div>
+        <div class="uni-section-primary uniformdocs-section-primary-grid">
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/dropdown-primitive-array-heading"></slot>
+                </div>
+                <slot name="uniformdocs/dropdown-pets-description"></slot>
+                <slot name="uniformdocs/dropdown-pets-dropdown"></slot>
+                <div class="uniformdocs-dropdown-margin">
+                    <slot name="uniformdocs/dropdown-pets-reaction"></slot>
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/dropdown-objects-heading"></slot>
+                </div>
+                <slot name="uniformdocs/dropdown-objects-description"></slot>
+                <slot name="uniformdocs/dropdown-objects-select-description" class="uniformdocs-dropdown-margin"></slot>
+                <div class="uniformdocs-dropdown-margin">
+                    <slot name="uniformdocs/dropdown-objects-select"></slot>
+                </div>
+                <slot name="uniformdocs/dropdown-objects-juicy-select-description" class="uniformdocs-dropdown-margin"></slot>
+                <div class="uniformdocs-dropdown-margin">
+                    <slot name="uniformdocs/dropdown-objects-juicy-select"></slot>
+                </div>
+                <div>
+                    <slot name="uniformdocs/dropdown-objects-select-label"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>
