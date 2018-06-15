@@ -8,7 +8,7 @@
             <button slot="kitchensink/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
             <uni-data-table slot="kitchensink/datatable-data-table"
                             rows="{{model.Rows}}"
-                            size="{{model.Size}}"
+                            size="{{model.RowsCount}}"
                             page-size="{{model.PageSize}}"
                             page="{{model.Page$}}">
                 <!-- TODO: Use model.Columns (or not) -->

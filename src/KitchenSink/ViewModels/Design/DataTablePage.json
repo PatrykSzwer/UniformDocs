@@ -2,7 +2,8 @@
   "Html": "/KitchenSink/Design/DataTablePage.html",
   "Columns": [
     {
-      "Header": "",
+      "Path": "",
+      "IsSortingAllowed": true, 
       "SortDirection": "",
       "Filter": ""
     }
@@ -17,6 +18,6 @@
   ],
   "Page$": 0,
   "PageSize": 0,
-  "Size": 0,
+  "RowsCount": 0,
   "AddNewRowTrigger$": 0
 }
