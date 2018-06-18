@@ -40,7 +40,7 @@ namespace KitchenSink.ViewModels.Design
             this.GetPage((int)action.Value);
         }
 
-        [DataTablePage_json.Rows]
+        [DataTablePage_json.RowsData.Rows]
         partial class DataTableRow : Json, IBound<TableRow>
         {
             void Handle(Input.DeleteTrigger action)

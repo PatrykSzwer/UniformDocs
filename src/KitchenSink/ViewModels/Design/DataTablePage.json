@@ -3,17 +3,21 @@
   "Columns": [
     {
       "Path": "",
-      "IsSortingAllowed": true, 
+      "IsSortingAllowed": true,
       "SortDirection": "",
       "Filter": ""
     }
   ],
-  "Rows": [
+  "RowsData": [
     {
-      "FirstName": "",
-      "LastName": "",
-      "Email$": "",
-      "DeleteTrigger$": 0
+      "Rows": [
+        {
+          "FirstName": "",
+          "LastName": "",
+          "Email$": "",
+          "DeleteTrigger$": 0
+        }
+      ]
     }
   ],
   "Page$": 0,
