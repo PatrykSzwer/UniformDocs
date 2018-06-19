@@ -104,7 +104,7 @@
     <Compile Include="ViewModels\Components\ButtonPage.json.cs">
       <DependentUpon>ButtonPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\DataTablePage.json.cs">
+    <Compile Include="ViewModels\Components\DataTablePage.json.cs">
       <DependentUpon>DataTablePage.json</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HowTo\CallbackPage.json.cs">
@@ -266,7 +266,7 @@
     <TypedJSON Include="ViewModels\Design\NativePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\DataTablePage.json">
+    <TypedJSON Include="ViewModels\Components\DataTablePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <None Include="weaver.ignore">
@@ -276,7 +276,7 @@
     <Content Include="wwwroot\KitchenSink\AppMenuPage.html" />
     <Content Include="wwwroot\KitchenSink\Components\BreadcrumbPage.html" />
     <Content Include="wwwroot\KitchenSink\Components\ButtonPage.html" />
-    <None Include="wwwroot\KitchenSink\Design\DataTablePage.html" />
+    <None Include="wwwroot\KitchenSink\Components\DataTablePage.html" />
     <Content Include="wwwroot\KitchenSink\HowTo\CallbackPage.html" />
     <Content Include="wwwroot\KitchenSink\Components\ChartPage.html" />
     <TypedJSON Include="ViewModels\HowTo\FlashMessagePage.json">

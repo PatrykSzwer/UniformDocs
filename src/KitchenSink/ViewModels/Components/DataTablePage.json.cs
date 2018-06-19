@@ -4,7 +4,7 @@ using KitchenSink.Database;
 using Starcounter;
 using Starcounter.Linq;
 
-namespace KitchenSink.ViewModels.Design
+namespace KitchenSink.ViewModels.Components
 {
     partial class DataTablePage : Json
     {
