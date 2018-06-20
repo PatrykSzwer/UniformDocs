@@ -19,14 +19,19 @@ namespace KitchenSink.ViewModels.Components
 
         private void GetPage(int page)
         {
-            if (RowsData.ElementAtOrDefault(page) == null)
+            while (this.RowsData.ElementAtOrDefault(page - 1) == null)
             {
-                var newRowsData = this.RowsData.Add();
-                newRowsData.Rows = DbLinq.Objects<TableRow>().Skip(page * PageSize).Take(PageSize);
+                this.RowsData.Add();
+            }
+            var newRowsData = new DataTableRowsData();
+            newRowsData.Rows = DbLinq.Objects<TableRow>().Skip(page * PageSize).Take(PageSize);
+            if (this.RowsData.ElementAtOrDefault(page) == null)
+            {
+                this.RowsData.Insert(page, newRowsData);
             }
             else
             {
-                this.RowsData.ElementAt(page).Rows = DbLinq.Objects<TableRow>().Skip(page * PageSize).Take(PageSize);
+                this.RowsData[page] = newRowsData;
             }
         }
 
