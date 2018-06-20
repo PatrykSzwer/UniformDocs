@@ -7,7 +7,7 @@
             <h1 slot="kitchensink/datatable-heading">Data table</h1>
             <button slot="kitchensink/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
             <uni-data-table slot="kitchensink/datatable-data-table"
-                            rows="{{model.Rows}}"
+                            rows-data="{{model.RowsData}}"
                             size="{{model.RowsCount}}"
                             page-size="{{model.PageSize}}"
                             page="{{model.Page$}}">
