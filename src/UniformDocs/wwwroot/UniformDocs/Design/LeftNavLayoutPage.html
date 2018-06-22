@@ -1,0 +1,46 @@
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/leftnavlayout-heading">Layout with left side navigation</h1>
+            <p slot="uniformdocs/leftnavlayout-description">To implement a commonly used two-column layout, that you can see in this app, use <code>.uni-layout-left-nav</code> class.</p>
+            <p slot="uniformdocs/leftnavlayout-description">It uses two child elements:
+                <ul slot="uniformdocs/leftnavlayout-description">
+                    <li>first element child is the left column used for navigation</li>
+                    <li>second element is the right column used for the main content</li>
+                </ul>
+            </p>
+            <p slot="uniformdocs/leftnavlayout-description">Anchor elements <code>&lt;a&gt;</code> element within the left column that have the attribute <code>aria-current="page"</code> will be highlighted. In Starcounter this attribute is set by <a target="_blank" href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/app-shell">app shell</a>.</p>
+            
+            <a slot="uniformdocs/leftnavlayout-navigation">First link goes here</a>
+            <a slot="uniformdocs/leftnavlayout-navigation" aria-current="page">This link is highlighted</a>
+            <a slot="uniformdocs/leftnavlayout-navigation">Third link goes here</a>
+
+            <label slot="uniformdocs/leftnavlayout-navigation-content">Main content goes here</label>
+
+            <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
+        </template>
+    </dom-bind>
+
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/leftnavlayout-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/leftnavlayout-description"></slot>
+                <div class="uni-layout-left-nav">
+                    <nav>
+                        <slot name="uniformdocs/leftnavlayout-navigation"></slot>
+                    </nav>
+                    <div class="uni-section-primary">
+                        <slot name="uniformdocs/leftnavlayout-navigation-content"></slot>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

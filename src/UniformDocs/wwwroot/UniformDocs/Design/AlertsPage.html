@@ -1,0 +1,90 @@
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/alerts-heading">Alerts</h1>
+            <p slot="uniformdocs/alerts-description">Uniform provides a few alert classes to indicate importance and character of specific messages.</p>
+
+            <h2 slot="uniformdocs/alerts-info-title">Info</h2>
+            <p slot="uniformdocs/alerts-info-description">
+                <code>.uni-alert-info</code> can be used to indicate information messages.
+            </p>
+            <p slot="uniformdocs/alerts-info-alert">The cafeteria serves pizza for lunch!</p>
+
+            <h2 slot="uniformdocs/alerts-warning-title">Warning</h2>
+            <p slot="uniformdocs/alerts-warning-description">
+                <code>.uni-alert-warning</code> can be used to indicate warning messages.
+            </p>
+            <p slot="uniformdocs/alerts-warning-alert">The cafeteria will be closed for maintanance today between 08:00 and 10:00 UTC.</p>
+
+            <h2 slot="uniformdocs/alerts-success-title">Success</h2>
+            <p slot="uniformdocs/alerts-success-description">
+                <code>.uni-alert-success</code> can be used to indicate success messages.
+            </p>
+            <p slot="uniformdocs/alerts-success-alert">You successfuly baked a pizza.</p>
+
+            <h2 slot="uniformdocs/alerts-danger-title">Danger</h2>
+            <p slot="uniformdocs/alerts-danger-description">
+                <code>.uni-alert-danger</code> can be used to indicate danger messages.
+            </p>
+            <p slot="uniformdocs/alerts-danger-alert">The cafeteria run out of pizza!</p>
+        </template>
+    </dom-bind>
+    <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
+
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/alerts-heading"></slot>
+        </div>
+        <div class="uni-section-primary uniformdocs-section-primary-grid">
+            <div class="uni-card">
+                <slot name="uniformdocs/alerts-description"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/alerts-info-title"></slot>
+                </div>
+                <slot name="uniformdocs/alerts-info-description"></slot>
+                <div class="uni-alert-info">
+                    <slot name="uniformdocs/alerts-info-alert"></slot>
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/alerts-warning-title"></slot>
+                </div>
+                <slot name="uniformdocs/alerts-warning-description"></slot>
+                <div class="uni-alert-warning">
+                    <slot name="uniformdocs/alerts-warning-alert"></slot>
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/alerts-success-title"></slot>
+                </div>
+                <slot name="uniformdocs/alerts-success-description"></slot>
+                <div class="uni-alert-success">
+                    <slot name="uniformdocs/alerts-success-alert"></slot>
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/alerts-danger-title"></slot>
+                </div>
+                <slot name="uniformdocs/alerts-danger-description"></slot>
+                <div class="uni-alert-danger">
+                    <slot name="uniformdocs/alerts-danger-alert"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

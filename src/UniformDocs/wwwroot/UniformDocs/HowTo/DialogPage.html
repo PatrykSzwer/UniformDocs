@@ -1,0 +1,63 @@
+﻿<link href="/sys/paper-dialog/paper-dialog.html" rel="import">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/dialog-heading">Dialog Box</h1>
+
+            <p slot="uniformdocs/dialog-description">Modal dialog box example</p>
+
+            <button slot="uniformdocs/dialog-button" value="{{model.OpenTrigger$::click}}" onmousedown="++this.value">Open dialog box</button>
+
+            <p slot="uniformdocs/dialog-message-{{model.MessageType}}">{{model.Message}}</p>
+
+            <paper-dialog slot="uniformdocs/dialog-paper-dialog" id="actions" opened="[[model.Opened]]" modal="true">
+                <div>
+                    <h2>Confirmation</h2>
+                    <p>
+                        This is a
+                        <code>paper-dialog</code> demo confirmation. Would you like to
+                        <b>Reject</b> or
+                        <b>Accept</b> the confirmation?
+                    </p>
+                </div>
+                <!--
+                    Use paper-dialog specific class to let it style buttons section
+                    https://github.com/PolymerElements/paper-dialog-behavior/issues/122
+                -->
+                <div class="buttons">
+                    <button dialog-dismiss value="{{model.RejectTrigger$::click}}" onmousedown="++this.value;">Reject</button>
+                    <span>&nbsp;</span>
+                    <button dialog-confirm autofocus value="{{model.ConfirmTrigger$::click}}" onmousedown="++this.value;">Accept</button>
+                </div>
+            </paper-dialog>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/dialog-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/dialog-description"></slot>
+                <p>
+                    <slot name="uniformdocs/dialog-button"></slot>
+                </p>
+                <div class="uni-alert-info">
+                    <slot name="uniformdocs/dialog-message-info"></slot>
+                </div>
+                <div class="uni-alert-danger">
+                    <slot name="uniformdocs/dialog-message-danger"></slot>
+                </div>
+                <div class="uni-alert-success">
+                    <slot name="uniformdocs/dialog-message-success"></slot>
+                </div>
+                <slot name="uniformdocs/dialog-paper-dialog"></slot>
+            </div>
+        </div>
+    </template>
+</template>

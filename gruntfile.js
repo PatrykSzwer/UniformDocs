@@ -12,7 +12,7 @@ module.exports = function(grunt) {
           ]
         },
         files: [
-          {src: ['src/KitchenSink/package/package.config'], dest: './'}
+          {src: ['src/UniformDocs/package/package.config'], dest: './'}
         ]
       },
       scversion: {
@@ -29,17 +29,17 @@ module.exports = function(grunt) {
           ]
         },
         files: [
-          {src: ['src/KitchenSink/package/package.config'], dest: './'},
+          {src: ['src/UniformDocs/package/package.config'], dest: './'},
           {src: ['README.md'], dest: './'}
         ]
       }
     },
     bump: {
       options: {
-        files: ['package.json', 'src/KitchenSink/package/package.config', 'src/KitchenSink/bower.json'],
+        files: ['package.json', 'src/UniformDocs/package/package.config', 'src/UniformDocs/bower.json'],
         commit: true,
         commitMessage: '%VERSION%',
-        commitFiles: ['package.json', 'src/KitchenSink/package/package.config', 'src/KitchenSink/bower.json', 'README.md'],
+        commitFiles: ['package.json', 'src/UniformDocs/package/package.config', 'src/UniformDocs/bower.json', 'README.md'],
         createTag: true,
         tagName: '%VERSION%',
         tagMessage: 'Version %VERSION%',

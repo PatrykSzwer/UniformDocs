@@ -1,0 +1,12 @@
+{
+  "Html": "/UniformDocs/Components/TablePage.html",
+
+  "Pets": [
+    {
+      "Name": "",
+      "Kind": ""
+    }
+  ],
+
+  "AddPetTrigger$": 0
+}

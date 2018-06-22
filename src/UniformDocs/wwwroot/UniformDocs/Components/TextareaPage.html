@@ -1,0 +1,37 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/textarea-heading">Textarea</h1>
+
+            <p slot="uniformdocs/textarea-description">
+                JSON's primitive value type
+                <code>string</code> can be mapped directly to HTML form
+                <code>textarea</code>.
+            </p>
+
+            <label slot="uniformdocs/textarea-label">{{model.BioReaction}}</label>
+
+            <textarea slot="uniformdocs/textarea-textarea" value="{{model.Bio$::input}}" rows="3"></textarea>
+
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/textarea-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/textarea-description"></slot>
+                <div class="uni-label-control">
+                    <slot name="uniformdocs/textarea-label"></slot>
+                    <slot name="uniformdocs/textarea-textarea"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,22 @@
+{
+  "Html": "/UniformDocs/Components/DropdownPage.html",
+
+  "Pets": [
+    { "Label": "" }
+  ],
+  "SelectedPet$": "",
+
+  "PetReaction": "",
+
+  "Products": [
+    {
+      "Key": "",
+      "Name": ""
+    }
+  ],
+  "SelectedProduct": {
+    "Key": "",
+    "Name": ""
+  },
+  "SelectedProductKey$": ""
+}

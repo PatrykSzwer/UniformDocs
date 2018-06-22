@@ -1,0 +1,55 @@
+<link rel="import" href="/sys/paper-listbox/paper-listbox.html">
+<link rel="import" href="/sys/paper-item/paper-item.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/radiolist-heading">Radiolist</h1>
+
+            <p slot="uniformdocs/radiolist-description">
+                A combination of JSON's primitive value types
+                <code>array</code>,
+                <code>object</code> and
+                <code>number</code> can be mapped to a multiselect control.
+            </p>
+
+            <p slot="uniformdocs/radiolist-description-recommend">
+                We recommend using
+                <a href="https://elements.polymer-project.org/elements/paper-radio-group">paper-radio-group</a> and
+                <a href="https://elements.polymer-project.org/elements/paper-radio">paper-radio</a>, because native
+                <code>input type="radio"</code> lacks an onuncheck event, which makes unchecking not detectable with pure HTML.
+            </p>
+
+            <paper-listbox slot="uniformdocs/radiolist-paper-listbox" selected="{{model.SelectedItemIndex$}}">
+                <template is="dom-repeat" items="{{model.MenuOptions}}">
+                    <paper-item test-value$="{{item.Label}}">{{item.Label}}</paper-item>
+                </template>
+            </paper-listbox>
+
+            <p slot="uniformdocs/radiolist-selected-label">Selected item:</p>
+            <span slot="uniformdocs/radiolist-selected-item-label">{{model.SelectedItemLabel}}</span>
+            <span slot="uniformdocs/radiolist-selected-item-index">({{model.SelectedItemIndex$}})</span>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/radiolist-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/radiolist-description"></slot>
+                <slot name="uniformdocs/radiolist-description-recommend"></slot>
+                <div>
+                    <slot name="uniformdocs/radiolist-paper-listbox"></slot>
+                </div>
+                <slot name="uniformdocs/radiolist-selected-label"></slot>
+                <slot name="uniformdocs/radiolist-selected-item-label"></slot>
+                <slot name="uniformdocs/radiolist-selected-item-index"></slot>
+            </div>
+        </div>
+    </template>
+</template>

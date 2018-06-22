@@ -1,0 +1,40 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/checkbox-heading">Checkbox</h1>
+
+            <p slot="uniformdocs/checkbox-description">
+                JSON's primitive value type
+                <code>boolean</code> can be mapped directly to HTML form elements
+                <code>input type="checkbox"</code>.
+            </p>
+
+            <label for="uniformdocs-checkbox-input" slot="uniformdocs/checkbox-label">Driver's license</label>
+
+            <input id="uniformdocs-checkbox-input" slot="uniformdocs/checkbox-input" type="checkbox" checked="{{model.DrivingLicense$::change}}">
+
+            <div slot="uniformdocs/checkbox-license-label">{{model.DrivingLicenseReaction}}</div>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/checkbox-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/checkbox-description"></slot>
+                <slot name="uniformdocs/checkbox-input"></slot>
+                <slot name="uniformdocs/checkbox-label"></slot>
+                <div class="uni-alert-info">
+                    <slot name="uniformdocs/checkbox-license-label"></slot>
+                </div>
+            </div>
+        </div>
+
+    </template>
+</template>
