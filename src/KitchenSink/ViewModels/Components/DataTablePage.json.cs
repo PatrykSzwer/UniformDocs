@@ -3,11 +3,17 @@ using System.Linq;
 using KitchenSink.Database;
 using Starcounter;
 using Starcounter.Linq;
+using Starcounter.Uniform.ViewModels;
 
 namespace KitchenSink.ViewModels.Components
 {
     partial class DataTablePage : Json
     {
+        static DataTablePage()
+        {
+            DefaultTemplate.UniDataTable.InstanceType = typeof(UniDataTable); // Can be replace by use of Reuse in JSON by example
+        }
+
         public int RowsCount => DbLinq.Objects<TableRow>().Count();
         public int PageSize => 100;
 

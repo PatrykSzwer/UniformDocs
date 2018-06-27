@@ -1,13 +1,6 @@
 {
   "Html": "/KitchenSink/Components/DataTablePage.html",
-  "Columns": [
-    {
-      "Path": "",
-      "IsSortingAllowed": true,
-      "SortDirection": "",
-      "Filter": ""
-    }
-  ],
+  "UniDataTable": {},
   "RowsData": [
     {
       "Rows": [
@@ -18,6 +11,15 @@
           "DeleteTrigger$": 0
         }
       ]
+    }
+  ],
+
+  "Columns": [
+    {
+      "Path": "",
+      "IsSortingAllowed": true,
+      "SortDirection": "",
+      "Filter": ""
     }
   ],
   "Page$": 0,

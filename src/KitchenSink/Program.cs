@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
+using KitchenSink.Database;
 using KitchenSink.Helpers;
 using KitchenSink.ViewModels;
 using KitchenSink.ViewModels.Components;
 using KitchenSink.ViewModels.Design;
 using KitchenSink.ViewModels.HowTo;
 using Starcounter;
+using Starcounter.Uniform;
 
 namespace KitchenSink
 {
@@ -146,7 +148,16 @@ namespace KitchenSink
                 return Db.Scope(() =>
                 {
                     var dataTablePage = new DataTablePage();
+                    var columns = new[]
+                    {
+                        new UniDataTableColumn {Path = "FirstName", DataType = typeof(string), IsSortingAllowed = true},
+                        new UniDataTableColumn {Path = "LastName", DataType = typeof(string), IsSortingAllowed = true},
+                        new UniDataTableColumn {Path = "Email", DataType = typeof(string), IsSortingAllowed = true}
+
+                    };
+                    var uniDataProvider = new UniDataTableProvider<TableRow>(columns, 100);
                     dataTablePage.Init();
+                    dataTablePage.UniDataTable.Init(uniDataProvider);
                     return dataTablePage;
                 });
             });
