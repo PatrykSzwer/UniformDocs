@@ -40,7 +40,7 @@ To contribute code to this repository, follow the instructions in the [guideline
 
 To release the app to the warehouse, follow the instructions in the [guidelines](https://github.com/Starcounter/CompanyTrack/blob/master/AppsTeam/Guidelines/releasing-to-warehouse.md).
 
-## How to deploy to `uniformdocs.starcounter.io`
+## How to deploy to `uniform.starcounter.io`
 
 1. Make sure that the new version of UniformDocs is released to the App Warehouse
 2. Connect via RDP to 54.194.101.35 (credentials in `N*********.kdbx`)
@@ -49,7 +49,7 @@ To release the app to the warehouse, follow the instructions in the [guidelines]
 5. Start Starcounter by running `staradmin start server`
 6. Create a new database on port 80 by running `staradmin new db default DefaultUserHttpPort=80`
 7. In Administrator, go to the database `default` and install the current version of UniformDocs from App Warehouse
-8. Go to https://uniformdocs.starcounter.io/ to verify that the new UniformDocs is correctly deployed
+8. Go to https://uniform.starcounter.io/ to verify that the new UniformDocs is correctly deployed
 
 ## Testing
 
