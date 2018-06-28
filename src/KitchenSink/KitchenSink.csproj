@@ -94,6 +94,11 @@
     <Compile Include="Database\SoftwareProduct.cs" />
     <Compile Include="Database\TableRow.cs" />
     <Compile Include="Database\TreeItem.cs" />
+    <Compile Include="DataTableExamples\Complex\BookSorterFilter.cs" />
+    <Compile Include="DataTableExamples\Complex\BookViewModel.cs" />
+    <Compile Include="DataTableExamples\Complex\Example.cs" />
+    <Compile Include="DataTableExamples\Simple\BookViewModel.cs" />
+    <Compile Include="DataTableExamples\Simple\Example.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
     </Compile>
