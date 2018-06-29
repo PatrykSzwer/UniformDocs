@@ -2,7 +2,8 @@
   "Html": "/UniformDocs/Components/DataTablePage.html",
   "Columns": [
     {
-      "SortingDirection$": "",
+      "PropertyName": "", 
+      "Sort$": "",
       "Filter$": ""
     }
   ],

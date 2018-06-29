@@ -11,7 +11,7 @@ namespace UniformDocs.ViewModels.Components
         public int RowsCount { get; set; }
         public int PageSize => 100;
 
-        private List<string> ColumnNames => new List<string> {
+        private List<string> ColumnProperties => new List<string> {
             "FirstName",
             "LastName",
             "Email"
@@ -25,16 +25,25 @@ namespace UniformDocs.ViewModels.Components
 
         private void PopulateColumns()
         {
-            foreach (var columnName in ColumnNames)
+            foreach (var propName in ColumnProperties)
             {
                 var column = this.Columns.Add();
-                column.SortingDirection = null;
+                column.Sort = null;
                 column.Filter = "";
+                column.PropertyName = propName;
             }
         }
 
         private void GetPage(int page)
         {
+            var rows = GetRows();
+            this.RowsCount = rows.Count();
+
+            if (this.RowsCount == 0)
+            {
+                return;
+            }
+
             if (page > 0)
             {
                 // Add missing dummy pages to maintain sparse page indicies in RowsData
@@ -46,25 +55,8 @@ namespace UniformDocs.ViewModels.Components
 
             var newRowsData = new DataTableRowsData();
 
-            IQueryable<TableRow> rows = GetRows();
-
             // Apply sorting specified in Columns
-            if (this.Columns[0].SortingDirection == "asc")
-            {
-                rows = rows.OrderBy(r => r.FirstName);
-            }
-            else if (this.Columns[0].SortingDirection == "desc")
-            {
-                rows = rows.OrderByDescending(r => r.FirstName);
-            }
-            if (this.Columns[1].SortingDirection == "asc")
-            {
-                rows = rows.OrderBy(r => r.LastName);
-            }
-            else if (this.Columns[1].SortingDirection == "desc")
-            {
-                rows = rows.OrderByDescending(r => r.LastName);
-            }
+            rows = SortRows(rows);
 
             // Take a slice of sorted rows
             newRowsData.Rows = rows.Skip(page * PageSize).Take(PageSize);
@@ -82,14 +74,51 @@ namespace UniformDocs.ViewModels.Components
         /**
          * Returns rows filtered using Column.Filter states.
          */
-        private IQueryable<TableRow> GetRows()
+        private IEnumerable<TableRow> GetRows()
         {
-            IQueryable<TableRow> rows = DbLinq.Objects<TableRow>();
-            if (this.Columns[2].Filter != "")
-            {
-                rows = rows.Where(r => r.Email.Contains(this.Columns[2].Filter));
-            }
+            var rows = DbLinq.Objects<TableRow>().AsEnumerable();
+
+            rows = FilterRows(rows);
+
             return rows;
+        }
+
+        private IEnumerable<TableRow> SortRows(IEnumerable<TableRow> rowsToSort)
+        {
+            var rows = rowsToSort.ToList();
+            foreach (var column in this.Columns.Where(x => !string.IsNullOrEmpty(x.Sort)))
+            {
+                if (column.Sort == "asc")
+                {
+                    rows = rows.OrderBy(x => x.GetType().GetProperty(column.PropertyName)?.GetValue(x)).ToList();
+                }
+                else if (column.Sort == "desc")
+                {
+                    rows = rows.OrderByDescending(x => x.GetType().GetProperty(column.PropertyName)?.GetValue(x)).ToList();
+                }
+            }
+
+            return rows;
+        }
+
+        private IEnumerable<TableRow> FilterRows(IEnumerable<TableRow> rowsToFilter)
+        {
+            IEnumerable<TableRow> rows = null;
+            foreach (var column in this.Columns.Where(x => !string.IsNullOrEmpty(x.Filter)))
+            {
+                if (rows == null)
+                {
+                    rows = rowsToFilter.Where(row =>
+                        row.GetType().GetProperty(column.PropertyName).GetValue(row).ToString().Contains(column.Filter));
+                }
+                else
+                {
+                    rows = rows.Concat(rowsToFilter.Where(row =>
+                        row.GetType().GetProperty(column.PropertyName).GetValue(row).ToString().Contains(column.Filter)));
+                }
+            }
+
+            return rows ?? rowsToFilter; // If there are no filters, return all rows
         }
 
         /**
@@ -101,16 +130,8 @@ namespace UniformDocs.ViewModels.Components
             // Remove all old pages
             this.RowsData.Clear();
 
-            // Filtering affects the count - update RowsCount
-            this.RowsCount = GetRows().Count();
-
-            // If there are any rows to deliver:
-            if (this.RowsCount > 0)
-            {
-                // Deliver the last requested page in RowsData
-                this.GetPage((int)this.Page);
-            }
-            // Else: zero rows, RowsData stays empty
+            // Deliver the last requested page in RowsData
+            this.GetPage((int)this.Page);
         }
 
         void Handle(Input.AddNewRowTrigger action)
@@ -149,30 +170,18 @@ namespace UniformDocs.ViewModels.Components
         [DataTablePage_json.Columns]
         partial class DataTableColumns : Json
         {
-            void Handle(Input.Filter filter)
+            public DataTablePage ParentPage => this.Parent.Parent as DataTablePage;
+
+            void Handle(Input.Filter action)
             {
-                // Skip if there was no change
-                if (filter.Value == filter.OldValue) return;
-
-                // Apply the change, so that we can read the new value back
-                // from Columns while doing filtering in GetRows
-                this.Filter = filter.Value;
-
-                // Replace all the RowsData
-                ((DataTablePage)this.Parent.Parent).ReloadRows();
+                this.Filter = action.Value;
+                ParentPage.ReloadRows();
             }
 
-            void Handle(Input.SortingDirection sortingDirection)
+            void Handle(Input.Sort action)
             {
-                // Skip if there was no change
-                if (sortingDirection.Value == sortingDirection.OldValue) return;
-
-                // Apply the change, so that we can read the new value back
-                // from Columns while doing sorting in GetPage
-                this.SortingDirection = sortingDirection.Value;
-
-                // Replace all the RowsData
-                ((DataTablePage)this.Parent.Parent).ReloadRows();
+                this.Sort = action.Value;
+                ParentPage.ReloadRows();
             }
         }
     }
