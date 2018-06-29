@@ -1,0 +1,25 @@
+{
+  "Html": "/UniformDocs/Components/DataTablePage.html",
+  "Columns": [
+    {
+      "SortingDirection$": "",
+      "Filter$": ""
+    }
+  ],
+  "RowsData": [
+    {
+      "Rows": [
+        {
+          "FirstName": "",
+          "LastName": "",
+          "Email$": "",
+          "DeleteTrigger$": 0
+        }
+      ]
+    }
+  ],
+  "Page$": 0,
+  "PageSize": 0,
+  "RowsCount": 0,
+  "AddNewRowTrigger$": 0
+}

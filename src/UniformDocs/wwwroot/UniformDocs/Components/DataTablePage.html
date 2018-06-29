@@ -1,0 +1,86 @@
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table.html">
+<link rel="import" href="/sys/uniform.css/components/vaadin-grid/vaadin-grid-sorter.html">
+<link rel="import" href="/sys/uniform.css/components/vaadin-grid/vaadin-grid-filter.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/datatable-heading">Data table</h1>
+            <button slot="uniformdocs/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+
+            <!-- TODO: replace with <vaadin-grid-sorter> in <template slot="header"> -->
+            <select value="{{model.Columns.0.SortingDirection$::input}}" slot="uniformdocs/datatable-sorter-first-name">
+                <option value="null">First name unsorted</option>
+                <option value="asc">First name A-Z</option>
+                <option value="desc">First name Z-A</option>
+            </select>
+            <!-- TODO: replace with <vaadin-grid-sorter> in <template slot="header"> -->
+            <select value="{{model.Columns.1.SortingDirection$::input}}" slot="uniformdocs/datatable-sorter-last-name">
+                <option value="null">Last name unsorted</option>
+                <option value="asc">Last name A-Z</option>
+                <option value="desc">Last name Z-A</option>
+            </select>
+            <!-- TODO: move to <template slot="header"> and, possibly, replace with <vaadin-grid-filter> -->
+            <input type="search" placeholder="Filter by email" value="{{model.Columns.2.Filter$::input}}" slot="uniformdocs/datatable-filter-email" />
+
+            <uni-data-table slot="uniformdocs/datatable-data-table"
+                            rows-data="{{model.RowsData}}"
+                            size="{{model.RowsCount}}"
+                            page-size="{{model.PageSize}}"
+                            page="{{model.Page$}}">
+                <uni-data-table-column>
+                    <template slot="header">
+                        First Name
+                        <!-- TODO: causes infinite recursion in Palindrom with infinite scrolling -->
+                        <!-- <vaadin-grid-sorter direction="{{model.Columns.0.SortingDirection$}}">First Name</vaadin-grid-sorter> -->
+                    </template>
+                    <template>
+                        {{item.FirstName}}
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template slot="header">
+                        Last Name
+                        <!-- TODO: causes infinite recursion... -->
+                        <!-- <vaadin-grid-sorter direction="{{model.Columns.1.SortingDirection$}}">Last Name</vaadin-grid-sorter> -->
+                    </template>
+                    <template>
+                        {{item.LastName}}
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template slot="header">
+                        Email
+                        <!-- TODO: causes infinite recursion... -->
+                        <!-- <vaadin-grid-filter value="{{model.Columns.2.Filter$}}></vaadin-grid-filter> -->
+                    </template>
+                    <template>
+                        <input type="email" value="{{item.Email$::change}}" placeholder="Email">
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template>
+                        <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
+                    </template>
+                </uni-data-table-column>
+            </uni-data-table>
+            <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/datatable-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/datatable-add-button"></slot>
+                <slot name="uniformdocs/datatable-sorter-first-name"></slot>
+                <slot name="uniformdocs/datatable-sorter-last-name"></slot>
+                <slot name="uniformdocs/datatable-filter-email"></slot>
+            </div>
+        </div>
+        <slot name="uniformdocs/datatable-data-table"></slot>
+        <slot></slot>
+    </template>
+</template>

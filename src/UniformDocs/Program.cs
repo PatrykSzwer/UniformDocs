@@ -141,6 +141,17 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/togglebutton",
                 () => WrapPage<ToggleButtonPage>("/UniformDocs/partial/togglebutton"));
 
+            Handle.GET("/UniformDocs/partial/datatable", () =>
+            {
+                return Db.Scope(() =>
+                {
+                    var dataTablePage = new DataTablePage();
+                    dataTablePage.Init();
+                    return dataTablePage;
+                });
+            });
+            Handle.GET("/UniformDocs/datatable", () => WrapPage<DataTablePage>("/UniformDocs/partial/datatable"));
+
             #endregion
 
             #region How to
