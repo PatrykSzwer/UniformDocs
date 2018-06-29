@@ -10,13 +10,13 @@
             <button slot="uniformdocs/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
 
             <!-- TODO: replace with <vaadin-grid-sorter> in <template slot="header"> -->
-            <select value="{{model.Columns.0.SortingDirection$::input}}" slot="uniformdocs/datatable-sorter-first-name">
+            <select value="{{model.Columns.0.Sort$::input}}" slot="uniformdocs/datatable-sorter-first-name">
                 <option value="null">First name unsorted</option>
                 <option value="asc">First name A-Z</option>
                 <option value="desc">First name Z-A</option>
             </select>
             <!-- TODO: replace with <vaadin-grid-sorter> in <template slot="header"> -->
-            <select value="{{model.Columns.1.SortingDirection$::input}}" slot="uniformdocs/datatable-sorter-last-name">
+            <select value="{{model.Columns.1.Sort$::input}}" slot="uniformdocs/datatable-sorter-last-name">
                 <option value="null">Last name unsorted</option>
                 <option value="asc">Last name A-Z</option>
                 <option value="desc">Last name Z-A</option>
@@ -33,7 +33,7 @@
                     <template slot="header">
                         First Name
                         <!-- TODO: causes infinite recursion in Palindrom with infinite scrolling -->
-                        <!-- <vaadin-grid-sorter direction="{{model.Columns.0.SortingDirection$}}">First Name</vaadin-grid-sorter> -->
+                        <!-- <vaadin-grid-sorter direction="{{model.Columns.0.Sort$}}">First Name</vaadin-grid-sorter> -->
                     </template>
                     <template>
                         {{item.FirstName}}
@@ -43,7 +43,7 @@
                     <template slot="header">
                         Last Name
                         <!-- TODO: causes infinite recursion... -->
-                        <!-- <vaadin-grid-sorter direction="{{model.Columns.1.SortingDirection$}}">Last Name</vaadin-grid-sorter> -->
+                        <!-- <vaadin-grid-sorter direction="{{model.Columns.1.Sort$}}">Last Name</vaadin-grid-sorter> -->
                     </template>
                     <template>
                         {{item.LastName}}
