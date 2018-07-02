@@ -12,11 +12,21 @@ namespace KitchenSink.DataTableExamples.Complex
         {
             public Json DoExample()
             {
-                return new DataTableBuilder<Book, BookViewModel>(DbLinq.Objects<Book>())
-                    .AddColumn(b => b.Position, isSortable: true, isFilterable: true, displayName: "no.")
-                    .AddColumn(b => b.Display, isSortable: true, isFilterable: true, displayName: "Author&Title")
-                    .SetConverter(CreateBookViewModel)
-                    .SetSorterFilter(new BookSorterFilter())
+                return new DataTableBuilder<BookViewModel>()
+                    .WithDataSource(DbLinq.Objects<Book>(), data => data
+                        .WithConverter(CreateBookViewModel)
+                        .WithFilter(new BookFilter()))
+                    .WithColumns(columns =>
+                        columns
+                            .AddColumn(b => b.Position, column => column
+                                .Sortable()
+                                .Filterable()
+                                .DisplayName("no. "))
+                            .AddColumn(b => b.Display, column => column
+                                .Sortable()
+                                .Filterable()
+                                .DisplayName("Author&Title"))
+                    )
                     .Build();
             }
 

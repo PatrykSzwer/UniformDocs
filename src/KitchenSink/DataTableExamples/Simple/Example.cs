@@ -9,10 +9,14 @@ namespace KitchenSink.DataTableExamples.Simple
     {
         public Json DoExample()
         {
-            return new DataTableBuilder<Book, BookViewModel>(DbLinq.Objects<Book>())
-                .AddColumn(b => b.Position, isSortable: true, isFilterable: true, displayName: "no.")
-                .AddColumn(b => b.Title, isSortable: true, isFilterable: true, displayName: "Title")
-                .AddColumn(b => b.Author, isSortable: true, isFilterable: true, displayName: "Author")
+            return new DataTableBuilder<BookViewModel>()
+                .WithDataSource(DbLinq.Objects<Book>())
+                .WithColumns(columns =>
+                    columns
+                        .AddColumn(b => b.Position, column => column.DisplayName("no. "))
+                        .AddColumn(b => b.Title)
+                        .AddColumn(b => b.Author))
+
                 .Build();
         }
     }

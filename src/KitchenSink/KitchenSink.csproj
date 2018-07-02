@@ -94,7 +94,7 @@
     <Compile Include="Database\SoftwareProduct.cs" />
     <Compile Include="Database\TableRow.cs" />
     <Compile Include="Database\TreeItem.cs" />
-    <Compile Include="DataTableExamples\Complex\BookSorterFilter.cs" />
+    <Compile Include="DataTableExamples\Complex\BookFilter.cs" />
     <Compile Include="DataTableExamples\Complex\BookViewModel.cs" />
     <Compile Include="DataTableExamples\Complex\Example.cs" />
     <Compile Include="DataTableExamples\Simple\BookViewModel.cs" />
