@@ -62,7 +62,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PasswordPage_GitHubSourceURL()
         {
-            WaitUntil(x => _passwordPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _passwordPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

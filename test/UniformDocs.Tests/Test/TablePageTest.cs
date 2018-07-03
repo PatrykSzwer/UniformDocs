@@ -33,7 +33,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TablePage_GitHubSourceURL()
         {
-            WaitUntil(x => _tablePage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _tablePage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

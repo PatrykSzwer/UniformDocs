@@ -64,7 +64,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PaginationPage_GitHubSourceURL()
         {
-            WaitUntil(x => _paginationPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _paginationPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

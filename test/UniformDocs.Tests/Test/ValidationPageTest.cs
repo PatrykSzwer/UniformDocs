@@ -53,7 +53,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ValidationPage_GitHubSourceURL()
         {
-            WaitUntil(x => _validationPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _validationPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

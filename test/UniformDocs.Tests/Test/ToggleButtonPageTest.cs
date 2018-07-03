@@ -37,7 +37,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ToggleButtonPage_GitHubSourceURL()
         {
-            WaitUntil(x => _toggleButtonPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _toggleButtonPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

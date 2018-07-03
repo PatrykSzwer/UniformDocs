@@ -29,7 +29,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void CardPage_GitHubSourceURL()
         {
-            WaitUntil(x => _cardPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _cardPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

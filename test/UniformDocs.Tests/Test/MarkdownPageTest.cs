@@ -32,7 +32,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void MarkdownPage_GitHubSourceURL()
         {
-            WaitUntil(x => _markdown.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _markdown.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

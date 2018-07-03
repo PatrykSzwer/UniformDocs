@@ -82,7 +82,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextPage_GitHubSourceURL()
         {
-            WaitUntil(x => _textPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _textPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

@@ -38,7 +38,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void CheckboxPage_GitHubSourceURL()
         {
-            WaitUntil(x => _checkboxPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _checkboxPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

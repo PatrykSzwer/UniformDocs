@@ -69,7 +69,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DropdownPage_GitHubSourceURL()
         {
-            WaitUntil(x => _dropDownPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _dropDownPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

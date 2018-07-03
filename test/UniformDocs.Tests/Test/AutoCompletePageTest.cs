@@ -63,7 +63,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void AutoCompletePage_GitHubSourceURL()
         {
-            WaitUntil(x => _autoCompletePage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _autoCompletePage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

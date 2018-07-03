@@ -50,7 +50,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void MainPage_GitHubSourceURL()
         {
-            WaitUntil(x => _mainPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _mainPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

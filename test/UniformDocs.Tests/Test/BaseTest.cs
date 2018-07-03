@@ -78,9 +78,8 @@ namespace UniformDocs.Tests.Test
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
 
-        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, string errorMessage = null, int timeToWait = 10)
+        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, string errorMessage = null, int timeToWait = 10, int tries = 1)
         {
-            int tries = 5;
             Exception lastException = null;
             while(tries-- > 0)
             {

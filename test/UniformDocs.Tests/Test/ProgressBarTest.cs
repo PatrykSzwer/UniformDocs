@@ -35,7 +35,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ProgressBarPage_GitHubSourceURL()
         {
-            WaitUntil(x => _progressBarPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _progressBarPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

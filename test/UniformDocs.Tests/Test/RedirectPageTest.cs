@@ -57,7 +57,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void RedirectPage_GitHubSourceURL()
         {
-            WaitUntil(x => _redirectPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _redirectPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

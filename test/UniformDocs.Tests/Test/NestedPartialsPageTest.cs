@@ -58,7 +58,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void NestedPartialsPage_GitHubSourceURL()
         {
-            WaitUntil(x => _nestedPartialsPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _nestedPartialsPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

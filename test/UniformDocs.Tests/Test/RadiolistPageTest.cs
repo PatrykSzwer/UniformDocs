@@ -38,7 +38,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void RadiolistPage_GitHubSourceURL()
         {
-            WaitUntil(x => _radiolistPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _radiolistPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

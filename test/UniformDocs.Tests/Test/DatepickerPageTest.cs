@@ -40,7 +40,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DatepickerPage_GitHubSourceURL()
         {
-            WaitUntil(x => _datePicker.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _datePicker.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }

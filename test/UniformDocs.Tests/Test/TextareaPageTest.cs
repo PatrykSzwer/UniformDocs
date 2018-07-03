@@ -50,7 +50,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextareaPage_GitHubSourceURL()
         {
-            WaitUntil(x => _textareaPage.GitHubSourceLinks.Displayed);
+            WaitUntil(x => _textareaPage.GitHubSourceLinks.Displayed, "", 10, 3);
             TestGitHubSourceLinkURLs();
         }
     }
