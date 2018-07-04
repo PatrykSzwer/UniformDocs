@@ -1,10 +1,5 @@
 {
   "Html": "/UniformDocs/Components/PaginationPage.html",
-  "ChangePage$": 0,
-  "NextPageTrigger$": 0,
-  "PreviousPageTrigger$": 0,
-  "LastPageTrigger$": 0,
-  "FirstPageTrigger$": 0,
   "Library": [
     {
       "Author": "",
@@ -29,7 +24,7 @@
 
   "TotalEntries": 0,
   "TotalPages": 0,
-  "CurrentPage": 1,
+  "CurrentPage$": 1,
   "CurrentOffset": 0,
   "DisableFirst": true,
   "DisableLast": false
