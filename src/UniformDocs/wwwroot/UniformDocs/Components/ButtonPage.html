@@ -78,7 +78,8 @@
                     <p>Currently Regenerating!</p>
                 </template>
             </div>
-
+       
+            
             <h2 slot="uniformdocs/buttonpage-binding-issue-heading">Button with children</h2>
             <p slot="uniformdocs/buttonpage-binding-issue-description">
                 Because of an
@@ -121,6 +122,17 @@
                 </span>
             </button>
             <span slot="uniformdocs/buttonpage-binding-issue-label">{{model.OnBuyReaction}}</span>
+
+            <h2 slot="uniformdocs/buttonpage-buttons-with-intent-heading">Buttons with intents</h2>
+            
+            <p slot="uniformdocs/buttonpage-buttons-with-intent-desc">Can be used as<code>.uni-*-button</code> where <code>*</code>is your intent ([<code>primary</code>, <code>success</code>, <code>danger</code> and <code>*</code>]) </p>
+
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-primary">Primary</button>
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-danger">Danger</button>
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-success">Success</button>
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-flat">Flat</button>
+
+
             <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
@@ -221,6 +233,28 @@
                 <slot name="uniformdocs/buttonpage-binding-issue-click-label"></slot>
                 <slot name="uniformdocs/buttonpage-binding-issue-button"></slot>
                 <slot name="uniformdocs/buttonpage-binding-issue-label"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-heading"></slot>
+                </div>
+                <div>
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-desc"></slot>
+                </div>
+                
+                <div class="uni-primary-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-primary"></slot>
+                </div>
+                <div class="uni-danger-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-danger"></slot>
+                </div>
+                <div class="uni-success-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-success"></slot>
+                </div>
+                <div class="uni-flat-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-flat"></slot>
+                </div>
+
             </div>
         </div>
     </template>

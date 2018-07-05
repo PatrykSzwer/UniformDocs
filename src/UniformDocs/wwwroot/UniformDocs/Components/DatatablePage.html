@@ -1,0 +1,63 @@
+<link rel="import" href="/sys/hot-table/hot-table.html">
+<link rel="import" href="/sys/hot-table/src/hot-table-style.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" as="style" href="/sys/uniform.css/components/uni-data-table/uni-data-table.html">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/datatable-heading">Datatable</h1>
+
+            <p slot="uniformdocs/datatable-description">
+                
+            </p>
+
+            <p slot="uniformdocs/datatable-demo-description">
+                The below datatable is synced with the server. Column description:
+            </p>
+
+            <ul slot="uniformdocs/datatable-demo-columns">
+                <li>
+                    <code>Name</code> - editable name of your pet
+                </li>
+                <li>
+                    <code>Kind</code> - editable name of the pet species. Known species:
+                    <code>dog</code>,
+                    <code>cat</code>,
+                    <code>rabbit</code>,
+                    <code>hamster</code>
+                </li>
+                <li>
+                    <code>Feature</code> - non-editable feature of the selected pet. When you change the "Kind" column, the server will push the feature of this pet
+                </li>
+            </ul>
+
+            <hot-table slot="uniformdocs/datatable-table" datarows="{{model.Pets}}">
+                <hot-column value="Name$" header="Name"></hot-column>
+                <hot-column value="Kind$" header="Kind"></hot-column>
+                <hot-column value="Feature" header="Feature" read-only></hot-column>
+            </hot-table>
+            <button slot="uniformdocs/datatable-button" value="{{model.AddPetTrigger$::click}}" onmousedown="++this.value">Add a pet</button>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/datatable-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/datatable-description"></slot>
+                <slot name="uniformdocs/datatable-demo-description"></slot>
+                <slot name="uniformdocs/datatable-demo-columns"></slot>
+                <slot name="uniformdocs/datatable-table"></slot>
+                <div style="margin-top: 0.5em">
+                    <slot name="uniformdocs/datatable-button"></slot>
+                </div>
+            </div>
+        </div>
+
+    </template>
+</template>
