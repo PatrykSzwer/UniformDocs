@@ -91,7 +91,10 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/dropdown", () => WrapPage<DropdownPage>("/UniformDocs/partial/dropdown"));
 
             Handle.GET("/UniformDocs/partial/decimal", () => new DecimalPage());
-            Handle.GET("/UniformDocs/decimal", () => WrapPage<DecimalPage>("/UniformDocs/partial/decimal"));
+            Handle.GET("/UniformDocs/decimal", () => WrapPage<DecimalPage>("/UniformDocs/partial/decimal"));        
+
+            Handle.GET("/UniformDocs/partial/formitem", () => new FormItemPage());
+            Handle.GET("/UniformDocs/formitem", () => WrapPage<FormItemPage>("/UniformDocs/partial/formitem"));
 
             Handle.GET("/UniformDocs/partial/html", () => new HtmlPage());
             Handle.GET("/UniformDocs/html", () => WrapPage<HtmlPage>("/UniformDocs/partial/html"));
