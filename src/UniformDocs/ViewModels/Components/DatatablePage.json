@@ -1,0 +1,15 @@
+{
+  "Html": "/UniformDocs/Components/DatatablePage.html",
+  "People": [
+    {
+      "Rows": [
+        {
+          "Name": "",
+          "LastName": "",
+          "Age": 0,
+          "EyeColor": ""
+        }
+      ]
+    }
+  ]
+}
