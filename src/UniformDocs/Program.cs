@@ -6,6 +6,7 @@ using UniformDocs.ViewModels.Components;
 using UniformDocs.ViewModels.Design;
 using UniformDocs.ViewModels.HowTo;
 using Starcounter;
+using Starcounter.Advanced;
 
 namespace UniformDocs
 {
