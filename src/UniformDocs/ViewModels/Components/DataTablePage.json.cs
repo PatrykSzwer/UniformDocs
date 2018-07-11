@@ -3,13 +3,36 @@ using System.Linq;
 using UniformDocs.Database;
 using Starcounter;
 using Starcounter.Linq;
+using System;
 
 namespace UniformDocs.ViewModels.Components
 {
     partial class DataTablePage : Json
     {
-        public int RowsCount { get; set; }
-        public int PageSize => 100;
+        public void Init()
+        {
+            this.DataTable.PopulateColumns();
+            this.DataTable.ReloadRows();
+        }
+
+        void Handle(Input.AddNewRowTrigger action)
+        {
+            Db.Transact(() =>
+            {
+                new TableRow
+                {
+                    FirstName = "New first name",
+                    LastName = "New last name",
+                    Email = "New email"
+                };
+            });
+        }
+    }
+
+    [DataTablePage_json.DataTable]
+    partial class DataTablePageDataTable : Json
+    {
+        public int TotalRows { get; set; }
 
         private List<string> ColumnProperties => new List<string> {
             "FirstName",
@@ -17,57 +40,53 @@ namespace UniformDocs.ViewModels.Components
             "Email"
         };
 
-        public void Init()
-        {
-            this.PopulateColumns();
-            this.ReloadRows();
-        }
 
-        private void PopulateColumns()
+        public void PopulateColumns()
         {
             foreach (var propName in ColumnProperties)
             {
                 var column = this.Columns.Add();
                 column.Sort = null;
                 column.Filter = "";
+                column.DisplayName = propName;
                 column.PropertyName = propName;
             }
         }
 
-        private void GetPage(int page)
+        public void GetPage(int page)
         {
             var rows = GetRows();
-            this.RowsCount = rows.Count();
+            this.TotalRows = rows.Count();
 
-            if (this.RowsCount == 0)
+            if (this.TotalRows == 0)
             {
                 return;
             }
 
             if (page > 0)
             {
-                // Add missing dummy pages to maintain sparse page indicies in RowsData
-                while (this.RowsData.ElementAtOrDefault(page - 1) == null)
+                // Add missing dummy pages to maintain sparse page indicies in Pages
+                while (this.Pages.ElementAtOrDefault(page - 1) == null)
                 {
-                    this.RowsData.Add();
+                    this.Pages.Add();
                 }
             }
 
-            var newRowsData = new DataTableRowsData();
+            var newPages = new DataTablePages();
 
             // Apply sorting specified in Columns
             rows = SortRows(rows);
 
             // Take a slice of sorted rows
-            newRowsData.Rows = rows.Skip(page * PageSize).Take(PageSize);
-            // Append or replace the specified page in RowsData with the slice
-            if (this.RowsData.ElementAtOrDefault(page) == null)
+            newPages.Rows = rows.Skip(page * Pagination.PageSize).Take(Pagination.PageSize);
+            // Append or replace the specified page in Pages with the slice
+            if (this.Pages.ElementAtOrDefault(page) == null)
             {
-                this.RowsData.Insert(page, newRowsData);
+                this.Pages.Insert(page, newPages);
             }
             else
             {
-                this.RowsData[page] = newRowsData;
+                this.Pages[page] = newPages;
             }
         }
 
@@ -122,67 +141,68 @@ namespace UniformDocs.ViewModels.Components
         }
 
         /**
-         * Updates RowsCount and RowsData using the Column.Filter and
+         * Updates TotalRows and Pages using the Column.Filter and
          * .SortingDirection states.
          */
-        private void ReloadRows()
+        public void ReloadRows()
         {
             // Remove all old pages
-            this.RowsData.Clear();
+            this.Pages.Clear();
 
-            // Deliver the last requested page in RowsData
-            this.GetPage((int)this.Page);
+            // Deliver the last requested page in Pages
+            this.GetPage((int)this.Pagination.CurrentPageIndex);
         }
+    }
 
-        void Handle(Input.AddNewRowTrigger action)
+    [DataTablePage_json.DataTable.Pagination]
+    partial class DataTablePagination : Json
+    {
+        public DataTablePageDataTable ParentPage => this.Parent as DataTablePageDataTable;
+        public int PageSize => 100;
+        public int PagesCount
         {
-            Db.Transact(() =>
+            get
             {
-                new TableRow
-                {
-                    FirstName = "New first name",
-                    LastName = "New last name",
-                    Email = "New email"
-                };
-            });
-        }
-
-        void Handle(Input.Page action)
-        {
-            this.GetPage((int)action.Value);
-        }
-
-        [DataTablePage_json.RowsData]
-        partial class DataTableRowsData : Json
-        {
-            public IEnumerable<TableRow> Rows { get; set; }
-        }
-
-        [DataTablePage_json.RowsData.Rows]
-        partial class DataTableRow : Json, IBound<TableRow>
-        {
-            void Handle(Input.DeleteTrigger action)
-            {
-                this.Data.Delete();
+                return (int)Math.Ceiling((double)ParentPage.TotalRows / (double)PageSize);
             }
         }
 
-        [DataTablePage_json.Columns]
-        partial class DataTableColumns : Json
+        void Handle(Input.CurrentPageIndex action)
         {
-            public DataTablePage ParentPage => this.Parent.Parent as DataTablePage;
+            ParentPage.GetPage((int)action.Value);
+        }
+    }
 
-            void Handle(Input.Filter action)
-            {
-                this.Filter = action.Value;
-                ParentPage.ReloadRows();
-            }
+    [DataTablePage_json.DataTable.Pages]
+    partial class DataTablePages : Json
+    {
+        public IEnumerable<TableRow> Rows { get; set; }
+    }
 
-            void Handle(Input.Sort action)
-            {
-                this.Sort = action.Value;
-                ParentPage.ReloadRows();
-            }
+    [DataTablePage_json.DataTable.Pages.Rows]
+    partial class DataTableRow : Json, IBound<TableRow>
+    {
+        void Handle(Input.DeleteTrigger action)
+        {
+            this.Data.Delete();
+        }
+    }
+
+    [DataTablePage_json.DataTable.Columns]
+    partial class DataTableColumns : Json
+    {
+        public DataTablePageDataTable ParentPage => this.Parent.Parent as DataTablePageDataTable;
+
+        void Handle(Input.Filter action)
+        {
+            this.Filter = action.Value;
+            ParentPage.ReloadRows();
+        }
+
+        void Handle(Input.Sort action)
+        {
+            this.Sort = action.Value;
+            ParentPage.ReloadRows();
         }
     }
 }

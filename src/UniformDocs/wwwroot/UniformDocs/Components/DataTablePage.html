@@ -1,7 +1,7 @@
 ﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 <link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table.html">
-<link rel="import" href="/sys/uniform.css/components/vaadin-grid/vaadin-grid-sorter.html">
-<link rel="import" href="/sys/uniform.css/components/vaadin-grid/vaadin-grid-filter.html">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table-sorter.html">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table-filter.html">
 
 <template>
     <dom-bind>
@@ -25,35 +25,14 @@
             <input type="search" placeholder="Filter by email" value="{{model.Columns.2.Filter$::input}}" slot="uniformdocs/datatable-filter-email" />
 
             <uni-data-table slot="uniformdocs/datatable-data-table"
-                            rows-data="{{model.RowsData}}"
-                            size="{{model.RowsCount}}"
-                            page-size="{{model.PageSize}}"
-                            page="{{model.Page$}}">
-                <uni-data-table-column>
+                            provider="{{model.DataTable}}" auto-pagination>
+                <uni-data-table-column index="2">
                     <template slot="header">
-                        First Name
-                        <!-- TODO: causes infinite recursion in Palindrom with infinite scrolling -->
-                        <!-- <vaadin-grid-sorter direction="{{model.Columns.0.Sort$}}">First Name</vaadin-grid-sorter> -->
-                    </template>
-                    <template>
-                        {{item.FirstName}}
-                    </template>
-                </uni-data-table-column>
-                <uni-data-table-column>
-                    <template slot="header">
-                        Last Name
-                        <!-- TODO: causes infinite recursion... -->
-                        <!-- <vaadin-grid-sorter direction="{{model.Columns.1.Sort$}}">Last Name</vaadin-grid-sorter> -->
-                    </template>
-                    <template>
-                        {{item.LastName}}
-                    </template>
-                </uni-data-table-column>
-                <uni-data-table-column>
-                    <template slot="header">
-                        Email
-                        <!-- TODO: causes infinite recursion... -->
-                        <!-- <vaadin-grid-filter value="{{model.Columns.2.Filter$}}></vaadin-grid-filter> -->
+                        <uni-data-table-sorter direction="{{column.Sort$}}">
+                                Email
+                        </uni-data-table-sorter>
+                        <uni-data-table-filter value="{{column.Filter$}}">
+                        </uni-data-table-filter>
                     </template>
                     <template>
                         <input type="email" value="{{item.Email$::change}}" placeholder="Email">
