@@ -82,9 +82,6 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/datagrid", () => new DatagridPage());
             Handle.GET("/UniformDocs/datagrid", () => WrapPage<DatagridPage>("/UniformDocs/partial/datagrid"));
 
-            Handle.GET("/UniformDocs/partial/datatable", () => new DatatablePage());
-            Handle.GET("/UniformDocs/datatable", () => WrapPage<DatatablePage>("/UniformDocs/partial/datatable"));
-
             Handle.GET("/UniformDocs/partial/datepicker", () => new DatepickerPage());
             Handle.GET("/UniformDocs/datepicker", () => WrapPage<DatepickerPage>("/UniformDocs/partial/datepicker"));
 
@@ -150,6 +147,17 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/togglebutton", () => new ToggleButtonPage());
             Handle.GET("/UniformDocs/togglebutton",
                 () => WrapPage<ToggleButtonPage>("/UniformDocs/partial/togglebutton"));
+
+            Handle.GET("/UniformDocs/partial/datatable", () =>
+            {
+                return Db.Scope(() =>
+                {
+                    var dataTablePage = new DataTablePage();
+                    dataTablePage.Init();
+                    return dataTablePage;
+                });
+            });
+            Handle.GET("/UniformDocs/datatable", () => WrapPage<DataTablePage>("/UniformDocs/partial/datatable"));
 
             #endregion
 

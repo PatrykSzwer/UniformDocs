@@ -1,237 +1,208 @@
+using System.Collections.Generic;
+using System.Linq;
+using UniformDocs.Database;
 using Starcounter;
+using Starcounter.Linq;
+using System;
 
 namespace UniformDocs.ViewModels.Components
 {
-    partial class DatatablePage : Json
+    partial class DataTablePage : Json
     {
-
-        protected override void OnData()
+        public void Init()
         {
-            base.OnData();
+            this.DataTable.PopulateColumns();
+            this.DataTable.ReloadRows();
+        }
 
-            var rows = this.People.Add();
+        void Handle(Input.AddNewRowTrigger action)
+        {
+            Db.Transact(() =>
+            {
+                new TableRow
+                {
+                    FirstName = "New first name",
+                    LastName = "New last name",
+                    Email = "New email"
+                };
+            });
+        }
+    }
 
-            var person = rows.Rows.Add();
-            person.Name = "Dolores";
-            person.LastName = "Witt";
-            person.Age = 31;
-            person.EyeColor = "brown";
-               
-            person = rows.Rows.Add();
-            person.Name = "Griffith";
-            person.LastName = "Whitley";
-            person.Age = 21;
-            person.EyeColor = "blue";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Verna";
-            person.LastName = "Galloway";
-            person.Age = 23;
-            person.EyeColor = "green";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Conner";
-            person.LastName = "Sheppard";
-            person.Age = 21;
-            person.EyeColor = "blue";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Isabelle";
-            person.LastName = "Wilcox";
-            person.Age = 22;
-            person.EyeColor = "browsn";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Floyd";
-            person.LastName = "Blackburn";
-            person.Age = 33;
-            person.EyeColor = "blue";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Rosalyn";
-            person.LastName = "Compton";
-            person.Age = 36;
-            person.EyeColor = "green";
+    [DataTablePage_json.DataTable]
+    partial class DataTablePageDataTable : Json
+    {
+        public int TotalRows { get; set; }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Carmella";
-            person.LastName = "Solis";
-            person.Age = 33;
-            person.EyeColor = "browsn";
+        private List<string> ColumnProperties => new List<string> {
+            "FirstName",
+            "LastName",
+            "Email"
+        };
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Isabella";
-            person.LastName = "Dillard";
-            person.Age = 26;
-            person.EyeColor = "blue";
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Luella";
-            person.LastName = "Byrd";
-            person.Age = 39;
-            person.EyeColor = "green";
+        public void PopulateColumns()
+        {
+            foreach (var propName in ColumnProperties)
+            {
+                var column = this.Columns.Add();
+                column.Sort = null;
+                column.Filter = "";
+                column.DisplayName = propName;
+                column.PropertyName = propName;
+            }
+        }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Blevins";
-            person.LastName = "Glenn";
-            person.Age = 31;
-            person.EyeColor = "browsn";
+        public void GetPage(int page)
+        {
+            var rows = GetRows();
+            this.TotalRows = rows.Count();
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Lidia";
-            person.LastName = "Gibson";
-            person.Age = 21;
-            person.EyeColor = "blue";
+            if (this.TotalRows == 0)
+            {
+                return;
+            }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Bright";
-            person.LastName = "Merrill";
-            person.Age = 21;
-            person.EyeColor = "blue";
+            if (page > 0)
+            {
+                // Add missing dummy pages to maintain sparse page indicies in Pages
+                while (this.Pages.ElementAtOrDefault(page - 1) == null)
+                {
+                    this.Pages.Add();
+                }
+            }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Colleen";
-            person.LastName = "Roy";
-            person.Age = 27;
-            person.EyeColor = "blue";
+            var newPages = new DataTablePages();
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Madden";
-            person.LastName = "Bowen";
-            person.Age = 30;
-            person.EyeColor = "blue";
+            // Apply sorting specified in Columns
+            rows = SortRows(rows);
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Gay";
-            person.LastName = "Cabrera";
-            person.Age = 20;
-            person.EyeColor = "browsn";
+            // Take a slice of sorted rows
+            newPages.Rows = rows.Skip(page * Pagination.PageSize).Take(Pagination.PageSize);
+            // Append or replace the specified page in Pages with the slice
+            if (this.Pages.ElementAtOrDefault(page) == null)
+            {
+                this.Pages.Insert(page, newPages);
+            }
+            else
+            {
+                this.Pages[page] = newPages;
+            }
+        }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Moran";
-            person.LastName = "Richard";
-            person.Age = 27;
-            person.EyeColor = "green";
+        /**
+         * Returns rows filtered using Column.Filter states.
+         */
+        private IEnumerable<TableRow> GetRows()
+        {
+            var rows = DbLinq.Objects<TableRow>().AsEnumerable();
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Luna";
-            person.LastName = "Ramos";
-            person.Age = 36;
-            person.EyeColor = "green";
+            rows = FilterRows(rows);
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Pierce";
-            person.LastName = "rowse";
-            person.Age = 22;
-            person.EyeColor = "blue";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Bobbie";
-            person.LastName = "Woodard";
-            person.Age = 20;
-            person.EyeColor = "green";
+            return rows;
+        }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Lolita";
-            person.LastName = "Fry";
-            person.Age = 36;
-            person.EyeColor = "green";
+        private IEnumerable<TableRow> SortRows(IEnumerable<TableRow> rowsToSort)
+        {
+            var rows = rowsToSort.ToList();
+            foreach (var column in this.Columns.Where(x => !string.IsNullOrEmpty(x.Sort)))
+            {
+                if (column.Sort == "asc")
+                {
+                    rows = rows.OrderBy(x => x.GetType().GetProperty(column.PropertyName)?.GetValue(x)).ToList();
+                }
+                else if (column.Sort == "desc")
+                {
+                    rows = rows.OrderByDescending(x => x.GetType().GetProperty(column.PropertyName)?.GetValue(x)).ToList();
+                }
+            }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Gertrude";
-            person.LastName = "Joyce";
-            person.Age = 30;
-            person.EyeColor = "blue";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Rosa";
-            person.LastName = "Craft";
-            person.Age = 35;
-            person.EyeColor = "browsn";
+            return rows;
+        }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Norris";
-            person.LastName = "Medina";
-            person.Age = 22;
-            person.EyeColor = "blue";
+        private IEnumerable<TableRow> FilterRows(IEnumerable<TableRow> rowsToFilter)
+        {
+            IEnumerable<TableRow> rows = null;
+            foreach (var column in this.Columns.Where(x => !string.IsNullOrEmpty(x.Filter)))
+            {
+                if (rows == null)
+                {
+                    rows = rowsToFilter.Where(row =>
+                        row.GetType().GetProperty(column.PropertyName).GetValue(row).ToString().Contains(column.Filter));
+                }
+                else
+                {
+                    rows = rows.Concat(rowsToFilter.Where(row =>
+                        row.GetType().GetProperty(column.PropertyName).GetValue(row).ToString().Contains(column.Filter)));
+                }
+            }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Beverley";
-            person.LastName = "Gilbert";
-            person.Age = 39;
-            person.EyeColor = "green";
+            return rows ?? rowsToFilter; // If there are no filters, return all rows
+        }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Dionne";
-            person.LastName = "Riggs";
-            person.Age = 37;
-            person.EyeColor = "green";
+        /**
+         * Updates TotalRows and Pages using the Column.Filter and
+         * .SortingDirection states.
+         */
+        public void ReloadRows()
+        {
+            // Remove all old pages
+            this.Pages.Clear();
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Acevedo";
-            person.LastName = "Warner";
-            person.Age = 30;
-            person.EyeColor = "blue";
+            // Deliver the last requested page in Pages
+            this.GetPage((int)this.Pagination.CurrentPageIndex);
+        }
+    }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Ollie";
-            person.LastName = "Miranda";
-            person.Age = 31;
-            person.EyeColor = "green";
+    [DataTablePage_json.DataTable.Pagination]
+    partial class DataTablePagination : Json
+    {
+        public DataTablePageDataTable ParentPage => this.Parent as DataTablePageDataTable;
+        public int PageSize => 100;
+        public int PagesCount
+        {
+            get
+            {
+                return (int)Math.Ceiling((double)ParentPage.TotalRows / (double)PageSize);
+            }
+        }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Clare";
-            person.LastName = "Blair";
-            person.Age = 25;
-            person.EyeColor = "blue";
+        void Handle(Input.CurrentPageIndex action)
+        {
+            ParentPage.GetPage((int)action.Value);
+        }
+    }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Simmons";
-            person.LastName = "Espinoza";
-            person.Age = 25;
-            person.EyeColor = "blue";
+    [DataTablePage_json.DataTable.Pages]
+    partial class DataTablePages : Json
+    {
+        public IEnumerable<TableRow> Rows { get; set; }
+    }
 
-   
-            person = rows.Rows.Add();
-            person.Name = "Sloan";
-            person.LastName = "Callahan";
-            person.Age = 23;
-            person.EyeColor = "blue";
-            
-   
-            person = rows.Rows.Add();
-            person.Name = "Eva";
-            person.LastName = "Cherry";
-            person.Age = 20;
-            person.EyeColor = "green";
+    [DataTablePage_json.DataTable.Pages.Rows]
+    partial class DataTableRow : Json, IBound<TableRow>
+    {
+        void Handle(Input.DeleteTrigger action)
+        {
+            this.Data.Delete();
+        }
+    }
+
+    [DataTablePage_json.DataTable.Columns]
+    partial class DataTableColumns : Json
+    {
+        public DataTablePageDataTable ParentPage => this.Parent.Parent as DataTablePageDataTable;
+
+        void Handle(Input.Filter action)
+        {
+            this.Filter = action.Value;
+            ParentPage.ReloadRows();
+        }
+
+        void Handle(Input.Sort action)
+        {
+            this.Sort = action.Value;
+            ParentPage.ReloadRows();
         }
     }
 }

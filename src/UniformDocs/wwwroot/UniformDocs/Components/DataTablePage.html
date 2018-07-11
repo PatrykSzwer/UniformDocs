@@ -1,65 +1,40 @@
-<link rel="import" href="/sys/hot-table/hot-table.html">
-<link rel="import" href="/sys/hot-table/src/hot-table-style.html">
-<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
-<link rel="import" as="style" href="/sys/uniform.css/components/uni-data-table/uni-data-table.html">
-<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table.html">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table-sorter.html">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table-filter.html">
 
 <template>
     <dom-bind>
         <template is="dom-bind">
-            <h1 slot="uniformdocs/datatable-heading">Datatable using <code>uni-data-table</code></h1>
+            <h1 slot="uniformdocs/datatable-heading">Data table</h1>
 
             <p slot="uniformdocs/datatable-description">
                 <code>uni-data-table</code> is a custom element that renders a data table, with lazy-loading support and rich declarative cell content.
             </p>
 
-            <p slot="uniformdocs/datatable-demo-description">
-                The below datatable is synced with the server. Column description:
-            </p>
-            <uni-data-table slot="uniformdocs/datatable-demo-table" rows-data="{{model.People}}" size="{{model.People.0.Rows.length}}">
-                <uni-data-table-column width="50px" flex-grow="0">
+            <button slot="uniformdocs/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+
+            <uni-data-table slot="uniformdocs/datatable-data-table"
+                            provider="{{model.DataTable}}" auto-pagination>
+                <uni-data-table-column index="2">
                     <template slot="header">
-                        Index
+                        <uni-data-table-sorter direction="{{column.Sort$}}">
+                                Email
+                        </uni-data-table-sorter>
+                        <uni-data-table-filter value="{{column.Filter$}}">
+                        </uni-data-table-filter>
                     </template>
                     <template>
-                        [[index]]
+                        <input type="email" value="{{item.Email$::change}}" placeholder="Email">
                     </template>
                 </uni-data-table-column>
                 <uni-data-table-column>
-                    <template slot="header">
-                        First Name
-                    </template>
                     <template>
-                        [[item.Name]]
-                    </template>
-                </uni-data-table-column>
-                <uni-data-table-column>
-                    <template slot="header">
-                        Last Name
-                    </template>
-                    <template>
-                        [[item.LastName]]
-                    </template>
-                </uni-data-table-column>
-                <uni-data-table-column>
-                    <template slot="header">
-                        Age
-                    </template>
-                    <template>
-                        [[item.Age]]
-                    </template>
-                </uni-data-table-column>
-                <uni-data-table-column>
-                    <template slot="header">
-                        Eye Color
-                    </template>
-                    <template>
-                        [[item.EyeColor]]
+                        <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
                     </template>
                 </uni-data-table-column>
             </uni-data-table>
-            
-            <github-source-links base="{{model.Html}}"></github-source-links>
+            <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
     </dom-bind>
     <template is="declarative-shadow-dom">
@@ -67,17 +42,21 @@
         <div class="uni-section-secondary uni-title">
             <slot name="uniformdocs/datatable-heading"></slot>
         </div>
-        <div class="uni-section-primary">
+        <div class="uni-section-primary" style="padding-bottom: 0">
             <div class="uni-card">
                 <slot name="uniformdocs/datatable-description"></slot>
-                <slot name="uniformdocs/datatable-demo-description"></slot>
-                <slot name="uniformdocs/datatable-demo-table"></slot>
-                <slot name="uniformdocs/datatable-table"></slot>
-                <div style="margin-top: 0.5em">
-                    <slot name="uniformdocs/datatable-button"></slot>
-                </div>
             </div>
         </div>
-
+        <div class="uni-section-primary" style="padding-bottom: 0">
+            <div class="uni-card">
+                <slot name="uniformdocs/datatable-data-table"></slot>
+            </div>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-primary-button">
+                <slot name="uniformdocs/datatable-add-button"></slot>
+            </div>
+        </div>
+        <slot></slot>
     </template>
 </template>
