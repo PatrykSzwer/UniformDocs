@@ -6,6 +6,7 @@ using UniformDocs.ViewModels.Components;
 using UniformDocs.ViewModels.Design;
 using UniformDocs.ViewModels.HowTo;
 using Starcounter;
+using Starcounter.Advanced;
 
 namespace UniformDocs
 {
@@ -91,10 +92,13 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/dropdown", () => WrapPage<DropdownPage>("/UniformDocs/partial/dropdown"));
 
             Handle.GET("/UniformDocs/partial/decimal", () => new DecimalPage());
-            Handle.GET("/UniformDocs/decimal", () => WrapPage<DecimalPage>("/UniformDocs/partial/decimal"));        
+            Handle.GET("/UniformDocs/decimal", () => WrapPage<DecimalPage>("/UniformDocs/partial/decimal"));
 
             Handle.GET("/UniformDocs/partial/formitem", () => new FormItemPage());
             Handle.GET("/UniformDocs/formitem", () => WrapPage<FormItemPage>("/UniformDocs/partial/formitem"));
+
+            Handle.GET("/UniformDocs/partial/formitemgroup", () => new FormItemGroupPage());
+            Handle.GET("/UniformDocs/formitemgroup", () => WrapPage<FormItemGroupPage>("/UniformDocs/partial/formitemgroup"));
 
             Handle.GET("/UniformDocs/partial/html", () => new HtmlPage());
             Handle.GET("/UniformDocs/html", () => WrapPage<HtmlPage>("/UniformDocs/partial/html"));

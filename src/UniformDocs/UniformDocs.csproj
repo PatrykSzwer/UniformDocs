@@ -103,6 +103,9 @@
     <Compile Include="ViewModels\Components\DatatablePage.json.cs">
       <DependentUpon>DatatablePage.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Components\FormItemGroupPage.json.cs">
+      <DependentUpon>FormItemGroupPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Components\FormItemPage.json.cs">
       <DependentUpon>FormItemPage.json</DependentUpon>
     </Compile>
@@ -271,6 +274,9 @@
     <TypedJSON Include="ViewModels\Components\FormItemPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="ViewModels\Components\FormItemGroupPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -279,6 +285,7 @@
     <Content Include="wwwroot\UniformDocs\Components\BreadcrumbPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\ButtonPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\DatatablePage.html" />
+    <Content Include="wwwroot\UniformDocs\Components\FormItemGroupPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\FormItemPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\CallbackPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\ChartPage.html" />
