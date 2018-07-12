@@ -2,19 +2,11 @@
 
 ## Branches
 
-This repo supports Starcounter 2.4.0 with Polymer 2 (`master-2.4` branch) and Starcounter 2.3.1 with Polymer 1 (`master` branch). The views in the repo are hybrid.
+This repo supports Starcounter 2.4.0 with Polymer 2 (`master` branch) and Starcounter 2.3.1 with Polymer 1 (`master-2.3` branch).
 
-All changes should be hybrid, made as a PR to the `master-2.4` branch. 
+All changes should be as a PR to the `master` branch. 
 
-The build server is configured to attempt testing the PR with Starcounter 2.3.1 and 2.4.0 automatically.
-
-The person who merges the PR to `master-2.4`, should also do the manual merge of `master-2.4` to `master`, but only if the TeamCity build is passing with Starcounter 2.3. This does not have to be a PR.
-
-The following diagram illustrates the typical workflow:
-
-![](./docs/branches.png)
-
-If it is not possible to make a fully hybrid change, please split the PR into two parts - one common part for `master-2.4` and one special part for `master`.
+The branch `master-2.3` does not get updates anymore and is only for reference purposes.
 
 ## How to build and run
 
@@ -43,7 +35,7 @@ To release the app to the warehouse, follow the instructions in the [guidelines]
 ## How to deploy to `uniform.starcounter.io`
 
 1. Make sure that the new version of UniformDocs is released to the App Warehouse
-2. Connect via RDP to 54.194.101.35 (credentials in `N*********.kdbx`)
+2. Connect via RDP to the AWS EC2 instance of hosted UniformDocs (credentials in `N*********.kdbx`)
 3. In RDP, wipe out the current data by running `staradmin delete db default` 
 4. Install the current version of Starcounter 2.4 from http://downloads.starcounter.com/
 5. Start Starcounter by running `staradmin start server`
