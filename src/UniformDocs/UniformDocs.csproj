@@ -217,9 +217,6 @@
     <Compile Include="ViewModels\Components\DecimalPage.json.cs">
       <DependentUpon>DecimalPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Components\DatagridPage.json.cs">
-      <DependentUpon>DatagridPage.json</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\ValidatorHelper.cs" />
     <Compile Include="ViewModels\HowTo\FlashMessagePage.json.cs">
       <DependentUpon>FlashMessagePage.json</DependentUpon>
@@ -319,7 +316,6 @@
     <Content Include="wwwroot\UniformDocs\Components\ToggleButtonPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\CheckboxPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\CookiePage.html" />
-    <Content Include="wwwroot\UniformDocs\Components\DatagridPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\DatepickerPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\DecimalPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\DialogPage.html" />
@@ -410,11 +406,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ViewModels\Components\TablePage.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
-  </ItemGroup>
-  <ItemGroup>
-    <TypedJSON Include="ViewModels\Components\DatagridPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
