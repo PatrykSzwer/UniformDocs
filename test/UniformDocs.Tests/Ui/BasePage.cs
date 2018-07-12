@@ -79,9 +79,6 @@ namespace UniformDocs.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Toggle Button']")]
         public IWebElement ToggleButtonPageLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//a[text() = 'Datagrid']")]
-        public IWebElement DataGridPageLink { get; set; }
-
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Breadcrumb']")]
         public IWebElement BreadcrumbPageLink { get; set; }
 
