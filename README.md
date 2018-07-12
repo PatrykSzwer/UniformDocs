@@ -4,9 +4,9 @@ Present typical UI patterns in a form that is easy to apply in any Starcounter a
 
 ## Demo
 
-You can find a hosted demo of the UniformDocs app on [uniformdocs.starcounter.io](https://uniformdocs.starcounter.io/).
+You can find a hosted demo of the UniformDocs app on [uniform.starcounter.io](https://uniform.starcounter.io/).
 
-[![](docs/screenshot.png)](https://uniformdocs.starcounter.io/)
+[![](docs/screenshot.png)](https://uniform.starcounter.io/)
 
 ## Features
 
