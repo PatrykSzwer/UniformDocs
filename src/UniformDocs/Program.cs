@@ -79,9 +79,6 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/checkbox", () => new CheckboxPage());
             Handle.GET("/UniformDocs/checkbox", () => WrapPage<CheckboxPage>("/UniformDocs/partial/checkbox"));
 
-            Handle.GET("/UniformDocs/partial/datagrid", () => new DatagridPage());
-            Handle.GET("/UniformDocs/datagrid", () => WrapPage<DatagridPage>("/UniformDocs/partial/datagrid"));
-
             Handle.GET("/UniformDocs/partial/datepicker", () => new DatepickerPage());
             Handle.GET("/UniformDocs/datepicker", () => WrapPage<DatepickerPage>("/UniformDocs/partial/datepicker"));
 
@@ -90,6 +87,12 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/decimal", () => new DecimalPage());
             Handle.GET("/UniformDocs/decimal", () => WrapPage<DecimalPage>("/UniformDocs/partial/decimal"));
+
+            Handle.GET("/UniformDocs/partial/formitem", () => new FormItemPage());
+            Handle.GET("/UniformDocs/formitem", () => WrapPage<FormItemPage>("/UniformDocs/partial/formitem"));
+
+            Handle.GET("/UniformDocs/partial/formitemgroup", () => new FormItemGroupPage());
+            Handle.GET("/UniformDocs/formitemgroup", () => WrapPage<FormItemGroupPage>("/UniformDocs/partial/formitemgroup"));
 
             Handle.GET("/UniformDocs/partial/html", () => new HtmlPage());
             Handle.GET("/UniformDocs/html", () => WrapPage<HtmlPage>("/UniformDocs/partial/html"));
@@ -141,6 +144,17 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/togglebutton", () => new ToggleButtonPage());
             Handle.GET("/UniformDocs/togglebutton",
                 () => WrapPage<ToggleButtonPage>("/UniformDocs/partial/togglebutton"));
+
+            Handle.GET("/UniformDocs/partial/datatable", () =>
+            {
+                return Db.Scope(() =>
+                {
+                    var dataTablePage = new DataTablePage();
+                    dataTablePage.Init();
+                    return dataTablePage;
+                });
+            });
+            Handle.GET("/UniformDocs/datatable", () => WrapPage<DataTablePage>("/UniformDocs/partial/datatable"));
 
             #endregion
 

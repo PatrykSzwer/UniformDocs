@@ -26,48 +26,9 @@ namespace UniformDocs.ViewModels.Components
             GetNewPage();
         }
 
-        void Handle(Input.ChangePage action)
+        void Handle(Input.CurrentPage action)
         {
             this.CurrentOffset = this.EntriesPerPage * (action.Value - 1);
-            GetNewPage();
-        }
-
-        void Handle(Input.NextPageTrigger action)
-        {
-            if (this.CurrentOffset + this.EntriesPerPage < this.TotalEntries)
-            {
-                this.CurrentOffset = this.CurrentOffset + this.EntriesPerPage;
-            }
-
-            GetNewPage();
-        }
-
-        void Handle(Input.PreviousPageTrigger action)
-        {
-            bool willOverflow = this.CurrentOffset - this.EntriesPerPage < 0;
-
-            this.CurrentOffset = willOverflow ? 0 : this.CurrentOffset - this.EntriesPerPage;
-            GetNewPage();
-        }
-
-        void Handle(Input.LastPageTrigger action)
-        {
-            long remainder = this.TotalEntries % this.EntriesPerPage;
-            if (remainder == 0)
-            {
-                this.CurrentOffset = this.TotalEntries - this.EntriesPerPage;
-            }
-            else
-            {
-                this.CurrentOffset = this.TotalEntries - remainder;
-            }
-
-            GetNewPage();
-        }
-
-        void Handle(Input.FirstPageTrigger action)
-        {
-            this.CurrentOffset = 0;
             GetNewPage();
         }
 

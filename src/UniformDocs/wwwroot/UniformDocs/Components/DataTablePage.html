@@ -1,0 +1,62 @@
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table.html">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table-sorter.html">
+<link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table-filter.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/datatable-heading">Data table</h1>
+
+            <p slot="uniformdocs/datatable-description">
+                <code>uni-data-table</code> is a custom element that renders a data table, with lazy-loading support and rich declarative cell content.
+            </p>
+
+            <button slot="uniformdocs/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+
+            <uni-data-table slot="uniformdocs/datatable-data-table"
+                            provider="{{model.DataTable}}" auto-pagination>
+                <uni-data-table-column index="2">
+                    <template slot="header">
+                        <uni-data-table-sorter direction="{{column.Sort$}}">
+                                Email
+                        </uni-data-table-sorter>
+                        <uni-data-table-filter value="{{column.Filter$}}">
+                        </uni-data-table-filter>
+                    </template>
+                    <template>
+                        <input type="email" value="{{item.Email$::change}}" placeholder="Email">
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template>
+                        <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
+                    </template>
+                </uni-data-table-column>
+            </uni-data-table>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/datatable-heading"></slot>
+        </div>
+        <div class="uni-section-primary" style="padding-bottom: 0">
+            <div class="uni-card">
+                <slot name="uniformdocs/datatable-description"></slot>
+            </div>
+        </div>
+        <div class="uni-section-primary" style="padding-bottom: 0">
+            <div class="uni-card">
+                <slot name="uniformdocs/datatable-data-table"></slot>
+            </div>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-primary-button">
+                <slot name="uniformdocs/datatable-add-button"></slot>
+            </div>
+        </div>
+        <slot></slot>
+    </template>
+</template>

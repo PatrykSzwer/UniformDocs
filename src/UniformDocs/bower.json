@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "hot-table": "^0.7.0",
     "marked-element": "^2.3.3",
     "paper-item": "PolymerElements/paper-item#^2.1.1",
     "paper-listbox": "PolymerElements/paper-listbox#^2.1.1",

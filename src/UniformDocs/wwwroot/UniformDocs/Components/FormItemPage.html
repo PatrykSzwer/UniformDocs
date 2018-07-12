@@ -1,0 +1,42 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/sys/uniform.css/components/uni-form-item/uni-form-item.html">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/formitem-heading"><code>uni-form-item</code></h1>
+
+            <p slot="uniformdocs/formitem-description">
+                This element helps you create easy form elements that are accompanied with a label and an accessible validation output. <br /> This field only accepts the value "Hello".
+            </p>
+            
+            <label slot="uniformdocs/formitem-slot">Enter greeting</label>
+            <input slot="uniformdocs/formitem-slot" aria-invalid$="{{stringifyBoolean(model.IsInvalid)}}" value="{{model.Word$::keyup}}">
+            <output slot="uniformdocs/formitem-slot">{{model.ValidationMessage}}</output>
+            
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <script>
+        const template = document.currentScript.previousElementSibling;
+        template.stringifyBoolean = bool => bool ? "true" : "false";
+    </script>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/formitem-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <div>
+                    <slot name="uniformdocs/formitem-description"></slot>
+                </div>
+                <uni-form-item>
+                    <slot name="uniformdocs/formitem-slot"></slot>
+                </<uni-form-item>
+            </div>
+            </div>
+        <slot name="uniformdocs/formitem-input"></slot>
+            </template>
+</template>

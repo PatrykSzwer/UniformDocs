@@ -50,6 +50,20 @@ namespace UniformDocs.Helpers
                     new GroceryProduct { Name = "Milk", Price = 5 };
                     new GroceryProduct { Name = "Boiled Mutton", Price = 7 };
                 }
+
+                // For DataTable page
+                if (!Db.SQL($"SELECT r FROM {typeof(TableRow)} r").Any())
+                {
+                    for (int i = 500; i > 0; i--)
+                    {
+                        new TableRow
+                        {
+                            FirstName = $"{i} member first name",
+                            LastName = $"{i} member last name",
+                            Email = $"{i} member email"
+                        };
+                    }
+                }
             });
         }
     }

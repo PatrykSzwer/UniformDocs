@@ -62,6 +62,9 @@
     <Reference Include="Nito.Disposables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.Disposables.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Disposables.dll</HintPath>
     </Reference>
+    <Reference Include="Starcounter.Linq, Version=2.0.1.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Starcounter.Linq.2.0.1\lib\net461\Starcounter.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -89,6 +92,7 @@
     <Compile Include="Database\GroceryProduct.cs" />
     <Compile Include="Database\MapCoordinates.cs" />
     <Compile Include="Database\SoftwareProduct.cs" />
+    <Compile Include="Database\TableRow.cs" />
     <Compile Include="Database\TreeItem.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
@@ -99,6 +103,15 @@
     <Compile Include="Helpers\BreadcrumbTestData.cs" />
     <Compile Include="ViewModels\Components\ButtonPage.json.cs">
       <DependentUpon>ButtonPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Components\DataTablePage.json.cs">
+      <DependentUpon>DatatablePage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Components\FormItemGroupPage.json.cs">
+      <DependentUpon>FormItemGroupPage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Components\FormItemPage.json.cs">
+      <DependentUpon>FormItemPage.json</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HowTo\CallbackPage.json.cs">
       <DependentUpon>CallbackPage.json</DependentUpon>
@@ -204,9 +217,6 @@
     <Compile Include="ViewModels\Components\DecimalPage.json.cs">
       <DependentUpon>DecimalPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Components\DatagridPage.json.cs">
-      <DependentUpon>DatagridPage.json</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\ValidatorHelper.cs" />
     <Compile Include="ViewModels\HowTo\FlashMessagePage.json.cs">
       <DependentUpon>FlashMessagePage.json</DependentUpon>
@@ -259,6 +269,15 @@
     <TypedJSON Include="ViewModels\Design\NativePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="ViewModels\Components\DataTablePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\Components\FormItemPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\Components\FormItemGroupPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -266,6 +285,9 @@
     <Content Include="wwwroot\UniformDocs\AppMenuPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\BreadcrumbPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\ButtonPage.html" />
+    <Content Include="wwwroot\UniformDocs\Components\DataTablePage.html" />
+    <Content Include="wwwroot\UniformDocs\Components\FormItemGroupPage.html" />
+    <Content Include="wwwroot\UniformDocs\Components\FormItemPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\CallbackPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\ChartPage.html" />
     <TypedJSON Include="ViewModels\HowTo\FlashMessagePage.json">
@@ -294,7 +316,6 @@
     <Content Include="wwwroot\UniformDocs\Components\ToggleButtonPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\CheckboxPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\CookiePage.html" />
-    <Content Include="wwwroot\UniformDocs\Components\DatagridPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\DatepickerPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\DecimalPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\DialogPage.html" />
@@ -385,11 +406,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ViewModels\Components\TablePage.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
-  </ItemGroup>
-  <ItemGroup>
-    <TypedJSON Include="ViewModels\Components\DatagridPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
