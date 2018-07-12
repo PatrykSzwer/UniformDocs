@@ -1,0 +1,46 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/nested-heading">Nested Views</h1>
+
+            <p slot="uniformdocs/nested-description">
+                JSON's primitive value type
+                <code>object</code> can be used for nesting of the partials. This also works for recursive nesting.
+            </p>
+            <button slot="uniformdocs/nested-add-child-button" value="{{model.AddChildTrigger$::click}}" onmousedown="++this.value">Add child</button>
+            <div slot="uniformdocs/nested-child-label">
+                Hi,
+                <span>{{model.Name}}</span>
+            </div>
+            <starcounter-include slot="uniformdocs/nested-child-partial" view-model="{{model.ChildPartial}}"></starcounter-include>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-nested-child {
+                padding: 10px;
+                border: 1px solid #eeeeee;
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/nested-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/nested-description"></slot>
+                <div class="uniformdocs-nested-child">
+                    <slot name="uniformdocs/nested-add-child-button"></slot>
+                    <slot name="uniformdocs/nested-child-label"></slot>
+                    <div>
+                        <slot name="uniformdocs/nested-child-partial"></slot>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

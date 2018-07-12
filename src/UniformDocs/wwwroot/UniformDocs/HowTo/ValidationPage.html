@@ -1,0 +1,62 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/validation-heading">Validation</h1>
+
+            <p slot="uniformdocs/validation-description">
+                JSON's primitive value type
+                <code>string</code> can be mapped directly to HTML form
+                <code>input type="text"</code> with require validation.
+            </p>
+
+            <label slot="uniformdocs/validation-name-label">Please type your name</label>
+
+            <input slot="uniformdocs/validation-name-input" type="text" value="{{model.Name$::change}}" placeholder="Name">
+            <label slot="uniformdocs/validation-name-error-message">{{model.ErrorName$}}</label>
+
+            <label slot="uniformdocs/validation-last-name-label">Please type your last name</label>
+
+            <input slot="uniformdocs/validation-last-name-input" type="text" value="{{model.LastName$::change}}" placeholder="Last name">
+            <label slot="uniformdocs/validation-last-name-error-message">{{model.ErrorLastName$}}</label>
+
+            <button slot="uniformdocs/validation-validate-button" value="{{model.ValidateTrigger$::click}}" onmousedown="++this.value">Validate</button>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-validation-error-message {
+                margin-bottom: 20px;
+                color: red;
+                font-size: 8pt;
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/validation-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/validation-description"></slot>
+                <div class="uni-label-control">
+                    <slot name="uniformdocs/validation-name-label"></slot>
+                    <slot name="uniformdocs/validation-name-input"></slot>
+                </div>
+                <div class="uniformdocs-validation-error-message">
+                    <slot name="uniformdocs/validation-name-error-message"></slot>
+                </div>
+                <div class="uni-label-control">
+                    <slot name="uniformdocs/validation-last-name-label"></slot>
+                    <slot name="uniformdocs/validation-last-name-input"></slot>
+                </div>
+                <div class="uniformdocs-validation-error-message">
+                    <slot name="uniformdocs/validation-last-name-error-message"></slot>
+                </div>
+                <slot name="uniformdocs/validation-validate-button"></slot>
+            </div>
+        </div>
+    </template>
+</template>

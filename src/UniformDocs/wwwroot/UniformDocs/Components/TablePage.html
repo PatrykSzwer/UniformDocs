@@ -1,0 +1,51 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/table-heading">Table</h1>
+
+            <p slot="uniformdocs/table-description">
+                JSON's
+                <code>array</code> and
+                <code>object</code> can be used to create a HTML
+                <code>table</code>.
+            </p>
+
+            <table slot="uniformdocs/table-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Kind</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template is="dom-repeat" items="{{model.Pets}}">
+                        <tr>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Kind}}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <button slot="uniformdocs/table-button" value="{{model.AddPetTrigger$::click}}" onmousedown="++this.value">Add a pet</button>
+
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/table-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/table-description"></slot>
+                <slot name="uniformdocs/table-table"></slot>
+                <slot name="uniformdocs/table-button"></slot>
+            </div>
+        </div>
+
+    </template>
+</template>

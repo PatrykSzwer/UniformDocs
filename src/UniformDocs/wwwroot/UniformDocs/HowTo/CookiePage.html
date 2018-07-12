@@ -1,0 +1,59 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/cookie-heading">Cookies</h1>
+            <p slot="uniformdocs/cookie-description">
+                This page sets a cookie when you load it. Check
+                <code>/UniformDocs/cookie</code> handler in
+                <code>Program.cs</code> class for source code.
+            </p>
+            <p slot="uniformdocs/cookie-request-label">
+                Request cookie:
+                <strong>{{model.RequestCookie}}</strong>
+            </p>
+            <p slot="uniformdocs/cookie-side-label">
+                Client side cookie:
+                <strong>{{getCookie()}}</strong>
+            </p>
+            <button slot="uniformdocs/cookie-button" type="button" on-click="reload">Reload this page and set a cookie</button>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <script>
+        (function () {
+            function getCookie(name) {
+                var value = "; " + document.cookie;
+                var parts = value.split("; " + name + "=");
+                if (parts.length == 2) return parts.pop().split(";").shift();
+            }
+
+            var script = document._currentScript || document.currentScript;
+            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
+
+            template.getCookie = function () {
+                return unescape(getCookie("UniformDocs")).replace(/[+]/gi, " ");
+            };
+
+            template.reload = function () {
+                window.location = window.location.href;
+            };
+        })();
+    </script>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/cookie-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/cookie-description"></slot>
+                <slot name="uniformdocs/cookie-request-label"></slot>
+                <slot name="uniformdocs/cookie-side-label"></slot>
+                <slot name="uniformdocs/cookie-button"></slot>
+            </div>
+        </div>
+    </template>
+</template>

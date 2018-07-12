@@ -1,0 +1,48 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/progressBar-heading">Progress Bar</h1>
+
+            <p slot="uniformdocs/progressBar-description">
+                This example demonstrates how to run expensive tasks in the background. The key feature here is that the session does not get locked while these tasks are running,
+                and is continually updated throughout the progression of the task.
+            </p>
+
+            <p slot="uniformdocs/progressBar-read-more">
+                Read more about
+                <code><a href="https://github.com/joozek78/starcounter-async">AsyncInputHandlers.Run</a></code> and
+                <code><a href="https://blogs.msdn.microsoft.com/dotnet/2012/06/06/async-in-4-5-enabling-progress-and-cancellation-in-async-apis/">Progress</a></code>.
+            </p>
+
+            <div slot="uniformdocs/progressBar-progress-bar" class="uniformdocs-progress-bar__container">
+                <span class="uniformdocs-progress-bar__percentages"> {{model.Progress}}% </span>
+                <div class="uniformdocs-progress-bar__fill" style="width:{{model.Progress}}%"></div>
+            </div>
+            <button slot="uniformdocs/progressBar-button" value="{{model.StartProgressTrigger$::click}}" onmousedown="++this.value" disabled$="{{model.TaskIsRunnning}}"> {{model.DownloadButtonText}} </button>
+            <template is="dom-if" if="{{model.Progress}}">
+                <span slot="uniformdocs/progressBar-button-text">{{model.FileDownloadText}}</span>
+            </template>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/progressBar-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/progressBar-description"></slot>
+                <slot name="uniformdocs/progressBar-read-more"></slot>
+                <slot name="uniformdocs/progressBar-progress-bar"></slot>
+                <p>
+                    <slot name="uniformdocs/progressBar-button"></slot>
+                    <slot name="uniformdocs/progressBar-button-text"></slot>
+                </p>
+            </div>
+        </div>
+    </template>
+</template>

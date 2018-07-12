@@ -1,0 +1,35 @@
+{
+  "Html": "/UniformDocs/Components/DataTablePage.html",
+  "DataTable": {
+    "Columns": [
+      {
+        "DisplayName": "",
+        "PropertyName": "",
+        "IsSortable": true,
+        "IsFilterable": true,
+        "Sort$": "",
+        "Filter$": ""
+      }
+    ],
+    "Pagination": {
+      "CurrentPageIndex$": 0,
+      "PageSize$": 20,
+      "PagesCount": 0
+    },
+    "SelectedRows": [],
+    "Pages": [
+      {
+        "Rows": [
+          {
+            "FirstName": "",
+            "LastName": "",
+            "Email$": "",
+            "DeleteTrigger$": 0
+          }
+        ]
+      }
+    ],
+    "TotalRows": 0
+  },
+  "AddNewRowTrigger$": 0
+}

@@ -1,0 +1,17 @@
+{
+  "Html": "/UniformDocs/HowTo/CallbackPage.html",
+  "SaveTrigger$": 0,
+  "SaveAndSpinTrigger$": 0,
+  "SaveAndMessageTrigger$": 0,
+  "SuccessMessage$": "",
+  "ErrorMessage$": "",
+  "Items": [
+    {
+      "SaveTrigger$": 0,
+      "SaveAndSpinTrigger$": 0,
+      "SaveAndMessageTrigger$": 0,
+      "SuccessMessage$": "",
+      "ErrorMessage$": ""
+    }
+  ]
+}

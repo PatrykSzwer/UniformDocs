@@ -1,0 +1,59 @@
+<link rel="import" href="/sys/juicy-select/juicy-select.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/multiselect-heading">Multiselect</h1>
+
+            <p slot="uniformdocs/multiselect-description">
+                Array of json items in combination with
+                <code>juicy-select</code> can be used as a simple select element with multi select option.
+            </p>
+            <span slot="uniformdocs/multiselect-countries-multiselect-label">Select countries you have visited:</span>
+            <juicy-select slot="uniformdocs/multiselect-countries-multiselect-juicy-select" class="uniformdocs-juicyselect" multiple="true" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name">
+                <select class="uniformdocs-juicyselect__select" multiple></select>
+            </juicy-select>
+
+            <p slot="uniformdocs/multiselect-visited-label">
+                You have visited:
+                <template is="dom-repeat" items="{{model.Countries}}">
+                    <template is="dom-if" if="{{item.Selected$}}">
+                        <span>{{item.Name}}</span>;
+                    </template>
+                </template>
+            </p>
+            <span slot="uniformdocs/multiselect-favorite-country-select-label">Select your favorite country:</span>
+            <juicy-select slot="uniformdocs/multiselect-favorite-country-select" class="uniformdocs-juicyselect" caption-text="No favorite country" value="{{model.FavoriteCountry$}}" options="{{model.Countries}}" selected-property="Selected$" text-property="Name" value-property="Name">
+                <select></select>
+            </juicy-select>
+
+            <p slot="uniformdocs/multiselect-favorite-label">
+                Your favorite country is:
+                <span>{{model.FavoriteCountry$}}</span>
+            </p>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/multiselect-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/multiselect-description"></slot>
+                <p>
+                    <slot name="uniformdocs/multiselect-countries-multiselect-label"></slot>
+                    <slot name="uniformdocs/multiselect-countries-multiselect-juicy-select"></slot>
+                </p>
+                <slot name="uniformdocs/multiselect-countries-multiselect"></slot>
+                <slot name="uniformdocs/multiselect-visited-label"></slot>
+                <slot name="uniformdocs/multiselect-favorite-country-select-label"></slot>
+                <slot name="uniformdocs/multiselect-favorite-country-select"></slot>
+                <slot name="uniformdocs/multiselect-favorite-label"></slot>
+            </div>
+        </div>
+    </template>
+</template>

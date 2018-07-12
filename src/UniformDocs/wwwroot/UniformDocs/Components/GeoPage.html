@@ -1,0 +1,39 @@
+<link rel="import" href="/sys/google-map/google-map.html">
+<link rel="import" href="/sys/google-map/google-map-marker.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/geo-heading">Map</h1>
+
+            <p slot="uniformdocs/geo-description">
+                JSON's primitive value type
+                <code>number</code> can be used to provide latitude/longitude information for a map custom element, e.g.
+                <a href="https://elements.polymer-project.org/elements/google-map">google-maps</a>.
+            </p>
+
+            <google-map slot="uniformdocs/geo-google-map" class="uniformdocs-google-map" latitude="[[model.Position.Latitude$]]" longitude="[[model.Position.Longitude$]]" fit-to-markers zoom="12">
+                <google-map-marker id="uniformdocs-geopage-marker" draggable="true" title="Hi Stockholm!" latitude="{{model.Position.Latitude$}}" longitude="{{model.Position.Longitude$}}"></google-map-marker>
+            </google-map>
+            <button slot="uniformdocs/geo-reset-button" value="{{model.Position.ResetTrigger$::click}}" onclick="this.value++">Reset</button>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/geo-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/geo-description"></slot>
+                <slot name="uniformdocs/geo-google-map"></slot>
+                <p>
+                    <slot name="uniformdocs/geo-reset-button"></slot>
+                </p>
+            </div>
+        </div>
+    </template>
+</template>

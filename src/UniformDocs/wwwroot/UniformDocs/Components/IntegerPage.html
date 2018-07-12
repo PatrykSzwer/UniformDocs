@@ -1,0 +1,42 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/integer-heading">Integer Input</h1>
+
+            <p slot="uniformdocs/integer-description">
+                JSON's primitive value type
+                <code>number</code> can be mapped directly to HTML form elements
+                <code>input type="number"</code>.
+            </p>
+
+            <p slot="uniformdocs/integer-info">
+                A integer value is declared in Starcounter's JSON-by-example by providing an integer value, e.g.
+                <code>0</code>
+            </p>
+
+            <label slot="uniformdocs/integer-label">{{model.AgeReaction}}</label>
+
+            <input slot="uniformdocs/integer-input" type="number" value="{{model.Age$::input}}" placeholder="Age">
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/integer-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/integer-description"></slot>
+                <slot name="uniformdocs/integer-info"></slot>
+                <div class="uni-label-control">
+                    <slot name="uniformdocs/integer-label"></slot>
+                    <slot name="uniformdocs/integer-input"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

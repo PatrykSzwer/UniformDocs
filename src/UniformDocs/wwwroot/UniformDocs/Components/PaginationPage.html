@@ -1,0 +1,73 @@
+<link rel="import" href="/sys/polymer/polymer.html">
+<link rel="preload" as="style" href="/UniformDocs/style.css">
+<link rel="import" href="/sys/juicy-select/juicy-select.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+<link rel="import" href="/sys/uniform.css/components/uni-pagination/uni-pagination.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/pagination-heading">Pagination using <code>uni-pagination</code> element</h1>
+            <p slot="uniformdocs/pagination-description">
+                Pagination can be implemented in the code-behind by using
+                <code>FETCH</code> to determine how many entries there should be on every page and
+                <code>OFFSET</code> to retrieve the right entries
+            </p>
+            <juicy-select slot="uniformdocs/pagination-juicy-select-items-per-page" class="uniformdocs-juicyselect" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
+            </juicy-select>
+            <table slot="uniformdocs/pagination-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template is="dom-repeat" items="{{model.Library}}" as="book">
+                        <tr>
+                            <td>{{book.Title}}</td>
+                            <td>{{book.Author}}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <input type="range" slot="uniformdocs/pagination-pages" value="{{model.CurrentPage$::change}}" end="{{model.TotalPages}}"/>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+      </template></dom-bind>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
+
+            template.onChangePageClick = function (event) {
+                var span = event.currentTarget;
+                template.set("model.ChangePage$", span.pageNumber);
+            };
+
+            template.workaroundPolymerBooleans = function (active) {
+                return active ? "true" : "false";
+            };
+        })();
+    </script>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <link rel="stylesheet" href="/UniformDocs/style.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/pagination-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/pagination-description"></slot>
+                <slot name="uniformdocs/pagination-juicy-select-items-per-page"></slot>
+                <slot name="uniformdocs/pagination-table"></slot>
+                <div class="uniformdocs-uni-pagination">
+                    <uni-pagination>
+                        <slot name="uniformdocs/pagination-pages"></slot>
+                    </uni-pagination>
+                </div>
+                <slot name="uniformdocs/pagination-page-number"></slot>
+            </div>
+        </div>
+    </template>
+</template>

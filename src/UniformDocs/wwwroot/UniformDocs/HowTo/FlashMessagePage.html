@@ -1,0 +1,79 @@
+<link rel="import" href="/sys/polymer/polymer.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/flashMessage-heading">Flash Message</h1>
+
+            <p slot="uniformdocs/flashMessage-description">By pressing the buttons below, you will trigger a message to be displayed for 3 seconds. It is possible to trigger a message both from the server side, and the client side!</p>
+            <p slot="uniformdocs/flashMessage-dom-if-description">
+                By using
+                <code>&lt;template is="dom-if"&gt;</code> it is possible to hide or show an element in the HTML depending on the result of the if-statement.
+            </p>
+
+            <p slot="uniformdocs/flashMessage-schedule-task-description">
+                And if you combine that with
+                <code>Scheduling.ScheduleTask</code> and
+                <code>Session.ScheduleTask</code> you can make a server side message appear.
+            </p>
+
+            <button slot="uniformdocs/flashMessage-server-button" value="{{model.ShowMessageTrigger$::click}}" onmousedown="++this.value">Trigger message from Server side</button>
+            <template is="dom-if" if="{{model.ServerMessage}}">
+                <p slot="uniformdocs/flashMessage-server-message">{{model.ServerMessage}} </p>
+            </template>
+
+            <p slot="uniformdocs/flashMessage-client-description">
+                And by combining
+                <code>&lt;template is="dom-if"&gt;</code> with a click event and a timed function, by using
+                <code>setTimeout</code> you can achieve the same behavior.
+            </p>
+            <button slot="uniformdocs/flashMessage-client-button" on-click="showMessage">Trigger message from Client side</button>
+            <template is="dom-if" if="{{model.ClientMessage$}}">
+                <p slot="uniformdocs/flashMessage-client-message">{{model.ClientMessage$}} </p>
+            </template>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
+
+            template.showMessage = function () {
+                template.set("model.ClientMessage$", "This message was set on the Client Side!");
+                setTimeout(() => {
+                    template.set("model.ClientMessage$", "");
+                }, 3000);
+            };
+        })();
+    </script>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/flashMessage-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/flashMessage-description"></slot>
+                <slot name="uniformdocs/flashMessage-dom-if-description"></slot>
+                <slot name="uniformdocs/flashMessage-schedule-task-description"></slot>
+                <p>
+                    <slot name="uniformdocs/flashMessage-server-button"></slot>
+                </p>
+                <div class="uni-alert-info">
+                    <slot name="uniformdocs/flashMessage-server-message"></slot>
+                </div>
+                <slot name="uniformdocs/flashMessage-client-description"></slot>
+                <p>
+                    <slot name="uniformdocs/flashMessage-client-button"></slot>
+                </p>
+                <div class="uni-alert-warning">
+                    <slot name="uniformdocs/flashMessage-client-message"></slot>
+                </div>
+            </div>
+        </div>
+
+    </template>
+</template>

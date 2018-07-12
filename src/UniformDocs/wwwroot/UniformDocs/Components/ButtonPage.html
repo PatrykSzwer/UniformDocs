@@ -1,0 +1,261 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/buttonpage-heading">Button</h1>
+
+            <p slot="uniformdocs/buttonpage-description">
+                JSON's primitive value type
+                <code>number</code> or
+                <code>boolean</code> can be mapped to a HTML
+                <code>button</code>.
+            </p>
+
+            <h2 slot="uniformdocs/buttonpage-regular-heading">Regular button</h2>
+
+            <p slot="uniformdocs/buttonpage-regular-description">
+                We recommend using
+                <code>number</code> wherever possible, to take benefit of non-blocking UI enabled by Palindrom's operational transformation.
+            </p>
+
+            <p slot="uniformdocs/buttonpage-regular-increment-label">With Polymer, there are multiple ways to increment a number on click:</p>
+
+            <ol slot="uniformdocs/buttonpage-regular-increment-ways">
+                <li>
+                    A
+                    <code>button</code> element, with inline script
+                </li>
+                <li>
+                    A
+                    <code>button</code> element with a helper function
+                </li>
+                <li>
+                    Any other element (
+                    <code>span</code>, etc) with a helper function
+                </li>
+            </ol>
+
+            <pre slot="uniformdocs/buttonpage-regular-reaction-label">{{model.CarrotsReaction}}</pre>
+
+            <span slot="uniformdocs/buttonpage-regular-add-carrots-label">Add carrots:</span>
+
+            <button slot="uniformdocs/buttonpage-regular-add-carrots-button" value="{{model.AddCarrotsTrigger$::click}}" onmousedown="++this.value">Button (inline script)</button>
+
+            <button slot="uniformdocs/buttonpage-regular-add-carrots-button-function" on-click="onAddCarrotsClick">Button (function)</button>
+
+            <span slot="uniformdocs/buttonpage-regular-add-carrots-span-function" on-click="onAddCarrotsClick">Span (function)</span>
+
+            <h2 slot="uniformdocs/buttonpage-switch-heading">Switch button</h2>
+
+            <p slot="uniformdocs/buttonpage-switch-description">
+                When you have a special need to use the pressed state of a button, you might want to use
+                <code>boolean</code> type for buttons.
+            </p>
+
+            <button slot="uniformdocs/buttonpage-switch-button" class="uniformdocs-toggle-button" pressed$="{{model.EnableCarrotEngine$}}" on-click="onEnableCarrotEngineClick">Enable carrot engine</button>
+
+            <span slot="uniformdocs/buttonpage-switch-reaction-label">{{model.CarrotEngineReaction}}</span>
+
+            <h2 slot="uniformdocs/buttonpage-disable-heading">Disabled button</h2>
+
+            <p slot="uniformdocs/buttonpage-disable-description">
+                It is possible to mark button as disabled using the
+                <code>disabled</code> boolean attribute. The below button gets disbled when the value reaches 1.
+            </p>
+
+            <button slot="uniformdocs/buttonpage-disable-button" class="uniformdocs-toggle-button" value="{{model.AddOneCarrotTrigger$::click}}" onmousedown="++this.value" disabled$="{{model.AddOneCarrotDisabled}}">Add carrots</button>
+
+            <span slot="uniformdocs/buttonpage-disable-label">{{model.OneCarrotReaction}}</span>
+
+            <h2 slot="uniformdocs/buttonpage-self-heading">Self Disabling/Enabling Button</h2>
+
+            <p slot="uniformdocs/buttonpage-self-reaction-label">It is also possible to make the server respond to the button click. The following buttons will stay disabled until the server responds to them being clicked.</p>
+            <div slot="uniformdocs/buttonpage-self-button" class="uniformdocs-regenerating-carrots">
+                <button class="uniformdocs-toggle-button" value="{{model.TakeOneRegeneratingCarrotTrigger$::click}}" disabled="{{model.TakeOneRegeneratingCarrotTrigger$}}" onmouseup="++this.value">Take one Regenerating Carrot</button>
+                <template is="dom-if" if="{{model.TakeOneRegeneratingCarrotTrigger$}}">
+                    <p>Currently Regenerating!</p>
+                </template>
+            </div>
+       
+            
+            <h2 slot="uniformdocs/buttonpage-binding-issue-heading">Button with children</h2>
+            <p slot="uniformdocs/buttonpage-binding-issue-description">
+                Because of an
+                <a href="https://github.com/Polymer/polymer/issues/2497">issue in Polymer 1</a>, data bindings for buttons with child elements writes undefined value to the view-model property bound to the buttons, which leads to server disconnection. As a workaround, set the
+                <code>pointer-events</code> property to
+                <code>none</code> on the children of the button.
+            </p>
+            <p slot="uniformdocs/buttonpage-binding-issue-click-label">
+                <b>Click to buy a carrot!</b>
+            </p>
+            <button slot="uniformdocs/buttonpage-binding-issue-button" class="uniformdocs-toggle-button" value="{{model.BuyCarrotTrigger$::click}}" onmousedown="++this.value">
+                <span class="uniformdocs-buy-carrot">
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="16pt" height="16pt" viewBox="0 0 468 468" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0,468) scale(0.078000,-0.078000)" fill="#000000" stroke="none">
+                            <path d="M2600 5595 c0 -237 -3 -305 -12 -305 -7 0 -63 -5 -125 -10 -140 -12
+                            -299 -49 -398 -91 -11 -4 -49 -20 -85 -35 -304 -124 -635 -421 -789 -706 -33
+                            -63 -80 -169 -88 -202 -35 -143 -41 -258 -23 -421 37 -323 180 -591 420 -785
+                            77 -62 83 -66 116 -87 28 -18 244 -126 279 -140 27 -10 103 -36 115 -38 19 -5
+                            100 -27 120 -35 59 -20 254 -55 418 -75 l52 -7 0 -515 0 -516 -82 6 c-76 5
+                            -198 30 -223 45 -5 4 -12 7 -15 8 -71 14 -269 163 -285 215 -4 11 -10 19 -14
+                            19 -12 0 -75 133 -95 200 l-17 55 -410 -3 -410 -2 6 -63 c17 -165 65 -343 132
+                            -487 26 -54 99 -185 115 -205 4 -5 27 -35 51 -65 72 -93 202 -215 327 -306 60
+                            -44 244 -154 257 -154 5 0 25 -9 44 -19 34 -18 167 -63 264 -90 62 -17 188
+                            -31 276 -31 l79 0 0 -325 0 -325 375 0 375 0 2 332 3 333 85 6 c121 9 341 58
+                            430 96 8 3 18 7 22 7 3 1 10 4 14 8 4 5 13 8 20 8 16 0 162 70 249 119 39 22
+                            77 44 85 48 8 4 20 12 27 17 7 6 36 27 64 46 70 47 221 181 267 237 20 24 47
+                            57 60 71 36 42 132 200 162 267 104 232 133 496 79 720 -11 44 -21 89 -24 100
+                            -7 28 -110 235 -132 264 -193 254 -402 410 -708 524 -138 51 -348 95 -495 102
+                            -58 3 -129 8 -158 11 l-52 5 2 502 3 502 58 -2 c154 -5 367 -94 455 -188 66
+                            -71 103 -148 110 -230 l5 -65 431 0 432 0 -4 38 c-4 47 -29 151 -52 222 -141
+                            430 -441 791 -800 962 -133 63 -169 78 -235 94 -5 2 -44 12 -86 23 -42 11
+                            -123 25 -180 31 -57 6 -112 13 -121 16 -17 5 -18 28 -18 290 l0 284 -375 0
+                            -375 0 0 -305z m0 -1585 l0 -450 -57 0 c-52 1 -84 6 -159 23 -30 7 -158 59
+                            -164 66 -3 3 -18 13 -35 21 -54 28 -151 128 -186 192 -32 59 -34 69 -34 158 0
+                            69 6 111 20 154 56 167 269 281 528 285 l87 1 0 -450z m975 -1485 c219 -17
+                            399 -118 472 -266 46 -93 48 -281 3 -367 -80 -153 -329 -259 -612 -261 l-88
+                            -1 0 448 c0 247 3 452 7 456 4 4 37 4 73 2 36 -3 101 -8 145 -11z"></path>
+                        </g>
+                    </svg>
+                </span>
+            </button>
+            <span slot="uniformdocs/buttonpage-binding-issue-label">{{model.OnBuyReaction}}</span>
+
+            <h2 slot="uniformdocs/buttonpage-buttons-with-intent-heading">Buttons with intents</h2>
+            
+            <p slot="uniformdocs/buttonpage-buttons-with-intent-desc">Can be used as<code>.uni-*-button</code> where <code>*</code>is your intent ([<code>primary</code>, <code>success</code>, <code>danger</code> and <code>*</code>]) </p>
+
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-primary">Primary</button>
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-danger">Danger</button>
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-success">Success</button>
+            <button slot="uniformdocs/buttonpage-buttons-with-intent-flat">Flat</button>
+
+
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <script>
+        (function () {
+            var script = document._currentScript || document.currentScript;
+            var template = Polymer.Element ? script.previousElementSibling : script.previousElementSibling.firstElementChild;
+
+            template.onEnableCarrotEngineClick = function () {
+                template.set("model.EnableCarrotEngine$", !template.model.EnableCarrotEngine$);
+            };
+
+            template.onAddCarrotsClick = function () {
+                template.set("model.AddCarrotsTrigger$", ++template.model.AddCarrotsTrigger$);
+            };
+        })();
+    </script>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-add-carrots {
+                display: flex;
+                align-items: baseline;
+            }
+
+                .uniformdocs-add-carrots ::slotted(*) {
+                    margin-right: 10px !important;
+                }
+                /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
+                .uniformdocs-add-carrots > * {
+                    margin-right: 10px;
+                }
+
+            .uniformdocs-add-carrots__label::slotted(span) {
+                font-weight: bold;
+            }
+            /* Duplicate rule above with selector to support polyfilled browsers and workaround ShadyCSS bug */
+            span[slot="uniformdocs/buttonpage-regular-add-carrots-label"] {
+                font-weight: bold;
+            }
+
+            .uniformdocs-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/buttonpage-heading"></slot>
+        </div>
+        <div class="uni-section-primary uniformdocs-section-primary-grid">
+            <div class="uni-card">
+                <slot name="uniformdocs/buttonpage-description"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/buttonpage-regular-heading"></slot>
+                </div>
+                <slot name="uniformdocs/buttonpage-regular-description"></slot>
+                <slot name="uniformdocs/buttonpage-regular-increment-label"></slot>
+                <slot name="uniformdocs/buttonpage-regular-increment-ways"></slot>
+                <slot name="uniformdocs/buttonpage-regular-reaction-label"></slot>
+                <p class="uniformdocs-add-carrots">
+                    <slot class="uniformdocs-add-carrots__label" name="uniformdocs/buttonpage-regular-add-carrots-label"></slot>
+                    <slot name="uniformdocs/buttonpage-regular-add-carrots-button"></slot>
+                    <slot name="uniformdocs/buttonpage-regular-add-carrots-button-function"></slot>
+                    <slot name="uniformdocs/buttonpage-regular-add-carrots-span-function"></slot>
+                </p>
+                <slot name="uniformdocs/buttonpage-regular-add-carrots"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/buttonpage-switch-heading"></slot>
+                </div>
+                <slot name="uniformdocs/buttonpage-switch-description"></slot>
+                <slot name="uniformdocs/buttonpage-switch-button"></slot>
+                <slot name="uniformdocs/buttonpage-switch-reaction-label"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/buttonpage-disable-heading"></slot>
+                </div>
+                <slot name="uniformdocs/buttonpage-disable-description"></slot>
+                <slot name="uniformdocs/buttonpage-disable-button"></slot>
+                <slot name="uniformdocs/buttonpage-disable-label"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/buttonpage-self-heading"></slot>
+                </div>
+                <slot name="uniformdocs/buttonpage-self-reaction-label"></slot>
+                <slot name="uniformdocs/buttonpage-self-button"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/buttonpage-binding-issue-heading"></slot>
+                </div>
+                <slot name="uniformdocs/buttonpage-binding-issue-description"></slot>
+                <slot name="uniformdocs/buttonpage-binding-issue-click-label"></slot>
+                <slot name="uniformdocs/buttonpage-binding-issue-button"></slot>
+                <slot name="uniformdocs/buttonpage-binding-issue-label"></slot>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-heading"></slot>
+                </div>
+                <div>
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-desc"></slot>
+                </div>
+                
+                <div class="uni-primary-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-primary"></slot>
+                </div>
+                <div class="uni-danger-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-danger"></slot>
+                </div>
+                <div class="uni-success-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-success"></slot>
+                </div>
+                <div class="uni-flat-button">
+                    <slot name="uniformdocs/buttonpage-buttons-with-intent-flat"></slot>
+                </div>
+
+            </div>
+        </div>
+    </template>
+</template>

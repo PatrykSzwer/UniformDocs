@@ -1,0 +1,31 @@
+{
+  "Html": "/UniformDocs/Components/PaginationPage.html",
+  "Library": [
+    {
+      "Author": "",
+      "Title": ""
+    }
+  ],
+
+  "EntriesPerPage$": 5,
+  "PageEntries": [
+    {
+      "Amount": 0,
+      "Text": ""
+    }
+  ],
+
+  "Pages": [
+    {
+      "PageNumber": 0,
+      "Active": false
+    }
+  ],
+
+  "TotalEntries": 0,
+  "TotalPages": 0,
+  "CurrentPage$": 1,
+  "CurrentOffset": 0,
+  "DisableFirst": true,
+  "DisableLast": false
+}

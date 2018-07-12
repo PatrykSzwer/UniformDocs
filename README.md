@@ -1,8 +1,14 @@
-# KitchenSink
+# UniformDocs
 
 Present typical UI patterns in a form that is easy to apply in any Starcounter app.
 
-Features:
+## Demo
+
+You can find a hosted demo of the UniformDocs app on [uniformdocs.starcounter.io](https://uniformdocs.starcounter.io/).
+
+[![](docs/screenshot.png)](https://uniformdocs.starcounter.io/)
+
+## Features
 
 - Rendering (Breadcrumb, Chart, Datagrid, HTML, Link, Map, Markdown, Pagination, Table)
 - Server Push (Async Response, Cookies, Dialog Box, Flash Message, Lazy Loading, Nested Views, Progress Bar, Redirect, Client Local State)
@@ -27,14 +33,6 @@ If you really want to use VS 2015 and you don't care about IntelliSense warnings
 ## Developer instructions - Contributing
 
 For developer instructions, go to [CONTRIBUTING](CONTRIBUTING.md).
-
-## Video
-
-Intended for 13 October 2015 webinar: http://starcounter.io/video-expressing-your-ui-in-json-plain-data-binding-advanced-data-binding/
-
-## Screenshot
-
-![](KitchenSink.PNG)
 
 ## License
 

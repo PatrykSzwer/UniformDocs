@@ -1,0 +1,41 @@
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/card-heading">Card</h1>
+            <p slot="uniformdocs/card-description">This is slightly elevated card, which you can achieve by using <code>.uni-card</code> class.</p>
+            <p slot="uniformdocs/card-expandable-description">You can also add additional expandable part to a <code>uni-card</code> which will be shown with a clickable text in the bottom right corner. To achieve that use <code>&lt;details&gt;</code> tag.</p>
+            <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
+        </template>
+    </dom-bind>
+
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-section-primary-grid {
+                display: grid;
+                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/card-heading"></slot>
+        </div>
+        <div class="uni-section-primary uniformdocs-section-primary-grid">
+            <div class="uni-card">
+                <slot name="uniformdocs/card-description"></slot>
+            </div>
+            <div class="uni-card">
+                <slot name="uniformdocs/card-expandable-description"></slot>
+                <details>
+                    <summary>Click me to expand</summary>
+                    <div>
+                        <p>Expandable content.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </template>
+</template>

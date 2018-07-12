@@ -1,0 +1,35 @@
+<link rel="import" href="/sys/juicy-html/juicy-html.html">
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/html-heading">HTML</h1>
+
+            <p slot="uniformdocs/html-description">
+                JSON's primitive value type
+                <code>string</code> can be rendered as HTML using a helper custom element, such as
+                <a href="http://github.com/juicy/juicy-html">juicy-html</a>.
+            </p>
+
+            <div slot="uniformdocs/html-juicy-html">
+                <juicy-html is="juicy-html" html$="{{model.Bio}}">
+                </juicy-html>
+            </div>
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/html-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/html-description"></slot>
+                <slot name="uniformdocs/html-juicy-html"></slot>
+            </div>
+        </div>
+    </template>
+</template>

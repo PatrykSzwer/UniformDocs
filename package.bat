@@ -1,5 +1,5 @@
 @ECHO OFF
 
-PUSHD %~dp0src\KitchenSink
+PUSHD %~dp0src\UniformDocs
 starpack -p
 POPD

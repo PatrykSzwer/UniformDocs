@@ -1,0 +1,10 @@
+{
+  "Html": "/UniformDocs/Components/MultiselectPage.html",
+  "Countries": [
+    {
+      "Name": "",
+      "Selected$": false
+    }
+  ],
+  "FavoriteCountry$": ""
+}

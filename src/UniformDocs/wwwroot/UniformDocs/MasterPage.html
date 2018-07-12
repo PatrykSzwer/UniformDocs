@@ -1,0 +1,46 @@
+<link rel="preload" as="style" href="/UniformDocs/style.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <link rel="stylesheet" href="/UniformDocs/style.css">
+    <dom-bind>
+        <template id="root" is="dom-bind">
+            <imported-template href="{{model.NavPage.UniformDocs_0.Html}}"></imported-template>
+            <starcounter-include slot="uniformdocs/current" view-model="{{model.CurrentPage}}"></starcounter-include>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-nav.uni-layout-left-nav > nav > ::slotted(h4) {
+                font-size: 1em !important;
+                letter-spacing: normal !important;
+                font-weight: bold !important;
+                margin: 1.4em 0 1em 0 !important;
+            }
+
+            .uniformdocs-nav.uni-layout-left-nav > nav > h4 {
+                font-size: 1em !important;
+                letter-spacing: normal !important;
+                font-weight: bold !important;
+                margin: 1.4em 0 1em 0 !important;
+            }
+
+            .uniformdocs-nav.uni-layout-left-nav > nav > ::slotted(a) {
+                padding-top: 3px !important;
+                padding-bottom: 3px !important;
+            }
+
+            .uniformdocs-nav.uni-layout-left-nav > nav > a {
+                padding-top: 3px !important;
+                padding-bottom: 3px !important;
+            }
+        </style>
+        <div class="uni-layout-left-nav uniformdocs-nav">
+            <nav>
+                <slot name="uniformdocs/menu-item"></slot>
+            </nav>
+            <slot name="uniformdocs/current"></slot>
+        </div>
+    </template>
+</template>

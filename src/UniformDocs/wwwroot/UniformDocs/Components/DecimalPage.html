@@ -1,0 +1,42 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/decimal-heading">Decimal Input</h1>
+
+            <p slot="uniformdocs/decimal-description">
+                JSON's primitive value type
+                <code>number</code> can be mapped directly to HTML form elements
+                <code>input type="number"</code>.
+            </p>
+
+            <p slot="uniformdocs/decimal-info">
+                A decimal value is declared in Starcounter's JSON-by-example by including a dot in the number, e.g.
+                <code>0.0</code>
+            </p>
+
+            <label slot="uniformdocs/decimal-label">{{model.PriceReaction}}</label>
+
+            <input slot="uniformdocs/decimal-input" type="number" step="0.01" value="{{model.Price$::input}}" placeholder="Price">
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/decimal-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/decimal-description"></slot>
+                <slot name="uniformdocs/decimal-info"></slot>
+                <div class="uni-label-control">
+                    <slot name="uniformdocs/decimal-label"></slot>
+                    <slot name="uniformdocs/decimal-input"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>
