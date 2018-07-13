@@ -15,19 +15,19 @@
             </p>
 
             <label slot="uniformdocs/city-formitem">City</label>
-            <input slot="uniformdocs/city-formitem" value="{{model.City$::keyup}}">
+            <input slot="uniformdocs/city-formitem" value="{{model.City$::input}}" aria-invalid$="{{model.IsCityInvalid}}">
+            <output slot="uniformdocs/city-formitem">{{model.CityValidationMessage}}</output>
+
 
             <label slot="uniformdocs/postcode-formitem">Postcode</label>
-            <input slot="uniformdocs/postcode-formitem" value="{{model.Postcode$::keyup}}">
-            <output slot="uniformdocs/address-validation-result" aria-invalid$="{{stringifyBoolean(model.IsInvalid)}}">{{model.ValidationMessage}}</output>
+            <input slot="uniformdocs/postcode-formitem" value="{{model.Postcode$::input}}" aria-invalid$="{{model.IsPostcodeInvalid}}">
+            <output slot="uniformdocs/postcode-formitem">{{model.PostcodeValidationMessage}}</output>
+
+            <output slot="uniformdocs/formitemgroup" aria-invalid$="{{model.IsGroupInvalid}}">{{model.GroupValidationMessage}}</output>
 
             <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
-    <script>
-        const template = document.currentScript.previousElementSibling;
-        template.stringifyBoolean = bool => bool ? "true" : "false";
-    </script>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
@@ -45,7 +45,7 @@
                     <uni-form-item>
                         <slot name="uniformdocs/postcode-formitem"></slot>
                     </uni-form-item>
-                    <slot name="uniformdocs/address-validation-result"></slot>
+                    <slot name="uniformdocs/formitemgroup"></slot>
                 </uni-form-item-group>
             </div>
         </div>

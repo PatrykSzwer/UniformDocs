@@ -12,37 +12,92 @@ namespace UniformDocs.ViewModels.Components
 
         static FormItemGroupPage()
         {
-            DefaultTemplate.IsInvalid.Bind = nameof(CalulateIsInvalidAddress);
-            DefaultTemplate.ValidationMessage.Bind = nameof(CalulateValidationMessage);
         }
 
-        public string CalulateValidationMessage { get {
-                var invalids = new List<string>();
-                if(CalulateIsInvalidCity)
+        public string CityValidationMessage
+        {
+            get
+            {
+                switch (IsCityInvalid)
                 {
-                    invalids.Add("city");
+                    case "false":
+                        return "City is provided";
+                    case "true":
+                        return "City cannot be empty";
                 }
-                if (CalulateIsInvalidPostcode)
-                {
-                    invalids.Add("postcode");
-                }
-                if (invalids.Count > 0)
-                {
-                    var message = string.Join(" and ", invalids); // eg "City" or "City and Postcode" or "Postcode"
-                    message += invalids.Count == 2 ? " are " : " is ";
-                    message += "invalid";
-                    message = message[0].ToString().ToUpper() + message.Remove(0, 1); // capitilize first letter
-                    return message;
-                } else
-                {
-                    return "Correct address 👍!";
-                }
+                return "";
             }
         }
 
-        public bool CalulateIsInvalidCity => this.City != "Stockholm";
-        public bool CalulateIsInvalidPostcode => this.Postcode != "12345";
-        public bool CalulateIsInvalidAddress => CalulateIsInvalidCity || CalulateIsInvalidPostcode;
+        public string PostcodeValidationMessage
+        {
+            get
+            {
+                switch (IsPostcodeInvalid)
+                {
+                    case "false":
+                        return "Postcode is provided";
+                    case "true":
+                        return "Postcode cannot be empty";
+                }
+                return "";
+            }
+        }
+
+        public string GroupValidationMessage
+        {
+            get
+            {
+                switch (IsGroupInvalid)
+                {
+                    case "false":
+                        return "This is the expected pair of input!";
+                    case "true":
+                        return "The fields do not contain the expected pair of input";
+                }
+                return "Expecting 'Stockholm' and '12345'";
+            }
+        }
+
+        public string IsCityInvalid
+        {
+            get
+            {
+                if (City.Length > 0)
+                {
+                    return "false";
+                }
+                return "true";
+            }
+        }
+
+        public string IsPostcodeInvalid
+        {
+            get
+            {
+                if (Postcode.Length > 0)
+                {
+                    return "false";
+                }
+                return "true";
+            }
+        }
+
+        public string IsGroupInvalid
+        {
+            get
+            {
+                if (City.Length > 0 && Postcode.Length > 0)
+                {
+                    if (City.ToLower().Equals("stockholm") && Postcode.Equals("12345"))
+                    {
+                        return "false";
+                    }
+                    return "true";
+                }
+                return "";
+            }
+        }
 
     }
 }

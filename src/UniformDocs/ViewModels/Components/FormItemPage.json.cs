@@ -11,11 +11,36 @@ namespace UniformDocs.ViewModels.Components
 
         static FormItemPage()
         {
-            DefaultTemplate.IsInvalid.Bind = nameof(CalulateIsInvalid);
-            DefaultTemplate.ValidationMessage.Bind = nameof(CalulateValidationMessage);
         }
 
-        public string CalulateValidationMessage => CalulateIsInvalid ? "Not accepted" : "Accepted";
-        public bool CalulateIsInvalid => this.Word != "Hello";
+        public string ValidationMessage
+        {
+            get {
+                switch(IsInvalid)
+                {
+                    case "false":
+                        return "Correct greeting!";
+                    case "true":
+                        return "This is not the correct greeting";
+                }
+                return "'Hello' is the only accepted value";
+            }
+        }
+
+        public string IsInvalid 
+        {
+            get
+            {
+                if (Word.Length > 0)
+                {
+                    if (Word.ToLower().Equals("hello"))
+                    {
+                        return "false";
+                    }
+                    return "true";
+                }
+                return "";
+            }
+        }
     }
 }
