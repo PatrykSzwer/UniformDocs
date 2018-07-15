@@ -11,8 +11,10 @@
             </h1>
 
             <p slot="uniformdocs/formitemgroup-description">
-                The <code>uni-form-item-group</code> custom element helps you create grouped form elements that only make sense combined, like addresses. The group might have a single validation result representing all its elements, or a separate validation result for all of them. The below example only accepts the city "Stockholm" and the postcode "12345".
+                A <code>uni-form-item-group</code> custom element is a container for grouping two or more related Form Items. A group is rendered in a horizontal "row" given sufficient horizontal space. A group might have a label and an output, independent from the Form Items' labels and outputs.
             </p>
+
+            <h2 slot="uniformdocs/example">Example</h2>
 
             <label slot="uniformdocs/city-formitem">City</label>
             <input slot="uniformdocs/city-formitem" value="{{model.City$::input}}" aria-invalid$="{{model.IsCityInvalid}}">
@@ -23,7 +25,117 @@
             <input slot="uniformdocs/postcode-formitem" value="{{model.Postcode$::input}}" aria-invalid$="{{model.IsPostcodeInvalid}}">
             <output slot="uniformdocs/postcode-formitem">{{model.PostcodeValidationMessage}}</output>
 
-            <output slot="uniformdocs/formitemgroup" aria-invalid$="{{model.IsGroupInvalid}}">{{model.GroupValidationMessage}}</output>
+            <label slot="uniformdocs/address-formitemgroup">Address</label>
+            <output slot="uniformdocs/address-formitemgroup" aria-invalid$="{{model.IsGroupInvalid}}">{{model.GroupValidationMessage}}</output>
+
+            <h2 slot="uniformdocs/states">
+                States
+            </h2>
+
+            <h3 slot="uniformdocs/states">
+                Validation States
+            </h3>
+
+            <ul slot="uniformdocs/states">
+                <li>Neutral/Undetermined - Default. Provided by not setting the <code>aria-invalid</code> attribute on the Output or by setting the attribute with no value.</li>
+                <li>Success - Provided by setting the <code>aria-invalid</code> attribute on the Output with the value <code>false</code></li>
+                <li>Error - Provided by setting the <code>aria-invalid</code> attribute on the Output with the value <code>true</code></li>
+            </ul>
+
+            <h2 slot="uniformdocs/structure">
+                Structure
+            </h2>
+
+            <ul class="uniformdocs-structure-diagram" slot="uniformdocs/structure">
+                <li>Form Item Group
+                    <ul>
+                        <li>Label</li>
+                        <li>1..n Form Items
+                            <ul>
+                                <li>Form Item
+                                    <ul>
+                                        <li>Label</li>
+                                        <li>Field</li>
+                                        <li>Output</li>
+                                    </ul>
+                                </li>
+                                <li>Form Item
+                                    <ul>
+                                        <li>Label</li>
+                                        <li>Field</li>
+                                        <li>Output</li>
+                                    </ul>
+                                </li>
+                                <li>Form Item
+                                    <ul>
+                                        <li>Label</li>
+                                        <li>Field</li>
+                                        <li>Output</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Output</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2 slot="uniformdocs/guidelines">
+                Guidelines
+            </h2>
+
+            <h3 slot="uniformdocs/guidelines">
+                General
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Use Form Item Groups for form items that are conceptually closely related, e.g. essentially part of the same piece of data, such as:
+                    <ul>
+                        <li>First name + Last name.</li>
+                        <li>City + Postal code.</li>
+                        <li>Nationality prefix + Area code + Phone number.</li>
+                    </ul>
+                </li>
+                <li>Do NOT use Form Item Group as a generic layout mechanism to force unrelated fields into a horizontal layout. Use an appropriately styled Section for this instead.</li>
+                <li>Avoid grouping Form Items of significantly different heights (e.g. Text Field + Radio Button Group).</li>
+                <li>It is responsive - If the horizontal space available to the group is insufficient to render all items in a single horizontal row, the items will wrap below each other.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/guidelines">
+                Label
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Optional heading for the items in the group.</li>
+                <li>Provided as a <code>&lt;label&gt;</code> element.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/guidelines">
+                Form Items
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>There should be one or more Form Items in a Form Item Group.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/guidelines">
+                Output
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Optional.</li>
+                <li>Used to display a validation error for the group as a whole instead of messages for individual Form Items.</li>
+                <li>Provided as a <code>&lt;output&gt;</code> element.</li>
+                <li>The validation state of the Form Item Group is provided as the <code>aria-invalid</code> attribute on this element.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/see-also">
+                See also
+            </h3>
+
+            <ul slot="uniformdocs/see-also">
+                <li><a href="/UniformDocs/FormItem">Form Item</a> - for a single field in a form</li>
+            </ul>
 
             <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
@@ -37,6 +149,7 @@
             <div class="uni-card">
                 <div>
                     <slot name="uniformdocs/formitemgroup-description"></slot>
+                    <slot name="uniformdocs/example"></slot>
                 </div>
                 <uni-form-item-group>
                     <uni-form-item>
@@ -45,8 +158,12 @@
                     <uni-form-item>
                         <slot name="uniformdocs/postcode-formitem"></slot>
                     </uni-form-item>
-                    <slot name="uniformdocs/formitemgroup"></slot>
+                    <slot name="uniformdocs/address-formitemgroup"></slot>
                 </uni-form-item-group>
+                <slot name="uniformdocs/states"></slot>
+                <slot name="uniformdocs/structure"></slot>
+                <slot name="uniformdocs/guidelines"></slot>
+                <slot name="uniformdocs/see-also"></slot>
             </div>
         </div>
         <slot name="uniformdocs/formitemgroup-input"></slot>
