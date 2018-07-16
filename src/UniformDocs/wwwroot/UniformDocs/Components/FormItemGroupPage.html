@@ -11,7 +11,7 @@
             </h1>
 
             <p slot="uniformdocs/formitemgroup-description">
-                A <code>uni-form-item-group</code> custom element is a container for grouping two or more related Form Items. A group is rendered in a horizontal "row" given sufficient horizontal space. A group might have a label and an output, independent from the Form Items' labels and outputs.
+                A <code>&lt;uni-form-item-group&gt;</code> custom element is a container for grouping two or more related Form Items. A group is rendered in a horizontal "row" given sufficient horizontal space. A group might have a label and an output, independent from the Form Items' labels and outputs.
             </p>
 
             <h2 slot="uniformdocs/example">Example</h2>
@@ -20,27 +20,12 @@
             <input slot="uniformdocs/city-formitem" value="{{model.City$::input}}" aria-invalid$="{{model.IsCityInvalid}}">
             <output slot="uniformdocs/city-formitem">{{model.CityValidationMessage}}</output>
 
-
             <label slot="uniformdocs/postcode-formitem">Postcode</label>
             <input slot="uniformdocs/postcode-formitem" value="{{model.Postcode$::input}}" aria-invalid$="{{model.IsPostcodeInvalid}}">
             <output slot="uniformdocs/postcode-formitem">{{model.PostcodeValidationMessage}}</output>
 
             <label slot="uniformdocs/address-formitemgroup">Address</label>
             <output slot="uniformdocs/address-formitemgroup" aria-invalid$="{{model.IsGroupInvalid}}">{{model.GroupValidationMessage}}</output>
-
-            <h2 slot="uniformdocs/states">
-                States
-            </h2>
-
-            <h3 slot="uniformdocs/states">
-                Validation States
-            </h3>
-
-            <ul slot="uniformdocs/states">
-                <li>Neutral/Undetermined - Default. Provided by not setting the <code>aria-invalid</code> attribute on the Output or by setting the attribute with no value.</li>
-                <li>Success - Provided by setting the <code>aria-invalid</code> attribute on the Output with the value <code>false</code></li>
-                <li>Error - Provided by setting the <code>aria-invalid</code> attribute on the Output with the value <code>true</code></li>
-            </ul>
 
             <h2 slot="uniformdocs/structure">
                 Structure
@@ -81,7 +66,7 @@
             </ul>
 
             <h2 slot="uniformdocs/guidelines">
-                Guidelines
+                Design Guidelines
             </h2>
 
             <h3 slot="uniformdocs/guidelines">
@@ -107,7 +92,6 @@
 
             <ul slot="uniformdocs/guidelines">
                 <li>Optional heading for the items in the group.</li>
-                <li>Provided as a <code>&lt;label&gt;</code> element.</li>
             </ul>
 
             <h3 slot="uniformdocs/guidelines">
@@ -124,14 +108,58 @@
 
             <ul slot="uniformdocs/guidelines">
                 <li>Optional.</li>
-                <li>Used to display a validation error for the group as a whole instead of messages for individual Form Items.</li>
-                <li>Provided as a <code>&lt;output&gt;</code> element.</li>
-                <li>The validation state of the Form Item Group is provided as the <code>aria-invalid</code> attribute on this element.</li>
+                <li>Used to display an output for the group as a whole instead of outputs for individual Form Items.</li>
+                <li>It should be primarily used for validation errors, but can also be used to provide further neutral or a success message (see: Validation States).</li>
+                <li>It renders differently according to the Validation States.</li>
             </ul>
 
-            <h3 slot="uniformdocs/see-also">
-                See also
+            <h3 slot="uniformdocs/guidelines">
+                Validation States
             </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Neutral - Default. Used to give a neutral information for the user (e.g. instructions on the expected value format).</li>
+                <li>Success - Used when the user should get a clear indication of successful validation (e.g. new password).</li>
+                <li>Error - Used to give an error message about the user input, such as a validation error.</li>
+            </ul>
+
+            <h2 slot="uniformdocs/developer">
+                Developer Information
+            </h2>
+
+            <h3 slot="uniformdocs/developer">
+                HTML API
+            </h3>
+
+            <ul slot="uniformdocs/developer">
+                <li>The Label is provided as a <code>&lt;label&gt;</code> element.</li>
+                <li>The Form Item is provided as <code>&lt;uni-form-item&gt;</code> element.</li>
+                <li>The Output is provided as an <code>&lt;output&gt;</code> element.</li>
+                <li>The Validation State is provided as the <code>aria-invalid=""</code> attribute on the Output element, with the following values:
+                    <table style="width: auto; margin-bottom: 1em">
+                        <tr>
+                            <th>Value</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;aria-invalid=""&gt;</code> (or unset)</td>
+                            <td>Neutral</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;aria-invalid="true"&gt;</code></td>
+                            <td>Error</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;aria-invalid="false"&gt;</code></td>
+                            <td>Success</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+
+            <h2 slot="uniformdocs/see-also">
+                See Also
+            </h2>
 
             <ul slot="uniformdocs/see-also">
                 <li><a href="/UniformDocs/FormItem">Form Item</a> - for a single field in a form</li>
@@ -146,26 +174,31 @@
             <slot name="uniformdocs/formitemgroup-heading"></slot>
         </div>
         <div class="uni-section-primary">
-            <div class="uni-card">
-                <div>
-                    <slot name="uniformdocs/formitemgroup-description"></slot>
-                    <slot name="uniformdocs/example"></slot>
-                </div>
-                <uni-form-item-group>
-                    <uni-form-item>
-                        <slot name="uniformdocs/city-formitem"></slot>
-                    </uni-form-item>
-                    <uni-form-item>
-                        <slot name="uniformdocs/postcode-formitem"></slot>
-                    </uni-form-item>
-                    <slot name="uniformdocs/address-formitemgroup"></slot>
-                </uni-form-item-group>
-                <slot name="uniformdocs/states"></slot>
-                <slot name="uniformdocs/structure"></slot>
-                <slot name="uniformdocs/guidelines"></slot>
-                <slot name="uniformdocs/see-also"></slot>
-            </div>
+            <slot name="uniformdocs/formitemgroup-description"></slot>
         </div>
-        <slot name="uniformdocs/formitemgroup-input"></slot>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/example"></slot>
+            <uni-form-item-group>
+                <uni-form-item>
+                    <slot name="uniformdocs/city-formitem"></slot>
+                </uni-form-item>
+                <uni-form-item>
+                    <slot name="uniformdocs/postcode-formitem"></slot>
+                </uni-form-item>
+                <slot name="uniformdocs/address-formitemgroup"></slot>
+            </uni-form-item-group>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/structure"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/guidelines"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/developer"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/see-also"></slot>
+        </div>
     </template>
 </template>
