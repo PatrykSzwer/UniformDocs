@@ -1,0 +1,25 @@
+﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+
+<template>
+    <h1 slot="uniformdocs/main-heading">UI Kit</h1>
+
+    <p slot="uniformdocs/main-description">To make it easier for you to kickstart app design, we have made available a UI kit for Adobe XD that utilizes Uniform design system. The kit contains the assets used in Uniform and sample design files of an app <a href="https://github.com/Starcounter/Blending">BlendingEditor</a>.</p>
+
+    <p slot="uniformdocs/main-description"><a href="https://drive.google.com/drive/folders/1-71NMTdjGFo4IizBfKdvl2oi93z1RUoH?usp">Download the kit from our Google Drive</a></p>
+
+    <p slot="uniformdocs/main-description"><img alt="Example from the UI kit" src="/UniformDocs/images/uikit1.png"></p>
+
+    <p slot="uniformdocs/main-description"><img alt="Sample design" src="/UniformDocs/images/uikit2.png"></p>
+
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/main-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <div class="uni-card">
+                <slot name="uniformdocs/main-description"></slot>
+            </div>
+        </div>
+    </template>
+</template>
