@@ -171,7 +171,8 @@
     color: var(--white);
     background: var(--gray-6);
 }
-.uniformdocs-structure-diagram > li > ul > li {
+.uniformdocs-structure-diagram > li > ul > li,
+.uniformdocs-structure-diagram > li > ul > li > ul > li > ul > li {
     color: var(--gray-7);
     background: var(--gray-4);
 }
@@ -183,8 +184,4 @@
     background: var(--gray-6);
     margin: 4px;
     width: 100%;
-}
-.uniformdocs-structure-diagram > li > ul > li > ul > li > ul > li {
-    color: var(--gray-7);
-    background: var(--gray-4);
 }

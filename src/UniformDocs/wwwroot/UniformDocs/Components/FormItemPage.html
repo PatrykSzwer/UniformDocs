@@ -8,7 +8,7 @@
             <h1 slot="uniformdocs/formitem-heading">Form Item</h1>
 
             <p slot="uniformdocs/formitem-description">
-                A <code>&lt;uni-form-item&gt;</code> custom element represents a single field in a form. It contains the interactive field for user's input, a label describing the field, and an optional output for validation or information message.
+                A <code>&lt;uni-form-item&gt;</code> custom element represents a single field in a form. It contains the interactive field for user's input, an optional label describing the field, and an optional output for validation or information message.
             </p>
 
             <h2 slot="uniformdocs/example">Example</h2>
@@ -78,13 +78,13 @@
             </h3>
 
             <ul slot="uniformdocs/guidelines">
-                <li>Neutral - Default. Used to give a neutral information for the user (e.g. instructions on the expected value format).</li>
-                <li>Success - Used when the user should get a clear indication of successful validation (e.g. new password).</li>
-                <li>Error - Used to give an error message about the user input, such as a validation error.</li>
+                <li><strong>Neutral</strong> is the default validation state. Used to give a neutral information for the user (e.g. instructions on the expected value format).</li>
+                <li><strong>Success</strong> is used when the user should get a clear indication of successful validation (e.g. new password).</li>
+                <li><strong>Error</strong> is used to give an error message about the user input, such as a validation error.</li>
             </ul>
 
             <h2 slot="uniformdocs/developer">
-                Developer Information
+                Developer Documentation
             </h2>
 
             <h3 slot="uniformdocs/developer">
@@ -101,15 +101,15 @@
                             <th>Meaning</th>
                         </tr>
                         <tr>
-                            <td><code>&lt;aria-invalid=""&gt;</code> (or unset)</td>
+                            <td><code>aria-invalid=""</code> (or unset)</td>
                             <td>Neutral</td>
                         </tr>
                         <tr>
-                            <td><code>&lt;aria-invalid="true"&gt;</code></td>
+                            <td><code>aria-invalid="true"</code></td>
                             <td>Error</td>
                         </tr>
                         <tr>
-                            <td><code>&lt;aria-invalid="false"&gt;</code></td>
+                            <td><code>aria-invalid="false"</code></td>
                             <td>Success</td>
                         </tr>
                     </table>
