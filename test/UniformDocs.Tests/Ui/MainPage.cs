@@ -50,11 +50,6 @@ namespace UniformDocs.Tests.Ui
             ClickOn(UrlPageLink);
             return new UrlPage(Driver);
         }
-        public ValidationPage GoToValidationPage()
-        {
-            ClickOn(ValidationPageLink);
-            return new ValidationPage(Driver);
-        }
 
         public CheckboxPage GoToCheckboxPage()
         {

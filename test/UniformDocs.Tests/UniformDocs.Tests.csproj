@@ -84,7 +84,6 @@
     <Compile Include="Test\RedirectPageTest.cs" />
     <Compile Include="Test\TextareaPageTest.cs" />
     <Compile Include="Test\TextPageTest.cs" />
-    <Compile Include="Test\ValidationPageTest.cs" />
     <Compile Include="Ui\CardPage.cs" />
     <Compile Include="Ui\ClientLocalStatePage.cs" />
     <Compile Include="Ui\ProgressBarPage.cs" />
@@ -109,7 +108,6 @@
     <Compile Include="Ui\RedirectPage.cs" />
     <Compile Include="Ui\TextareaPage.cs" />
     <Compile Include="Ui\TextPage.cs" />
-    <Compile Include="Ui\ValidationPage.cs" />
     <Compile Include="Utilities\Config.cs" />
     <Compile Include="Utilities\EventListener.cs" />
     <Compile Include="Utilities\Screenshot.cs" />

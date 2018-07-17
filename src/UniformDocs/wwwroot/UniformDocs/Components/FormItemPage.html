@@ -5,38 +5,172 @@
 <template>
     <dom-bind>
         <template is="dom-bind">
-            <h1 slot="uniformdocs/formitem-heading"><code>uni-form-item</code></h1>
+            <h1 slot="uniformdocs/formitem-heading">Form Item</h1>
 
             <p slot="uniformdocs/formitem-description">
-                This element helps you create easy form elements that are accompanied with a label and an accessible validation output. <br /> This field only accepts the value "Hello".
+                A <code>&lt;uni-form-item&gt;</code> custom element represents a single field in a form. It contains the interactive field for user's input, an optional label describing the field, and an optional output for validation or information message.
             </p>
+
+            <h2 slot="uniformdocs/example">Example</h2>
             
-            <label slot="uniformdocs/formitem-slot">Enter greeting</label>
-            <input slot="uniformdocs/formitem-slot" aria-invalid$="{{stringifyBoolean(model.IsInvalid)}}" value="{{model.Word$::keyup}}">
+            <label slot="uniformdocs/formitem-slot">Greeting</label>
+            <input slot="uniformdocs/formitem-slot" aria-invalid$="{{model.IsInvalid}}" value="{{model.Word$::input}}">
             <output slot="uniformdocs/formitem-slot">{{model.ValidationMessage}}</output>
+
+            <h2 slot="uniformdocs/structure">
+                Structure
+            </h2>
+
+            <ul class="uniformdocs-structure-diagram" slot="uniformdocs/structure">
+                <li>Form Item
+                    <ul>
+                        <li>Label</li>
+                        <li>Field</li>
+                        <li>Output</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2 slot="uniformdocs/guidelines">
+                Design Guidelines
+            </h2>
+
+            <h3 slot="uniformdocs/guidelines">
+                General
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Form Item is size agnostic – the Field is responsible for rendering itself in an appropriate size, and the Form Item will scale around it accordingly.</li>
+                <li>Form Item is layout agnostic – its placement is determined by the containing element, such as Form Item Group.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/guidelines">
+                Label
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Optional but strongly recommended as the primary way to identify the field by the end user.</li>
+                <li>If the Label is omitted, a placeholder text in the field itself is strongly recommended.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/guidelines">
+                Field
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Required.</li>
+                <li>It is an interactive UI control for manual data entry.</li>
+                <li>It renders differently according to the Validation States.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/guidelines">
+                Output
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Optional.</li>
+                <li>It should be primarily used for validation errors, but can also be used to provide further neutral or a success message (see: Validation States).</li>
+                <li>It renders differently according to the Validation States.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/guidelines">
+                Validation States
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li><strong>Neutral</strong> is the default validation state. Used to give neutral information for the user (e.g. instructions on the expected value format).</li>
+                <li><strong>Success</strong> is used when the user should get a clear indication of successful validation (e.g. new password).</li>
+                <li><strong>Error</strong> is used to give an error message about the user input, such as a validation error.</li>
+            </ul>
+
+            <h2 slot="uniformdocs/developer">
+                Developer Documentation
+            </h2>
+
+            <h3 slot="uniformdocs/developer">
+                HTML API
+            </h3>
+
+            <ul slot="uniformdocs/developer">
+                <li>The Label is provided as a <code>&lt;label&gt;</code> element.</li>
+                <li>The Field is provided as an element of any kind other than <code>&lt;label&gt;</code> or <code>&lt;output&gt;</code>. Typically that is <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> or a simple custom element for data entry.</li>
+                <li>The Validation State is provided as the <code>aria-invalid=""</code> attribute on the Field element, with the following values:
+                    <table style="width: auto; margin-bottom: 1em">
+                        <tr>
+                            <th>Value</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td><code>aria-invalid=""</code> (or unset)</td>
+                            <td>Neutral</td>
+                        </tr>
+                        <tr>
+                            <td><code>aria-invalid="true"</code></td>
+                            <td>Error</td>
+                        </tr>
+                        <tr>
+                            <td><code>aria-invalid="false"</code></td>
+                            <td>Success</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>The Output is provided as an <code>&lt;output&gt;</code> element.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/developer">
+                Accessibility
+            </h3>
+
+            <ul slot="uniformdocs/developer">
+                <li>The Label is automatically bound to the Field (no need for the <code>for=""</code> attribute).</li>
+                <li>The Output is automatically set as the ARIA description of the Field.</li>
+            </ul>
+
+            <h3 slot="uniformdocs/developer">
+                Custom CSS Properties
+            </h3>
+
+            <ul slot="uniformdocs/developer">
+                <li><code>--uni-form-item-gap-content</code>, fallback value: <code>none</code>. By default, the Form Item does not have empty columns on the sides. Set to <code>''</code> to enable empty column spacing on the side (on the right in LTR and left in RTL). Used by <code>&lt;uni-form-item-group&gt;</code> to make gaps between the horizontally stacked <code>&lt;uni-form-item&gt;</code> elements.</li>
+                <li><code>--uni-form-item-control-border</code>, fallback value: <code>none</code>. Override the border style on the control element. Used by <code>&lt;uni-form-item-group&gt;</code> to make red borders for the invalid group state.</li>
+            </ul>
+
+            <h2 slot="uniformdocs/see-also">
+                See Also
+            </h2>
+
+            <ul slot="uniformdocs/see-also">
+                <li><a href="/UniformDocs/FormItemGroup">Form Item Group</a> - for grouping multiple related items onto the same row</li>
+            </ul>
             
             <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
-    <script>
-        const template = document.currentScript.previousElementSibling;
-        template.stringifyBoolean = bool => bool ? "true" : "false";
-    </script>
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
             <slot name="uniformdocs/formitem-heading"></slot>
         </div>
         <div class="uni-section-primary">
-            <div class="uni-card">
-                <div>
-                    <slot name="uniformdocs/formitem-description"></slot>
-                </div>
-                <uni-form-item>
-                    <slot name="uniformdocs/formitem-slot"></slot>
-                </<uni-form-item>
-            </div>
-            </div>
-        <slot name="uniformdocs/formitem-input"></slot>
-            </template>
+            <slot name="uniformdocs/formitem-description"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/example"></slot>
+            <uni-form-item>
+                <slot name="uniformdocs/formitem-slot"></slot>
+            </uni-form-item>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/structure"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/guidelines"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/developer"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/see-also"></slot>
+        </div>
+    </template>
 </template>
