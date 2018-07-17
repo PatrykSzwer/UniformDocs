@@ -4,15 +4,6 @@ namespace UniformDocs.ViewModels.Components
 {
     partial class FormItemPage : Json
     {
-        protected override void OnData()
-        {
-            base.OnData();
-        }
-
-        static FormItemPage()
-        {
-        }
-
         public string ValidationMessage
         {
             get {
@@ -22,8 +13,9 @@ namespace UniformDocs.ViewModels.Components
                         return "Correct greeting!";
                     case "true":
                         return "This is not the correct greeting";
+                    default:
+                        return "'Hello' is the only accepted value";
                 }
-                return "'Hello' is the only accepted value";
             }
         }
 
@@ -33,12 +25,9 @@ namespace UniformDocs.ViewModels.Components
             {
                 if (Word.Length > 0)
                 {
-                    if (Word.ToLower().Equals("hello"))
-                    {
-                        return "false";
-                    }
-                    return "true";
+                    return Word.ToLower().Equals("hello") ? "false" : "true";
                 }
+
                 return "";
             }
         }

@@ -5,15 +5,6 @@ namespace UniformDocs.ViewModels.Components
 {
     partial class FormItemGroupPage : Json
     {
-        protected override void OnData()
-        {
-            base.OnData();
-        }
-
-        static FormItemGroupPage()
-        {
-        }
-
         public string CityValidationMessage
         {
             get
@@ -24,8 +15,9 @@ namespace UniformDocs.ViewModels.Components
                         return "City is provided";
                     case "true":
                         return "City cannot be empty";
+                    default:
+                        return "";
                 }
-                return "";
             }
         }
 
@@ -39,8 +31,9 @@ namespace UniformDocs.ViewModels.Components
                         return "Postcode is provided";
                     case "true":
                         return "Postcode cannot be empty";
+                    default:
+                        return "";
                 }
-                return "";
             }
         }
 
@@ -54,8 +47,9 @@ namespace UniformDocs.ViewModels.Components
                         return "This is the expected pair of input!";
                     case "true":
                         return "The fields do not contain the expected pair of input";
+                    default:
+                        return "Expecting 'Stockholm' and '12345'";
                 }
-                return "Expecting 'Stockholm' and '12345'";
             }
         }
 
@@ -63,11 +57,7 @@ namespace UniformDocs.ViewModels.Components
         {
             get
             {
-                if (City.Length > 0)
-                {
-                    return "false";
-                }
-                return "true";
+                return City.Length > 0 ? "false" : "true";
             }
         }
 
@@ -75,11 +65,7 @@ namespace UniformDocs.ViewModels.Components
         {
             get
             {
-                if (Postcode.Length > 0)
-                {
-                    return "false";
-                }
-                return "true";
+                return Postcode.Length > 0 ? "false" : "true";
             }
         }
 
@@ -89,12 +75,9 @@ namespace UniformDocs.ViewModels.Components
             {
                 if (City.Length > 0 && Postcode.Length > 0)
                 {
-                    if (City.ToLower().Equals("stockholm") && Postcode.Equals("12345"))
-                    {
-                        return "false";
-                    }
-                    return "true";
+                    return City.ToLower().Equals("stockholm") && Postcode.Equals("12345") ? "false" : "true";
                 }
+
                 return "";
             }
         }
