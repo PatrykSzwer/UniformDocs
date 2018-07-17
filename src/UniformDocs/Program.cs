@@ -271,9 +271,6 @@ namespace UniformDocs
                 return master;
             });
 
-            Handle.GET("/UniformDocs/partial/Validation", () => new ValidationPage());
-            Handle.GET("/UniformDocs/Validation", () => WrapPage<ValidationPage>("/UniformDocs/partial/Validation"));
-
             #endregion
         }
 

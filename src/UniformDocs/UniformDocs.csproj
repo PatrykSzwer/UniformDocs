@@ -49,10 +49,6 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Joozek78.Starcounter.Async, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Joozek78.Starcounter.Async.2.0.0\lib\net461\Joozek78.Starcounter.Async.dll</HintPath>
     </Reference>
@@ -135,9 +131,6 @@
     <Compile Include="ViewModels\HowTo\ProgressBarPage.json.cs">
       <DependentUpon>ProgressBarPage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\HowTo\ValidationPage.json.cs">
-      <DependentUpon>ValidationPage.json</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Components\ToggleButtonPage.json.cs">
       <DependentUpon>ToggleButtonPage.json</DependentUpon>
     </Compile>
@@ -217,7 +210,6 @@
     <Compile Include="ViewModels\Components\DecimalPage.json.cs">
       <DependentUpon>DecimalPage.json</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ValidatorHelper.cs" />
     <Compile Include="ViewModels\HowTo\FlashMessagePage.json.cs">
       <DependentUpon>FlashMessagePage.json</DependentUpon>
     </Compile>
@@ -312,7 +304,6 @@
     <Content Include="wwwroot\UniformDocs\NavPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\PaginationPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\ProgressBarPage.html" />
-    <Content Include="wwwroot\UniformDocs\HowTo\ValidationPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\ToggleButtonPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\CheckboxPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\CookiePage.html" />
@@ -481,11 +472,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ViewModels\Components\ToggleButtonPage.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
-  </ItemGroup>
-  <ItemGroup>
-    <TypedJSON Include="ViewModels\HowTo\ValidationPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
