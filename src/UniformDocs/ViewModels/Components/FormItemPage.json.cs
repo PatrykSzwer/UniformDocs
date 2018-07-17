@@ -1,34 +1,37 @@
 using Starcounter;
+using Starcounter.Uniform.Generic.FormItem;
+using Starcounter.Uniform.ViewModels;
 
 namespace UniformDocs.ViewModels.Components
 {
     partial class FormItemPage : Json
     {
-        public string ValidationMessage
+        static FormItemPage()
         {
-            get {
-                switch(IsInvalid)
-                {
-                    case "false":
-                        return "Correct greeting!";
-                    case "true":
-                        return "This is not the correct greeting";
-                    default:
-                        return "'Hello' is the only accepted value";
-                }
-            }
+            DefaultTemplate.ItemMessages.InstanceType = typeof(ItemMessages);
         }
 
-        public string IsInvalid 
+        public void Init()
         {
-            get
-            {
-                if (Word.Length > 0)
-                {
-                    return Word.ToLower().Equals("hello") ? "false" : "true";
-                }
+            this.ItemMessages.SetMessage(nameof(this.Word), "'Hello' is the only accepted value", MessageType.Neutral);
+        }
 
-                return "";
+        void Handle(Input.Word action)
+        {
+            if (action.Value.Length > 0)
+            {
+                if (action.Value.ToLower().Equals("hello"))
+                {
+                    this.ItemMessages.SetMessage(nameof(this.Word), "Correct greeting!", MessageType.Valid);
+                }
+                else
+                {
+                    this.ItemMessages.SetMessage(nameof(this.Word), "This is not the correct greeting!", MessageType.Invalid);
+                }
+            }
+            else
+            {
+                this.ItemMessages.SetMessage(nameof(this.Word), "'Hello' is the only accepted value", MessageType.Neutral);
             }
         }
     }

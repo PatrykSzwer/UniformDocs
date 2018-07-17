@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Starcounter;
+using Starcounter.Advanced;
+using Starcounter.Uniform.FormItem;
+using System;
 using System.Linq;
 using UniformDocs.Helpers;
 using UniformDocs.ViewModels;
 using UniformDocs.ViewModels.Components;
 using UniformDocs.ViewModels.Design;
 using UniformDocs.ViewModels.HowTo;
-using Starcounter;
-using Starcounter.Advanced;
 
 namespace UniformDocs
 {
@@ -88,7 +89,18 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/decimal", () => new DecimalPage());
             Handle.GET("/UniformDocs/decimal", () => WrapPage<DecimalPage>("/UniformDocs/partial/decimal"));
 
-            Handle.GET("/UniformDocs/partial/formitem", () => new FormItemPage());
+            Handle.GET("/UniformDocs/partial/formitem", () =>
+            {
+                var formItemPage = new FormItemPage();
+
+                var itemMessages = new FormItemMessagesBuilder().ForProperty(nameof(FormItemPage.Word)).Build();
+
+                formItemPage.ItemMessages = itemMessages;
+                formItemPage.Init();
+
+                return formItemPage;
+            });
+
             Handle.GET("/UniformDocs/formitem", () => WrapPage<FormItemPage>("/UniformDocs/partial/formitem"));
 
             Handle.GET("/UniformDocs/partial/formitemgroup", () => new FormItemGroupPage());
