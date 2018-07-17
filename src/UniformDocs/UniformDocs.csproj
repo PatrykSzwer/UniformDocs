@@ -58,8 +58,11 @@
     <Reference Include="Nito.Disposables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.Disposables.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Disposables.dll</HintPath>
     </Reference>
-    <Reference Include="Starcounter.Linq, Version=2.0.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Starcounter.Linq.2.0.1\lib\net461\Starcounter.Linq.dll</HintPath>
+    <Reference Include="Starcounter.Linq, Version=2.0.3.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Starcounter.Linq.2.0.3\lib\net461\Starcounter.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Starcounter.Uniform, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Starcounter.Uniform.1.0.0\lib\net461\Starcounter.Uniform.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -268,6 +271,9 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <TypedJSON Include="ViewModels\Components\FormItemGroupPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\DataTableRow.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <None Include="weaver.ignore">
