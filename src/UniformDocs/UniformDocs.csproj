@@ -106,6 +106,9 @@
     <Compile Include="ViewModels\Components\DataTablePage.json.cs">
       <DependentUpon>DatatablePage.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Components\DataTableRow.json.cs">
+      <DependentUpon>DataTableRow.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Components\FormItemGroupPage.json.cs">
       <DependentUpon>FormItemGroupPage.json</DependentUpon>
     </Compile>
@@ -273,7 +276,7 @@
     <TypedJSON Include="ViewModels\Components\FormItemGroupPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <TypedJSON Include="ViewModels\DataTableRow.json">
+    <TypedJSON Include="ViewModels\Components\DataTableRow.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <None Include="weaver.ignore">
