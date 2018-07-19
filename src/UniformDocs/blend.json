@@ -1,6 +1,6 @@
 [
   {
-    "Uri": "/blendingeditor/app-name",
+    "Uri": "/UniformDocs/app-name",
     "Token": "",
     "Contexts": [ "app", "icon" ],
     "AllowFromDirection": false,
