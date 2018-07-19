@@ -58,8 +58,11 @@
     <Reference Include="Nito.Disposables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.Disposables.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Disposables.dll</HintPath>
     </Reference>
-    <Reference Include="Starcounter.Linq, Version=2.0.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Starcounter.Linq.2.0.1\lib\net461\Starcounter.Linq.dll</HintPath>
+    <Reference Include="Starcounter.Linq, Version=2.0.3.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Starcounter.Linq.2.0.3\lib\net461\Starcounter.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Starcounter.Uniform, Version=1.0.1.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Starcounter.Uniform.1.0.1\lib\net461\Starcounter.Uniform.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -88,7 +91,7 @@
     <Compile Include="Database\GroceryProduct.cs" />
     <Compile Include="Database\MapCoordinates.cs" />
     <Compile Include="Database\SoftwareProduct.cs" />
-    <Compile Include="Database\TableRow.cs" />
+    <Compile Include="Database\Person.cs" />
     <Compile Include="Database\TreeItem.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
@@ -102,6 +105,9 @@
     </Compile>
     <Compile Include="ViewModels\Components\DataTablePage.json.cs">
       <DependentUpon>DatatablePage.json</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Components\DataTableRow.json.cs">
+      <DependentUpon>DataTableRow.json</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Components\FormItemGroupPage.json.cs">
       <DependentUpon>FormItemGroupPage.json</DependentUpon>
@@ -270,6 +276,10 @@
     <TypedJSON Include="ViewModels\Components\FormItemGroupPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="ViewModels\Components\DataTableRow.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <None Include="blend.json" />
     <None Include="weaver.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

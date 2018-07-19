@@ -4,7 +4,7 @@ namespace UniformDocs.Database
 {
     // Database class used by DataTable page.
     [Database]
-    public class TableRow
+    public class Person
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
