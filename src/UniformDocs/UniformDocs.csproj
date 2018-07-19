@@ -61,8 +61,8 @@
     <Reference Include="Starcounter.Linq, Version=2.0.3.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\..\packages\Starcounter.Linq.2.0.3\lib\net461\Starcounter.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="Starcounter.Uniform, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Starcounter.Uniform.1.0.0\lib\net461\Starcounter.Uniform.dll</HintPath>
+    <Reference Include="Starcounter.Uniform, Version=1.0.1.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Starcounter.Uniform.1.0.1\lib\net461\Starcounter.Uniform.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -91,7 +91,7 @@
     <Compile Include="Database\GroceryProduct.cs" />
     <Compile Include="Database\MapCoordinates.cs" />
     <Compile Include="Database\SoftwareProduct.cs" />
-    <Compile Include="Database\TableRow.cs" />
+    <Compile Include="Database\Person.cs" />
     <Compile Include="Database\TreeItem.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>

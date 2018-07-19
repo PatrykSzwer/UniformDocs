@@ -52,11 +52,11 @@ namespace UniformDocs.Helpers
                 }
 
                 // For DataTable page
-                if (!Db.SQL($"SELECT r FROM {typeof(TableRow)} r").Any())
+                if (!Db.SQL($"SELECT r FROM {typeof(Person)} r").Any())
                 {
                     for (int i = 500; i > 0; i--)
                     {
-                        new TableRow
+                        new Person
                         {
                             FirstName = $"{i} member first name",
                             LastName = $"{i} member last name",

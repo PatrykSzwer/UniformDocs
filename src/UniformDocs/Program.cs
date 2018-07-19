@@ -1,10 +1,7 @@
 ﻿using Starcounter;
 using Starcounter.Advanced;
-using Starcounter.Linq;
-using Starcounter.Uniform.Builder;
 using System;
 using System.Linq;
-using UniformDocs.Database;
 using UniformDocs.Helpers;
 using UniformDocs.ViewModels;
 using UniformDocs.ViewModels.Components;
@@ -150,25 +147,11 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/datatable", () =>
             {
-                return Db.Scope(() =>
-                {
-                    var dataTablePage = new DataTablePage
-                    {
-                        DataTable = new DataTableBuilder<DataTableRow>()
-                            .WithDataSource(DbLinq.Objects<TableRow>())
-                            .WithColumns(columns =>
-                                columns
-                                    .AddColumn(b => b.FirstName,
-                                        column => column.DisplayName("First Name").Sortable().Filterable())
-                                    .AddColumn(b => b.LastName, column => column.Sortable().DisplayName("Last Name"))
-                                    .AddColumn(b => b.Email,
-                                        column => column.Filterable().Sortable().DisplayName("Email")))
-                            .Build()
-                    };
-
-                    return dataTablePage;
-                });
+                var dataTablePage = new DataTablePage();
+                dataTablePage.Init();
+                return dataTablePage;
             });
+
             Handle.GET("/UniformDocs/datatable", () => WrapPage<DataTablePage>("/UniformDocs/partial/datatable"));
 
             #endregion
