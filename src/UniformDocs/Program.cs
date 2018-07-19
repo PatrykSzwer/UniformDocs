@@ -1,6 +1,5 @@
 ﻿using Starcounter;
 using Starcounter.Advanced;
-using Starcounter.Uniform.FormItem;
 using System;
 using System.Linq;
 using UniformDocs.Helpers;
@@ -92,10 +91,6 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/formitem", () =>
             {
                 var formItemPage = new FormItemPage();
-
-                var itemMessages = new FormItemMessagesBuilder().ForProperty(nameof(FormItemPage.Word)).Build();
-
-                formItemPage.ItemMessages = itemMessages;
                 formItemPage.Init();
 
                 return formItemPage;

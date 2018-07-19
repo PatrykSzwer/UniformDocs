@@ -13,6 +13,7 @@ namespace UniformDocs.ViewModels.Components
 
         public void Init()
         {
+            this.ItemMessages = new FormItemMessagesBuilder().ForProperty(nameof(FormItemPage.Word)).Build();
             this.ItemMessages.SetMessage(nameof(this.Word), "'Hello' is the only accepted value", MessageType.Neutral);
         }
 
