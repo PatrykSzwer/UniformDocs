@@ -19,11 +19,9 @@ namespace UniformDocs.ViewModels.Components
                 .WithDataSource(DbLinq.Objects<Person>())
                 .WithColumns(columns =>
                     columns
-                        .AddColumn(b => b.FirstName,
-                            column => column.DisplayName("First Name").Sortable().Filterable())
+                        .AddColumn(b => b.FirstName, column => column.DisplayName("First Name").Sortable().Filterable())
                         .AddColumn(b => b.LastName, column => column.Sortable().DisplayName("Last Name"))
-                        .AddColumn(b => b.Email,
-                            column => column.Filterable().Sortable().DisplayName("Email")))
+                        .AddColumn(b => b.Email, column => column.Filterable().Sortable().DisplayName("Email")))
                 .Build();
         }
 

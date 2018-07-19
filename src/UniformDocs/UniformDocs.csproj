@@ -279,6 +279,7 @@
     <TypedJSON Include="ViewModels\Components\DataTableRow.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <None Include="blend.json" />
     <None Include="weaver.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

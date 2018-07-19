@@ -1,5 +1,4 @@
 ﻿using Starcounter;
-using Starcounter.Advanced;
 using System;
 using System.Linq;
 using UniformDocs.Helpers;
@@ -19,9 +18,6 @@ namespace UniformDocs
             app.Use(new PartialToStandaloneHtmlProvider());
 
             DummyData.Create();
-
-            Blender.MapUri("/UniformDocs/menu", string.Empty, new[] { "menu" });
-            Blender.MapUri("/UniformDocs/app-name", string.Empty, new[] { "app", "icon" });
 
             // just to offer a REST endpoint that gives the app version, usable for diagnostics
             // (currently used in github-source-links)
