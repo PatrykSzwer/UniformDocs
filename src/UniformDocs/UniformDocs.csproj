@@ -61,8 +61,8 @@
     <Reference Include="Starcounter.Linq, Version=2.0.3.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\..\packages\Starcounter.Linq.2.0.3\lib\net461\Starcounter.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="Starcounter.Uniform, Version=1.0.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Starcounter.Uniform.1.0.1\lib\net461\Starcounter.Uniform.dll</HintPath>
+    <Reference Include="Starcounter.Uniform, Version=1.1.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\..\packages\Starcounter.Uniform.1.1.0\lib\net461\Starcounter.Uniform.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

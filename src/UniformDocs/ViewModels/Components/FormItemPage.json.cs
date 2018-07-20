@@ -1,4 +1,5 @@
 using Starcounter;
+using Starcounter.Uniform.FormItem;
 using Starcounter.Uniform.Generic.FormItem;
 using Starcounter.Uniform.ViewModels;
 
@@ -8,13 +9,13 @@ namespace UniformDocs.ViewModels.Components
     {
         static FormItemPage()
         {
-            DefaultTemplate.ItemMessages.InstanceType = typeof(ItemMessages);
+            DefaultTemplate.FormItemMetadata.InstanceType = typeof(FormItemMetadata);
         }
 
         public void Init()
         {
-            this.ItemMessages = new FormItemMessagesBuilder().ForProperty(nameof(FormItemPage.Word)).Build();
-            this.ItemMessages.SetMessage(nameof(this.Word), "'Hello' is the only accepted value", MessageType.Neutral);
+            this.FormItemMetadata = new FormItemMessagesBuilder().ForProperty(nameof(this.Word)).Build();
+            this.FormItemMetadata.SetMessage(nameof(this.Word), "'Hello' is the only accepted value", MessageType.Neutral);
         }
 
         void Handle(Input.Word action)
@@ -23,16 +24,16 @@ namespace UniformDocs.ViewModels.Components
             {
                 if (action.Value.ToLower().Equals("hello"))
                 {
-                    this.ItemMessages.SetMessage(nameof(this.Word), "Correct greeting!", MessageType.Valid);
+                    this.FormItemMetadata.SetMessage(nameof(this.Word), "Correct greeting!", MessageType.Valid);
                 }
                 else
                 {
-                    this.ItemMessages.SetMessage(nameof(this.Word), "This is not the correct greeting!", MessageType.Invalid);
+                    this.FormItemMetadata.SetMessage(nameof(this.Word), "This is not the correct greeting!", MessageType.Invalid);
                 }
             }
             else
             {
-                this.ItemMessages.SetMessage(nameof(this.Word), "'Hello' is the only accepted value", MessageType.Neutral);
+                this.FormItemMetadata.SetMessage(nameof(this.Word), "'Hello' is the only accepted value", MessageType.Neutral);
             }
         }
     }
