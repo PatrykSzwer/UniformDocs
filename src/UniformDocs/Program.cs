@@ -20,9 +20,6 @@ namespace UniformDocs
 
             DummyData.Create();
 
-            Blender.MapUri("/UniformDocs/menu", string.Empty, new[] { "menu" });
-            Blender.MapUri("/UniformDocs/app-name", string.Empty, new[] { "app", "icon" });
-
             // just to offer a REST endpoint that gives the app version, usable for diagnostics
             // (currently used in github-source-links)
             Handle.GET("/UniformDocs/uniformdocs-app-version", () => GetAppVersionFromAssemblyFile());
@@ -154,13 +151,11 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/datatable", () =>
             {
-                return Db.Scope(() =>
-                {
-                    var dataTablePage = new DataTablePage();
-                    dataTablePage.Init();
-                    return dataTablePage;
-                });
+                var dataTablePage = new DataTablePage();
+                dataTablePage.Init();
+                return dataTablePage;
             });
+
             Handle.GET("/UniformDocs/datatable", () => WrapPage<DataTablePage>("/UniformDocs/partial/datatable"));
 
             #endregion

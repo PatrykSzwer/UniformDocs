@@ -64,7 +64,6 @@
     <Compile Include="Test\CardPageTest.cs" />
     <Compile Include="Test\MainPageTest.cs" />
     <Compile Include="Test\ClientLocalStatePageTest.cs" />
-    <Compile Include="Test\DatagridPageTest.cs" />
     <Compile Include="Test\ProgressBarTest.cs" />
     <Compile Include="Test\RadiolistPageTest.cs" />
     <Compile Include="Test\RadioPageTest.cs" />
@@ -87,7 +86,6 @@
     <Compile Include="Test\TextPageTest.cs" />
     <Compile Include="Ui\CardPage.cs" />
     <Compile Include="Ui\ClientLocalStatePage.cs" />
-    <Compile Include="Ui\DatagridPage.cs" />
     <Compile Include="Ui\ProgressBarPage.cs" />
     <Compile Include="Ui\RadiolistPage.cs" />
     <Compile Include="Ui\RadioPage.cs" />

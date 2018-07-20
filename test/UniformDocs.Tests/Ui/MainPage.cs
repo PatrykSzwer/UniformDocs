@@ -129,12 +129,6 @@ namespace UniformDocs.Tests.Ui
             return new ToggleButtonPage(Driver);
         }
 
-        public DatagridPage GoToDataGridPage()
-        {
-            ClickOn(DataGridPageLink);
-            return new DatagridPage(Driver);
-        }
-
         public RadioPage GoToRadioPage()
         {
             ClickOn(RadioPageLink);
