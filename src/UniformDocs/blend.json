@@ -1,0 +1,16 @@
+[
+  {
+    "Uri": "/UniformDocs/app-name",
+    "Token": "",
+    "Contexts": [ "app", "icon" ],
+    "AllowFromDirection": false,
+    "AllowToDirection": true
+  },
+  {
+    "Uri": "/UniformDocs/menu",
+    "Token": "",
+    "Contexts": [ "menu" ],
+    "AllowFromDirection": false,
+    "AllowToDirection": true
+  }
+]

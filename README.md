@@ -12,7 +12,7 @@ You can find a hosted demo of the UniformDocs app on [uniform.starcounter.io](ht
 
 - Rendering (Breadcrumb, Chart, HTML, Link, Map, Markdown, Pagination, Table)
 - Server Push (Async Response, Cookies, Dialog Box, Flash Message, Lazy Loading, Nested Views, Progress Bar, Redirect, Client Local State)
-- User Input (Autocomplete, Button, Checkbox, Datepicker, Dropdown, Decimal Input, File Upload, Integer Input, Multiselect, Password, Radio Button, Radiolist, Text Input, Textarea, Toggle Button, Validation)
+- User Input (Autocomplete, Button, Checkbox, Datepicker, Dropdown, Decimal Input, File Upload, Integer Input, Multiselect, Password, Radio Button, Radiolist, Text Input, Textarea, Toggle Button)
 
 The guidelines for this project are:
 

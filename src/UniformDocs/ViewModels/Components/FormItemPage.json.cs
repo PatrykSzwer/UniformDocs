@@ -4,18 +4,32 @@ namespace UniformDocs.ViewModels.Components
 {
     partial class FormItemPage : Json
     {
-        protected override void OnData()
+        public string ValidationMessage
         {
-            base.OnData();
+            get {
+                switch(IsInvalid)
+                {
+                    case "false":
+                        return "Correct greeting!";
+                    case "true":
+                        return "This is not the correct greeting";
+                    default:
+                        return "'Hello' is the only accepted value";
+                }
+            }
         }
 
-        static FormItemPage()
+        public string IsInvalid 
         {
-            DefaultTemplate.IsInvalid.Bind = nameof(CalulateIsInvalid);
-            DefaultTemplate.ValidationMessage.Bind = nameof(CalulateValidationMessage);
-        }
+            get
+            {
+                if (Word.Length > 0)
+                {
+                    return Word.ToLower().Equals("hello") ? "false" : "true";
+                }
 
-        public string CalulateValidationMessage => CalulateIsInvalid ? "Not accepted" : "Accepted";
-        public bool CalulateIsInvalid => this.Word != "Hello";
+                return "";
+            }
+        }
     }
 }
