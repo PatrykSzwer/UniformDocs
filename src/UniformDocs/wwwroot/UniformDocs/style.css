@@ -155,3 +155,8 @@
     margin: 2px 0px;
     position: absolute;
 }
+
+.uniformdocs-ui-kit-pallete {
+    width: 100%;
+    max-width: 900px;
+}
