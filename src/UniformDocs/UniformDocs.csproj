@@ -237,6 +237,9 @@
     <Compile Include="ViewModels\Design\SectionsPage.json.cs">
       <DependentUpon>SectionsPage.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\UIKitPage.json.cs">
+      <DependentUpon>UIKitPage.json</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ViewModels\Components\TextPage.json">
@@ -249,6 +252,10 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
+    <TypedJSON Include="ViewModels\UIKitPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <None Include="wwwroot\UniformDocs\UIKitPage.html" />
     <TypedJSON Include="ViewModels\Design\SectionsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>

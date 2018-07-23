@@ -27,6 +27,9 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/mainpage", () => WrapPage<MainPage>("/UniformDocs/partial/mainpage"));
 
+            Handle.GET("/UniformDocs/partial/uikit", () => new UIKitPage());
+            Handle.GET("/UniformDocs/uikit", () => WrapPage<UIKitPage>("/UniformDocs/partial/uikit"));
+
             Handle.GET("/UniformDocs", () => Self.GET("/UniformDocs/mainpage"));
 
             Handle.GET("/UniformDocs/nav", () => new NavPage(), new HandlerOptions() { SelfOnly = true });

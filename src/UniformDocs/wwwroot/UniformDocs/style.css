@@ -155,6 +155,10 @@
     margin: 2px 0px;
     position: absolute;
 }
+.uniformdocs-ui-kit-pallete {
+    width: 100%;
+    max-width: 900px;
+}
 
 .uniformdocs-structure-diagram, 
 .uniformdocs-structure-diagram ul {
@@ -162,23 +166,28 @@
     padding: 0;
     max-width: 400px;
 }
+
 .uniformdocs-structure-diagram li {
     border-radius: 6px;
     padding: 4px 6px;
     margin-top: 4px;
 }
+
 .uniformdocs-structure-diagram > li {
     color: var(--white);
     background: var(--gray-6);
 }
+
 .uniformdocs-structure-diagram > li > ul > li,
 .uniformdocs-structure-diagram > li > ul > li > ul > li > ul > li {
     color: var(--gray-7);
     background: var(--gray-4);
 }
+
 .uniformdocs-structure-diagram > li > ul > li > ul {
     display: flex;
 }
+
 .uniformdocs-structure-diagram > li > ul > li > ul > li {
     color: var(--white);
     background: var(--gray-6);
