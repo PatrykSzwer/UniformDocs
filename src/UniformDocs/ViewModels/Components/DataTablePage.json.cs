@@ -22,6 +22,7 @@ namespace UniformDocs.ViewModels.Components
                         .AddColumn(b => b.FirstName, column => column.DisplayName("First Name").Sortable().Filterable())
                         .AddColumn(b => b.LastName, column => column.Sortable().DisplayName("Last Name"))
                         .AddColumn(b => b.Email, column => column.Filterable().Sortable().DisplayName("Email")))
+                .WithInitialPageSize(20)
                 .Build();
         }
 
