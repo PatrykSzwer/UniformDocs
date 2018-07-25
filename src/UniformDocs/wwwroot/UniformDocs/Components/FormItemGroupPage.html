@@ -17,15 +17,15 @@
             <h2 slot="uniformdocs/example">Example</h2>
 
             <label slot="uniformdocs/city-formitem">City</label>
-            <input slot="uniformdocs/city-formitem" value="{{model.City$::input}}" aria-invalid$="{{model.IsCityInvalid}}">
-            <output slot="uniformdocs/city-formitem">{{model.CityValidationMessage}}</output>
+            <input slot="uniformdocs/city-formitem" value="{{model.City$::input}}" aria-invalid$="{{model.FormItemMetadata.City.Invalid}}">
+            <output slot="uniformdocs/city-formitem">{{model.FormItemMetadata.City.Message}}</output>
 
             <label slot="uniformdocs/postcode-formitem">Postcode</label>
-            <input slot="uniformdocs/postcode-formitem" value="{{model.Postcode$::input}}" aria-invalid$="{{model.IsPostcodeInvalid}}">
-            <output slot="uniformdocs/postcode-formitem">{{model.PostcodeValidationMessage}}</output>
+            <input slot="uniformdocs/postcode-formitem" value="{{model.Postcode$::input}}" aria-invalid$="{{model.FormItemMetadata.Postcode.Invalid}}">
+            <output slot="uniformdocs/postcode-formitem">{{model.FormItemMetadata.Postcode.Message}}</output>
 
             <label slot="uniformdocs/address-formitemgroup">Address</label>
-            <output slot="uniformdocs/address-formitemgroup" aria-invalid$="{{model.IsGroupInvalid}}">{{model.GroupValidationMessage}}</output>
+            <output slot="uniformdocs/address-formitemgroup" aria-invalid$="{{model.FormItemMetadata.CityPostcodeGroup.Invalid}}">{{model.FormItemMetadata.CityPostcodeGroup.Message}}</output>
 
             <h2 slot="uniformdocs/structure">
                 Structure
@@ -126,6 +126,14 @@
             <h2 slot="uniformdocs/developer">
                 Developer Documentation
             </h2>
+            
+            <h3 slot="uniformdocs/developer">
+                C# API
+            </h3>
+            
+            <ul slot="uniformdocs/developer">
+                <li>Server-side implementation is provided by <a target="_blank" href="https://github.com/Starcounter/Starcounter.Uniform">Starcounter.Uniform</a> library.</li>
+            </ul>
 
             <h3 slot="uniformdocs/developer">
                 HTML API

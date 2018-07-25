@@ -87,10 +87,23 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/decimal", () => new DecimalPage());
             Handle.GET("/UniformDocs/decimal", () => WrapPage<DecimalPage>("/UniformDocs/partial/decimal"));
 
-            Handle.GET("/UniformDocs/partial/formitem", () => new FormItemPage());
+            Handle.GET("/UniformDocs/partial/formitem", () =>
+            {
+                var formItemPage = new FormItemPage();
+                formItemPage.Init();
+
+                return formItemPage;
+            });
+
             Handle.GET("/UniformDocs/formitem", () => WrapPage<FormItemPage>("/UniformDocs/partial/formitem"));
 
-            Handle.GET("/UniformDocs/partial/formitemgroup", () => new FormItemGroupPage());
+            Handle.GET("/UniformDocs/partial/formitemgroup", () =>
+            {
+                var formItemGroupPage = new FormItemGroupPage();
+                formItemGroupPage.Init();
+
+                return formItemGroupPage;
+            });
             Handle.GET("/UniformDocs/formitemgroup", () => WrapPage<FormItemGroupPage>("/UniformDocs/partial/formitemgroup"));
 
             Handle.GET("/UniformDocs/partial/html", () => new HtmlPage());

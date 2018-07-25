@@ -1,11 +1,6 @@
 {
   "Html": "/UniformDocs/Components/FormItemGroupPage.html",
+  "FormItemMetadata": {},
   "City$": "",
-  "Postcode$": "",
-  "IsCityInvalid": "",
-  "IsPostcodeInvalid": "",
-  "IsGroupInvalid": "",
-  "CityValidationMessage": "",
-  "PostcodeValidationMessage": "",
-  "GroupValidationMessage": ""
+  "Postcode$": ""
 }

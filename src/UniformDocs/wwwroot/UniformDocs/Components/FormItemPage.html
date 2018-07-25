@@ -14,8 +14,8 @@
             <h2 slot="uniformdocs/example">Example</h2>
             
             <label slot="uniformdocs/formitem-slot">Greeting</label>
-            <input slot="uniformdocs/formitem-slot" aria-invalid$="{{model.IsInvalid}}" value="{{model.Word$::input}}">
-            <output slot="uniformdocs/formitem-slot">{{model.ValidationMessage}}</output>
+            <input slot="uniformdocs/formitem-slot" aria-invalid$="{{model.FormItemMetadata.Word.Invalid}}" value="{{model.Word$::input}}">
+            <output slot="uniformdocs/formitem-slot">{{model.FormItemMetadata.Word.Message}}</output>
 
             <h2 slot="uniformdocs/structure">
                 Structure
@@ -86,6 +86,14 @@
             <h2 slot="uniformdocs/developer">
                 Developer Documentation
             </h2>
+            
+            <h3 slot="uniformdocs/developer">
+                C# API
+            </h3>
+            
+            <ul slot="uniformdocs/developer">
+                <li>Server-side implementation is provided by <a target="_blank" href="https://github.com/Starcounter/Starcounter.Uniform">Starcounter.Uniform</a> library.</li>
+            </ul>
 
             <h3 slot="uniformdocs/developer">
                 HTML API

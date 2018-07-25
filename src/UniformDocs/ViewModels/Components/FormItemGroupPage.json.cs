@@ -1,86 +1,70 @@
 ﻿using Starcounter;
-using System.Collections.Generic;
+using Starcounter.Uniform.FormItem;
+using Starcounter.Uniform.Generic.FormItem;
+using Starcounter.Uniform.ViewModels;
 
 namespace UniformDocs.ViewModels.Components
 {
     partial class FormItemGroupPage : Json
     {
-        public string CityValidationMessage
+        private string GroupPropertyName => "CityPostcodeGroup";
+        static FormItemGroupPage()
         {
-            get
-            {
-                switch (IsCityInvalid)
-                {
-                    case "false":
-                        return "City is provided";
-                    case "true":
-                        return "City cannot be empty";
-                    default:
-                        return "";
-                }
-            }
+            DefaultTemplate.FormItemMetadata.InstanceType = typeof(FormItemMetadata);
         }
 
-        public string PostcodeValidationMessage
+        public void Init()
         {
-            get
-            {
-                switch (IsPostcodeInvalid)
-                {
-                    case "false":
-                        return "Postcode is provided";
-                    case "true":
-                        return "Postcode cannot be empty";
-                    default:
-                        return "";
-                }
-            }
+            this.FormItemMetadata = new FormItemMessagesBuilder().ForProperties(new[] { nameof(this.City), nameof(this.Postcode), this.GroupPropertyName }).Build();
+            ValidateGroup();
         }
 
-        public string GroupValidationMessage
+        void Handle(Input.City action)
         {
-            get
+            this.City = action.Value;
+
+            if (this.City.Length > 0)
             {
-                switch (IsGroupInvalid)
-                {
-                    case "false":
-                        return "This is the expected pair of input!";
-                    case "true":
-                        return "The fields do not contain the expected pair of input";
-                    default:
-                        return "Expecting 'Stockholm' and '12345'";
-                }
+                this.FormItemMetadata.SetMessage(nameof(this.City), "City is provided.", MessageType.Valid);
             }
+            else
+            {
+                this.FormItemMetadata.SetMessage(nameof(this.City), "City cannot be empty!", MessageType.Invalid);
+            }
+
+            ValidateGroup();
         }
 
-        public string IsCityInvalid
+        void Handle(Input.Postcode action)
         {
-            get
+            this.Postcode = action.Value;
+
+            if (this.Postcode.Length > 0)
             {
-                return City.Length > 0 ? "false" : "true";
+                this.FormItemMetadata.SetMessage(nameof(this.Postcode), "Postcode is provided.", MessageType.Valid);
             }
+            else
+            {
+                this.FormItemMetadata.SetMessage(nameof(this.Postcode), "Postcode cannot be empty!", MessageType.Invalid);
+            }
+
+            ValidateGroup();
         }
 
-        public string IsPostcodeInvalid
+        private void ValidateGroup()
         {
-            get
+            if (this.City.Length == 0 || this.Postcode.Length == 0)
             {
-                return Postcode.Length > 0 ? "false" : "true";
+                this.FormItemMetadata.SetMessage(this.GroupPropertyName, "Expecting 'Stockholm' and '12345'", MessageType.Neutral);
+            }
+            else if (this.City.ToLower().Equals("stockholm") && this.Postcode.Equals("12345"))
+            {
+                this.FormItemMetadata.SetMessage(this.GroupPropertyName, "This is the expected pair of input!", MessageType.Valid);
+            }
+            else
+            {
+                this.FormItemMetadata.SetMessage(this.GroupPropertyName, "The fields do not contain the expected pair of input!", MessageType.Invalid);
             }
         }
-
-        public string IsGroupInvalid
-        {
-            get
-            {
-                if (City.Length > 0 && Postcode.Length > 0)
-                {
-                    return City.ToLower().Equals("stockholm") && Postcode.Equals("12345") ? "false" : "true";
-                }
-
-                return "";
-            }
-        }
-
     }
 }
