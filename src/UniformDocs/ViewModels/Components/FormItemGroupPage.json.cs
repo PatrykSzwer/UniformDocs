@@ -1,5 +1,4 @@
 ﻿using Starcounter;
-using System.Collections.Generic;
 using Starcounter.Uniform.FormItem;
 using Starcounter.Uniform.Generic.FormItem;
 using Starcounter.Uniform.ViewModels;
@@ -16,7 +15,7 @@ namespace UniformDocs.ViewModels.Components
 
         public void Init()
         {
-            this.FormItemMetadata = new FormItemMessagesBuilder().ForProperties(new [] { nameof(this.City), nameof(this.Postcode), GroupPropertyName }).Build();
+            this.FormItemMetadata = new FormItemMessagesBuilder().ForProperties(new[] { nameof(this.City), nameof(this.Postcode), this.GroupPropertyName }).Build();
             ValidateGroup();
         }
 
@@ -54,17 +53,17 @@ namespace UniformDocs.ViewModels.Components
 
         private void ValidateGroup()
         {
-            if (City.Length == 0 || Postcode.Length == 0)
+            if (this.City.Length == 0 || this.Postcode.Length == 0)
             {
-                this.FormItemMetadata.SetMessage(GroupPropertyName, "Expecting 'Stockholm' and '12345'", MessageType.Neutral);
+                this.FormItemMetadata.SetMessage(this.GroupPropertyName, "Expecting 'Stockholm' and '12345'", MessageType.Neutral);
             }
-            else if (City.ToLower().Equals("stockholm") && Postcode.Equals("12345"))
+            else if (this.City.ToLower().Equals("stockholm") && this.Postcode.Equals("12345"))
             {
-                this.FormItemMetadata.SetMessage(GroupPropertyName, "This is the expected pair of input!", MessageType.Valid);
+                this.FormItemMetadata.SetMessage(this.GroupPropertyName, "This is the expected pair of input!", MessageType.Valid);
             }
             else
             {
-                this.FormItemMetadata.SetMessage(GroupPropertyName, "The fields do not contain the expected pair of input!", MessageType.Invalid);
+                this.FormItemMetadata.SetMessage(this.GroupPropertyName, "The fields do not contain the expected pair of input!", MessageType.Invalid);
             }
         }
     }
