@@ -46,7 +46,7 @@
             </h3>
 
             <ul slot="uniformdocs/guidelines">
-                <li>Supports the following optional features that are rendered by the client but are handled on the server-side: pagination or infinite scrolling, sorting, filtering.</li>
+                <li>Supports the following optional features that are rendered by the client but are handled on the server-side: pagination or infinite scrolling, sorting, and filtering.</li>
                 <li>Should generally be used in Auto Pagination mode, so that the height of the component is determined by the rows. This is to provide good compatibility with blended pages, which might contain additional content (even more data tables) below the data table.</li>
             </ul>
 
@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                     <td>(none)</td>
-                    <td>Template of the cell element. You can use it to provide your own renderer or editor for a cell. Available <code>dom-bind</code> properties in it: <code>index</code>, <code>item</code>.</td>
+                    <td>Template of the cell element. You can use it to provide your own renderer or editor for a cell. It may utilize Polymer data-binding features as well as declarative event listeners to bind. The following properties are exposed to the template: <code>index</code> (the index of the row on the page), <code>item</code> (the row view-model). For example, use <code>&lt;template&gt;&lt;input value="{<!-- This comment is needed to prevent Polymer from parsing curly braces -->{item.FirstName$::change}}"&gt;&lt;/template&gt;</code> to have an input element that updates the server on each keystroke. Event listeners and inline computing functions in the template will be called on the host of the template, which usually is the closest <code>&lt;dom-bind&gt;</code> element up in the DOM tree.</td>
                 </tr>
                 <tr>
                     <td><code>header</code></td>
