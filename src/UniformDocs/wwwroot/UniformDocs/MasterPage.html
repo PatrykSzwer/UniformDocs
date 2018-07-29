@@ -11,10 +11,12 @@
                     <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
                     <style>
                         :host{
-                            display: flex;
+                            display: flex; /* for Edge */
+                            display: contents;
                         }
                         starcounter-include[slot="uniformdocs/menu"]{
-                            display: flex;
+                            display: flex; /* for Edge */
+                            display: contents;
                         }
 
                         nav.uniformdocs-nav > ::slotted(h4) {
