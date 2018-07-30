@@ -32,7 +32,16 @@ namespace UniformDocs.Tests.Ui
 
         internal void GoToPage(string pageNumber)
         {
-            ClickOn(Driver.FindElement(By.XPath($"//a[text() = '{pageNumber}']")));
+            IJavaScriptExecutor jsExecuter = (IJavaScriptExecutor)Driver;
+            var script = $@"
+                const doc = document.querySelector(`starcounter-include[slot='uniformdocs/current']`).shadowRoot;
+                const pagination = doc.querySelector('uni-pagination');
+                const buttons = Array.from(pagination.shadowRoot.querySelectorAll('button'));
+debugger
+                const button = buttons.find(b => b.textContent == '{pageNumber}');
+                button.click();
+            ";
+            jsExecuter.ExecuteScript(script);
         }
     }
 }
