@@ -37,11 +37,10 @@ namespace UniformDocs.Tests.Ui
                 const doc = document.querySelector(`starcounter-include[slot='uniformdocs/current']`).shadowRoot;
                 const pagination = doc.querySelector('uni-pagination');
                 const buttons = Array.from(pagination.shadowRoot.querySelectorAll('button'));
-debugger
-                const button = buttons.find(b => b.textContent == '{pageNumber}');
-                button.click();
+                return buttons.find(b => b.textContent == '{pageNumber}')
             ";
-            jsExecuter.ExecuteScript(script);
+            var element = (IWebElement) jsExecuter.ExecuteScript(script);
+            ClickOn(element);
         }
     }
 }
