@@ -43,4 +43,24 @@
             <slot name="uniformdocs/current"></slot>
         </div>
     </template>
+    <script>
+        var manifest = {
+            "name": "UniformDocs PWA",
+            "short_name": "UniformDocs",
+            "description": "Shows how to model different UI patterns in JSON",
+            "start_url": new URL('/UniformDocs', window.location).href, // needs to be an absolute URL
+            "background_color": "#000000",
+            "theme_color": "#0f4a73",
+            "display": "standalone", // this is the most important prop, it makes the app full screen
+            "icons": [{
+                "src": "icon.png", // we need in icon
+                "sizes": "256x256",
+                "type": "image/png"
+            }]
+        }
+        const stringManifest = JSON.stringify(manifest);
+        const blob = new Blob([stringManifest], { type: 'application/json' });
+        const manifestURL = URL.createObjectURL(blob);
+        document.querySelector(`link[rel="manifest"]`).setAttribute('href', manifestURL);
+    </script>
 </template>
