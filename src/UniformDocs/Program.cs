@@ -175,6 +175,9 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/clientlocalstate", () => new ClientLocalStatePage());
             Handle.GET("/UniformDocs/clientlocalstate", () => WrapPage<ClientLocalStatePage>("/UniformDocs/partial/clientlocalstate"));
+            
+            Handle.GET("/UniformDocs/partial/blendablemenu", () => new BlendableMenuPage());
+            Handle.GET("/UniformDocs/blendablemenu", () => WrapPage<BlendableMenuPage>("/UniformDocs/partial/blendablemenu"));
 
             Handle.GET("/UniformDocs/partial/cookie", (Request request) =>
             {

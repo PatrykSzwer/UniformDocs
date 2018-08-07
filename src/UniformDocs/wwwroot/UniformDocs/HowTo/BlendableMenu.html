@@ -1,0 +1,208 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/blendablemenu-heading">Blendable Menu</h1>
+
+            <p slot="uniformdocs/blendablemenu-description">
+                The menu is a very common concept in web design. It's used in various shapes: lists, dropdowns, grids. When and which to pick is a design problem on its own. But here we would like to focus on the slightly more Starcounter-specific problem: <strong>How to make any of these "blendable"</strong>. How an application developer(s) could code either a navigation or action menu. In a way it meets the following requirements:
+            </p>
+            <ul slot="uniformdocs/blendablemenu-requirements">
+                <li>more items from other apps could be attached to it</li>
+                <li>it looks good, even though the app dev cannot foresee those blended elements</li>
+                <li>the menu looks and behaves in the way app developer prepared it</li>
+                <li>solution owner is able to change the look of menu itself as well as decorate individual items</li>
+            </ul>
+
+            <h2 slot="uniformdocs/example">Example</h2>
+
+            <button slot="uniformdocs/blendablemenu-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+
+            <uni-data-table slot="uniformdocs/blendablemenu-data-table"
+                            provider="{{model.DataTable}}" auto-pagination>
+                <uni-data-table-column index="2">
+                    <template slot="header">
+                        <uni-data-table-sorter direction="{{column.Sort$}}">
+                                Email
+                        </uni-data-table-sorter>
+                        <uni-data-table-filter value="{{column.Filter$}}">
+                        </uni-data-table-filter>
+                    </template>
+                    <template>
+                        <input type="email" value="{{item.Email$::change}}" placeholder="Email">
+                    </template>
+                </uni-data-table-column>
+                <uni-data-table-column>
+                    <template>
+                        <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
+                    </template>
+                </uni-data-table-column>
+            </uni-data-table>
+
+            <h2 slot="uniformdocs/guidelines">
+                Design Guidelines
+            </h2>
+
+            <h3 slot="uniformdocs/guidelines">
+                Distinguish action vs. navigation menus
+            </h3>
+            <p slot="uniformdocs/guidelines">
+                We would like to emphasize the distinction between action and navigation menus. The<em>Navigation menu</em> is one that only changes the user's location in the web app, where <em>action menu</em> is responsible for starting some other actions, usually with user's business data. We believe the rule of thumb for good user experience is not to mix or combine those two together.
+            </p>
+            <p slot="uniformdocs/guidelines">
+                From a technical perspective, we do not enforce any limitation. All menu related patterns apply well for any kind of menus and menu items. An app developer or solution owner is free to do so, it that's really desired.
+            </p>
+            <p slot="uniformdocs/guidelines">
+                To support this distinction we suggest to use different <a href="https://docs.starcounter.io/guides/blendable-web-apps/view-attaching#contexts">Blending contexts</a>
+            </p>
+
+            <h2 slot="uniformdocs/developer">
+                Developer Documentation
+            </h2>
+
+            <h3 slot="uniformdocs/developer">
+                C#
+            </h3>
+
+            <p slot="uniformdocs/developer">
+                On the server-side you need to expose <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views">a view</a> that will contain the menu element with <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views#adding-the-blended-view-model-insertion-point">a subpage inserted</a>. This subpage should contain individual menu items.
+            </p>
+
+            <h3 slot="uniformdocs/developer">
+                HTML
+            </h3>
+
+            <h4 slot="uniformdocs/developer">Menu</h4>
+
+            <p slot="uniformdocs/developer">
+                In the place in your view, where you would like to put the menu you need to use <code>&lt;starcounter-include view-model="{&zwsp;{model.SubPage}}"&gt;</code>, where <code>SubPage</code> is a view-model of a partial view with your menu items. Then you should use <code>declarative-shadow-dom</code> to provide the markup for the presentation of your menu. However, to style the menu itself, you should put this presentation as a child node of <code>starcounter-include</code>, as so a called <em>parent composition</em> - that's a way to provide presentation from parent/host view to the included one. In your presentation your free to use menu element of your choosing. It could be a native element with some styles or sophisticated custom element that renders items the way you like.
+            </p>
+            <h5 slot="uniformdocs/developer">ParentPage.html</h5>
+            <pre slot="uniformdocs/developer"><code>
+&lt;template&gt;
+    &lt;dom-bind&gt;
+        &lt;template&gt;
+            &lt;h2 slot="myapp/header"&gt;Here goes the blendable menu&lt;/h2&gt;
+            &lt;starcounter-include slot="myapp/menu" view-model="{{model.NavPage}}"&gt;
+                &lt;!--
+                    `declarative-shadow-dom` will append given fragment to the element's shadow root, letting you change its look without affecting any functionality of elements inside,
+                    `presentation="parent"` is to distinguish it from default one given by included (blended) view and from the one given by solution configuration,
+                     it overwrites any "defaults" given in included views, and could be overwritten on solution level,
+                    `preserve-content` attribute is a Polymer thing, to ask data-binding system, not to remove the content of this template.
+                --&gt;
+                &lt;template is="declarative-shadow-dom" presentation="parent" preserve-content&gt;
+                    &lt;style&gt;
+                        .myapp-nav{
+                            display: flex;
+                        }
+                        .myapp-nav &gt; ::slotted(*) {
+                          border-left: 3px solid transparent !important;
+                        }
+                        .myapp-nav &gt; ::slotted(*[aria-current="page"]) {
+                          border-color: var(--uni-vertical-nav-link-hover-color) !important;
+                        }
+                        .myapp-nav &gt; ::slotted(*[aria-current="page"]) {
+                          border-color: var(--uni-vertical-nav-link-highlight) !important;
+                        }
+                        /* Unfortunately, you need to repeat the rules with light DOM selectors to please polyfilled browsers */
+                        nav.myapp-nav &gt; * {
+                            /* ... */
+                        }
+                    &lt;/style&gt;
+                    &lt;!-- You can also use more sophisticated custom elements here --&gt;
+                    &lt;nav class="myapp-nav"&gt;
+                        &lt;!-- To distribute all elements otherwise not distributed elements regardless of, possibly unknown, slot attribute - you can use custom element delivered with Starcounter. --&gt;
+                        &lt;slot-all&gt;&lt;/slot-all&gt;
+                        &lt;slot&gt;&lt;/slot&gt;
+                    &lt;/nav&gt;
+                &lt;/template&gt;
+            &lt;/starcounter-include&gt;
+            ...
+        &lt;/template&gt;
+    &lt;/dom-bind&gt;
+    &lt;template is="declarative-shadow-dom"&gt;
+        &lt;!-- Here you can distribute entire block of your menu in your parent page. --&gt;
+        &lt;slot name="myapp/header"&gt;&lt;/slot&gt;
+        &lt;slot name="myapp/menu"&gt;&lt;/slot&gt;
+    &lt;/template&gt;
+&lt;/template&gt;
+            </code></pre>
+
+            <h4 slot="uniformdocs/developer">Items</h4>
+
+            <p slot="uniformdocs/developer">
+                As already mentioned, you also need a view that returns your menu items. We are talking about <em>blendable</em> menus, so be prepared that other apps may also attach their items. We strongly recommend to make these elements as close to the atomic, native elements as possible, and to most of the complex styling and div-soup in your custom menu element.
+            </p>
+            <aside slot="uniformdocs/developer">
+                In Starcounter we try to be unopinionated and do not force too much on your app's code. You have complete freedom to use any native or custom HTML element. But this freedom has the other side. In this case, we need to consider not only Starcounter's vs your opinion but also other app vendors may have an opinion on what <em>"menu item"</em> should be. The only assured common opinion is to use HTML. So the common denominator is the <code>HTMLElement</code>.
+            </aside>
+
+            <p slot="uniformdocs/developer">This makes you either create simple menus or move most of the code and responsibility to a custom element. We agree that may be a cost, but we believe it pays off with a blendable menu and DRY code.</p>
+
+            <h5 slot="uniformdocs/developer">myapp/SubPage.html + otherapp/Menu.html</h5>
+
+            <pre slot="uniformdocs/developer"><code>
+&lt;template&gt;
+    &lt;button slot="myapp/card"&gt;Credit/Debit Card&lt;/button&gt;
+    &lt;button slot="myapp/transfer"&gt;Bank Transfer&lt;/button&gt;
+    &lt;button slot="myapp/btc"&gt;Bitcoin&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;template&gt;
+    &lt;like-button slot="otherapp/likes"&gt;Pay with likes&lt;/like-button&gt;
+    &lt;potato-button slot="otherapp/potatoes"&gt;Pay with potatoes&lt;/button&gt;
+    &lt;div slot="otherapp/soup"&gt;...&lt;div&gt;Pay by eating div-soup&lt;/div&gt;...&lt;/div&gt;
+&lt;/template&gt;
+            </code></pre>
+
+
+            <h2 slot="uniformdocs/see-also">
+                See Also
+            </h2>
+
+            <ul slot="uniformdocs/see-also">
+                <li><a href="https://github.com/Starcounter/starcounter-include/blob/master/README.md"><code>&lt;starcounter-include&gt;</code></a> - custom element that includes partial views and attaches compositions</li>
+                    <li><a href="https://github.com/Juicy/slot-all/blob/master/README.md"><code>&lt;slot-all&gt;</code></a> - custom element that distributes the elements with an unknown slot name</li>
+            </ul>
+
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            ::slotted(aside[slot="uniformdocs/developer"])
+            {
+                padding-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
+                border-left: 0.3rem solid var(--uni-blockquote-border-color, var(--uni-default-blockquote-border-color));
+                opacity: 0.9;
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/blendablemenu-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/blendablemenu-description"></slot>
+            <slot name="uniformdocs/blendablemenu-requirements"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/example"></slot>
+            <slot name="uniformdocs/blendablemenu-data-table"></slot>
+            <div class="uni-primary-button">
+                <slot name="uniformdocs/blendablemenu-add-button"></slot>
+            </div>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/guidelines"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/developer"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/see-also"></slot>
+        </div>
+    </template>
+</template>
