@@ -184,8 +184,10 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/blendablemenu/othermenubuttons", () => new MenuButtonsPage());
             // Handle.GET("/UniformDocs/blendablemenu/menubuttons", () => WrapPage<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons"));
 
-            Handle.GET("/UniformDocs/partial/blendablemenu", () => new BlendableMenuPage{
-                GridMenu = Self.GET<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons")
+            Handle.GET("/UniformDocs/partial/blendablemenu", () => new BlendableMenuPage
+            {
+                GridMenu = Self.GET("/UniformDocs/partial/blendablemenu/menubuttons"),
+                ListMenu = Self.GET("/uniformdocs/nav")
             });
             Handle.GET("/UniformDocs/blendablemenu", () => WrapPage<BlendableMenuPage>("/UniformDocs/partial/blendablemenu"));
 

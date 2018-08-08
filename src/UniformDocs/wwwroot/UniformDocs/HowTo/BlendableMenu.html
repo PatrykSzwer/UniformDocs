@@ -73,11 +73,10 @@
                 <li>solution owner is able to change the look of menu itself as well as decorate individual items</li>
             </ul>
 
-            <h2 slot="uniformdocs/example">Example</h2>
+            <h2 slot="uniformdocs/examples-heading">Example</h2>
 
-            <h3 slot="uniformdocs/example">Action menu in the shape of a grid</h3>
-            <!-- <div  slot="uniformdocs/example" style="resize: both; overflow: auto; border: 2px solid black; margin: 2px; padding: 30px;"> -->
-            <starcounter-include slot="uniformdocs/example" view-model="{{model.GridMenu}}">
+            <h3 slot="uniformdocs/examples-grid-heading">Action menu in the shape of a grid</h3>
+            <starcounter-include slot="uniformdocs/examples-grid" view-model="{{model.GridMenu}}">
                 <template is="declarative-shadow-dom" presentation="parent" preserve-content>
                     <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
                     <style>
@@ -107,47 +106,87 @@
                     <slot></slot>
                 </template>
             </starcounter-include>
-<!-- </div> -->
 
-            <h3 slot="uniformdocs/example" >Action menu in the shape of a dropdown</h3>
-            <div slot="uniformdocs/example" >
-                <starcounter-include slot="uniformdocs/example" view-model="{{model.GridMenu}}">
-                    <template is="declarative-shadow-dom" presentation="parent" preserve-content>
-                        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
-                        <style>
-                            paper-listbox.uni-flat-button {
-                                display: inline-flex;
-                                flex-direction: column;
-                                align-items: stretch;
-                            }
-                            paper-listbox.uni-flat-button > button,
-                            paper-listbox.uni-flat-button > ::slotted(*:not(template):not(imported-template):not(dom-bind)){
-                                display: block !important;
-                                min-width: min-content !important;
-                                white-space: normal !important;
-                                height: auto !important;
-                                min-height: 32px !important;
-                                margin: 0 !important;
-                                text-align: left !important;
-                            }
-                            paper-listbox.uni-flat-button > hr,
-                            paper-listbox.uni-flat-button > ::slotted(hr){
-                                margin: 8px 0 !important;
-                                border-width: 1px !important;
-                            }
-                        </style>
-                        <hr>
-                        <paper-dropdown-menu label="Pick an action to proceed">
-                            <paper-listbox slot="dropdown-content" class="uni-flat-button" dynamic-align alwaysFloatLabel>
-                                <slot name="UniformDocs/menubuttons-viabank"></slot>
-                                <hr>
-                                <slot-all></slot-all>
-                                <slot></slot>
-                            </paper-listbox>
-                        </paper-dropdown-menu>
-                    </template>
-                </starcounter-include>
-            </div>
+            <h3 slot="uniformdocs/examples-dropdown-heading" >Action menu in the shape of a dropdown</h3>
+            <starcounter-include slot="uniformdocs/examples-dropdown" view-model="{{model.GridMenu}}">
+                <template is="declarative-shadow-dom" presentation="parent" preserve-content>
+                    <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+                    <style>
+                        :host{
+                            display inline-block;
+                        }
+                        paper-listbox.uni-flat-button {
+                            display: inline-flex;
+                            flex-direction: column;
+                            align-items: stretch;
+                        }
+                        paper-listbox.uni-flat-button > button,
+                        paper-listbox.uni-flat-button > ::slotted(*:not(template):not(imported-template):not(dom-bind)){
+                            display: block !important;
+                            min-width: min-content !important;
+                            white-space: normal !important;
+                            height: auto !important;
+                            min-height: 32px !important;
+                            margin: 0 !important;
+                            text-align: left !important;
+                        }
+                        paper-listbox.uni-flat-button > hr,
+                        paper-listbox.uni-flat-button > ::slotted(hr){
+                            margin: 8px 0 !important;
+                            border-width: 1px !important;
+                        }
+                    </style>
+                    <paper-dropdown-menu label="Pick an action to proceed">
+                        <paper-listbox slot="dropdown-content" class="uni-flat-button" dynamic-align alwaysFloatLabel>
+                            <slot name="UniformDocs/menubuttons-viabank"></slot>
+                            <hr>
+                            <slot-all></slot-all>
+                            <slot></slot>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </template>
+            </starcounter-include>
+
+            <h3 slot="uniformdocs/examples-list-heading">Navigation menu in the shape of a list</h3>
+            <starcounter-include slot="uniformdocs/examples-list" view-model="{{model.ListMenu}}">
+                <template is="declarative-shadow-dom" presentation="parent" preserve-content>
+                    <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+                    <style>
+                        :host{
+                            display: flex;
+                        }
+                        starcounter-include[slot="uniformdocs/menu"]{
+                            display: flex;
+                        }
+
+                        nav.uniformdocs-nav > ::slotted(h4) {
+                            font-size: 1em !important;
+                            letter-spacing: normal !important;
+                            font-weight: bold !important;
+                            margin: 1.4em 0 1em 0 !important;
+                        }
+                        nav.uniformdocs-nav > h4 {
+                            font-size: 1em !important;
+                            letter-spacing: normal !important;
+                            font-weight: bold !important;
+                            margin: 1.4em 0 1em 0 !important;
+                        }
+
+                        nav.uniformdocs-nav > ::slotted(*) {
+                            padding-top: 3px !important;
+                            padding-bottom: 3px !important;
+                        }
+                        nav.uniformdocs-nav > a {
+                            padding-top: 3px !important;
+                            padding-bottom: 3px !important;
+                        }
+                    </style>
+                    <nav class="uniformdocs-nav uni-vertical-nav">
+                        <slot-all></slot-all>
+                        <slot></slot>
+                    </nav>
+                </template>
+            </starcounter-include>
 
             <h2 slot="uniformdocs/guidelines">
                 Design Guidelines
@@ -287,16 +326,6 @@
                 border-left: 0.3rem solid var(--uni-blockquote-border-color, var(--uni-default-blockquote-border-color));
                 opacity: 0.9;
             }
-            ::slotted(starcounter-include[slot="uniformdocs/example"]){
-                resize: both;
-                overflow: auto;
-                width: 50%;
-                /** @apply .uni-card*/
-                background-color: var(--uni-default-card-color,var(--uni-default-body-text-color));
-                border-radius: 3px;
-                padding: 16px;
-                box-shadow: 0 1px 3px 0 rgba(0,0,0,.4);
-            }
         </style>
         <div class="uni-section-secondary uni-title">
             <slot name="uniformdocs/blendablemenu-heading"></slot>
@@ -306,10 +335,21 @@
             <slot name="uniformdocs/blendablemenu-requirements"></slot>
         </div>
         <div class="uni-section-secondary">
-            <slot name="uniformdocs/example"></slot>
-            <slot name="uniformdocs/blendablemenu-data-table"></slot>
-            <div class="uni-primary-button">
-                <slot name="uniformdocs/blendablemenu-add-button"></slot>
+            <slot name="uniformdocs/examples-heading"></slot>
+            <slot name="uniformdocs/examples-grid-heading"></slot>
+            <div class="uni-card" style="resize: both; overflow: auto; width: 50%;">
+                <slot name="uniformdocs/examples-grid"></slot>
+            </div>
+            <slot name="uniformdocs/examples-dropdown-heading"></slot>
+            <div class="uni-card" style="display:inline-block;">
+                <slot name="uniformdocs/examples-dropdown"></slot>
+            </div>
+            <slot name="uniformdocs/examples-list-heading"></slot>
+            <div class="uni-card" style="height: 20em; overflow: auto; width: 100%;">
+                <div class="uni-layout-left-nav">
+                    <slot name="uniformdocs/examples-list"></slot>
+                    <div></div>
+                </div>
             </div>
         </div>
         <div class="uni-section-primary">
