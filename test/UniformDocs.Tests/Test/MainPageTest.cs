@@ -45,7 +45,7 @@ namespace UniformDocs.Tests.Test
         public void MainPage_StarcounterVersion()
         {            
             WaitUntil(x => _mainPage.SCVersionSpan.Displayed);
-            Assert.AreEqual(Starcounter.Internal.CurrentVersion.Version, _mainPage.SCVersionSpan.Text);
+            Assert.True(Regex.IsMatch(_mainPage.SCVersionSpan.Text, @"\d+\.\d+\.\d+.\d+"));
         }
         [Test]
         public void MainPage_GitHubSourceURL()
