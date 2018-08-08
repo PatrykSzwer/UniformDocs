@@ -3,9 +3,10 @@
 <template>
     <dom-bind>
         <template is="dom-bind">
-            <button value="{{model.PayByCardTrigger$::click}}" onmousedown="++this.value">Credit Card</button>
-            <button value="{{model.PayByTransferTrigger$::click}}" onmousedown="++this.value">Bank Transfer</button>
-            <button value="{{model.PayInBTCTrigger$::click}}" onmousedown="++this.value">Ƀitcoin</button>
+            <button slot="UniformDocs/menubuttons-viabank" value="{{model.PayByCardTrigger$::click}}" onmousedown="++this.value">Credit Card</button>
+            <button slot="UniformDocs/menubuttons-viabank" value="{{model.PayByTransferTrigger$::click}}" onmousedown="++this.value">Bank Transfer</button>
+            <button slot="UniformDocs/menubuttons-crypto" value="{{model.PayInBTCTrigger$::click}}" onmousedown="++this.value">Ƀitcoin</button>
+            <button slot="UniformDocs/menubuttons-crypto" value="{{model.PayInETHTrigger$::click}}" onmousedown="++this.value">Ξtherum</button>
         </template>
     </dom-bind>
 </template>

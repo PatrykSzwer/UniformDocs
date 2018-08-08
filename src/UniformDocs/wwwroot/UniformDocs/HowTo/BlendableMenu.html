@@ -1,5 +1,61 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 <link rel="import" href="/UniformDocs/elements/github-source-links.html">
+<link rel="import" href="/sys/iron-dropdown/iron-dropdown.html">
+<link rel="import" href="/sys/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="/sys/paper-listbox/paper-listbox.html">
+<link rel="import" href="/sys/paper-item/paper-item.html">
+
+<dom-module id="custom-dropdown">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        margin: 1em;
+      }
+    </style>
+    <div on-tap="open">
+      <slot name="dropdown-trigger"></slot>
+    </div>
+    <iron-dropdown id="dropdown"
+      vertical-align="[[verticalAlign]]"
+      horizontal-align="[[horizontalAlign]]"
+      disabled="[[disabled]]"
+      scroll-action="[[scrollAction]]"
+      open-animation-config="[[openAnimationConfig]]"
+      close-animation-config="[[closeAnimationConfig]]">
+      <slot name="dropdown-content" slot="dropdown-content"></slot>
+    </iron-dropdown>
+  </template>
+  <script>
+    Polymer({
+      is: 'custom-dropdown',
+      properties: {
+        verticalAlign: String,
+        horizontalAlign: String,
+        disabled: Boolean,
+        scrollAction: String,
+        openAnimationConfig: {
+          type: Array,
+          value: function() {
+            return [
+              {name: 'fade-in-animation', timing: {delay: 150, duration: 50}},
+              {name: 'expand-animation', timing: {delay: 150, duration: 200}}
+            ];
+          }
+        },
+        closeAnimationConfig: {
+          type: Array,
+          value: function() {
+            return [{name: 'fade-out-animation', timing: {duration: 200}}];
+          }
+        }
+      },
+      open: function() {
+        this.$.dropdown.open();
+      }
+    });
+  </script>
+</dom-module>
 
 
 <template>
@@ -52,28 +108,46 @@
                 </template>
             </starcounter-include>
 <!-- </div> -->
-            
 
-            <uni-data-table slot="uniformdocs/blendablemenu-data-table"
-                            provider="{{model.DataTable}}" auto-pagination>
-                <uni-data-table-column index="2">
-                    <template slot="header">
-                        <uni-data-table-sorter direction="{{column.Sort$}}">
-                                Email
-                        </uni-data-table-sorter>
-                        <uni-data-table-filter value="{{column.Filter$}}">
-                        </uni-data-table-filter>
+            <h3 slot="uniformdocs/example" >Action menu in the shape of a dropdown</h3>
+            <div slot="uniformdocs/example" >
+                <starcounter-include slot="uniformdocs/example" view-model="{{model.GridMenu}}">
+                    <template is="declarative-shadow-dom" presentation="parent" preserve-content>
+                        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+                        <style>
+                            paper-listbox.uni-flat-button {
+                                display: inline-flex;
+                                flex-direction: column;
+                                align-items: stretch;
+                            }
+                            paper-listbox.uni-flat-button > button,
+                            paper-listbox.uni-flat-button > ::slotted(*:not(template):not(imported-template):not(dom-bind)){
+                                display: block !important;
+                                min-width: min-content !important;
+                                white-space: normal !important;
+                                height: auto !important;
+                                min-height: 32px !important;
+                                margin: 0 !important;
+                                text-align: left !important;
+                            }
+                            paper-listbox.uni-flat-button > hr,
+                            paper-listbox.uni-flat-button > ::slotted(hr){
+                                margin: 8px 0 !important;
+                                border-width: 1px !important;
+                            }
+                        </style>
+                        <hr>
+                        <paper-dropdown-menu label="Pick an action to proceed">
+                            <paper-listbox slot="dropdown-content" class="uni-flat-button" dynamic-align alwaysFloatLabel>
+                                <slot name="UniformDocs/menubuttons-viabank"></slot>
+                                <hr>
+                                <slot-all></slot-all>
+                                <slot></slot>
+                            </paper-listbox>
+                        </paper-dropdown-menu>
                     </template>
-                    <template>
-                        <input type="email" value="{{item.Email$::change}}" placeholder="Email">
-                    </template>
-                </uni-data-table-column>
-                <uni-data-table-column>
-                    <template>
-                        <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
-                    </template>
-                </uni-data-table-column>
-            </uni-data-table>
+                </starcounter-include>
+            </div>
 
             <h2 slot="uniformdocs/guidelines">
                 Design Guidelines
