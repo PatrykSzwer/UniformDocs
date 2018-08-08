@@ -32,7 +32,7 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs", () => Self.GET("/UniformDocs/mainpage"));
 
-            Handle.GET("/UniformDocs/nav", () => new NavPage(), new HandlerOptions() { SelfOnly = true });
+            Handle.GET("/UniformDocs/nav", () => new NavPage());
 
             Handle.GET("/UniformDocs/app-name", () => new AppName());
 
