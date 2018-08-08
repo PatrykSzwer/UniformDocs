@@ -26,5 +26,12 @@
     "Contexts": [ "menu", "action" ],
     "AllowFromDirection": true,
     "AllowToDirection": true
+  },
+  {
+    "Uri": "/UniformDocs/partial/blendablemenu/othermenubuttons",
+    "Token": "",
+    "Contexts": [ "menu", "action" ],
+    "AllowFromDirection": true,
+    "AllowToDirection": true
   }
 ]
