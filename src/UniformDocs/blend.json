@@ -12,5 +12,19 @@
     "Contexts": [ "menu" ],
     "AllowFromDirection": false,
     "AllowToDirection": true
+  },
+  {
+    "Uri": "/UniformDocs/nav",
+    "Token": "",
+    "Contexts": [ "menu", "navigation" ],
+    "AllowFromDirection": true,
+    "AllowToDirection": true
+  },
+  {
+    "Uri": "/UniformDocs/partial/blendablemenu/menubuttons",
+    "Token": "",
+    "Contexts": [ "menu", "action" ],
+    "AllowFromDirection": true,
+    "AllowToDirection": true
   }
 ]

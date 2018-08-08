@@ -6,6 +6,7 @@ using UniformDocs.ViewModels;
 using UniformDocs.ViewModels.Components;
 using UniformDocs.ViewModels.Design;
 using UniformDocs.ViewModels.HowTo;
+using UniformDocs.ViewModels.HowTo.BlendableMenu;
 
 namespace UniformDocs
 {
@@ -175,9 +176,19 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/clientlocalstate", () => new ClientLocalStatePage());
             Handle.GET("/UniformDocs/clientlocalstate", () => WrapPage<ClientLocalStatePage>("/UniformDocs/partial/clientlocalstate"));
-            
-            Handle.GET("/UniformDocs/partial/blendablemenu", () => new BlendableMenuPage());
+
+            Handle.GET("/UniformDocs/partial/blendablemenu/menubuttons", () => new MenuButtonsPage());
+            // Handle.GET("/UniformDocs/blendablemenu/menubuttons", () => WrapPage<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons"));
+
+            // pretend it's the other app
+            Handle.GET("/UniformDocs/partial/blendablemenu/menubuttons", () => new MenuButtonsPage());
+            // Handle.GET("/UniformDocs/blendablemenu/menubuttons", () => WrapPage<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons"));
+
+            Handle.GET("/UniformDocs/partial/blendablemenu", () => new BlendableMenuPage{
+                GridMenu = Self.GET<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons")
+            });
             Handle.GET("/UniformDocs/blendablemenu", () => WrapPage<BlendableMenuPage>("/UniformDocs/partial/blendablemenu"));
+
 
             Handle.GET("/UniformDocs/partial/cookie", (Request request) =>
             {

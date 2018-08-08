@@ -19,7 +19,40 @@
 
             <h2 slot="uniformdocs/example">Example</h2>
 
-            <button slot="uniformdocs/blendablemenu-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+            <h3 slot="uniformdocs/example">Action menu in the shape of a grid</h3>
+            <!-- <div  slot="uniformdocs/example" style="resize: both; overflow: auto; border: 2px solid black; margin: 2px; padding: 30px;"> -->
+            <starcounter-include slot="uniformdocs/example" view-model="{{model.GridMenu}}">
+                <template is="declarative-shadow-dom" presentation="parent" preserve-content>
+                    <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+                    <style>
+                        :host{
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                            gap: 2em;
+                        }
+                        :host > button,
+                        :host > ::slotted(*){
+                            /* display: inline-block !important; */
+                            min-width: min-content !important;
+                            white-space: normal !important;
+                            height: auto !important;
+                            min-height: 32px !important;
+                        }
+                    </style>
+                    <button>Visa/MasterCard</button>
+                    <button>something reeeelylonggggg</button>
+                    <button>BTC</button>
+                    <button>something reeeelylonggggg</button>
+                    <button>Visa/MasterCard</button>
+                    <button>Visa/MasterCard</button>
+                    <button>Visa/MasterCard</button>
+                    <button>Visa/MasterCard</button>
+                    <slot-all></slot-all>
+                    <slot></slot>
+                </template>
+            </starcounter-include>
+<!-- </div> -->
+            
 
             <uni-data-table slot="uniformdocs/blendablemenu-data-table"
                             provider="{{model.DataTable}}" auto-pagination>
@@ -179,6 +212,16 @@
                 padding-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
                 border-left: 0.3rem solid var(--uni-blockquote-border-color, var(--uni-default-blockquote-border-color));
                 opacity: 0.9;
+            }
+            ::slotted(starcounter-include[slot="uniformdocs/example"]){
+                resize: both;
+                overflow: auto;
+                width: 50%;
+                /** @apply .uni-card*/
+                background-color: var(--uni-default-card-color,var(--uni-default-body-text-color));
+                border-radius: 3px;
+                padding: 16px;
+                box-shadow: 0 1px 3px 0 rgba(0,0,0,.4);
             }
         </style>
         <div class="uni-section-secondary uni-title">

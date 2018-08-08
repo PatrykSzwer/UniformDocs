@@ -1,0 +1,11 @@
+﻿<link rel="import" href="/sys/polymer/polymer.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <button value="{{model.PayByCardTrigger$::click}}" onmousedown="++this.value">Credit Card</button>
+            <button value="{{model.PayByTransferTrigger$::click}}" onmousedown="++this.value">Bank Transfer</button>
+            <button value="{{model.PayInBTCTrigger$::click}}" onmousedown="++this.value">Ƀitcoin</button>
+        </template>
+    </dom-bind>
+</template>
