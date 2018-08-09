@@ -1,0 +1,21 @@
+﻿<link rel="import" href="/sys/polymer/polymer.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <button slot="UniformDocs/menubuttons-viabank" value="{{model.PayByCardTrigger$::click}}" onmousedown="++this.value">💳Credit Card</button>
+            <button slot="UniformDocs/menubuttons-viabank" value="{{model.PayByTransferTrigger$::click}}" onmousedown="++this.value">Bank Transfer</button>
+            <button slot="UniformDocs/menubuttons-crypto" value="{{model.PayInBTCTrigger$::click}}" onmousedown="++this.value">Ƀitcoin</button>
+            <button slot="UniformDocs/menubuttons-crypto" value="{{model.PayInETHTrigger$::click}}" onmousedown="++this.value">Ξtherum</button>
+        </template>
+    </dom-bind>
+</template>
+<!-- Pretend this come from another app -->
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <button slot="OtherApp/loyalty" value="{{model.PayByCardTrigger$::click}}" onmousedown="++this.value">Pay with loyalty points</button>
+            <button slot="OtherApp/potatoes" value="{{model.PayByTransferTrigger$::click}}" onmousedown="++this.value">🥔 Pay with potatoes</button>
+        </template>
+    </dom-bind>
+</template>
