@@ -318,7 +318,7 @@
     <Content Include="wwwroot\UniformDocs\MainPage.html">
       <SubType>Component</SubType>
     </Content>
-    <Content Include="wwwroot\UniformDocs\NavPage.html" />
+    <Content Include="wwwroot\UniformDocs\SubNavPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\PaginationPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\ProgressBarPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\ToggleButtonPage.html" />
