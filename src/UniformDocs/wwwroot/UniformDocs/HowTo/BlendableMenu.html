@@ -187,6 +187,33 @@
                 To support this distinction we suggest to use different <a href="https://docs.starcounter.io/guides/blendable-web-apps/view-attaching#contexts">Blending contexts</a>
             </p>
 
+            <h3 slot="uniformdocs/guidelines">
+                Items' semantics
+            </h3>
+            <p slot="uniformdocs/guidelines">
+                Menu components will work well in shadow dom presentation and use distributed content as menu items. Try to use native HTML semantics as a language to communicate between the app and a presentation layer.
+            </p>
+            <p slot="uniformdocs/guidelines">
+                The semantics we expect to share between views:
+            </p>
+            <ul slot="uniformdocs/guidelines">
+                <li><code>&lt;a&gt;</code> for navigation items</li>
+                <li>Their content as a clickable thing. At the beginning we will focus on text content, to support explicit customer needs (YAGNI).</li>
+                <li><code>href</code> attribute as a destination,</li>
+                <li><code>aria-current</code> attribute to mark the selected item,</li>
+                <li><code>&lt;button&gt;</code> for action items, actual actions should be bound to this object, so `<***-menu>`  will not have to interfere with them.We would like to emphasize the distinction between action and navigation menus. The<em>Navigation menu</em> is one that only changes the user's location in the web app, where <em>action menu</em> is responsible for starting some other actions, usually with user's business data. We believe the rule of thumb for good user experience is not to mix or combine those two together.</li>
+            </ul>
+            <h3 slot="uniformdocs/guidelines">
+                Nested menus
+            </h3>
+            <p slot="uniformdocs/guidelines">
+                To create a nested view you can use separated, nested view. If they are nested they no longer participate in a requested (global) context, but in the context of a thing, they are nested in.
+            </p>
+            <p slot="uniformdocs/guidelines">
+                They have their default decoration from their app,
+                solution owner can overwrite it (as for any blendable view).
+            </p>
+
             <h2 slot="uniformdocs/developer">
                 Developer Documentation
             </h2>
