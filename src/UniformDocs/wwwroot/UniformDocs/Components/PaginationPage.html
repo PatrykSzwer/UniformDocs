@@ -32,9 +32,12 @@
                     </template>
                 </tbody>
             </table>
-            <input type="range" slot="uniformdocs/pagination-pages" value="{{model.CurrentPage$::change}}" end="{{model.TotalPages}}"/>
+            <input type="range" slot="uniformdocs/pagination-pages" value="{{model.CurrentPage$::change}}" end$="{{model.TotalPages}}" />
+           
+            <p slot="uniformdocs/pagination-page-number">page {{model.CurrentPage$}} of {{model.TotalPages}}</p>
+
             <github-source-links base="{{model.Html}}"></github-source-links>
-      </template></dom-bind>
+        </template></dom-bind>
     <script>
         (function () {
             var script = document._currentScript || document.currentScript;

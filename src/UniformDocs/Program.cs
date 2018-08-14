@@ -160,9 +160,12 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/datatable", () =>
             {
-                var dataTablePage = new DataTablePage();
-                dataTablePage.Init();
-                return dataTablePage;
+                return Db.Scope(() =>
+                {
+                    var dataTablePage = new DataTablePage();
+                    dataTablePage.Init();
+                    return dataTablePage;
+                });
             });
 
             Handle.GET("/UniformDocs/datatable", () => WrapPage<DataTablePage>("/UniformDocs/partial/datatable"));
