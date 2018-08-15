@@ -7,14 +7,73 @@
             <h1 slot="uniformdocs/sections-heading">Section</h1>
             <p slot="uniformdocs/sections-description">You can create different kinds of sections to improve readability and overall look of your app.</p>
 
-            <h2 slot="uniformdocs/sections-primary-heading">Primary section</h2>
-            <div slot="uniformdocs/sections-primary-text">Primary section looks like this.</div>
+            <h2 slot="uniformdocs/example">Example</h2>
 
-            <h2 slot="uniformdocs/sections-secondary-heading">Secondary section</h2>
-            <div slot="uniformdocs/sections-secondary-text">Secondary section looks like this.</div>
+            <h3 slot="uniformdocs/sections-primary-title">Primary title section</h3>
+
+            <h3 slot="uniformdocs/sections-secondary-title">Secondary title section</h3>
+
+            <h3 slot="uniformdocs/sections-tertiary-title">Tertiary title section</h3>
+
+            <div slot="uniformdocs/sections-primary">Primary normal section</div>
+
+            <div slot="uniformdocs/sections-secondary">Secondary normal section</div>
             
-            <h2 slot="uniformdocs/sections-tertiary-heading">Tertiary section</h2>
-            <div slot="uniformdocs/sections-tertiary-text">Tertiary section looks like this.</div>
+            <div slot="uniformdocs/sections-tertiary">Tertiary normal section</div>
+
+            <div slot="uniformdocs/section-with-gap-1">This is a section...</div>
+            <div slot="uniformdocs/section-with-gap-2">...with multiple cards...</div>
+            <div slot="uniformdocs/section-with-gap-3">...separated by a gap</div>
+
+            <h2 slot="uniformdocs/guidelines">
+                Design Guidelines
+            </h2>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Padding is automatically applied around the contents of a Section.</li>
+                <li>Title sections are special kind of Sections that provide a predefined size to any element slotted to it.</li>
+                <li>By default, sections have the <code>block</code> CSS display type. It is very useful change the display type <code>grid</code>, which allows to have a <code>grid-gap</code> between the child elements. See the above example with cards for reference.</li>
+            </ul>
+
+            <h2 slot="uniformdocs/developer">
+                Developer Documentation
+            </h2>
+            
+            <h3 slot="uniformdocs/developer">
+                HTML API
+            </h3>
+            
+            <h4 slot="uniformdocs/developer">
+                Title section
+            </h4>
+            
+            <p slot="uniformdocs/developer">To create different kinds of title sections, use:</p>
+
+            <ul slot="uniformdocs/developer">
+                <li>
+                    <code>class="uni-title uni-section-primary"</code> to have a greyish background,</li>
+                <li>
+                    <code>class="uni-title uni-section-secondary"</code> to have a white background,</li>
+                <li>
+                    <code>class="uni-title uni-section-tertiary"</code> to have a dark blue background</li>
+            </ul>
+
+            <p slot="uniformdocs/developer">We recommend using semantic HTML elements for the title content, such as <code>h1</code> for the page title.</p>
+            
+            <h4 slot="uniformdocs/developer">
+                Normal section
+            </h4>
+            
+            <p slot="uniformdocs/developer">To create different kinds of normal sections, use:</p>
+
+            <ul slot="uniformdocs/developer">
+                <li>
+                    <code>class="uni-section-primary"</code> to have a greyish background,</li>
+                <li>
+                    <code>class="uni-section-secondary"</code> to have a white background,</li>
+                <li>
+                    <code>class="uni-section-tertiary"</code> to have a dark blue background</li>
+            </ul>
 
             <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
@@ -22,43 +81,49 @@
 
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
-        <style>
-            .uniformdocs-section-primary-grid {
-                display: grid;
-                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
-            }
-        </style>
         <div class="uni-section-secondary uni-title">
             <slot name="uniformdocs/sections-heading"></slot>
         </div>
-        <div class="uni-section-primary uniformdocs-section-primary-grid">
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/sections-description"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/example"></slot>
+        </div>
+        <div class="uni-section-primary uni-title">
+            <slot name="uniformdocs/sections-primary-title"></slot>
+        </div>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/sections-secondary-title"></slot>
+        </div>
+        <div class="uni-section-tertiary uni-title">
+            <slot name="uniformdocs/sections-tertiary-title"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/sections-primary"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/sections-secondary"></slot>
+        </div>
+        <div class="uni-section-tertiary">
+            <slot name="uniformdocs/sections-tertiary"></slot>
+        </div>
+        <div class="uni-section-primary" style="display: grid; grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical))">
             <div class="uni-card">
-                <slot name="uniformdocs/sections-description"></slot>
+                <slot name="uniformdocs/section-with-gap-1"></slot>
             </div>
             <div class="uni-card">
-                <div class="uni-title">
-                    <slot name="uniformdocs/sections-primary-heading"></slot>
-                </div>
-                <div class="uni-section-primary">
-                    <slot name="uniformdocs/sections-primary-text"></slot>
-                </div>
+                <slot name="uniformdocs/section-with-gap-2"></slot>
             </div>
             <div class="uni-card">
-                <div class="uni-title">
-                    <slot name="uniformdocs/sections-secondary-heading"></slot>
-                </div>
-                <div class="uni-section-secondary">
-                    <slot name="uniformdocs/sections-secondary-text"></slot>
-                </div>
+                <slot name="uniformdocs/section-with-gap-3"></slot>
             </div>
-            <div class="uni-card">
-                <div class="uni-title">
-                    <slot name="uniformdocs/sections-tertiary-heading"></slot>
-                </div>
-                <div class="uni-section-tertiary">
-                    <slot name="uniformdocs/sections-tertiary-text"></slot>
-                </div>
-            </div>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/guidelines"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/developer"></slot>
         </div>
     </template>
 </template>

@@ -46,9 +46,6 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/card", () => new CardPage());
             Handle.GET("/UniformDocs/card", () => WrapPage<CardPage>("/UniformDocs/partial/card"));
 
-            Handle.GET("/UniformDocs/partial/title", () => new TitlePage());
-            Handle.GET("/UniformDocs/title", () => WrapPage<TitlePage>("/UniformDocs/partial/title"));
-
             Handle.GET("/UniformDocs/partial/alerts", () => new AlertsPage());
             Handle.GET("/UniformDocs/alerts", () => WrapPage<AlertsPage>("/UniformDocs/partial/alerts"));
 
