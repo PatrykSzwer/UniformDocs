@@ -53,7 +53,7 @@
             const content = template.content.cloneNode(true);
             const card = content.querySelector('.uni-card');
             sectionType && card.parentElement.classList.add(sectionType);
-        console.info(sectionType);
+            
             !hideCSharp && card.appendChild(createAnchor('C# Code', csharp));
             !hideJSON && card.appendChild(createAnchor('JSON code-behind code', json));
             !hideHTML && card.appendChild(createAnchor('HTML view code', view));
