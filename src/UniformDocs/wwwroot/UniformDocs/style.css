@@ -174,14 +174,13 @@
 }
 
 .uniformdocs-structure-diagram > li {
-    color: var(--white);
-    background: var(--gray-6);
+    background: var(--uni-tint, var(--uni-default-tint));
 }
 
 .uniformdocs-structure-diagram > li > ul > li,
 .uniformdocs-structure-diagram > li > ul > li > ul > li > ul > li {
-    color: var(--gray-7);
-    background: var(--gray-4);
+    xcolor: var(--gray-7);
+    background: var(--uni-contrast-20pct, var(--uni-default-contrast-20pct));
 }
 
 .uniformdocs-structure-diagram > li > ul > li > ul {
@@ -189,8 +188,7 @@
 }
 
 .uniformdocs-structure-diagram > li > ul > li > ul > li {
-    color: var(--white);
-    background: var(--gray-6);
+    background: var(--uni-contrast-40pct, var(--uni-default-contrast-40pct));
     margin: 4px;
     width: 100%;
 }
