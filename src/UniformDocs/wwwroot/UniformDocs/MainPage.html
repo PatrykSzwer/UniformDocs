@@ -1,20 +1,24 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
-<link rel="import" href="/UniformDocs/elements/github-source-links.html">
 
 <template>
     <h1 slot="uniformdocs/main-heading">Uniform Design System</h1>
     <p slot="uniformdocs/main-description">Uniform is the basic way for providing a common look and feel in Starcounter apps. It consists of theme primitives, CSS reset, and a library of user interface design patterns implemented using stylesheets and components.</p>
-    <p slot="uniformdocs/main-description">You are looking at the app UniformDocs. It serves as the documentation and a usage sample of Uniform. Check to the GitHub repository <a href="https://github.com/Starcounter/UniformDocs"> UniformDocs</a> to browse the source code of the app and request changes to the documentation.</p>
-    <p slot="uniformdocs/main-description">Check the GitHub repository <a href="https://github.com/Starcounter/uniform.css">uniform.css</a> to browse the source code of Uniform stylesheets and components, and request changes to them.</p>
+    <p slot="uniformdocs/main-description">You are looking at the app UniformDocs. It serves as the documentation and a usage sample of Uniform.</p>
+
     <dom-bind>
         <template is="dom-bind">
             <p slot="uniformdocs/main-app-version">
-                <em>App version: <span>{{model.AppVersion}}</span>, running on Starcounter: <span>{{model.StarcounterVersion}}</span></em>
+                <em>UniformDocs version <span>{{model.AppVersion}}</span>, running on Starcounter version <span>{{model.StarcounterVersion}}</span></em>
             </p>
-
-            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
+
+    <h2 slot="uniformdocs/repo-description-header">GitHub links</h2>
+    <ul slot="uniformdocs/repo-description">
+        <li><a href="https://github.com/Starcounter/UniformDocs">UniformDocs</a> - the source code and the issues of the documentation</li>
+        <li><a href="https://github.com/Starcounter/uniform.css">uniform.css</a> - the source code and the issues of Uniform stylesheets and components</li>
+    </ul>
+
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <div class="uni-section-secondary uni-title">
@@ -25,6 +29,14 @@
             <div class="uni-alert-info">
                 <slot name="uniformdocs/main-app-version"></slot>
             </div>
+        </div>
+        <div class="uni-section-secondary">
+            <div class="uni-title">
+                <slot name="uniformdocs/repo-description-header"></slot>
+            </div>
+        </div>
+        <div class="uni-section-secondary" style="padding-top: 0">
+            <slot name="uniformdocs/repo-description"></slot>
         </div>
     </template>
 </template>
