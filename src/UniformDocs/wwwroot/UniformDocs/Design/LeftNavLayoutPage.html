@@ -24,6 +24,12 @@
 
             <label slot="uniformdocs/leftnavlayout-navigation-content">Main content goes here</label>
 
+            <h2 slot="uniformdocs/see-also">
+                See Also
+            </h2>
+            <ul slot="uniformdocs/see-also">
+                <li><a href="/UniformDocs/BlendableMenu">BlendableMenu</a> - a way to blendable menu that can present links from multiple apps</li>
+            </ul>
             <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
     </dom-bind>
@@ -45,6 +51,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/see-also"></slot>
         </div>
     </template>
 </template>
