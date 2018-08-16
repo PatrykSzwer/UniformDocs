@@ -211,45 +211,45 @@
                 On the server-side you need to expose two <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views">views</a>. One that will contain the menu container - a blending point, preferably with applicable presentation. This view should <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views#adding-the-blended-view-model-insertion-point">attach the subpage</a>. The subpage should contain individual menu items.
             </p>
 
-            <h3 slot="uniformdocs/developer">
+            <h3 slot="uniformdocs/html-developer-header">
                 HTML
             </h3>
 
-            <h4 slot="uniformdocs/developer">Menu</h4>
+            <h4 slot="uniformdocs/html-developer-menu-header">Menu</h4>
 
-            <p slot="uniformdocs/developer">
+            <p slot="uniformdocs/html-developer-menu-parent-comp">
                 In the place in your view, where you would like to put the menu you need to use <code>&lt;starcounter-include view-model="{&zwj;{model.SubPage}}"&gt;</code>, where <code>SubPage</code> is a view-model of a partial view with your menu items. Then you should use <code>declarative-shadow-dom</code> to provide the markup for the presentation of your menu. However, to style the menu itself, you should put this presentation as a child node of <code>&lt;starcounter-include&gt;</code>, as so-called <em>parent composition</em>  (<code>&lt;template is="declarative-shadow-dom" presentation="parent"&gt;</code>). That's a way to provide a presentation from parent/host view to the included one. In your presentation, you are free to use a menu element of your choosing. It could be a native element with some styles or sophisticated custom element that renders items the way you like.
             </p>
-            <aside slot="uniformdocs/developer">
+            <aside slot="uniformdocs/html-developer-polymer-note">
                 If you are using Polymer's data binding, like <code>&lt;dom-bind&gt;</code>, remember to add <code>preserve-content</code> attribute, so Polymer will not remove the content from your templates.
             </aside>
-            <p slot="uniformdocs/developer">
+            <p slot="uniformdocs/html-developer-slot-all">
                 When you are preparing a presentation for the blendable menu, you usually try to prepare for menu items that come from various apps and blended views. Therefore, you cannot know all the slot names used there.
                 To solve that problem we created a custom element <a href="https://github.com/Juicy/slot-all"><code>&lt;slot-all&gt;</code></a>, shipped with Starcounter client files. It allows you to distribute all slottable elements, which are not distributed otherwise, regardless of their slot name.
                 You can also use regular, named or default <code>&lt;slot&gt;</code>s, for elements which slot name you know.
             </p>
 
-            <h4 slot="uniformdocs/developer">Items</h4>
+            <h4 slot="uniformdocs/html-developer-items">Items</h4>
 
-            <p slot="uniformdocs/developer">
+            <p slot="uniformdocs/html-developer-items-view">
                 As already mentioned, you also need a view that returns your menu items. We are talking about <em>blendable</em> menus, so be prepared that other apps may also attach their items. We strongly recommend to make these elements as close to the atomic, native elements as possible, and to most of the complex styling and div-soup in your custom menu element.
             </p>
-            <aside slot="uniformdocs/developer">
+            <aside slot="uniformdocs/html-developer-items-rationale">
                 In Starcounter we try to be unopinionated and do not force too much on your app's code. You have complete freedom to use any native or custom HTML element. But this freedom has the other side. In this case, we need to consider not only Starcounter's vs your opinion but also other app vendors may have an opinion on what <em>"menu item"</em> should be. The only assured common opinion is to use HTML. So the common denominator is the <code>HTMLElement</code>.
             </aside>
 
-            <p slot="uniformdocs/developer">This makes you either create simple menus or move most of the code and responsibility to a custom element. We agree that may be a cost, but we believe it pays off with a blendable menu and DRY code.</p>
+            <p slot="uniformdocs/html-developer-items-cost">This makes you either create simple menus or move most of the code and responsibility to a custom element. We agree that may be a cost, but we believe it pays off with a blendable menu and DRY code.</p>
 
-            <h5 slot="uniformdocs/developer">
+            <h5 slot="uniformdocs/html-developer-items-semantics-header">
                 Items' semantics
             </h5>
-            <p slot="uniformdocs/developer">
+            <p slot="uniformdocs/html-developer-items-semantics">
                 Menu components will work well in shadow dom presentation and use distributed content as menu items. Try to use native HTML semantics as a language to communicate between the app and a presentation layer.
             </p>
-            <p slot="uniformdocs/developer">
+            <p slot="uniformdocs/html-developer-items-semantics">
                 The semantics we expect to share between views:
             </p>
-            <ul slot="uniformdocs/developer">
+            <ul slot="uniformdocs/html-developer-items-semantics">
                 <li><code>&lt;a&gt;</code> for navigation items</li>
                 <li>Their content as a clickable thing. At the beginning we will focus on text content, to support explicit customer needs (YAGNI).</li>
                 <li><code>href</code> attribute as a destination,</li>
@@ -274,12 +274,6 @@
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
         <style>
-            ::slotted(aside[slot="uniformdocs/developer"])
-            {
-                padding-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
-                border-left: 0.3rem solid var(--uni-blockquote-border-color, var(--uni-default-blockquote-border-color));
-                opacity: 0.9;
-            }
             .uniformdocs-menu-sample{
                 display: flex;
                 justify-content: space-between;
@@ -289,12 +283,6 @@
                 margin-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
             }
             /* Light DOM selectors to please polyfilled browsers */
-            aside[slot="uniformdocs/developer"]
-            {
-                padding-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
-                border-left: 0.3rem solid var(--uni-blockquote-border-color, var(--uni-default-blockquote-border-color));
-                opacity: 0.9;
-            }
             .uniformdocs-menu-sample > github-source-links{
                 margin-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
             }
@@ -340,6 +328,21 @@
         </div>
         <div class="uni-section-secondary">
             <slot name="uniformdocs/developer"></slot>
+            <slot name="uniformdocs/html-developer-header"></slot>
+            <slot name="uniformdocs/html-developer-menu-header"></slot>
+            <slot name="uniformdocs/html-developer-menu-parent-comp"></slot>
+            <div class="uni-alert-warning">
+                <slot name="uniformdocs/html-developer-polymer-note"></slot>
+            </div>
+            <slot name="uniformdocs/html-developer-slot-all"></slot>
+            <slot name="uniformdocs/html-developer-items"></slot>
+            <slot name="uniformdocs/html-developer-items-view"></slot>
+            <div class="uni-alert-info">
+                <slot name="uniformdocs/html-developer-items-rationale"></slot>
+            </div>
+            <slot name="uniformdocs/html-developer-items-cost"></slot>
+            <slot name="uniformdocs/html-developer-items-semantics-header"></slot>
+            <slot name="uniformdocs/html-developer-items-semantics"></slot>
         </div>
         <div class="uni-section-primary">
             <slot name="uniformdocs/see-also"></slot>
