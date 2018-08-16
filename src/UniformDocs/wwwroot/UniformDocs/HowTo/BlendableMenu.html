@@ -1,0 +1,351 @@
+<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
+<link rel="import" href="/UniformDocs/elements/github-source-links.html">
+<link rel="import" href="/sys/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="/sys/paper-listbox/paper-listbox.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <h1 slot="uniformdocs/blendablemenu-heading">Blendable Menu</h1>
+
+            <p slot="uniformdocs/blendablemenu-description">
+                The menu is a very common concept in web design. It's used in various shapes: lists, dropdowns, grids. When and which to pick is a design problem on its own. But here we would like to focus on the slightly more Starcounter-specific problem: <strong>How to make any of these "blendable"</strong>. How an application developer(s) could code either a navigation or action menu. In a way it meets the following requirements:
+            </p>
+            <ul slot="uniformdocs/blendablemenu-requirements">
+                <li>more items from other apps could be attached to it</li>
+                <li>it looks good, even though the app dev cannot foresee those blended elements</li>
+                <li>the menu looks and behaves in the way app developer prepared it</li>
+                <li>solution owner is able to change the look of menu itself as well as decorate individual items</li>
+            </ul>
+
+            <h2 slot="uniformdocs/examples-heading">Example</h2>
+
+            <h3 slot="uniformdocs/examples-grid-heading">Action menu in the shape of a grid</h3>
+            <starcounter-include slot="uniformdocs/examples-grid" view-model="{{model.GridMenu}}">
+                <!--
+                    `declarative-shadow-dom` will append given fragment to the element's shadow root, letting you change its look without affecting any functionality of elements inside,
+                    `presentation="parent"` is to distinguish it from default one given by included (blended) view and from the one given by solution configuration,
+                     it overwrites any "defaults" given in included views, and could be overwritten on solution level,
+                    `preserve-content` attribute is a Polymer thing, to ask data-binding system, not to remove the content of this template.
+                -->
+                <template is="declarative-shadow-dom" presentation="parent" preserve-content>
+                    <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+                    <!-- In some cases native elements with regular CSS styles are enough -->
+                    <style>
+                        :host{
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                            gap: 2em;
+                        }
+                        :host > button,
+                        :host > ::slotted(*){
+                            /* display: inline-block !important; */
+                            min-width: min-content !important;
+                            white-space: normal !important;
+                            height: auto !important;
+                            min-height: 32px !important;
+                        }
+                        /* Unfortunately, you need to repeat the rules with light DOM selectors to please polyfilled browsers */
+                        starcounter-include[slot="uniformdocs/examples-grid"]{
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                            gap: 2em;
+                        }
+                        starcounter-include[slot="uniformdocs/examples-grid"] > *{
+                            /* display: inline-block !important; */
+                            min-width: min-content !important;
+                            white-space: normal !important;
+                            height: auto !important;
+                            min-height: 32px !important;
+                        }
+                    </style>
+                    <!-- To distribute all, otherwise not distributed elements regardless of, possibly unknown, slot attribute - you can use custom element delivered with Starcounter -->
+                    <slot-all></slot-all>
+                    <slot></slot>
+                </template>
+            </starcounter-include>
+            <github-source-links slot="uniformdocs/examples-grid-source" base="{{model.GridMenu.UniformDocs_0.Html}}" section-type="">
+                <h5 slot="header">See partial view source code</h5>
+            </github-source-links>
+
+            <h3 slot="uniformdocs/examples-dropdown-heading" >Action menu in the shape of a dropdown</h3>
+            <starcounter-include slot="uniformdocs/examples-dropdown" view-model="{{model.GridMenu}}">
+                <template is="declarative-shadow-dom" presentation="parent" preserve-content>
+                    <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+                    <style>
+                        paper-listbox.uni-flat-button {
+                            display: inline-flex;
+                            flex-direction: column;
+                            align-items: stretch;
+                        }
+                        paper-listbox.uni-flat-button > button,
+                        paper-listbox.uni-flat-button > ::slotted(button){
+                            display: block !important;
+                            min-width: min-content !important;
+                            white-space: normal !important;
+                            height: auto !important;
+                            min-height: 32px !important;
+                            margin: 0 !important;
+                            text-align: left !important;
+                        }
+                        paper-listbox.uni-flat-button > hr,
+                        paper-listbox.uni-flat-button > ::slotted(hr){
+                            margin: 8px 0 !important;
+                            border-width: 1px !important;
+                        }
+                        /* Light DOM selectors to please polyfilled browsers */
+                        paper-listbox.uni-flat-button > button{
+                            display: block !important;
+                            min-width: min-content !important;
+                            white-space: normal !important;
+                            height: auto !important;
+                            min-height: 32px !important;
+                            margin: 0 !important;
+                            text-align: left !important;
+                        }
+                        paper-listbox.uni-flat-button > hr{
+                            margin: 8px 0 !important;
+                            border-width: 1px !important;
+                        }
+                    </style>
+                    <!-- You can also use more sophisticated custom elements here -->
+                    <paper-dropdown-menu label="Pick an action to proceed" no-animations>
+                        <paper-listbox slot="dropdown-content" class="uni-flat-button" dynamic-align alwaysFloatLabel>
+                            <!-- You can make use of slotnames you know -->
+                            <slot name="UniformDocs/menubuttons-viabank"></slot>
+                            <!-- You can dividers, headers if you need -->
+                            <hr>
+                            <slot-all></slot-all>
+                            <slot></slot>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </template>
+            </starcounter-include>
+            <github-source-links slot="uniformdocs/examples-dropdown-source" base="{{model.GridMenu.UniformDocs_0.Html}}" section-type="">
+                <h5 slot="header">See partial view source code</h5>
+            </github-source-links>
+
+            <h3 slot="uniformdocs/examples-list-heading">Navigation menu in the shape of a list</h3>
+            <starcounter-include slot="uniformdocs/examples-list" view-model="{{model.ListMenu}}">
+                <template is="declarative-shadow-dom" presentation="parent" preserve-content>
+                    <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+                    <style>
+                        :host{
+                            display: flex;
+                        }
+                        nav.uniformdocs-nav > h4,
+                        nav.uniformdocs-nav > ::slotted(h4) {
+                            font-size: 1em !important;
+                            letter-spacing: normal !important;
+                            font-weight: bold !important;
+                            margin: 1.4em 0 1em 0 !important;
+                        }
+
+                        nav.uniformdocs-nav > ::slotted(a) {
+                            padding-top: 3px !important;
+                            padding-bottom: 3px !important;
+                        }
+                        /* Light DOM selectors to please polyfilled browsers */
+                        starcounter-include[slot="uniformdocs/menu"]{
+                            display: flex;
+                        }
+                        nav.uniformdocs-nav > h4 {
+                            font-size: 1em !important;
+                            letter-spacing: normal !important;
+                            font-weight: bold !important;
+                            margin: 1.4em 0 1em 0 !important;
+                        }
+                        nav.uniformdocs-nav > a {
+                            padding-top: 3px !important;
+                            padding-bottom: 3px !important;
+                        }
+                    </style>
+                    <nav class="uniformdocs-nav uni-vertical-nav">
+                        <slot-all></slot-all>
+                        <slot></slot>
+                    </nav>
+                </template>
+            </starcounter-include>
+            <github-source-links slot="uniformdocs/examples-list-source" base="{{model.ListMenu.UniformDocs_0.Html}}" section-type="">
+                <h5 slot="header">See partial view source code</h5>
+            </github-source-links>
+
+            <h2 slot="uniformdocs/guidelines">
+                Design Guidelines
+            </h2>
+
+            <h3 slot="uniformdocs/guidelines">
+                Distinguish action vs. navigation menus
+            </h3>
+            <p slot="uniformdocs/guidelines">
+                We would like to emphasize the distinction between action and navigation menus. The <em>Navigation menu</em> is one that only changes the user's location in the web app, where <em>action menu</em> is responsible for starting some other actions, usually with user's business data. We believe the rule of thumb for good user experience is not to mix or combine those two together.
+            </p>
+            <p slot="uniformdocs/guidelines">
+                From a technical perspective, we do not enforce any limitation. All menu related patterns apply well for any kind of menus and menu items. An app developer or solution owner is free to do so, it that's really desired.
+            </p>
+            <p slot="uniformdocs/guidelines">
+                To support this distinction we suggest to use different <a href="https://docs.starcounter.io/guides/blendable-web-apps/view-attaching#contexts">Blending contexts</a>
+            </p>
+
+
+            <h3 slot="uniformdocs/guidelines">
+                Nested menus
+            </h3>
+            <p slot="uniformdocs/guidelines">
+                To create a nested menu you can use separated, nested view. If they are nested they no longer participate in a requested (global) context, but in the context of an item, they are nested in.
+            </p>
+            <p slot="uniformdocs/guidelines">
+                They have their default presentation from their app,
+                solution owner can overwrite it (as for any blendable view).
+            </p>
+
+            <h2 slot="uniformdocs/developer">
+                Developer Documentation
+            </h2>
+
+            <h3 slot="uniformdocs/developer">
+                C#
+            </h3>
+
+            <p slot="uniformdocs/developer">
+                On the server-side you need to expose two <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views">views</a>. One that will contain the menu container - a blending point, preferably with applicable presentation. This view should <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views#adding-the-blended-view-model-insertion-point">attach the subpage</a>. The subpage should contain individual menu items.
+            </p>
+
+            <h3 slot="uniformdocs/html-developer-header">
+                HTML
+            </h3>
+
+            <h4 slot="uniformdocs/html-developer-menu-header">Menu</h4>
+
+            <p slot="uniformdocs/html-developer-menu-parent-comp">
+                In the place in your view, where you would like to put the menu you need to use <code>&lt;starcounter-include view-model="{&zwj;{model.SubPage}}"&gt;</code>, where <code>SubPage</code> is a view-model of a partial view with your menu items. Then you should use <code>declarative-shadow-dom</code> to provide the markup for the presentation of your menu. However, to style the menu itself, you should put this presentation as a child node of <code>&lt;starcounter-include&gt;</code>, as so-called <em>parent composition</em>  (<code>&lt;template is="declarative-shadow-dom" presentation="parent"&gt;</code>). That's a way to provide a presentation from parent/host view to the included one. In your presentation, you are free to use a menu element of your choosing. It could be a native element with some styles or sophisticated custom element that renders items the way you like.
+            </p>
+            <aside slot="uniformdocs/html-developer-polymer-note">
+                If you are using Polymer's data binding, like <code>&lt;dom-bind&gt;</code>, remember to add <code>preserve-content</code> attribute, so Polymer will not remove the content from your templates.
+            </aside>
+            <p slot="uniformdocs/html-developer-slot-all">
+                When you are preparing a presentation for the blendable menu, you usually try to prepare for menu items that come from various apps and blended views. Therefore, you cannot know all the slot names used there.
+                To solve that problem we created a custom element <a href="https://github.com/Juicy/slot-all"><code>&lt;slot-all&gt;</code></a>, shipped with Starcounter client files. It allows you to distribute all slottable elements, which are not distributed otherwise, regardless of their slot name.
+                You can also use regular, named or default <code>&lt;slot&gt;</code>s, for elements which slot name you know.
+            </p>
+
+            <h4 slot="uniformdocs/html-developer-items">Items</h4>
+
+            <p slot="uniformdocs/html-developer-items-view">
+                As already mentioned, you also need a view that returns your menu items. We are talking about <em>blendable</em> menus, so be prepared that other apps may also attach their items. We strongly recommend to make these elements as close to the atomic, native elements as possible, and to most of the complex styling and div-soup in your custom menu element.
+            </p>
+            <aside slot="uniformdocs/html-developer-items-rationale">
+                In Starcounter we try to be unopinionated and do not force too much on your app's code. You have complete freedom to use any native or custom HTML element. But this freedom has the other side. In this case, we need to consider not only Starcounter's vs your opinion but also other app vendors may have an opinion on what <em>"menu item"</em> should be. The only assured common opinion is to use HTML. So the common denominator is the <code>HTMLElement</code>.
+            </aside>
+
+            <p slot="uniformdocs/html-developer-items-cost">This makes you either create simple menus or move most of the code and responsibility to a custom element. We agree that may be a cost, but we believe it pays off with a blendable menu and DRY code.</p>
+
+            <h5 slot="uniformdocs/html-developer-items-semantics-header">
+                Items' semantics
+            </h5>
+            <p slot="uniformdocs/html-developer-items-semantics">
+                Menu components will work well in shadow dom presentation and use distributed content as menu items. Try to use native HTML semantics as a language to communicate between the app and a presentation layer.
+            </p>
+            <p slot="uniformdocs/html-developer-items-semantics">
+                The semantics we expect to share between views:
+            </p>
+            <ul slot="uniformdocs/html-developer-items-semantics">
+                <li><code>&lt;a&gt;</code> for navigation items</li>
+                <li>Their content as a clickable thing. At the beginning we will focus on text content, to support explicit customer needs (YAGNI).</li>
+                <li><code>href</code> attribute as a destination,</li>
+                <li><code>aria-current</code> attribute to mark the selected item,</li>
+                <li><code>&lt;button&gt;</code> for action items, actual actions should be bound to this object, so <code>&lt;***-menu&gt;</code>  will not have to interfere with them.</li>
+            </ul>
+
+            <h2 slot="uniformdocs/see-also">
+                See Also
+            </h2>
+
+            <ul slot="uniformdocs/see-also">
+                <li><a href="https://github.com/Starcounter/starcounter-include/blob/master/README.md"><code>&lt;starcounter-include&gt;</code></a> - custom element that includes partial views and attaches compositions</li>
+                <li><a href="https://github.com/Juicy/slot-all/blob/master/README.md"><code>&lt;slot-all&gt;</code></a> - custom element that distributes the elements with an unknown slot name</li>
+                <li><a href="/UniformDocs/LeftNavLayout">Layout with left side navigation</a> - a way to create two column layout for side navigation</li>
+            </ul>
+
+
+            <github-source-links base="{{model.Html}}"></github-source-links>
+        </template>
+    </dom-bind>
+    <template is="declarative-shadow-dom">
+        <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <style>
+            .uniformdocs-menu-sample{
+                display: flex;
+                justify-content: space-between;
+                align-items: center
+            }
+            .uniformdocs-menu-sample > ::slotted(github-source-links){
+                margin-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
+            }
+            /* Light DOM selectors to please polyfilled browsers */
+            .uniformdocs-menu-sample > github-source-links{
+                margin-left: var(--uni-section-padding-horizontal, var(--uni-default-section-padding-horizontal));
+            }
+        </style>
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/blendablemenu-heading"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/blendablemenu-description"></slot>
+            <slot name="uniformdocs/blendablemenu-requirements"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/examples-heading"></slot>
+            <slot name="uniformdocs/examples-grid-heading"></slot>
+            <div class="uniformdocs-menu-sample">
+                <div class="uni-card" style="resize: both; overflow: auto; width: 50%;">
+                    <slot name="uniformdocs/examples-grid"></slot>
+                </div>
+                <slot name="uniformdocs/examples-grid-source"></slot>
+            </div>
+
+            <slot name="uniformdocs/examples-dropdown-heading"></slot>
+            <div class="uniformdocs-menu-sample">
+                <div class="uni-card" style="display:inline-block;">
+                    <slot name="uniformdocs/examples-dropdown"></slot>
+                </div>
+                <slot name="uniformdocs/examples-dropdown-source"></slot>
+            </div>
+
+            <slot name="uniformdocs/examples-list-heading"></slot>
+            <div class="uniformdocs-menu-sample">
+                <div class="uni-card" style="overflow: auto; flex: 1">
+                    <div class="uni-layout-left-nav">
+                        <slot name="uniformdocs/examples-list"></slot>
+                        <div></div>
+                    </div>
+                </div>
+                <slot name="uniformdocs/examples-list-source"></slot>
+            </div>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/guidelines"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/developer"></slot>
+            <slot name="uniformdocs/html-developer-header"></slot>
+            <slot name="uniformdocs/html-developer-menu-header"></slot>
+            <slot name="uniformdocs/html-developer-menu-parent-comp"></slot>
+            <div class="uni-alert-warning">
+                <slot name="uniformdocs/html-developer-polymer-note"></slot>
+            </div>
+            <slot name="uniformdocs/html-developer-slot-all"></slot>
+            <slot name="uniformdocs/html-developer-items"></slot>
+            <slot name="uniformdocs/html-developer-items-view"></slot>
+            <div class="uni-alert-info">
+                <slot name="uniformdocs/html-developer-items-rationale"></slot>
+            </div>
+            <slot name="uniformdocs/html-developer-items-cost"></slot>
+            <slot name="uniformdocs/html-developer-items-semantics-header"></slot>
+            <slot name="uniformdocs/html-developer-items-semantics"></slot>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/see-also"></slot>
+        </div>
+    </template>
+</template>

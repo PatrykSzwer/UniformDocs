@@ -12,6 +12,10 @@
                     <li>second element is the right column used for the main content</li>
                 </ul>
             </p>
+            <p slot="uniformdocs/leftnavlayout-description">
+                To style the navigation elements use <code>.uni-vertical-nav</code> class on their container.
+                This container could be the first element of <code>.uni-layout-left-nav</code>, or its shadow-including descendant.
+            </p>
             <p slot="uniformdocs/leftnavlayout-description">Anchor elements <code>&lt;a&gt;</code> element within the left column that have the attribute <code>aria-current="page"</code> will be highlighted. In Starcounter this attribute is set by <a target="_blank" href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/app-shell">app shell</a>.</p>
 
             <a slot="uniformdocs/leftnavlayout-navigation">First link goes here</a>
@@ -20,6 +24,12 @@
 
             <label slot="uniformdocs/leftnavlayout-navigation-content">Main content goes here</label>
 
+            <h2 slot="uniformdocs/see-also">
+                See Also
+            </h2>
+            <ul slot="uniformdocs/see-also">
+                <li><a href="/UniformDocs/BlendableMenu">BlendableMenu</a> - a way to blendable menu that can present links from multiple apps</li>
+            </ul>
             <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
     </dom-bind>
@@ -33,7 +43,7 @@
             <div class="uni-card">
                 <slot name="uniformdocs/leftnavlayout-description"></slot>
                 <div class="uni-layout-left-nav">
-                    <nav>
+                    <nav class="uni-vertical-nav">
                         <slot name="uniformdocs/leftnavlayout-navigation"></slot>
                     </nav>
                     <div class="uni-section-primary">
@@ -41,6 +51,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/see-also"></slot>
         </div>
     </template>
 </template>

@@ -115,6 +115,9 @@
     <Compile Include="ViewModels\Components\FormItemPage.json.cs">
       <DependentUpon>FormItemPage.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\HowTo\BlendableMenu\MenuButtonsPage.json.cs">
+      <DependentUpon>MenuButtonsPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\HowTo\CallbackPage.json.cs">
       <DependentUpon>CallbackPage.json</DependentUpon>
     </Compile>
@@ -125,6 +128,9 @@
       <DependentUpon>ClientLocalStatePage.json</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DummyData.cs" />
+    <Compile Include="ViewModels\HowTo\BlendableMenuPage.json.cs">
+      <DependentUpon>BlendableMenuPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\HowTo\LazyLoadingPage.json.cs">
       <DependentUpon>LazyLoadingPage.json</DependentUpon>
     </Compile>
@@ -249,7 +255,19 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
+    <TypedJSON Include="ViewModels\HowTo\BlendableMenu\MenuLinksPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuButtons.html" />
+    <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuLinks.html" />
+    <Content Include="wwwroot\UniformDocs\SubNavPage.html" />
     <TypedJSON Include="ViewModels\UIKitPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\HowTo\BlendableMenuPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="ViewModels\HowTo\BlendableMenu\MenuButtonsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <None Include="wwwroot\UniformDocs\UIKitPage.html" />
@@ -308,10 +326,10 @@
     <None Include="wwwroot\UniformDocs\Design\LeftNavLayoutPage.html" />
     <None Include="wwwroot\UniformDocs\Design\NativePage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\LazyLoadingPage.html" />
+    <Content Include="wwwroot\UniformDocs\HowTo\BlendableMenu.html" />
     <Content Include="wwwroot\UniformDocs\MainPage.html">
       <SubType>Component</SubType>
     </Content>
-    <Content Include="wwwroot\UniformDocs\SubNavPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\PaginationPage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\ProgressBarPage.html" />
     <Content Include="wwwroot\UniformDocs\Components\ToggleButtonPage.html" />
