@@ -1,41 +1,92 @@
 ﻿<link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 <link rel="import" href="/UniformDocs/elements/github-source-links.html">
 
-
 <template>
     <dom-bind>
         <template is="dom-bind">
             <h1 slot="uniformdocs/card-heading">Card</h1>
-            <p slot="uniformdocs/card-description">This is slightly elevated card, which you can achieve by using <code>.uni-card</code> class.</p>
-            <p slot="uniformdocs/card-expandable-description">You can also add additional expandable part to a <code>uni-card</code> which will be shown with a clickable text in the bottom right corner. To achieve that use <code>&lt;details&gt;</code> tag.</p>
+            <p slot="uniformdocs/card-description">Cards are slightly elevated containers that hold a related grouping of information.</p>
+
+            <h2 slot="uniformdocs/example">Example</h2>
+
+            <p slot="uniformdocs/card-title">A card</p>
+            <p slot="uniformdocs/card-text">This is the content of the card.</p>
+            <p slot="uniformdocs/card-expandable-description">You can also add additional expandable part to a card which is shown with a clickable text in the bottom right corner.</p>
+
+            <h2 slot="uniformdocs/guidelines">
+                Design Guidelines
+            </h2>
+
+            <h3 slot="uniformdocs/guidelines">
+                General
+            </h3>
+
+            <ul slot="uniformdocs/guidelines">
+                <li>Cards should be used to represent sets of distinct items (a bit similar to how you would list items in a table).</li>
+                <li>Cards should be used instead of tables when:
+
+                    <ul>
+                        <li>Items don’t have the same properties (and thus can’t be easily mapped into columns).</li>
+                        <li>You need to display images or other content for items that don’t fit nicely into table rows.</li>
+                    </ul>
+                </li>
+                <li>Cards should NOT be used to divide the UI into different parts. Sections should be used for this instead.</li>
+                <li>Cards can be laid out vertically stacked, or in a grid, flowing from left to right, top to bottom.</li>
+                <li>You should avoid having cards that are significantly wider than their content. Cards in the same section should, preferably, have the same width.</li>
+                <li>Cards do not control their width. The section containing the cards determines their width.</li>
+            </ul>
+
+            <h2 slot="uniformdocs/developer">
+                Developer Documentation
+            </h2>
+            
+            <h3 slot="uniformdocs/developer">
+                HTML API
+            </h3>
+            
+            <p slot="uniformdocs/developer">To create a card, use:</p>
+
+            <ul slot="uniformdocs/developer">
+                <li>
+                    Use <code>class="uni-card"</code> to create the card container.</li>
+                <li>
+                    Use <code>class="uni-title"</code> inside of a card to provide the title. We recommend using semantic HTML elements for the title content, such as <code>h2</code> for the card title.</li>
+                <li>
+                    Use <code>&lt;details&gt;</code> tag inside of a card to provide an expandable additional information. It should have a child tag <code>&lt;summary&gt;</code> that contains the label for the expansion.</li>
+            </ul>
+
             <github-source-links base="{{model.Html}}" hide-csharp hide-json></github-source-links>
         </template>
     </dom-bind>
 
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
-        <style>
-            .uniformdocs-section-primary-grid {
-                display: grid;
-                grid-gap: var(--uni-section-padding-vertical, var(--uni-default-section-padding-vertical));
-            }
-        </style>
         <div class="uni-section-secondary uni-title">
             <slot name="uniformdocs/card-heading"></slot>
         </div>
-        <div class="uni-section-primary uniformdocs-section-primary-grid">
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/card-description"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/example"></slot>
             <div class="uni-card">
-                <slot name="uniformdocs/card-description"></slot>
-            </div>
-            <div class="uni-card">
-                <slot name="uniformdocs/card-expandable-description"></slot>
+                <div class="uni-title">
+                    <slot name="uniformdocs/card-title"></slot>
+                </div>
+
+                <slot name="uniformdocs/card-text"></slot>
+                
                 <details>
                     <summary>Click me to expand</summary>
-                    <div>
-                        <p>Expandable content.</p>
-                    </div>
+                    <slot name="uniformdocs/card-expandable-description"></slot>
                 </details>
             </div>
+        </div>
+        <div class="uni-section-primary">
+            <slot name="uniformdocs/guidelines"></slot>
+        </div>
+        <div class="uni-section-secondary">
+            <slot name="uniformdocs/developer"></slot>
         </div>
     </template>
 </template>

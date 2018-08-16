@@ -237,9 +237,6 @@
     <Compile Include="ViewModels\Design\NativePage.json.cs">
       <DependentUpon>NativePage.json</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Design\TitlePage.json.cs">
-      <DependentUpon>TitlePage.json</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Design\SectionsPage.json.cs">
       <DependentUpon>SectionsPage.json</DependentUpon>
     </Compile>
@@ -278,9 +275,6 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <TypedJSON Include="ViewModels\Design\CardPage.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
-    <TypedJSON Include="ViewModels\Design\TitlePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
     <TypedJSON Include="ViewModels\Design\AlertsPage.json">
@@ -328,7 +322,6 @@
     <Content Include="wwwroot\UniformDocs\HowTo\ClientLocalStatePage.html" />
     <None Include="wwwroot\UniformDocs\Design\SectionsPage.html" />
     <None Include="wwwroot\UniformDocs\Design\CardPage.html" />
-    <None Include="wwwroot\UniformDocs\Design\TitlePage.html" />
     <None Include="wwwroot\UniformDocs\Design\AlertsPage.html" />
     <None Include="wwwroot\UniformDocs\Design\LeftNavLayoutPage.html" />
     <None Include="wwwroot\UniformDocs\Design\NativePage.html" />

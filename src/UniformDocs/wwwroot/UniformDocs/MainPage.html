@@ -1,27 +1,42 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
-<link rel="import" href="/UniformDocs/elements/github-source-links.html">
 
 <template>
-    <h1 slot="uniformdocs/main-heading">Welcome to UniformDocs</h1>
-    <p slot="uniformdocs/main-description">In this app you can take a look on typical UI patterns in a form that is easy to apply in any Starcounter app.</p>
-    <p slot="uniformdocs/main-description">Use the menu on the left to browse various examples of how to build web-based UI with Starcounter and Polymer.</p>
+    <h1 slot="uniformdocs/main-heading">Uniform Design System</h1>
+    <p slot="uniformdocs/main-description">Uniform is the basic way for providing a common look and feel in Starcounter apps. It consists of theme primitives, CSS reset, and a library of user interface design patterns implemented using stylesheets and components.</p>
+    <p slot="uniformdocs/main-description">You are looking at the app UniformDocs. It serves as the documentation and a usage sample of Uniform.</p>
+
     <dom-bind>
         <template is="dom-bind">
             <p slot="uniformdocs/main-app-version">
-                <em>App version: <span>{{model.AppVersion}}</span>, running on Starcounter: <span>{{model.StarcounterVersion}}</span></em>
+                <em>UniformDocs version <span>{{model.AppVersion}}</span>, running on Starcounter version <span>{{model.StarcounterVersion}}</span></em>
             </p>
-
-            <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
+
+    <h2 slot="uniformdocs/repo-description-header">GitHub links</h2>
+    <ul slot="uniformdocs/repo-description">
+        <li><a href="https://github.com/Starcounter/UniformDocs">UniformDocs</a> - the source code and the issues of the documentation</li>
+        <li><a href="https://github.com/Starcounter/uniform.css">uniform.css</a> - the source code and the issues of Uniform stylesheets and components</li>
+    </ul>
+
     <template is="declarative-shadow-dom">
         <link rel="stylesheet" href="/sys/uniform.css/uniform.css">
+        <div class="uni-section-secondary uni-title">
+            <slot name="uniformdocs/main-heading"></slot>
+        </div>
         <div class="uni-section-primary">
-            <div class="uni-card">
-                <slot name="uniformdocs/main-heading"></slot>
-                <slot name="uniformdocs/main-description"></slot>
+            <slot name="uniformdocs/main-description"></slot>
+            <div class="uni-alert-info">
                 <slot name="uniformdocs/main-app-version"></slot>
             </div>
+        </div>
+        <div class="uni-section-secondary">
+            <div class="uni-title">
+                <slot name="uniformdocs/repo-description-header"></slot>
+            </div>
+        </div>
+        <div class="uni-section-secondary" style="padding-top: 0">
+            <slot name="uniformdocs/repo-description"></slot>
         </div>
     </template>
 </template>
