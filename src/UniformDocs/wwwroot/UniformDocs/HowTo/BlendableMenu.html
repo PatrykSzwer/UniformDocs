@@ -195,10 +195,10 @@
                 Nested menus
             </h3>
             <p slot="uniformdocs/guidelines">
-                To create a nested view you can use separated, nested view. If they are nested they no longer participate in a requested (global) context, but in the context of a thing, they are nested in.
+                To create a nested menu you can use separated, nested view. If they are nested they no longer participate in a requested (global) context, but in the context of an item, they are nested in.
             </p>
             <p slot="uniformdocs/guidelines">
-                They have their default decoration from their app,
+                They have their default presentation from their app,
                 solution owner can overwrite it (as for any blendable view).
             </p>
 
@@ -211,7 +211,7 @@
             </h3>
 
             <p slot="uniformdocs/developer">
-                On the server-side you need to expose <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views">a view</a> that will contain the menu element with <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views#adding-the-blended-view-model-insertion-point">a subpage inserted</a>. This subpage should contain individual menu items.
+                On the server-side you need to expose two <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views">views</a>. One that will contain the menu container - a blending point, preferably with applicable presentation. This view should <a href="https://docs.starcounter.io/v/2.4/topic-guides/blendable-web-apps/html-views#adding-the-blended-view-model-insertion-point">attach the subpage</a>. The subpage should contain individual menu items.
             </p>
 
             <h3 slot="uniformdocs/developer">
@@ -257,7 +257,7 @@
                 <li>Their content as a clickable thing. At the beginning we will focus on text content, to support explicit customer needs (YAGNI).</li>
                 <li><code>href</code> attribute as a destination,</li>
                 <li><code>aria-current</code> attribute to mark the selected item,</li>
-                <li><code>&lt;button&gt;</code> for action items, actual actions should be bound to this object, so `<***-menu>`  will not have to interfere with them.We would like to emphasize the distinction between action and navigation menus. The <em>Navigation menu</em> is one that only changes the user's location in the web app, where <em>action menu</em> is responsible for starting some other actions, usually with user's business data. We believe the rule of thumb for good user experience is not to mix or combine those two together.</li>
+                <li><code>&lt;button&gt;</code> for action items, actual actions should be bound to this object, so <code>&lt;***-menu&gt;</code>  will not have to interfere with them.</li>
             </ul>
 
             <h2 slot="uniformdocs/see-also">
