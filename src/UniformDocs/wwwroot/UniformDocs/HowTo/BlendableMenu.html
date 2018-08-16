@@ -1,8 +1,5 @@
 <link rel="preload" as="style" href="/sys/uniform.css/uniform.css">
 <link rel="import" href="/UniformDocs/elements/github-source-links.html">
-<!-- Paper-dropdown-menu dependencies -->
-<script src="/sys/web-animations-js/web-animations-next-lite.min.js"></script>
-<link rel="import" href="/sys/neon-animation/web-animations.html">
 <link rel="import" href="/sys/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="/sys/paper-listbox/paper-listbox.html">
 
@@ -112,7 +109,7 @@
                         }
                     </style>
                     <!-- You can also use more sophisticated custom elements here -->
-                    <paper-dropdown-menu label="Pick an action to proceed">
+                    <paper-dropdown-menu label="Pick an action to proceed" no-animations>
                         <paper-listbox slot="dropdown-content" class="uni-flat-button" dynamic-align alwaysFloatLabel>
                             <!-- You can make use of slotnames you know -->
                             <slot name="UniformDocs/menubuttons-viabank"></slot>
