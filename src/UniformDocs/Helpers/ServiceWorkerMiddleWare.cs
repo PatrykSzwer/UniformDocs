@@ -55,7 +55,7 @@ namespace UniformDocs
                     {
                         BodyBytes = defaultEncoding.GetBytes(SW)
                     };
-                    response.Headers["Content-Type"] = "text/javascript";
+                    response.Headers["Content-Type"] = "application/javascript";
                     request.SendResponse(response);
                 }
                 return null;
