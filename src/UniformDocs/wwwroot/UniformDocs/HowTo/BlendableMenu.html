@@ -68,7 +68,7 @@
                 </template>
             </starcounter-include>
             <github-source-links slot="uniformdocs/examples-grid-source" base="{{model.GridMenu.UniformDocs_0.Html}}" section-type="">
-                <h5 slot="header">See partial view source code</h4>
+                <h5 slot="header">See partial view source code</h5>
             </github-source-links>
 
             <h3 slot="uniformdocs/examples-dropdown-heading" >Action menu in the shape of a dropdown</h3>
@@ -125,7 +125,7 @@
                 </template>
             </starcounter-include>
             <github-source-links slot="uniformdocs/examples-dropdown-source" base="{{model.GridMenu.UniformDocs_0.Html}}" section-type="">
-                <h5 slot="header">See partial view source code</h4>
+                <h5 slot="header">See partial view source code</h5>
             </github-source-links>
 
             <h3 slot="uniformdocs/examples-list-heading">Navigation menu in the shape of a list</h3>
@@ -170,7 +170,7 @@
                 </template>
             </starcounter-include>
             <github-source-links slot="uniformdocs/examples-list-source" base="{{model.ListMenu.UniformDocs_0.Html}}" section-type="">
-                <h5 slot="header">See partial view source code</h4>
+                <h5 slot="header">See partial view source code</h5>
             </github-source-links>
 
             <h2 slot="uniformdocs/guidelines">
@@ -190,22 +190,7 @@
                 To support this distinction we suggest to use different <a href="https://docs.starcounter.io/guides/blendable-web-apps/view-attaching#contexts">Blending contexts</a>
             </p>
 
-            <h3 slot="uniformdocs/guidelines">
-                Items' semantics
-            </h3>
-            <p slot="uniformdocs/guidelines">
-                Menu components will work well in shadow dom presentation and use distributed content as menu items. Try to use native HTML semantics as a language to communicate between the app and a presentation layer.
-            </p>
-            <p slot="uniformdocs/guidelines">
-                The semantics we expect to share between views:
-            </p>
-            <ul slot="uniformdocs/guidelines">
-                <li><code>&lt;a&gt;</code> for navigation items</li>
-                <li>Their content as a clickable thing. At the beginning we will focus on text content, to support explicit customer needs (YAGNI).</li>
-                <li><code>href</code> attribute as a destination,</li>
-                <li><code>aria-current</code> attribute to mark the selected item,</li>
-                <li><code>&lt;button&gt;</code> for action items, actual actions should be bound to this object, so `<***-menu>`  will not have to interfere with them.We would like to emphasize the distinction between action and navigation menus. The <em>Navigation menu</em> is one that only changes the user's location in the web app, where <em>action menu</em> is responsible for starting some other actions, usually with user's business data. We believe the rule of thumb for good user experience is not to mix or combine those two together.</li>
-            </ul>
+
             <h3 slot="uniformdocs/guidelines">
                 Nested menus
             </h3>
@@ -233,7 +218,7 @@
                 HTML
             </h3>
 
-            <h5 slot="uniformdocs/developer">Menu</h4>
+            <h4 slot="uniformdocs/developer">Menu</h4>
 
             <p slot="uniformdocs/developer">
                 In the place in your view, where you would like to put the menu you need to use <code>&lt;starcounter-include view-model="{&zwj;{model.SubPage}}"&gt;</code>, where <code>SubPage</code> is a view-model of a partial view with your menu items. Then you should use <code>declarative-shadow-dom</code> to provide the markup for the presentation of your menu. However, to style the menu itself, you should put this presentation as a child node of <code>&lt;starcounter-include&gt;</code>, as so-called <em>parent composition</em>  (<code>&lt;template is="declarative-shadow-dom" presentation="parent"&gt;</code>). That's a way to provide a presentation from parent/host view to the included one. In your presentation, you are free to use a menu element of your choosing. It could be a native element with some styles or sophisticated custom element that renders items the way you like.
@@ -247,7 +232,7 @@
                 You can also use regular, named or default <code>&lt;slot&gt;</code>s, for elements which slot name you know.
             </p>
 
-            <h5 slot="uniformdocs/developer">Items</h4>
+            <h4 slot="uniformdocs/developer">Items</h4>
 
             <p slot="uniformdocs/developer">
                 As already mentioned, you also need a view that returns your menu items. We are talking about <em>blendable</em> menus, so be prepared that other apps may also attach their items. We strongly recommend to make these elements as close to the atomic, native elements as possible, and to most of the complex styling and div-soup in your custom menu element.
@@ -257,6 +242,23 @@
             </aside>
 
             <p slot="uniformdocs/developer">This makes you either create simple menus or move most of the code and responsibility to a custom element. We agree that may be a cost, but we believe it pays off with a blendable menu and DRY code.</p>
+
+            <h5 slot="uniformdocs/developer">
+                Items' semantics
+            </h5>
+            <p slot="uniformdocs/developer">
+                Menu components will work well in shadow dom presentation and use distributed content as menu items. Try to use native HTML semantics as a language to communicate between the app and a presentation layer.
+            </p>
+            <p slot="uniformdocs/developer">
+                The semantics we expect to share between views:
+            </p>
+            <ul slot="uniformdocs/developer">
+                <li><code>&lt;a&gt;</code> for navigation items</li>
+                <li>Their content as a clickable thing. At the beginning we will focus on text content, to support explicit customer needs (YAGNI).</li>
+                <li><code>href</code> attribute as a destination,</li>
+                <li><code>aria-current</code> attribute to mark the selected item,</li>
+                <li><code>&lt;button&gt;</code> for action items, actual actions should be bound to this object, so `<***-menu>`  will not have to interfere with them.We would like to emphasize the distinction between action and navigation menus. The <em>Navigation menu</em> is one that only changes the user's location in the web app, where <em>action menu</em> is responsible for starting some other actions, usually with user's business data. We believe the rule of thumb for good user experience is not to mix or combine those two together.</li>
+            </ul>
 
             <h2 slot="uniformdocs/see-also">
                 See Also
