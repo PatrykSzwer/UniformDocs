@@ -258,8 +258,8 @@
     <TypedJSON Include="ViewModels\HowTo\BlendableMenu\MenuLinksPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
-    <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuButtons.html" />
-    <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuLinks.html" />
+    <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuButtonsPage.html" />
+    <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuLinksPage.html" />
     <Content Include="wwwroot\UniformDocs\SubNavPage.html" />
     <TypedJSON Include="ViewModels\UIKitPage.json">
       <Generator>MsBuild:Compile</Generator>
@@ -326,7 +326,7 @@
     <None Include="wwwroot\UniformDocs\Design\LeftNavLayoutPage.html" />
     <None Include="wwwroot\UniformDocs\Design\NativePage.html" />
     <Content Include="wwwroot\UniformDocs\HowTo\LazyLoadingPage.html" />
-    <Content Include="wwwroot\UniformDocs\HowTo\BlendableMenu.html" />
+    <Content Include="wwwroot\UniformDocs\HowTo\BlendableMenuPage.html" />
     <Content Include="wwwroot\UniformDocs\MainPage.html">
       <SubType>Component</SubType>
     </Content>
@@ -521,7 +521,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
