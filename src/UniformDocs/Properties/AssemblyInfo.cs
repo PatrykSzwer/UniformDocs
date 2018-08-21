@@ -37,8 +37,8 @@ using Starcounter.Internal;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("3.2.1")]
-[assembly: AssemblyFileVersion("3.2.1")]
+[assembly: AssemblyVersion("3.2.2")]
+[assembly: AssemblyFileVersion("3.2.2")]
 
 // Assures the current assembly has a reference to the Starcounter
 // assembly. A reference to Starcounter is currently required for
