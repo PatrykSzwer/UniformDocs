@@ -1,15 +1,11 @@
 ﻿using Starcounter;
 using Starcounter.XSON.Advanced;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace UniformDocs
 {
-    public class ServiceWorkerMiddleWare : IMiddleware
+    public class PartialJsonToStandaloneHtmlProvider : IMiddleware
     {
         static Encoding defaultEncoding = Encoding.UTF8;
         string appShell, serviceWorkerTemplate;
@@ -19,7 +15,7 @@ namespace UniformDocs
         /// Creates a new instance of <see cref="ServiceWorkerMiddleWare"/>
         /// using the template fetched from the static file server.
         /// </summary>
-        public ServiceWorkerMiddleWare()
+        public PartialJsonToStandaloneHtmlProvider()
         {
            
         }
@@ -28,7 +24,7 @@ namespace UniformDocs
         /// Creates a new instance of <see cref="ServiceWorkerMiddleWare"/>
         /// using the given standalone page template.
         /// </summary>
-        public ServiceWorkerMiddleWare(string standaloneTemplate)
+        public PartialJsonToStandaloneHtmlProvider(string standaloneTemplate)
         {
             if (string.IsNullOrEmpty(standaloneTemplate)) throw new ArgumentNullException("standaloneTemplate");
             appShell = standaloneTemplate;
@@ -68,12 +64,12 @@ namespace UniformDocs
         {
             try
             {
-                string appShellHTMLUrl = "/sys/app-shell/app-shell-with-service-worker.html";
+                string appShellHTMLUrl = "/sys/app-shell/app-shell.html";
                 return Self.GET(appShellHTMLUrl).Body;
             }
             catch
             {
-                throw new Exception(@"Could not fetch /sys/app-shell/app-shell-with-service-worker.html");
+                throw new Exception(@"Could not fetch /sys/app-shell/app-shell.html");
             }
         }
 
