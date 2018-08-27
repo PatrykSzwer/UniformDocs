@@ -33,7 +33,7 @@ namespace UniformDocs.Tests.Test
 
         [Test]
         public void MainPage_AppVersion()
-        {            
+        {
             WaitUntil(x => _mainPage.AppVersionSpan.Displayed);
             Assert.AreEqual(GetAppVersionFromEndPoint(), _mainPage.AppVersionSpan.Text);
 
@@ -43,15 +43,9 @@ namespace UniformDocs.Tests.Test
 
         [Test]
         public void MainPage_StarcounterVersion()
-        {            
+        {
             WaitUntil(x => _mainPage.SCVersionSpan.Displayed);
             Assert.True(Regex.IsMatch(_mainPage.SCVersionSpan.Text, @"\d+\.\d+\.\d+.\d+"));
-        }
-        [Test]
-        public void MainPage_GitHubSourceURL()
-        {
-            WaitUntil(x => _mainPage.GitHubSourceLinks.Displayed);
-            TestGitHubSourceLinkURLs();
         }
     }
 }
