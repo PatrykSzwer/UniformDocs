@@ -93,7 +93,7 @@
     <Compile Include="Database\SoftwareProduct.cs" />
     <Compile Include="Database\Person.cs" />
     <Compile Include="Database\TreeItem.cs" />
-    <Compile Include="Helpers\ServiceWorkerMiddleWare.cs" />
+    <Compile Include="Helpers\PartialJsonToStandaloneHtmlProvider.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
     </Compile>

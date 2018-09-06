@@ -34,7 +34,7 @@ namespace UniformDocs
         {
             application.Use(request =>
             {
-                if (request.Uri.Equals("/sw.js"))
+                if (request.Uri.Equals("/service-workers.js"))
                 {
                     string template;
                     if (!string.IsNullOrEmpty(serviceWorkerTemplate))
@@ -77,12 +77,12 @@ namespace UniformDocs
         {
             try
             {
-                string serviceWorkerUrl = "/service-worker.js";
+                string serviceWorkerUrl = "/sys/service-worker-source.js";
                 return Self.GET(serviceWorkerUrl).Body;
             }
             catch
             {
-                throw new Exception(@"Could not fetch /service-worker.js");
+                throw new Exception(@"Could not fetch /sys/service-worker-source.js");
             }
         }
 
