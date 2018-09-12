@@ -4,15 +4,15 @@ using System;
 
 namespace UniformDocs.ViewModels.HowTo.BlendableMenu
 {
-    partial class MenuButtonsPage : Json
+    partial class OtherMenuButtonsPage : Json
     {
-        void Handle(Input.PayInBTCTrigger action)
+        void Handle(Input.PayByCardTrigger action)
         {
             var blendingInfosDictionary = Blender.ListAllByUris();
             Console.WriteLine(blendingInfosDictionary.Count);
             //OnBuyReaction = action.Value == 0 ? Template.CarrotsReaction.DefaultValue : "You bought a carrot!";
         }
-        void Handle(Input.PayInETHTrigger action)
+        void Handle(Input.PayByTransferTrigger action)
         {
             var blendingInfosDictionary = Blender.ListAllByUris();
             Console.WriteLine(blendingInfosDictionary.Count);

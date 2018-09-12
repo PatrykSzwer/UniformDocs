@@ -1,0 +1,10 @@
+<link rel="import" href="/sys/polymer/polymer.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <paper-button slot="OtherApp/loyalty" value="{{model.PayByCardTrigger$::click}}" onmousedown="++this.value">Pay with loyalty points</paper-button>
+            <potato-button slot="OtherApp/potatoes" value="{{model.PayByTransferTrigger$::click}}" onmousedown="++this.value">Pay with potatoes</potato-button>
+        </template>
+    </dom-bind>
+</template>

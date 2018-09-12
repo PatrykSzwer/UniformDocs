@@ -118,6 +118,9 @@
     <Compile Include="ViewModels\HowTo\BlendableMenu\MenuButtonsPage.json.cs">
       <DependentUpon>MenuButtonsPage.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\HowTo\BlendableMenu\OtherMenuButtonsPage.json.cs">
+      <DependentUpon>OtherMenuButtonsPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\HowTo\CallbackPage.json.cs">
       <DependentUpon>CallbackPage.json</DependentUpon>
     </Compile>
@@ -258,6 +261,9 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
+    <TypedJSON Include="ViewModels\HowTo\BlendableMenu\OtherMenuButtonsPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuButtons.html" />
     <Content Include="wwwroot\UniformDocs\SubNavPage.html" />
     <TypedJSON Include="ViewModels\UIKitPage.json">

@@ -181,7 +181,7 @@ namespace UniformDocs
             // Handle.GET("/UniformDocs/blendablemenu/menubuttons", () => WrapPage<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons"));
 
             // pretend it's the other app
-            Handle.GET("/UniformDocs/partial/blendablemenu/othermenubuttons", () => new MenuButtonsPage());
+            Handle.GET("/UniformDocs/partial/blendablemenu/othermenubuttons", () => new OtherMenuButtonsPage());
             // Handle.GET("/UniformDocs/blendablemenu/menubuttons", () => WrapPage<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons"));
 
             Handle.GET("/UniformDocs/partial/blendablemenu", () => new BlendableMenuPage
