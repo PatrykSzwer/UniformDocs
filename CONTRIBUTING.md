@@ -53,7 +53,7 @@ Before running the steps, you need to:
 - Install NUnit 3 Test Adapter in VS (Tools > Extensions and Updates... > Online) in order to see tests in Test Explorer window
 - Set `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` envionment variables (restart Visual Studio 2017 to acknowledge the changes)
 - Get BrowserStackLocal binary from [the download page](https://www.browserstack.com/local-testing#command-line) (CTRL+F "Download the appropriate binary")
-- Run `BrowserStackLocal.exe --key %BROWSERSTACK_ACCESS_KEY%`
+- Run `BrowserStackLocal.exe --key %BROWSERSTACK_ACCESS_KEY% --local-identifier %COMPUTERNAME%`
 
 
 ### Prepare your environment for local Selenium

@@ -53,6 +53,7 @@ namespace UniformDocs.Tests.Utilities
                 capability.SetCapability("browserstack.key", Config.BrowserstackAccessKey);
                 capability.SetCapability("browserstack.debug", "true");
                 capability.SetCapability("browserstack.local", "true");
+                capability.SetCapability("browserstack.localIdentifier", Config.BrowserstackLocalIdentifier);
             }
 
             capability.SetCapability("project", "UniformDocs");
