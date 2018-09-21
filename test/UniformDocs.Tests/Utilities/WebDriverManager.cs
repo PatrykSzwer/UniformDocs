@@ -54,6 +54,7 @@ namespace UniformDocs.Tests.Utilities
                 capability.SetCapability("browserstack.debug", "true");
                 capability.SetCapability("browserstack.local", "true");
                 capability.SetCapability("browserstack.localIdentifier", Config.BrowserstackLocalIdentifier);
+                capability.SetCapability("browserstack.video", "false"); //video recording increases test time, see https://www.browserstack.com/automate/c-sharp
             }
 
             capability.SetCapability("project", "UniformDocs");
