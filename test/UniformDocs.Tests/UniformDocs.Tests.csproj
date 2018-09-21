@@ -113,8 +113,6 @@
     <Compile Include="Ui\TextareaPage.cs" />
     <Compile Include="Ui\TextPage.cs" />
     <Compile Include="Utilities\Config.cs" />
-    <Compile Include="Utilities\EventListener.cs" />
-    <Compile Include="Utilities\Screenshot.cs" />
     <Compile Include="Utilities\WebDriverManager.cs" />
   </ItemGroup>
   <ItemGroup>

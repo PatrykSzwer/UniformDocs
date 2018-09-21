@@ -17,6 +17,8 @@ namespace UniformDocs.Tests.Test
         private readonly Config.Browser _browser;
         private readonly string _browsersTc = TestContext.Parameters["Browsers"];
         private List<string> _browsersToRun = new List<string>();
+        private ResultState LastOutcome = null;
+        private string LastOutcomeMessage = null;
 
         public BaseTest(Config.Browser browser)
         {
@@ -53,21 +55,33 @@ namespace UniformDocs.Tests.Test
             }
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            if (LastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                //this class has single driver session for all test methods
+                //we don't want to mark a test as passed if it was already marked as failed
+                LastOutcome = TestContext.CurrentContext.Result.Outcome;
+
+                //LastOutcomeMessage = TestContext.CurrentContext.Result.StackTrace;
+                LastOutcomeMessage = TestContext.CurrentContext.Result.Message;
+                /*
+                example stack trace:
+                (Marked via REST API: at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException) at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition) at UniformDocs.Tests.Test.BaseTest.WaitForText(IWeb)
+
+                example message:
+                (Marked via REST API: OpenQA.Selenium.WebDriverTimeoutException : Timed out after 5 seconds) 
+                */
+            }
+        }
+
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
-            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success && Driver != null)
+            if (WebDriverManager.IsCloud)
             {
-                var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
-                var dirPath = "C:\\selenium";
-
-                if (!Directory.Exists(dirPath))
-                {
-                    throw new Exception($"I cannot make a screenshot of the failed test because the directory {dirPath} does not exist");
-                }
-
-                string filePath = $"{dirPath}\\Test fail {GetSafeFilename(TestContext.CurrentContext.Test.FullName)}.png";
-                screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
+                WebDriverManager.MarkTestStatusOnBrowserStack(LastOutcome, LastOutcomeMessage);
             }
             WebDriverManager.StopDriver();
         }
