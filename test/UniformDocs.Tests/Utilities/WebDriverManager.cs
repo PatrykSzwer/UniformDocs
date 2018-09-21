@@ -60,6 +60,12 @@ namespace UniformDocs.Tests.Utilities
             capability.SetCapability("name", NUnit.Framework.TestContext.CurrentContext.Test.FullName);
             Driver = new RemoteWebDriver(remoteWebDriverUri, capability);
 
+            var allowsDetection = Driver as IAllowsFileDetection;
+            if (allowsDetection != null)
+            {
+                allowsDetection.FileDetector = new LocalFileDetector();
+            }
+
             IWebDriver eventDriver = new UniformDocsTestEventListener(Driver);
             Driver = eventDriver;
             Driver.Manage().Timeouts().PageLoad = timeout;
