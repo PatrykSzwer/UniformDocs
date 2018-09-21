@@ -8,7 +8,6 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
 using System.IO;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace UniformDocs.Tests.Test
 {
@@ -70,7 +69,7 @@ namespace UniformDocs.Tests.Test
                 string filePath = $"{dirPath}\\Test fail {GetSafeFilename(TestContext.CurrentContext.Test.FullName)}.png";
                 screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
             }
-            Driver?.Quit();
+            WebDriverManager.StopDriver();
         }
 
         private string GetSafeFilename(string filename)

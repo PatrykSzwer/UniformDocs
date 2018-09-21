@@ -45,33 +45,43 @@ To release the app to the warehouse, follow the instructions in the [guidelines]
 
 ## Testing
 
-### Prepare your environment
+### Prepare your environment for cloud Selenium (default)
 
 Before running the steps, you need to:
 
 - Download and install Visual Studio 2017 to run the tests
+- Install NUnit 3 Test Adapter in VS (Tools > Extensions and Updates... > Online) in order to see tests in Test Explorer window
+- Set `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` envionment variables (restart Visual Studio 2017 to acknowledge the changes)
+- Get BrowserStackLocal binary from [the download page](https://www.browserstack.com/local-testing#command-line) (CTRL+F "Download the appropriate binary")
+- Run `BrowserStackLocal.exe --key %BROWSERSTACK_ACCESS_KEY%`
+
+
+### Prepare your environment for local Selenium
+
+Before running the steps, you need to:
+
+- Download and install Visual Studio 2017 to run the tests
+- Install NUnit 3 Test Adapter in VS (Tools > Extensions and Updates... > Online) in order to see tests in Test Explorer window
 - Download and install Java, required by Selenium Standalone Server
 - Download Selenium Standalone Server and the drivers [Microsoft WebDriver (Edge), Google ChromeDriver (Chrome) and Mozilla GeckoDriver (Firefox)] using [these instructions](https://docs.starcounter.io/cookbook/acceptance-testing-with-selenium).
 - Add path to the folder with drivers to system path on your computer
+- Start Selenium Remote Driver using `java -jar selenium-server-standalone-3.*.jar -enablePassThrough false`
 
 ### Run the test (from Visual Studio)
 
-1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-3.*.jar`
-2. Open `UniformDocs.sln` in Visual Studio and enable Test Explorer (Test > Window > Test Explorer)
-3. You need to install NUnit 3 Test Adapter in VS (Tools > Extensions and Updates... > Online) in order to see tests in Test Explorer window
-3. Start the UniformDocs app
-4. Press "Run all" in Test Explorer
+1. Open `UniformDocs.sln` in Visual Studio and enable Test Explorer (Test > Window > Test Explorer)
+2. Start the UniformDocs app
+3. Press "Run all" in Test Explorer
    - If you get an error about some packages not installed, right click on the project in Solution Explorer. Choose "Manage NuGet Packages" and click on "Restore".
 
 ### Run the test (from command line)
 
-1. Start Selenium Remote Driver with the enablePassThrough option off: `java -jar selenium-server-standalone-3.*.jar -enablePassThrough false`
-2. Build the solution (`build.bat`)
-3. Start the UniformDocs.Test runner (`test.bat`)
+1. Build the solution (`build.bat`)
+2. Start the UniformDocs.Test runner (`test.bat`)
 
 To run a specific test, add the param `--test="<testname>"`.
 
-To connect to a remote web driver on a different host, add the param `--params="Server=<Uri>"`
+By default, it connects to cloud Selenium (BrowserStack). To connect to a local Selenium, add the param `--params="Server=<Uri>"`, e.g. `--params="Server=http://localhost:4444/wd/hub/`.
 
 To run in a specific browser, add the param `--params="Browsers=<BrowserName>"` (case sensitive). Possible values: `Chrome`, `Firefox`, `Edge` (separated by a comma). 
 
