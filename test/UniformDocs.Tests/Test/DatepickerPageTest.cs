@@ -29,7 +29,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DatepickerPage_SelectDate()
         {
-            WaitUntil(x => _datePicker.YearInput.Displayed);
+            WaitUntil(x => _datePicker.IsLoaded(), $"Expected date picker to be fully loaded");
 
             _datePicker.SelectThroughUniDatePicker("2016-01-01");
 

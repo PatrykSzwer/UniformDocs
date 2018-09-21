@@ -29,7 +29,7 @@ namespace UniformDocs.Tests.Test
         {
             _paginationPage.ScrollToTheTop();
 
-            WaitUntil(x => _paginationPage.DropDown.Displayed);
+            WaitUntil(x => _paginationPage.DropDown.Displayed, $"Expected DropDown to be Displayed");
             _paginationPage.DropdownSelect("Show 5 items per page");
             Assert.IsTrue(WaitForText(_paginationPage.PaginationInfoLabel, "page 1 of 20", 5));
             Assert.AreEqual(5, _paginationPage.PaginationResult.Count);
