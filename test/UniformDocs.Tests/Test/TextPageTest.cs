@@ -57,9 +57,9 @@ namespace UniformDocs.Tests.Test
 
             var shadowInput = _textPage.GetInputForPaperElement(_textPage.PaperInput);
 
-            _textPage.FillInput(shadowInput, "K");
-            Assert.IsTrue(WaitForText(_textPage.PaperInputInfoLabel, "Hi, K!", 5));
-            _textPage.ClearInput(shadowInput);
+            _textPage.FillInput(shadowInput, "Krystian");
+            Assert.IsTrue(WaitForText(_textPage.PaperInputInfoLabel, "Hi, Krystian!", 5));
+            _textPage.ClearPaperInput(_textPage.PaperInput);
             WaitUntil(x => shadowInput.Text == string.Empty);
             WaitUntil(x => "What's your name?" == _textPage.PaperInputInfoLabel.Text,
                 $"Expected: What's your name?, but was: {_textPage.PaperInputInfoLabel.Text}");
