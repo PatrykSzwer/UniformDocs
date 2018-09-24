@@ -50,6 +50,13 @@ namespace UniformDocs.Tests.Ui
             inputElement.SendKeys(Keys.Enter);
         }
 
+        public void ClearPaperInput(IWebElement inputElement)
+        {
+            var script = "return arguments[0].value = '';";
+            ExecuteScriptOnElement(inputElement, script);
+            TriggerEventOnElement(inputElement, "change");
+        }
+
         public IWebElement GetInputForPaperElement(IWebElement paperInput)
         {
             return GetShadowElementByQuerySelector(paperInput, "input");

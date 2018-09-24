@@ -20,6 +20,9 @@ namespace UniformDocs.Tests.Ui
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Non-morphable downloadable link: SVG icon']")]
         public IWebElement LinkWithDownloadAttrib { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "output[slot='uniformdocs/download-attrib-link-feedback']")]
+        public IWebElement DownloadLinkFeedback { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//a[text() = 'Non-morphable link that opens in a frame: This a sample link']")]
         public IWebElement IframeTargettedLink { get; set; }
 

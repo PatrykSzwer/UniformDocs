@@ -59,7 +59,7 @@ namespace UniformDocs.Tests.Test
 
             _textPage.FillInput(shadowInput, "Krystian");
             Assert.IsTrue(WaitForText(_textPage.PaperInputInfoLabel, "Hi, Krystian!", 5));
-            _textPage.ClearInput(shadowInput);
+            _textPage.ClearPaperInput(_textPage.PaperInput);
             WaitUntil(x => shadowInput.Text == string.Empty);
             WaitUntil(x => "What's your name?" == _textPage.PaperInputInfoLabel.Text,
                 $"Expected: What's your name?, but was: {_textPage.PaperInputInfoLabel.Text}");

@@ -51,7 +51,7 @@ namespace UniformDocs.Tests.Test
         {
             _buttonPage.ClickButonTakeOneRegeneratingCarrot();
             WaitUntil(x => _buttonPage.GeneratingCarrotsElement.Displayed);
-            Assert.IsTrue(WaitForText(_buttonPage.GeneratingCarrotsLabel, "Currently Regenerating!", 5));
+            Assert.IsTrue(WaitForText(_buttonPage.GeneratingCarrotsLabel, "This button will regenerate in 5 seconds!", 5));
         }
 
         [Test]

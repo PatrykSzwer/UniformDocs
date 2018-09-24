@@ -18,18 +18,17 @@ namespace UniformDocs.Tests.Ui
 
         public void FillTextarea(string input)
         {
-            Textarea.SendKeys(input);
+            //Textarea.SendKeys(input); does not work well in Chrome
+            var script = "return arguments[0].value = '" + input + "';";
+            ExecuteScriptOnElement(Textarea, script);
+            TriggerEventOnElement(Textarea, "input");
         }
 
         public void ClearTextarea()
         {
-            // can't use Clear()
-            var textAreaLength = Textarea.GetAttribute("value").Length;
-
-            for (var i = 0; i < textAreaLength; i++)
-            {
-                Textarea.SendKeys(Keys.Backspace);
-            }
+            var script = "return arguments[0].value = '';";
+            ExecuteScriptOnElement(Textarea, script);
+            TriggerEventOnElement(Textarea, "input");
         }
     }
 }

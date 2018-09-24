@@ -136,5 +136,11 @@ namespace UniformDocs.Tests.Ui
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, 0)");
         }
+
+        public void TriggerEventOnElement(IWebElement elem, string eventName)
+        {
+            var script = "return arguments[0].dispatchEvent(new Event('" + eventName + "'), {bubbles: true});";
+            ExecuteScriptOnElement(elem, script);
+        }
     }
 }

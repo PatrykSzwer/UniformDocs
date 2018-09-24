@@ -88,20 +88,11 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void UrlPage_ClickLinkWithDownloadAttribute()
         {
-            string downloadsDirPath = Path.Combine(System.Environment.GetEnvironmentVariable("USERPROFILE"), "Downloads");
-            string downloadedFilePath = Path.Combine(downloadsDirPath, "UniformDocsLogo.svg");
-            FileInfo downloadedFile = new FileInfo(downloadedFilePath);
-
-            if (downloadedFile.Exists)
-            {
-                downloadedFile.Delete();
-            }
-
             WaitUntil(x => _urlPage.LinkWithDownloadAttrib.Displayed);
 
             _urlPage.ClickLinkWithDownloadAttrib();
 
-            WaitUntil(x => new FileInfo(downloadedFilePath).Exists);
+            WaitUntil(x => _urlPage.DownloadLinkFeedback.Text == "Your download has started");
         }
 
         [Test]
