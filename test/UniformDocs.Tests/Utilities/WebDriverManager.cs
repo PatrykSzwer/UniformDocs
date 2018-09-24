@@ -72,6 +72,7 @@ namespace UniformDocs.Tests.Utilities
                 capability.SetCapability("browserstack.localIdentifier", Config.BrowserstackLocalIdentifier);
                 capability.SetCapability("browserstack.video", "false"); //video recording increases test time, see https://www.browserstack.com/automate/c-sharp
                 capability.SetCapability("browserstack.use_w3c", "true"); //needed for closing of window in UrlPage_ClickBlankTargettedLink for Firefox on BrowserStack; see https://github.com/SeleniumHQ/selenium/issues/5064
+                capability.SetCapability("browserstack.console", "verbose");
             }
 
             capability.SetCapability("project", "UniformDocs");
