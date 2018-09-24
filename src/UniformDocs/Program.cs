@@ -113,6 +113,21 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/url", () => new UrlPage());
             Handle.GET("/UniformDocs/url", () => WrapPage<UrlPage>("/UniformDocs/partial/url"));
 
+            Handle.GET("/UniformDocs/download?session={?}", (string id) =>
+            {
+                var ids = new string[] { id };
+                Session.RunTask(ids, (session, sessionId) => {
+                    var masterPage = Session.Ensure().Store[nameof(MasterPage)] as MasterPage;
+                    var urlPage = masterPage.CurrentPage as UrlPage;
+                    if(urlPage != null)
+                    {
+                        urlPage.DownloadStarted();
+                        session.CalculatePatchAndPushOnWebSocket();
+                    }
+                });
+                return Self.GET("/UniformDocs/images/UniformDocs.svg");
+            });
+
             Handle.GET("/UniformDocs/partial/Geo", () =>
             {
                 return Db.Scope(() =>

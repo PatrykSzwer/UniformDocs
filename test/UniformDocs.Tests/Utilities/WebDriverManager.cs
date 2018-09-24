@@ -44,8 +44,15 @@ namespace UniformDocs.Tests.Utilities
                 case Config.Browser.Firefox:
                     {
                         var firefoxOptions = new FirefoxOptions();
-                        firefoxOptions.SetPreference("browser.download.folderList", 2);
-                        firefoxOptions.SetPreference("browser.helperApps.neverAsk.saveToDisk", "image/svg+xml");
+                        firefoxOptions.SetPreference("browser.download.folderList", 0); //0 is recommended per BrowserStack docs; https://www.browserstack.com/automate/c-sharp#enhancements-uploads-downloads
+                        firefoxOptions.SetPreference("browser.download.manager.focusWhenStarting", false);
+                        firefoxOptions.SetPreference("browser.download.useDownloadDir", true);
+                        firefoxOptions.SetPreference("browser.helperApps.alwaysAsk.force", false);
+                        firefoxOptions.SetPreference("browser.download.manager.alertOnEXEOpen", false);
+                        firefoxOptions.SetPreference("browser.download.manager.closeWhenDone", true);
+                        firefoxOptions.SetPreference("browser.download.manager.showAlertOnComplete", false);
+                        firefoxOptions.SetPreference("browser.download.manager.useWindow", false);
+                        firefoxOptions.SetPreference("browser.helperApps.neverAsk.saveToDisk", "image/svg+xml;application/force-download");
                         capability = (DesiredCapabilities)firefoxOptions.ToCapabilities();
                         capability.SetCapability("os", "Windows");
                         capability.SetCapability("os_version", "10");
