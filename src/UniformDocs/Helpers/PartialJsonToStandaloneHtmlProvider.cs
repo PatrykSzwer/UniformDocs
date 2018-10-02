@@ -12,7 +12,7 @@ namespace UniformDocs
         string RUNTIME_CACHE_KEY = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Creates a new instance of <see cref="ServiceWorkerMiddleWare"/>
+        /// Creates a new instance of <see cref="PartialJsonToStandaloneHtmlProvider"/>
         /// using the template fetched from the static file server.
         /// </summary>
         public PartialJsonToStandaloneHtmlProvider()
