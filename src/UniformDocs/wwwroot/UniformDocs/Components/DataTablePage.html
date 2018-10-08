@@ -27,7 +27,7 @@
                         </uni-data-table-filter>
                     </template>
                     <template>
-                        <input type="email" value="{{item.Email$::change}}" placeholder="Email">
+                        <input type="email" value="{{item.Email$::input}}" placeholder="Email">
                     </template>
                 </uni-data-table-column>
                 <uni-data-table-column>
@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                     <td>(none)</td>
-                    <td>Template of the cell element. You can use it to provide your own renderer or editor for a cell. It may utilize Polymer data-binding features as well as declarative event listeners to bind. The following properties are exposed to the template: <code>index</code> (the index of the row on the page), <code>item</code> (the row view-model). For example, use <code>&lt;template&gt;&lt;input value="{<!-- This comment is needed to prevent Polymer from parsing curly braces -->{item.FirstName$::change}}"&gt;&lt;/template&gt;</code> to have an input element that updates the server on each keystroke. Event listeners and inline computing functions in the template will be called on the host of the template, which usually is the closest <code>&lt;dom-bind&gt;</code> element up in the DOM tree.</td>
+                    <td>Template of the cell element. You can use it to provide your own renderer or editor for a cell. It may utilize Polymer data-binding features as well as declarative event listeners to bind. The following properties are exposed to the template: <code>index</code> (the index of the row on the page), <code>item</code> (the row view-model). For example, use <code>&lt;template&gt;&lt;input value="{<!-- This comment is needed to prevent Polymer from parsing curly braces -->{item.FirstName$::input}}"&gt;&lt;/template&gt;</code> to have an input element that updates the server on each keystroke. Event listeners and inline computing functions in the template will be called on the host of the template, which usually is the closest <code>&lt;dom-bind&gt;</code> element up in the DOM tree.</td>
                 </tr>
                 <tr>
                     <td><code>header</code></td>

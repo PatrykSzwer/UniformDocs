@@ -13,43 +13,55 @@
                 <code>input type="text"</code>.
             </p>
 
-            <h2 slot="uniformdocs/text-listening-heading">Listening to changes</h2>
-
-            <p slot="uniformdocs/text-listening-description">
-                Bind to
-                <code>::change</code> listener to send the new value to the server when the field is unfocused. Read more about the target change events in the
-                <a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#two-way-native">Polymer docs</a>.
-            </p>
-
-            <label slot="uniformdocs/text-listening-label">{{model.NameReaction}}</label>
-
-            <input slot="uniformdocs/text-listening-input" type="text" value="{{model.Name$::change}}" placeholder="Name">
-
-            <h2 slot="uniformdocs/text-typing-listening-heading">Listening to changes while typing</h2>
+            <h2 slot="uniformdocs/text-typing-listening-heading">Listening to changes</h2>
 
             <p slot="uniformdocs/text-typing-listening-description">
-                Need to update the server after each keystroke? Bind to
-                <code>::input</code>:
+                Bind to
+                <code>::input</code> listener to send the new value to the server as the user types in the field. This is the 
+                recommended behavior in Starcounter apps, because it allows behaviors like live validation or unblocking of 
+                the "Save" button while the user types.
+            </p>
+
+            <p slot="uniformdocs/text-typing-listening-description">
+                Read more about the target change events in the
+                <a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#two-way-native">Polymer docs</a>.
             </p>
 
             <label slot="uniformdocs/text-typing-listening-label">{{model.NameLiveReaction}}</label>
 
             <input slot="uniformdocs/text-typing-listening-input" type="text" value="{{model.NameLive$::input}}" placeholder="Name">
 
-            <p slot="uniformdocs/text-listening-paper-input-desc">
-                You can also use any custom element, such as
-                <a href="https://www.webcomponents.org/element/PolymerElements/paper-input">paper-input</a>. Make sure to observe an event triggered by the custom element after the interaction. For instance, `paper-input` triggers a
-                <code>change</code> event after its value was changed and unfocused:
+            <h2 slot="uniformdocs/text-listening-heading">Listening to changes when the user stops typing</h2>
+
+            <p slot="uniformdocs/text-listening-description">
+                Need to update the server after the user has stopped typing? Bind to the
+                <code>::change</code> event, which is triggered when the user types and moves the focus away from the input:
             </p>
 
-            <paper-input slot="uniformdocs/text-listening-paper-input" label="{{model.NameForPaperReaction}}" value="{{model.NameForPaper$::change}}"></paper-input>
+            <label slot="uniformdocs/text-listening-label">{{model.NameReaction}}</label>
+
+            <input slot="uniformdocs/text-listening-input" type="text" value="{{model.Name$::change}}" placeholder="Name">
+
+            <h2 slot="uniformdocs/text-typing-listening-paper-heading">Listening to changes in custom elements (paper-input, etc)</h2>
 
             <p slot="uniformdocs/text-typing-listening-paper-desc">
-                If you need to observe the changes while typing, paper-text triggers
-                <code>value-changed</code> event after each keystroke. This allows to bind it live with the server:
+                You can also use any custom element, such as
+                <a href="https://www.webcomponents.org/element/PolymerElements/paper-input">paper-input</a>.
+            </p>
+
+            <p slot="uniformdocs/text-typing-listening-paper-desc">
+                Make sure to observe an event triggered by the custom element after the interaction. For instance, `paper-input` triggers a
+                <code>value-changed</code> event after each keystroke:
             </p>
 
             <paper-input slot="uniformdocs/text-typing-listening-paper-input" label="{{model.NameForPaperLiveReaction}}" value="{{model.NameForPaperLive$::value-changed}}"></paper-input>
+
+            <p slot="uniformdocs/text-listening-paper-desc">
+                If you need to observe changes when the user stops typing, observe the 
+                <code>change</code> event:
+            </p>
+
+            <paper-input slot="uniformdocs/text-listening-paper-input" label="{{model.NameForPaperReaction}}" value="{{model.NameForPaper$::change}}"></paper-input>
             <github-source-links base="{{model.Html}}"></github-source-links>
         </template>
     </dom-bind>
@@ -74,6 +86,16 @@
             </div>
             <div class="uni-card">
                 <div class="uni-title">
+                    <slot name="uniformdocs/text-typing-listening-heading"></slot>
+                </div>
+                <slot name="uniformdocs/text-typing-listening-description"></slot>
+                <div class="uni-label-control">
+                    <slot name="uniformdocs/text-typing-listening-label"></slot>
+                    <slot name="uniformdocs/text-typing-listening-input"></slot>
+                </div>
+            </div>
+            <div class="uni-card">
+                <div class="uni-title">
                     <slot name="uniformdocs/text-listening-heading"></slot>
                 </div>
                 <slot name="uniformdocs/text-listening-description"></slot>
@@ -84,19 +106,12 @@
             </div>
             <div class="uni-card">
                 <div class="uni-title">
-                    <slot name="uniformdocs/text-typing-listening-heading"></slot>
+                    <slot name="uniformdocs/text-typing-listening-paper-heading"></slot>
                 </div>
-                <slot name="uniformdocs/text-typing-listening-description"></slot>
-                <div class="uni-label-control">
-                    <slot name="uniformdocs/text-typing-listening-label"></slot>
-                    <slot name="uniformdocs/text-typing-listening-input"></slot>
-                </div>
-                <div class="uniformdocs-text-paper-input-description">
-                    <slot name="uniformdocs/text-listening-paper-input-desc"></slot>
-                </div>
-                <slot name="uniformdocs/text-listening-paper-input"></slot>
                 <slot name="uniformdocs/text-typing-listening-paper-desc"></slot>
                 <slot name="uniformdocs/text-typing-listening-paper-input"></slot>
+                <slot name="uniformdocs/text-listening-paper-desc"></slot>
+                <slot name="uniformdocs/text-listening-paper-input"></slot>
             </div>
         </div>
     </template>
