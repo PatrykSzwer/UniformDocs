@@ -26,9 +26,9 @@ namespace UniformDocs.Tests.Ui
 
         public IWebElement PaperInputDynamic => Driver.FindElement(By.CssSelector("[slot = 'uniformdocs/text-typing-listening-paper-input']"));
 
-        public IWebElement PaperInputInfoLabel => GetPaperInput(PaperInput, "paper-input-label-1");
+        public IWebElement PaperInputInfoLabel => GetPaperInput(PaperInput, "paper-input-label-2");
 
-        public IWebElement PaperInputDynamicInfoLabel => GetPaperInput(PaperInputDynamic, "paper-input-label-2");
+        public IWebElement PaperInputDynamicInfoLabel => GetPaperInput(PaperInputDynamic, "paper-input-label-1");
 
 
         public void FillInput(IWebElement inputElement, string input)
