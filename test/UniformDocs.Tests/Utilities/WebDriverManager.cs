@@ -5,8 +5,6 @@ using OpenQA.Selenium.Firefox;
 using System.Text;
 using System.Net;
 using System.IO;
-using NUnit.Framework;
-using System.Reflection;
 using NUnit.Framework.Interfaces;
 using Newtonsoft.Json.Linq;
 
@@ -14,10 +12,9 @@ namespace UniformDocs.Tests.Utilities
 {
     public class WebDriverManager
     {
-        private static IWebDriver Driver;
         public static Boolean IsCloud = false;
 
-        public static IWebDriver StartDriver(Config.Browser browser, TimeSpan timeout, Uri remoteWebDriverUri)
+        public static RemoteWebDriver StartDriver(Config.Browser browser, TimeSpan timeout, Uri remoteWebDriverUri)
         {
             DesiredCapabilities capability = null;
 
@@ -77,24 +74,24 @@ namespace UniformDocs.Tests.Utilities
 
             capability.SetCapability("project", "UniformDocs");
             capability.SetCapability("name", NUnit.Framework.TestContext.CurrentContext.Test.FullName);
-            Driver = new RemoteWebDriver(remoteWebDriverUri, capability);
+            var driver = new RemoteWebDriver(remoteWebDriverUri, capability);
 
-            var allowsDetection = Driver as IAllowsFileDetection;
+            var allowsDetection = driver as IAllowsFileDetection;
             if (allowsDetection != null)
             {
                 allowsDetection.FileDetector = new LocalFileDetector();
             }
 
-            Driver.Manage().Timeouts().PageLoad = timeout;
-            Driver.Manage().Timeouts().AsynchronousJavaScript = timeout;
-            return Driver;
+            driver.Manage().Timeouts().PageLoad = timeout;
+            driver.Manage().Timeouts().AsynchronousJavaScript = timeout;
+            return driver;
         }
 
-        public static void StopDriver()
+        public static void StopDriver(RemoteWebDriver driver)
         {
-            Driver?.Quit();
+            driver.Quit();
         }
-        public static void MarkTestStatusOnBrowserStack(ResultState outcome, string message)
+        public static void MarkTestStatusOnBrowserStack(RemoteWebDriver driver, ResultState outcome, string message)
         {
             if (IsCloud == false)
             {
@@ -113,7 +110,7 @@ namespace UniformDocs.Tests.Utilities
             json["reason"] = message;
             string reqString = json.ToString();
 
-            SessionId sessionId = ((RemoteWebDriver)Driver).SessionId;
+            SessionId sessionId = driver.SessionId;
 
             byte[] requestData = Encoding.UTF8.GetBytes(reqString);
             Uri myUri = new Uri($"https://www.browserstack.com/automate/sessions/{sessionId.ToString()}.json");

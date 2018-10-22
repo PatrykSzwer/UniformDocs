@@ -4,6 +4,7 @@ using System.Linq;
 using UniformDocs.Tests.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
 using System.IO;
@@ -13,7 +14,7 @@ namespace UniformDocs.Tests.Test
 {
     public class BaseTest
     {
-        public IWebDriver Driver;
+        public RemoteWebDriver Driver;
         private readonly Config.Browser _browser;
         private readonly string _browsersTc = TestContext.Parameters["Browsers"];
         private List<string> _browsersToRun = new List<string>();
@@ -79,11 +80,14 @@ namespace UniformDocs.Tests.Test
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
-            if (WebDriverManager.IsCloud)
+            if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Skipped)
             {
-                WebDriverManager.MarkTestStatusOnBrowserStack(LastOutcome, LastOutcomeMessage);
+                if (WebDriverManager.IsCloud)
+                {
+                    WebDriverManager.MarkTestStatusOnBrowserStack(Driver, LastOutcome, LastOutcomeMessage);
+                }
+                WebDriverManager.StopDriver(Driver);
             }
-            WebDriverManager.StopDriver();
         }
 
         private string GetSafeFilename(string filename)
