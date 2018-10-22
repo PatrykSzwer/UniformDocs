@@ -28,7 +28,7 @@ namespace UniformDocs.Tests.Utilities
    .AddressList.First(
        f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
    .ToString();
-        public static readonly Uri UniformDocsUrl = new Uri($"http://{LocalIP}:8080/UniformDocs");
+        public static readonly Uri TestedAppUrl = new Uri($"http://{LocalIP}:8080/UniformDocs");
         public static readonly Uri RemoteWebDriverUri = new Uri("http://hub-cloud.browserstack.com/wd/hub/");
         public static readonly string BrowserstackUsername = Environment.GetEnvironmentVariable("BROWSERSTACK_USERNAME");
         public static readonly string BrowserstackAccessKey = Environment.GetEnvironmentVariable("BROWSERSTACK_ACCESS_KEY");

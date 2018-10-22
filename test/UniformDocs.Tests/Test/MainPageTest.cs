@@ -17,7 +17,7 @@ namespace UniformDocs.Tests.Test
 
         static string GetAppVersionFromEndPoint()
         {
-            return new System.Net.WebClient().DownloadString(Config.UniformDocsUrl + "/uniformdocs-app-version");
+            return new System.Net.WebClient().DownloadString(Config.TestedAppUrl + "/uniformdocs-app-version");
         }
 
         public MainPageTest(Config.Browser browser) : base(browser)

@@ -28,23 +28,23 @@ namespace UniformDocs.Tests.Test
         {
             _redirectPage.ClickButton(Config.Buttons.Fruit);
             Assert.IsTrue(WaitForText(_redirectPage.InfoLabel, "You've got some tasty apple", 20));
-            Assert.AreEqual(Config.UniformDocsUrl + "/Redirect/apple", Driver.Url);
+            Assert.AreEqual(Config.TestedAppUrl + "/Redirect/apple", Driver.Url);
 
             _redirectPage.ClickButton(Config.Buttons.Vegetable);
             Assert.IsTrue(WaitForText(_redirectPage.InfoLabel, "You've got some tasty carrot", 20));
-            Assert.AreEqual(Config.UniformDocsUrl + "/Redirect/carrot", Driver.Url);
+            Assert.AreEqual(Config.TestedAppUrl + "/Redirect/carrot", Driver.Url);
 
             _redirectPage.ClickButton(Config.Buttons.Bread);
             Assert.IsTrue(WaitForText(_redirectPage.InfoLabel, "You've got some tasty baguette", 20));
-            Assert.AreEqual(Config.UniformDocsUrl + "/Redirect/baguette", Driver.Url);
+            Assert.AreEqual(Config.TestedAppUrl + "/Redirect/baguette", Driver.Url);
         }
 
         [Test]
         public void RedirectPage_ClickingOnRedirectToAnotherPartialShouldChangeUrl()
         {
             _redirectPage.ClickButton(Config.Buttons.Morph);
-            WaitUntil(x => Driver.Url == Config.UniformDocsUrl.ToString());
-            Assert.AreEqual(Config.UniformDocsUrl.ToString(), Driver.Url);
+            WaitUntil(x => Driver.Url == Config.TestedAppUrl.ToString());
+            Assert.AreEqual(Config.TestedAppUrl.ToString(), Driver.Url);
         }
 
         [Test]

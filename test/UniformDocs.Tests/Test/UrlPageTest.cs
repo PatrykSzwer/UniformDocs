@@ -48,14 +48,14 @@ namespace UniformDocs.Tests.Test
             jsExecuter.ExecuteScript("window.footprintExists = true");
 
             // control test 
-            Assert.AreEqual($"{Config.UniformDocsUrl}/Url", Driver.Url);
+            Assert.AreEqual($"{Config.TestedAppUrl}/Url", Driver.Url);
             Assert.AreEqual(true, jsExecuter.ExecuteScript("return window.footprintExists"));
 
             _urlPage.ClickSimpleMorphableLink();
 
             System.Threading.Thread.Sleep(2000);
 
-            Assert.AreEqual(Driver.Url, Config.UniformDocsUrl.ToString());
+            Assert.AreEqual(Driver.Url, Config.TestedAppUrl.ToString());
 
             // if the foot print still exists, we can infer that the page was actually morphed, not fully loaded
             Assert.AreEqual(true, jsExecuter.ExecuteScript("return window.footprintExists"));
@@ -107,7 +107,7 @@ namespace UniformDocs.Tests.Test
 
             System.Threading.Thread.Sleep(500);
 
-            Assert.AreEqual(GetIframeCurrentURL(), Config.UniformDocsUrl.ToString());
+            Assert.AreEqual(GetIframeCurrentURL(), Config.TestedAppUrl.ToString());
         }
         [Test]
         public void UrlPage_GitHubSourceURL()
