@@ -12,7 +12,7 @@ namespace UniformDocs.Tests.Utilities
 {
     public class WebDriverManager
     {
-        public static Boolean IsCloud = false;
+        public static bool IsCloud;
 
         public static RemoteWebDriver StartDriver(Config.Browser browser, TimeSpan timeout, Uri remoteWebDriverUri)
         {

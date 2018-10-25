@@ -18,8 +18,8 @@ namespace UniformDocs.Tests.Test
         private readonly Config.Browser _browser;
         private readonly string _browsersTc = TestContext.Parameters["Browsers"];
         private List<string> _browsersToRun = new List<string>();
-        private ResultState LastOutcome = null;
-        private string LastOutcomeMessage = null;
+        private ResultState LastOutcome;
+        private string LastOutcomeMessage;
 
         public BaseTest(Config.Browser browser)
         {
@@ -64,16 +64,7 @@ namespace UniformDocs.Tests.Test
                 //this class has single driver session for all test methods
                 //we don't want to mark a test as passed if it was already marked as failed
                 LastOutcome = TestContext.CurrentContext.Result.Outcome;
-
-                //LastOutcomeMessage = TestContext.CurrentContext.Result.StackTrace;
                 LastOutcomeMessage = TestContext.CurrentContext.Result.Message;
-                /*
-                example stack trace:
-                (Marked via REST API: at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException) at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition) at UniformDocs.Tests.Test.BaseTest.WaitForText(IWeb)
-
-                example message:
-                (Marked via REST API: OpenQA.Selenium.WebDriverTimeoutException : Timed out after 5 seconds) 
-                */
             }
         }
 
