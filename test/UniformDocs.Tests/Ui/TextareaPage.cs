@@ -18,10 +18,7 @@ namespace UniformDocs.Tests.Ui
 
         public void FillTextarea(string input)
         {
-            //Textarea.SendKeys(input); does not work well in Chrome
-            var script = "return arguments[0].value = '" + input + "';";
-            ExecuteScriptOnElement(Textarea, script);
-            TriggerEventOnElement(Textarea, "input");
+            Textarea.SendKeys(input);
         }
 
         public void ClearTextarea()
