@@ -41,8 +41,8 @@ namespace UniformDocs.Tests.Test
         {
             WaitUntil(x => _textPage.InputDynamic.Displayed);
 
-            _textPage.FillInput(_textPage.InputDynamic, "K");
-            Assert.IsTrue(WaitForText(_textPage.InputInfoLabelDynamic, "Hi, K!", 5));
+            _textPage.FillInput(_textPage.InputDynamic, "Krystian");
+            Assert.IsTrue(WaitForText(_textPage.InputInfoLabelDynamic, "Hi, Krystian!", 5));
             _textPage.ClearInput(_textPage.InputDynamic);
             WaitUntil(x => _textPage.InputDynamic.Text == string.Empty);
             WaitUntil(x => "What's your name?" == _textPage.InputInfoLabelDynamic.Text, 
@@ -73,8 +73,8 @@ namespace UniformDocs.Tests.Test
 
             var shadowInput = _textPage.GetInputForPaperElement(_textPage.PaperInputDynamic);
 
-            _textPage.FillInput(shadowInput, "K");
-            Assert.IsTrue(WaitForText(_textPage.PaperInputDynamicInfoLabel, "Hi, K!", 5));
+            _textPage.FillInput(shadowInput, "Krystian");
+            Assert.IsTrue(WaitForText(_textPage.PaperInputDynamicInfoLabel, "Hi, Krystian!", 5));
             _textPage.ClearInput(shadowInput);
             WaitUntil(x => shadowInput.Text == string.Empty);
             Assert.AreEqual("What's your name?", _textPage.PaperInputDynamicInfoLabel.Text);
