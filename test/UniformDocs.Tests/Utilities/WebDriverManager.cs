@@ -16,6 +16,9 @@ namespace UniformDocs.Tests.Utilities
 
         public static RemoteWebDriver StartDriver(Config.Browser browser, TimeSpan timeout, Uri remoteWebDriverUri)
         {
+            //DesiredCapabilities are created with the tool https://www.browserstack.com/automate/capabilities
+            //DesiredCapabilities is an outdated API in Selenium, to be replaced with ChromeOptions, etc
+            //but BrowserStack does not support ChromeOptions yet
             DesiredCapabilities capability = null;
 
             switch (browser)
@@ -72,7 +75,7 @@ namespace UniformDocs.Tests.Utilities
                 capability.SetCapability("browserstack.console", "verbose");
             }
 
-            capability.SetCapability("project", "UniformDocs");
+            capability.SetCapability("project", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
             capability.SetCapability("name", NUnit.Framework.TestContext.CurrentContext.Test.FullName);
             var driver = new RemoteWebDriver(remoteWebDriverUri, capability);
 
