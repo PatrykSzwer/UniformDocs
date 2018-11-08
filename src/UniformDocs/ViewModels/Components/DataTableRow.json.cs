@@ -8,8 +8,8 @@ namespace UniformDocs.ViewModels.Components
         public void Handle(Input.DeleteTrigger action)
         {
             this.Data.Delete();
-            var rows = this.Parent as Arr<Json>;
-            rows.Remove(this);
+            var rows = this.Parent.Parent.Parent.Parent.Parent as DataTablePage;
+            rows.DataTable.LoadRows();
         }
     }
 }
