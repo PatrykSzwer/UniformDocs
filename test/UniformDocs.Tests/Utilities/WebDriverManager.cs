@@ -121,7 +121,7 @@ namespace UniformDocs.Tests.Utilities
             myWebRequest.ContentLength = requestData.Length;
             using (Stream st = myWebRequest.GetRequestStream()) st.Write(requestData, 0, requestData.Length);
 
-            NetworkCredential myNetworkCredential = new NetworkCredential("marcinwarpechows2", "xvYLWUcCzss2xgKmXBzG");
+            NetworkCredential myNetworkCredential = new NetworkCredential(Config.BrowserstackUsername, Config.BrowserstackAccessKey);
             CredentialCache myCredentialCache = new CredentialCache();
             myCredentialCache.Add(myUri, "Basic", myNetworkCredential);
             myHttpWebRequest.PreAuthenticate = true;
