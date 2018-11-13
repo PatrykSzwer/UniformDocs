@@ -16,13 +16,12 @@ namespace UniformDocs.Tests.Utilities
 
         public static RemoteWebDriver StartDriver(Config.Browser browser, TimeSpan timeout, Uri remoteWebDriverUri)
         {
-            DesiredCapabilities capability = null;
+            DesiredCapabilities capability = new DesiredCapabilities();
 
             switch (browser)
             {
                 case Config.Browser.Chrome:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os", "Windows");
                         capability.SetCapability("os_version", "10");
                         capability.SetCapability("browser", "Chrome");
@@ -31,7 +30,6 @@ namespace UniformDocs.Tests.Utilities
                     }
                 case Config.Browser.Edge:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os", "Windows");
                         capability.SetCapability("os_version", "10");
                         capability.SetCapability("browser", "Edge");
@@ -59,103 +57,44 @@ namespace UniformDocs.Tests.Utilities
                     }
                 case Config.Browser.iPhoneSE:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os_version", "11.2");
                         capability.SetCapability("device", "iPhone SE");
                         capability.SetCapability("real_mobile", "true");
-                        capability.SetCapability("project", "UniformDocs");
-                        capability.SetCapability("name", "TeamCity");
-                        capability.SetCapability("browserstack.local", "true");
-                        capability.SetCapability("browserstack.debug", "true");
-                        capability.SetCapability("browserstack.networkProfile", "3g-umts-good");
-                        capability.SetCapability("browserstack.video", "false");
-                        capability.SetCapability("browserstack.user", "marcinwarpechows2");
-                        capability.SetCapability("browserstack.key", "QgzxxRnmuB5yBrpv1yqW");
                         break;
                     }
-
                 case Config.Browser.iPhone6S:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os_version", "11.4");
                         capability.SetCapability("device", "iPhone 6S");
                         capability.SetCapability("real_mobile", "true");
-                        capability.SetCapability("project", "UniformDocs");
-                        capability.SetCapability("name", "TeamCity");
-                        capability.SetCapability("browserstack.local", "true");
-                        capability.SetCapability("browserstack.debug", "true");
-                        capability.SetCapability("browserstack.networkProfile", "3g-umts-good");
-                        capability.SetCapability("browserstack.video", "false");
-                        capability.SetCapability("browserstack.user", "marcinwarpechows2");
-                        capability.SetCapability("browserstack.key", "QgzxxRnmuB5yBrpv1yqW");
                         break;
                     }
-
                 case Config.Browser.GoogleNexus6:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os_version", "6.0");
                         capability.SetCapability("device", "Google Nexus 6");
                         capability.SetCapability("real_mobile", "true");
-                        capability.SetCapability("project", "UniformDocs");
-                        capability.SetCapability("name", "TeamCity");
-                        capability.SetCapability("browserstack.local", "true");
-                        capability.SetCapability("browserstack.debug", "true");
-                        capability.SetCapability("browserstack.networkProfile", "3g-umts-good");
-                        capability.SetCapability("browserstack.video", "false");
-                        capability.SetCapability("browserstack.user", "marcinwarpechows2");
-                        capability.SetCapability("browserstack.key", "QgzxxRnmuB5yBrpv1yqW");
                         break;
                     }
-
                 case Config.Browser.SamsungGalaxyS6:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os_version", "5.0");
                         capability.SetCapability("device", "Samsung Galaxy S6");
                         capability.SetCapability("real_mobile", "true");
-                        capability.SetCapability("project", "UniformDocs");
-                        capability.SetCapability("name", "TeamCity");
-                        capability.SetCapability("browserstack.local", "true");
-                        capability.SetCapability("browserstack.debug", "true");
-                        capability.SetCapability("browserstack.networkProfile", "3g-umts-good");
-                        capability.SetCapability("browserstack.video", "false");
-                        capability.SetCapability("browserstack.user", "marcinwarpechows2");
-                        capability.SetCapability("browserstack.key", "QgzxxRnmuB5yBrpv1yqW");
                         break;
                     }
-
                 case Config.Browser.iPadMini4:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os_version", "11.4");
                         capability.SetCapability("device", "iPad Mini 4");
                         capability.SetCapability("real_mobile", "true");
-                        capability.SetCapability("project", "UniformDocs");
-                        capability.SetCapability("name", "TeamCity");
-                        capability.SetCapability("browserstack.local", "true");
-                        capability.SetCapability("browserstack.debug", "true");
-                        capability.SetCapability("browserstack.networkProfile", "3g-umts-good");
-                        capability.SetCapability("browserstack.video", "false");
-                        capability.SetCapability("browserstack.user", "marcinwarpechows2");
-                        capability.SetCapability("browserstack.key", "QgzxxRnmuB5yBrpv1yqW");
                         break;
                     }
-
                 case Config.Browser.GoogleNexus9:
                     {
-                        capability = new DesiredCapabilities();
                         capability.SetCapability("os_version", "5.1");
                         capability.SetCapability("device", "Google Nexus 9");
                         capability.SetCapability("real_mobile", "true");
-                        capability.SetCapability("project", "UniformDocs");
-                        capability.SetCapability("name", "TeamCity");
-                        capability.SetCapability("browserstack.local", "true");
-                        capability.SetCapability("browserstack.debug", "true");
-                        capability.SetCapability("browserstack.networkProfile", "3g-umts-good");
-                        capability.SetCapability("browserstack.video", "false");
-                        capability.SetCapability("browserstack.user", "marcinwarpechows2");
-                        capability.SetCapability("browserstack.key", "QgzxxRnmuB5yBrpv1yqW");
                         break;
                     }
             }
@@ -175,6 +114,7 @@ namespace UniformDocs.Tests.Utilities
 
             capability.SetCapability("project", "UniformDocs");
             capability.SetCapability("name", NUnit.Framework.TestContext.CurrentContext.Test.FullName);
+
             var driver = new RemoteWebDriver(remoteWebDriverUri, capability);
 
             var allowsDetection = driver as IAllowsFileDetection;

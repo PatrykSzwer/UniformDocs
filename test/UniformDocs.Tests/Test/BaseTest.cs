@@ -35,9 +35,11 @@ namespace UniformDocs.Tests.Test
             }
             else
             {
-                _browsersToRun.Add("Chrome");
-                _browsersToRun.Add("Firefox");
-                //_browsersToRun.Add("Edge");
+                // run all possible browsers by default
+                foreach(var browser in Config.BrowserDictionary)
+                {
+                    _browsersToRun.Add(browser.Value);
+                }
             }
 
             Uri serverUri = Config.RemoteWebDriverUri;
