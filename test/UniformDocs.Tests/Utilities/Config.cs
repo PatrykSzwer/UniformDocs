@@ -11,7 +11,13 @@ namespace UniformDocs.Tests.Utilities
         {
             Chrome,
             Edge,
-            Firefox
+            Firefox,
+            iPhoneSE,
+            iPhone6S,
+            GoogleNexus6,
+            SamsungGalaxyS6,
+            iPadMini4,
+            GoogleNexus9
         }
 
         public enum Buttons
@@ -47,7 +53,13 @@ namespace UniformDocs.Tests.Utilities
         {
             {Browser.Chrome, "Chrome"},
             {Browser.Edge, "Edge"},
-            {Browser.Firefox, "Firefox"}
+            {Browser.Firefox, "Firefox"},
+            {Browser.iPhoneSE, "iPhoneSE"},
+            {Browser.iPhone6S, "iPhone6S"},
+            {Browser.GoogleNexus6, "GoogleNexus6"},
+            {Browser.SamsungGalaxyS6, "SamsungGalaxyS6"},
+            {Browser.iPadMini4, "iPadMini4"},
+            {Browser.GoogleNexus9, "GoogleNexus9" }
         };
     }
 }
