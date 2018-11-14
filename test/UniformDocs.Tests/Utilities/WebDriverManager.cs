@@ -55,42 +55,63 @@ namespace UniformDocs.Tests.Utilities
                         capability.SetCapability("browser_version", "62.0");
                         break;
                     }
-                case Config.Browser.iPhoneSE:
+                case Config.Browser.iOS12:
                     {
-                        capability.SetCapability("os_version", "11.2");
-                        capability.SetCapability("device", "iPhone SE");
+                        capability.SetCapability("os_version", "12.0");
+                        capability.SetCapability("device", "iPhone XS");
                         capability.SetCapability("real_mobile", "true");
                         break;
                     }
-                case Config.Browser.iPhone6S:
+                case Config.Browser.iOS11point4:
                     {
                         capability.SetCapability("os_version", "11.4");
                         capability.SetCapability("device", "iPhone 6S");
                         capability.SetCapability("real_mobile", "true");
                         break;
                     }
-                case Config.Browser.GoogleNexus6:
+                case Config.Browser.iOS11point2:
                     {
-                        capability.SetCapability("os_version", "6.0");
-                        capability.SetCapability("device", "Google Nexus 6");
+                        capability.SetCapability("os_version", "11.2");
+                        capability.SetCapability("device", "iPhone 6");
                         capability.SetCapability("real_mobile", "true");
                         break;
                     }
-                case Config.Browser.SamsungGalaxyS6:
+                case Config.Browser.iOS11point3:
                     {
-                        capability.SetCapability("os_version", "5.0");
-                        capability.SetCapability("device", "Samsung Galaxy S6");
+                        capability.SetCapability("os_version", "11.3");
+                        capability.SetCapability("device", "iPad 6th");
                         capability.SetCapability("real_mobile", "true");
                         break;
                     }
-                case Config.Browser.iPadMini4:
+                case Config.Browser.Android8Oreo:
                     {
-                        capability.SetCapability("os_version", "11.4");
-                        capability.SetCapability("device", "iPad Mini 4");
+                        capability.SetCapability("os_version", "8.0");
+                        capability.SetCapability("device", "Samsung Galaxy S9");
                         capability.SetCapability("real_mobile", "true");
                         break;
                     }
-                case Config.Browser.GoogleNexus9:
+                case Config.Browser.Android8point1Oreo:
+                    {
+                        capability.SetCapability("os_version", "8.1");
+                        capability.SetCapability("device", "Samsung Galaxy Note 9");
+                        capability.SetCapability("real_mobile", "true");
+                        break;
+                    }
+                case Config.Browser.Android7Nougat:
+                    {
+                        capability.SetCapability("os_version", "7.0");
+                        capability.SetCapability("device", "Samsung Galaxy S8");
+                        capability.SetCapability("real_mobile", "true");
+                        break;
+                    }                
+                case Config.Browser.Android7point1Nougat:
+                    {
+                        capability.SetCapability("os_version", "7.1");
+                        capability.SetCapability("device", "Google Pixel");
+                        capability.SetCapability("real_mobile", "true");
+                        break;
+                    }
+                case Config.Browser.Android5point1Lolliopop:
                     {
                         capability.SetCapability("os_version", "5.1");
                         capability.SetCapability("device", "Google Nexus 9");

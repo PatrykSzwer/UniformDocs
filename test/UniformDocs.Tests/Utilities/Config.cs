@@ -12,12 +12,16 @@ namespace UniformDocs.Tests.Utilities
             Chrome,
             Edge,
             Firefox,
-            iPhoneSE,
-            iPhone6S,
-            GoogleNexus6,
-            SamsungGalaxyS6,
-            iPadMini4,
-            GoogleNexus9
+            iOS12,
+            iOS11point4,
+            iOS11point2,
+            iOS11point3,
+            Android8Oreo,
+            Android7Nougat,
+            Android6Marshmello,
+            Android8point1Oreo,
+            Android7point1Nougat,
+            Android5point1Lolliopop
         }
 
         public enum Buttons
@@ -54,12 +58,17 @@ namespace UniformDocs.Tests.Utilities
             {Browser.Chrome, "Chrome"},
             {Browser.Edge, "Edge"},
             {Browser.Firefox, "Firefox"},
-            {Browser.iPhoneSE, "iPhoneSE"},
-            {Browser.iPhone6S, "iPhone6S"},
-            {Browser.GoogleNexus6, "GoogleNexus6"},
-            {Browser.SamsungGalaxyS6, "SamsungGalaxyS6"},
-            {Browser.iPadMini4, "iPadMini4"},
-            {Browser.GoogleNexus9, "GoogleNexus9" }
+            {Browser.iOS12, "iOS12"},
+            {Browser.iOS11point4, "iPhone6S"},
+            {Browser.iOS11point2, "iOS11point2"},
+            {Browser.iOS11point3, "iOS11point3"},
+            {Browser.Android8Oreo, "Andriod8Oreo"},
+            {Browser.Android7Nougat, "GoogleNexus9"},
+            {Browser.Android7Nougat, "Android7Nougat"},
+            {Browser.Android6Marshmello,"Android6Marshmello"},
+            {Browser.Android8point1Oreo, "Android8point1Oreo"},
+            {Browser.Android7point1Nougat,"Android5point1Lolliopop"},
+            {Browser.Android5point1Lolliopop, "Android5point1Lolliopop"}
         };
     }
 }

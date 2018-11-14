@@ -6,8 +6,19 @@ using UniformDocs.Tests.Utilities;
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)] //BUG on EDGE https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7194303/
+    [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
+    [TestFixture(Config.Browser.iOS11point2)]
+    [TestFixture(Config.Browser.Android7Nougat)]
+    [TestFixture(Config.Browser.Android8Oreo)]
+    [TestFixture(Config.Browser.iOS11point4)]
+    [TestFixture(Config.Browser.iOS12)]
+    [TestFixture(Config.Browser.iOS11point3)]
+    [TestFixture(Config.Browser.Android7Nougat)]
+    [TestFixture(Config.Browser.Android6Marshmello)]
+    [TestFixture(Config.Browser.Android8point1Oreo)]
+    [TestFixture(Config.Browser.Android7point1Nougat)]
+    [TestFixture(Config.Browser.Android5point1Lolliopop)]
     class FileUploadPageTest : BaseTest
     {
         private FileUploadPage _fileUploadPage;
