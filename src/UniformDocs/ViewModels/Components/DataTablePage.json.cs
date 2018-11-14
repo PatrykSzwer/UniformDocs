@@ -16,7 +16,7 @@ namespace UniformDocs.ViewModels.Components
         public void Init()
         {
             this.DataTable = new DataTableBuilder<DataTableRow>()
-                .WithDataSource(DbLinq.Objects<Person>())
+                .WithDataSource(DbLinq.Objects<Person>(), data => data.WithConverter(CreateDataTableRow))
                 .WithColumns(columns =>
                     columns
                         .AddColumn(b => b.FirstName, column => column.DisplayName("First Name").Sortable().Filterable())
@@ -24,6 +24,23 @@ namespace UniformDocs.ViewModels.Components
                         .AddColumn(b => b.Email, column => column.Filterable().Sortable().DisplayName("Email")))
                 .WithInitialPageSize(20)
                 .Build();
+        }
+
+        private DataTableRow CreateDataTableRow(Person person)
+        {
+            var newDataTableRow = new DataTableRow
+            {
+                DeleteAction = DeleteTableRow,
+                Data = person
+            };
+
+            return newDataTableRow;
+        }
+
+        private void DeleteTableRow(DataTableRow tableRow)
+        {
+            Db.Transact(() => { tableRow.Data.Delete(); });
+            this.DataTable.LoadRows();
         }
 
         void Handle(Input.AddNewRowTrigger action)
