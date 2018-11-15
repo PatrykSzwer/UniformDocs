@@ -49,7 +49,7 @@ Function runTests()
 {
 	$NunitConsoleRunnerExePath = "$checkoutDir\$testedApp\packages\NUnit.ConsoleRunner.$nunitVersion\tools\nunit3-console.exe"
 	$NunitArg = "$testsPath --noheader --teamcity --params Browsers=$browsersToRun"
-	if($testsToRun)
+	if($testsToRun -and $testsToRun -ne "all")
 	{
 		$NunitArg = "$NunitArg --test $testsToRun"
 	}
