@@ -1,3 +1,7 @@
+# example of how to run this script locally:
+# 1) change $StarcounterDir and other Starcounter paths in this script to your local values
+# 2) run in Powershell: PS W:\repo\UniformDocs\tools> .\Teamcity.ps1 -checkoutDir ../.. -testsPath ..\test\UniformDocs.Tests\bin\Debug\UniformDocs.Tests.dll -browsersToRun Chrome -nunitVersion 3.6.1 -testedApp UniformDocs -appsToRun UniformDocs -testsToRun "UniformDocs.Tests.Test.TextareaPageTest(Chrome).TextareaPage_WriteToTextArea,UniformDocs.Tests.Test.AutoCompletePageTest(Chrome).AutoCompletePage_FillStarExpectAllItemsShowUp"
+
 Param
 (
 	[Parameter(Mandatory=$true)][string] $checkoutDir, 
@@ -6,7 +10,8 @@ Param
 	[Parameter(Mandatory=$true)][string] $testedApp, 
 	[Parameter(Mandatory=$true)][string] $appsToRun, 
 	[Parameter(Mandatory=$false)][string] $helpersToRun, 
-	[Parameter(Mandatory=$false)][string] $testsPath
+	[Parameter(Mandatory=$false)][string] $testsPath, 
+	[Parameter(Mandatory=$false)][string] $testsToRun
 )
 
 $StarcounterDir = "$checkoutDir\sc"
@@ -44,7 +49,10 @@ Function runTests()
 {
 	$NunitConsoleRunnerExePath = "$checkoutDir\$testedApp\packages\NUnit.ConsoleRunner.$nunitVersion\tools\nunit3-console.exe"
 	$NunitArg = "$testsPath --noheader --teamcity --params Browsers=$browsersToRun"
-	
+	if($testsToRun -and $testsToRun -ne "all")
+	{
+		$NunitArg = "$NunitArg --test $testsToRun"
+	}
 	Start-Process -FilePath $NunitConsoleRunnerExePath -ArgumentList $NunitArg -NoNewWindow -Wait
 }
 
