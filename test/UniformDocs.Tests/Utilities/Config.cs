@@ -59,15 +59,14 @@ namespace UniformDocs.Tests.Utilities
             {Browser.Edge, "Edge"},
             {Browser.Firefox, "Firefox"},
             {Browser.iOS12, "iOS12"},
-            {Browser.iOS11point4, "iPhone6S"},
+            {Browser.iOS11point4, "iOS11point4"},
             {Browser.iOS11point2, "iOS11point2"},
             {Browser.iOS11point3, "iOS11point3"},
-            {Browser.Android8Oreo, "Andriod8Oreo"},
-            {Browser.Android7Nougat, "GoogleNexus9"},
+            {Browser.Android8Oreo, "Android8Oreo"},
             {Browser.Android7Nougat, "Android7Nougat"},
             {Browser.Android6Marshmello,"Android6Marshmello"},
             {Browser.Android8point1Oreo, "Android8point1Oreo"},
-            {Browser.Android7point1Nougat,"Android5point1Lolliopop"},
+            {Browser.Android7point1Nougat,"Android7point1Nougat"},
             {Browser.Android5point1Lolliopop, "Android5point1Lolliopop"}
         };
     }
