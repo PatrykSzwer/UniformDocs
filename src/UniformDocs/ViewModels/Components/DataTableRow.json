@@ -2,5 +2,9 @@
   "FirstName": "",
   "LastName": "",
   "Email$": "",
-  "DeleteTrigger$": 0
+  "DeleteTrigger$": 0,
+  "Deep": {
+    "Message": "initial_1"
+  },
+  "SubPage": {} 
 }

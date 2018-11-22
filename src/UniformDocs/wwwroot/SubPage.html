@@ -1,0 +1,10 @@
+﻿<link rel="import" href="/sys/polymer/polymer.html">
+
+<template>
+    <dom-bind>
+        <template is="dom-bind">
+            <button value="{{model.ButtonTrigger$::click}}" onmousedown="++this.value">Change "initial 2" to "Marcin2"</button>
+            <p>{{model.DeepSub.MessageSub}}</p>
+        </template>
+    </dom-bind>
+</template>

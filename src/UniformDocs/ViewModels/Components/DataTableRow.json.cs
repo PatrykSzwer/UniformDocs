@@ -10,7 +10,8 @@ namespace UniformDocs.ViewModels.Components
 
         public void Handle(Input.DeleteTrigger action)
         {
-            this.DeleteAction?.Invoke(this);
+            //this.DeleteAction?.Invoke(this);
+            this.Deep.Message = "Marcin1";
         }
     }
 }

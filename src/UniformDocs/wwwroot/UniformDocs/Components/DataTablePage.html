@@ -4,6 +4,25 @@
 <link rel="import" href="/sys/uniform.css/components/uni-data-table/uni-data-table-filter.html">
 
 <template>
+<dom-module id="force-refresh">
+    <template>
+        <span>{{viewModel.Message}}</span>
+    </template>
+    <script>
+        (function () {
+            if (customElements.get("force-refresh")) {
+                console.warn(
+                    "<force-refresh> prevented from redefinition. Was this layout already loaded in the current user's session?");
+                return;
+            }
+
+            Polymer({
+                is: "force-refresh"
+            });
+        })();
+    </script>
+</dom-module>
+
     <dom-bind>
         <template is="dom-bind">
             <h1 slot="uniformdocs/datatable-heading">Data Table</h1>
@@ -16,12 +35,14 @@
 
             <button slot="uniformdocs/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
 
+
+
             <uni-data-table slot="uniformdocs/datatable-data-table"
                             provider="{{model.DataTable}}" auto-pagination>
                 <uni-data-table-column index="2">
                     <template slot="header">
                         <uni-data-table-sorter direction="{{column.Sort$}}">
-                                Email
+                            Email
                         </uni-data-table-sorter>
                         <uni-data-table-filter value="{{column.Filter$}}">
                         </uni-data-table-filter>
@@ -32,7 +53,16 @@
                 </uni-data-table-column>
                 <uni-data-table-column>
                     <template>
-                        <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Remove</button>
+                        <div style="height: 400px">
+                            <button value="{{item.DeleteTrigger$::click}}" onmousedown="++this.value">Change "initial 1" to "Marcin1"</button>
+                            <div><force-refresh view-model="{{item.Deep}}"></force-refresh></div>
+                            <div>{{item.Deep.Message}}</div>
+
+                            <hr />
+
+                            <starcounter-include view-model="{{item.SubPage}}"></starcounter-include>
+                            <div>{{item.SubPage.UniformDocs_0.DeepSub.MessageSub}}</div>
+                        </div>
                     </template>
                 </uni-data-table-column>
             </uni-data-table>
@@ -80,7 +110,8 @@
             <ul slot="uniformdocs/developer">
                 <li>The Data Table is declared as a <code>&lt;uni-data-table&gt;</code> element.</li>
                 <li>The state, including the configuration and the data, is provided as a JSON data structure to the <code>provider</code> property.</li>
-                <li>The Pagination Mode is set to Auto Pagination if the <code>auto-pagination</code> attribute is set or the <code>autoPagination</code> boolean property is true. Otherwise, the Pagination Mode is set to Infinite Scrolling.
+                <li>
+                    The Pagination Mode is set to Auto Pagination if the <code>auto-pagination</code> attribute is set or the <code>autoPagination</code> boolean property is true. Otherwise, the Pagination Mode is set to Infinite Scrolling.
                 </li>
             </ul>
 
@@ -135,8 +166,10 @@
                 <tr>
                     <td><code>resizable</code></td>
                     <td><code>resizable</code></td>
-                    <td>Boolean, enables resizing the column for the user by dragging
-    the right edge of the column’s header</td>
+                    <td>
+                        Boolean, enables resizing the column for the user by dragging
+                        the right edge of the column’s header
+                    </td>
                 </tr>
                 <tr>
                     <td><code>frozen</code></td>

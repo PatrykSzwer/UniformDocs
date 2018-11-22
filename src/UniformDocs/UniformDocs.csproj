@@ -122,6 +122,9 @@
     <Compile Include="ViewModels\Components\FormItemPage.json.cs">
       <DependentUpon>FormItemPage.json</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Components\SubPage.json.cs">
+      <DependentUpon>SubPage.json</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\HowTo\BlendableMenu\MenuButtonsPage.json.cs">
       <DependentUpon>MenuButtonsPage.json</DependentUpon>
     </Compile>
@@ -265,8 +268,12 @@
     <TypedJSON Include="ViewModels\HowTo\BlendableMenu\MenuLinksPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="ViewModels\Components\SubPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuButtonsPage.html" />
     <None Include="wwwroot\UniformDocs\HowTo\BlendableMenu\MenuLinksPage.html" />
+    <None Include="wwwroot\SubPage.html" />
     <Content Include="wwwroot\UniformDocs\SubNavPage.html" />
     <TypedJSON Include="ViewModels\UIKitPage.json">
       <Generator>MsBuild:Compile</Generator>

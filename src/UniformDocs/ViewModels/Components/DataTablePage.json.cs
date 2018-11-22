@@ -31,7 +31,8 @@ namespace UniformDocs.ViewModels.Components
             var newDataTableRow = new DataTableRow
             {
                 DeleteAction = DeleteTableRow,
-                Data = person
+                Data = person,
+                SubPage = Self.GET("/subpage")
             };
 
             return newDataTableRow;

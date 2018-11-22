@@ -67,6 +67,7 @@ namespace UniformDocs
                 () => { return Db.Scope(() => new BreadcrumbPage()); });
             Handle.GET("/UniformDocs/breadcrumb", () => WrapPage<BreadcrumbPage>("/UniformDocs/partial/breadcrumb"));
 
+            Handle.GET("/subpage", () => new SubPage());
             Handle.GET("/UniformDocs/partial/button", () => new ButtonPage());
             Handle.GET("/UniformDocs/button", () => WrapPage<ButtonPage>("/UniformDocs/partial/button"));
 
