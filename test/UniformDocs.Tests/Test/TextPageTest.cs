@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
     internal class TextPageTest : BaseTest
@@ -45,7 +46,7 @@ namespace UniformDocs.Tests.Test
             Assert.IsTrue(WaitForText(_textPage.InputInfoLabelDynamic, "Hi, Krystian!", 5));
             _textPage.ClearInput(_textPage.InputDynamic);
             WaitUntil(x => _textPage.InputDynamic.Text == string.Empty);
-            WaitUntil(x => "What's your name?" == _textPage.InputInfoLabelDynamic.Text, 
+            WaitUntil(x => "What's your name?" == _textPage.InputInfoLabelDynamic.Text,
                 $"Expected: What's your name?, but was: {_textPage.InputInfoLabelDynamic.Text}");
         }
 

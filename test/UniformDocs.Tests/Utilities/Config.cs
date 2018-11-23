@@ -11,7 +11,8 @@ namespace UniformDocs.Tests.Utilities
         {
             Chrome,
             Edge,
-            Firefox
+            Firefox,
+            ChromeNoV0
         }
 
         public enum Buttons
@@ -46,6 +47,7 @@ namespace UniformDocs.Tests.Utilities
         public static readonly Dictionary<Browser, string> BrowserDictionary = new Dictionary<Browser, string>
         {
             {Browser.Chrome, "Chrome"},
+            {Browser.ChromeNoV0, "Chrome"},
             {Browser.Edge, "Edge"},
             {Browser.Firefox, "Firefox"}
         };

@@ -7,6 +7,7 @@ using System.Net;
 using System.IO;
 using NUnit.Framework.Interfaces;
 using Newtonsoft.Json.Linq;
+using OpenQA.Selenium.Chrome;
 
 namespace UniformDocs.Tests.Utilities
 {
@@ -27,6 +28,19 @@ namespace UniformDocs.Tests.Utilities
                         capability.SetCapability("os_version", "10");
                         capability.SetCapability("browser", "Chrome");
                         capability.SetCapability("browser_version", "69.0");
+                        break;
+                    }
+                case Config.Browser.ChromeNoV0:
+                    {
+                        var chromeOptions = new ChromeOptions();
+                        chromeOptions.AddArgument("--disable-blink-features=ShadowDOMV0,CustomElementsV0,HTMLImports");
+
+                        capability = (DesiredCapabilities)chromeOptions.ToCapabilities();
+
+                        capability.SetCapability("os", "Windows");
+                        capability.SetCapability("os_version", "10");
+                        capability.SetCapability("browser", "Chrome");
+                        capability.SetCapability("browser_version", "70.0");
                         break;
                     }
                 case Config.Browser.Edge:

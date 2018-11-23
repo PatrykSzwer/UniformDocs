@@ -8,6 +8,7 @@ using OpenQA.Selenium.Support.UI;
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
     internal class UrlPageTest : BaseTest
@@ -47,7 +48,7 @@ namespace UniformDocs.Tests.Test
             // leave a foot print in the window object
             jsExecuter.ExecuteScript("window.footprintExists = true");
 
-            // control test 
+            // control test
             Assert.AreEqual($"{Config.TestedAppUrl}/Url", Driver.Url);
             Assert.AreEqual(true, jsExecuter.ExecuteScript("return window.footprintExists"));
 
@@ -67,7 +68,7 @@ namespace UniformDocs.Tests.Test
         {
             WaitUntil(x => _urlPage.BlankTargettedLink.Displayed);
 
-            //control test 
+            //control test
             Assert.AreEqual(Driver.WindowHandles.Count, 1);
 
             WaitUntil(x => ExpectedConditions.ElementToBeClickable(_urlPage.BlankTargettedLink));
@@ -100,7 +101,7 @@ namespace UniformDocs.Tests.Test
         {
             WaitUntil(x => _urlPage.IframeTargettedLink != null && _urlPage.IframeTargettedLink.Displayed);
 
-            //control test 
+            //control test
             Assert.AreEqual(GetIframeCurrentURL(), "about:blank");
 
             _urlPage.ClickIframeTargettedLink();
