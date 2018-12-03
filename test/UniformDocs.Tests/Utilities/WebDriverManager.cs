@@ -32,11 +32,10 @@ namespace UniformDocs.Tests.Utilities
                     }
                 case Config.Browser.ChromeNoV0:
                     {
+                        //additional tests for pages to work when Web Components V0 implementation is removed from Chrome in April 2019
                         var chromeOptions = new ChromeOptions();
                         chromeOptions.AddArgument("--disable-blink-features=ShadowDOMV0,CustomElementsV0,HTMLImports");
-
                         capability = (DesiredCapabilities)chromeOptions.ToCapabilities();
-
                         capability.SetCapability("os", "Windows");
                         capability.SetCapability("os_version", "10");
                         capability.SetCapability("browser", "Chrome");
