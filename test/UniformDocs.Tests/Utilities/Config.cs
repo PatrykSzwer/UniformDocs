@@ -38,7 +38,7 @@ namespace UniformDocs.Tests.Utilities
         public static readonly Uri TestedAppUrl = new Uri($"http://{LocalIP}:8080/UniformDocs");
         public static readonly string SauceLabsUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME");
         public static readonly string SauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY");
-        public static readonly Uri RemoteWebDriverUri = new Uri($"http://{SauceLabsUserName}:{SauceAccessKey}@ondemand.saucelabs.com:80/wd/hub");
+        public static readonly Uri RemoteWebDriverUri = new Uri($"http://ondemand.saucelabs.com:80/wd/hub");
 
         public static readonly Dictionary<Buttons, string> ButtonsDictionary = new Dictionary<Buttons, string>
         {

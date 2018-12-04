@@ -7,6 +7,7 @@ using System.Net;
 using System.IO;
 using NUnit.Framework.Interfaces;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace UniformDocs.Tests.Utilities
 {
@@ -103,10 +104,13 @@ namespace UniformDocs.Tests.Utilities
             {
                 IsCloud = true;
                 capability.SetCapability("recordVideo", false);
-                capability.SetCapability("recordScreenshots", false);
+                capability.SetCapability("recordScreenshots", true);
+                capability.SetCapability("username", Config.SauceLabsUserName);
+                capability.SetCapability("accessKey", Config.SauceAccessKey);
+                capability.SetCapability("extendedDebugging", "true");
+                capability.SetCapability("tags", new List<string> { "UniformDocs" });
             }
-
-            capability.SetCapability("project", "UniformDocs");
+            
             capability.SetCapability("name", NUnit.Framework.TestContext.CurrentContext.Test.FullName);
 
             var driver = new RemoteWebDriver(remoteWebDriverUri, capability);
