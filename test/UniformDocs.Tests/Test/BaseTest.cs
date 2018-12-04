@@ -77,7 +77,7 @@ namespace UniformDocs.Tests.Test
             {
                 if (WebDriverManager.IsCloud)
                 {
-                    WebDriverManager.MarkTestStatusOnBrowserStack(Driver, LastOutcome, LastOutcomeMessage);
+                    WebDriverManager.MarkTestStatusOnSauceLabs(Driver, LastOutcome, LastOutcomeMessage);
                 }
                 WebDriverManager.StopDriver(Driver);
             }

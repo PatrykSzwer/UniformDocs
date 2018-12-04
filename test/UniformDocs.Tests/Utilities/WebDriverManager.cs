@@ -62,7 +62,7 @@ namespace UniformDocs.Tests.Utilities
                         capability.SetCapability("browserName", "Safari");
                         break;
                     }
-                case Config.Browser.iOS11point3:
+                case Config.Browser.iOS11_3:
                     {
                         capability.SetCapability("deviceName", "iPhone 8 Simulator");
                         capability.SetCapability("deviceOrientation", "portrait");
@@ -71,7 +71,7 @@ namespace UniformDocs.Tests.Utilities
                         capability.SetCapability("browserName", "Safari");
                         break;
                     }
-                case Config.Browser.Android7Nougat:
+                case Config.Browser.Android7:
                     {
                         capability.SetCapability("deviceName", "Android GoogleAPI Emulator");
                         capability.SetCapability("deviceOrientation", "portrait");
@@ -80,7 +80,7 @@ namespace UniformDocs.Tests.Utilities
                         capability.SetCapability("platformName", "Android");
                         break;
                     }                
-                case Config.Browser.Android7point1Nougat:
+                case Config.Browser.Android7_1:
                     {
                         capability.SetCapability("deviceName", "Android GoogleAPI Emulator");
                         capability.SetCapability("deviceOrientation", "portrait");
@@ -89,7 +89,7 @@ namespace UniformDocs.Tests.Utilities
                         capability.SetCapability("platformName", "Android");
                         break;
                     }
-                case Config.Browser.Android5point1Lolliopop:
+                case Config.Browser.Android5_1:
                     {
                         capability.SetCapability("deviceName", "Android GoogleAPI Emulator");
                         capability.SetCapability("deviceOrientation", "portrait");
@@ -106,7 +106,7 @@ namespace UniformDocs.Tests.Utilities
                 capability.SetCapability("recordVideo", false);
                 capability.SetCapability("recordScreenshots", true);
                 capability.SetCapability("username", Config.SauceLabsUserName);
-                capability.SetCapability("accessKey", Config.SauceAccessKey);
+                capability.SetCapability("accessKey", Config.SauceLabsAccessKey);
                 capability.SetCapability("extendedDebugging", "true");
                 capability.SetCapability("tags", new List<string> { "UniformDocs" });
             }
@@ -130,7 +130,7 @@ namespace UniformDocs.Tests.Utilities
         {
             driver.Quit();
         }
-        public static void MarkTestStatusOnBrowserStack(RemoteWebDriver driver, ResultState outcome, string message)
+        public static void MarkTestStatusOnSauceLabs(RemoteWebDriver driver, ResultState outcome, string message)
         {
             if (IsCloud == false)
             {

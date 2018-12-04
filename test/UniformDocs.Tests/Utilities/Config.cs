@@ -13,12 +13,12 @@ namespace UniformDocs.Tests.Utilities
             Edge,
             Firefox,
             iOS12,
-            iOS11point2,
-            iOS11point3,
-            Android7Nougat,
-            Android6Marshmello,
-            Android7point1Nougat,
-            Android5point1Lolliopop
+            iOS11_2,
+            iOS11_3,
+            Android7,
+            Android6,
+            Android7_1,
+            Android5_1
         }
 
         public enum Buttons
@@ -37,7 +37,7 @@ namespace UniformDocs.Tests.Utilities
    .ToString();
         public static readonly Uri TestedAppUrl = new Uri($"http://{LocalIP}:8080/UniformDocs");
         public static readonly string SauceLabsUserName = Environment.GetEnvironmentVariable("SAUCE_USERNAME");
-        public static readonly string SauceAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY");
+        public static readonly string SauceLabsAccessKey = Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY");
         public static readonly Uri RemoteWebDriverUri = new Uri($"http://ondemand.saucelabs.com:80/wd/hub");
 
         public static readonly Dictionary<Buttons, string> ButtonsDictionary = new Dictionary<Buttons, string>
@@ -55,12 +55,12 @@ namespace UniformDocs.Tests.Utilities
             {Browser.Edge, "Edge"},
             {Browser.Firefox, "Firefox"},
             {Browser.iOS12, "iOS12"},
-            {Browser.iOS11point2, "iOS11point2"},
-            {Browser.iOS11point3, "iOS11point3"},
-            {Browser.Android7Nougat, "Android7Nougat"},
-            {Browser.Android6Marshmello,"Android6Marshmello"},
-            {Browser.Android7point1Nougat,"Android7point1Nougat"},
-            {Browser.Android5point1Lolliopop, "Android5point1Lolliopop"}
+            {Browser.iOS11_2, "iOS11_2"},
+            {Browser.iOS11_3, "iOS11_3"},
+            {Browser.Android7, "Android7"},
+            {Browser.Android6,"Android6"},
+            {Browser.Android7_1,"Android7_1"},
+            {Browser.Android5_1, "Android5_1"}
         };
     }
 }

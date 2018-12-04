@@ -7,13 +7,13 @@ namespace UniformDocs.Tests.Test
     [TestFixture(Config.Browser.Chrome)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
-    [TestFixture(Config.Browser.iOS11point2)]
-    [TestFixture(Config.Browser.Android7Nougat)]
+    [TestFixture(Config.Browser.iOS11_2)]
+    [TestFixture(Config.Browser.Android7)]
     [TestFixture(Config.Browser.iOS12)]
-    [TestFixture(Config.Browser.iOS11point3)]
-    [TestFixture(Config.Browser.Android6Marshmello)]
-    [TestFixture(Config.Browser.Android7point1Nougat)]
-    [TestFixture(Config.Browser.Android5point1Lolliopop)]
+    [TestFixture(Config.Browser.iOS11_3)]
+    [TestFixture(Config.Browser.Android6)]
+    [TestFixture(Config.Browser.Android7_1)]
+    [TestFixture(Config.Browser.Android5_1)]
     class AutoCompletePageTest : BaseTest
     {
         private AutoCompletePage _autoCompletePage;

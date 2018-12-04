@@ -6,7 +6,7 @@ using UniformDocs.Tests.Utilities;
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Edge)] //BUG on EDGE https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7194303/
     [TestFixture(Config.Browser.Firefox)]
     class FileUploadPageTest : BaseTest
     {
