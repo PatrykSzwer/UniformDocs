@@ -49,9 +49,6 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="Joozek78.Starcounter.Async, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Joozek78.Starcounter.Async.2.0.0\lib\net461\Joozek78.Starcounter.Async.dll</HintPath>
-    </Reference>
     <Reference Include="Nito.AsyncEx.Tasks, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.AsyncEx.Tasks.1.1.0\lib\net46\Nito.AsyncEx.Tasks.dll</HintPath>
     </Reference>
@@ -100,6 +97,8 @@
     <Compile Include="Database\SoftwareProduct.cs" />
     <Compile Include="Database\Person.cs" />
     <Compile Include="Database\TreeItem.cs" />
+    <Compile Include="Helpers\AsyncInputHandlers.cs" />
+    <Compile Include="Helpers\Internal\StarcounterSessionSynchronizationContext.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
     </Compile>
