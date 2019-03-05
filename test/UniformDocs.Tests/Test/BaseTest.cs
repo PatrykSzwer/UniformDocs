@@ -20,6 +20,7 @@ namespace UniformDocs.Tests.Test
         private List<string> _browsersToRun = new List<string>();
         private ResultState LastOutcome;
         private string LastOutcomeMessage;
+        private static readonly string appName = "UniformDocs";
 
         public BaseTest(Config.Browser browser)
         {
@@ -60,6 +61,11 @@ namespace UniformDocs.Tests.Test
         [TearDown]
         public void TearDown()
         {
+            if (!(RestApiHelper.CheckAppRunning(appName).Result))
+            {
+                Assert.Inconclusive($"The tested app {appName} crushed. The possible reason: {RestApiHelper.GetLatestLogEntry().Result}");
+            }
+
             if (LastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
                 //this class has single driver session for all test methods
