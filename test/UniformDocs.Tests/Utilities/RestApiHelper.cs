@@ -10,9 +10,6 @@ namespace UniformDocs.Tests.Utilities
 {
     public static class RestApiHelper
     {
-        private static readonly ushort InternalPort = StarcounterEnvironment.Default.SystemHttpPort;
-        private const string InternalHost = "127.0.0.1";
-
         public class DatabaseApplicationsJson
         {
             public IEnumerable<App> Items { get; set; }
@@ -35,7 +32,7 @@ namespace UniformDocs.Tests.Utilities
 
         public static async Task<bool> CheckAppRunning(string appName)
         {
-            HttpResponseMessage response = await new HttpClient().GetAsync($"http://{InternalHost}:{InternalPort}/api/admin/databases/default/applications");
+            HttpResponseMessage response = await new HttpClient().GetAsync($"http://{Config.InternalHost}:{Config.InternalPort}/api/admin/databases/default/applications");
 
             if (response.IsSuccessStatusCode)
             {
@@ -58,7 +55,7 @@ namespace UniformDocs.Tests.Utilities
         {
             string Parameters = "debug=false&error=true&maxitems=1&notice=false&source=&warning=true";
 
-            HttpResponseMessage response = await new HttpClient().GetAsync($"http://{InternalHost}:{InternalPort}/api/admin/log?{Parameters}");
+            HttpResponseMessage response = await new HttpClient().GetAsync($"http://{Config.InternalHost}:{Config.InternalPort}/api/admin/log?{Parameters}");
 
             if (response.IsSuccessStatusCode)
             {

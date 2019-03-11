@@ -12,7 +12,6 @@ namespace UniformDocs.Tests.Test
     {
         private ProgressBarPage _progressBarPage;
         private MainPage _mainPage;
-        private static readonly string appName = "UniformDocs";
 
         public ProgressBarTest(Config.Browser browser) : base(browser)
         {
@@ -21,9 +20,9 @@ namespace UniformDocs.Tests.Test
         [SetUp]
         public void SetUp()
         {
-            if (!(RestApiHelper.CheckAppRunning(appName).Result))
+            if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
             {
-                Assert.Inconclusive($"The tested app {appName} is not running");
+                Assert.Inconclusive($"The tested app {_testedAppName} is not running");
             }
 
             _mainPage = new MainPage(Driver).GoToMainPage();

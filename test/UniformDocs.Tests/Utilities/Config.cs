@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Starcounter.Internal;
 
 namespace UniformDocs.Tests.Utilities
 {
@@ -34,6 +35,8 @@ namespace UniformDocs.Tests.Utilities
         public static readonly string BrowserstackUsername = Environment.GetEnvironmentVariable("BROWSERSTACK_USERNAME");
         public static readonly string BrowserstackAccessKey = Environment.GetEnvironmentVariable("BROWSERSTACK_ACCESS_KEY");
         public static readonly string BrowserstackLocalIdentifier = Environment.GetEnvironmentVariable("COMPUTERNAME");
+        public static readonly ushort InternalPort = StarcounterEnvironment.Default.SystemHttpPort;
+        public static string InternalHost = "127.0.0.1";
 
         public static readonly Dictionary<Buttons, string> ButtonsDictionary = new Dictionary<Buttons, string>
         {

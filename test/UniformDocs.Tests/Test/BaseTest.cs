@@ -20,7 +20,7 @@ namespace UniformDocs.Tests.Test
         private List<string> _browsersToRun = new List<string>();
         private ResultState LastOutcome;
         private string LastOutcomeMessage;
-        private static readonly string appName = "UniformDocs";
+        protected static readonly string _testedAppName = "UniformDocs";
 
         public BaseTest(Config.Browser browser)
         {
@@ -61,9 +61,11 @@ namespace UniformDocs.Tests.Test
         [TearDown]
         public void TearDown()
         {
-            if (!(RestApiHelper.CheckAppRunning(appName).Result))
+            if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
             {
-                Assert.Inconclusive($"The tested app {appName} crushed. The possible reason: {RestApiHelper.GetLatestLogEntry().Result}");
+                Assert.Inconclusive($"The tested app {_testedAppName} unexpectedly stopped during the test. " +
+                                    $"The following text is the last message that can be found in the Starcounter log: " +
+                                    $"{RestApiHelper.GetLatestLogEntry().Result}");
             }
 
             if (LastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
