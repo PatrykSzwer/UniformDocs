@@ -41,6 +41,8 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ProgressBarPage_GitHubSourceURL()
         {
+            Assert.Inconclusive("Invocation of Assert.Inconclusive for testing the affect on TC build.");
+
             WaitUntil(x => _progressBarPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }
