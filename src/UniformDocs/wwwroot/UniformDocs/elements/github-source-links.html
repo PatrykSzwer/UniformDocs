@@ -23,9 +23,9 @@
             vertical-align: top;
         }
     </style>
-    <div class="uni-section-primary">
+    <div>
         <div class="uni-card github-source-links-links-container">
-            <h3>See source code</h3>
+            <slot name="header"><h3>See source code</h3></slot>
         </div>
     </div>
 </template>
@@ -45,14 +45,15 @@
             anchor.innerHTML = text;
             return anchor;
         }
-        function createElements(GitHubBaseURL, page, hideHTML, hideCSharp, hideJSON) {
+        function createElements(GitHubBaseURL, page, hideHTML, hideCSharp, hideJSON, sectionType = 'uni-section-primary') {
             const json = GitHubBaseURL + page.replace('/UniformDocs', 'ViewModels').replace('.html', '.json');
             const csharp = json + '.cs';
             const view = GitHubBaseURL + 'wwwroot' + page;
 
             const content = template.content.cloneNode(true);
             const card = content.querySelector('.uni-card');
-
+            sectionType && card.parentElement.classList.add(sectionType);
+            
             !hideCSharp && card.appendChild(createAnchor('C# Code', csharp));
             !hideJSON && card.appendChild(createAnchor('JSON code-behind code', json));
             !hideHTML && card.appendChild(createAnchor('HTML view code', view));
@@ -70,9 +71,10 @@
                 const hideHTML = this.hasAttribute('hide-html');
                 const hideCSharp = this.hasAttribute('hide-csharp');
                 const hideJSON = this.hasAttribute('hide-json');
+                const sectionType = this.hasAttribute('section-type') ? this.getAttribute('section-type') : undefined;
 
                 const GitHubBaseURL = await getGitHubBaseURL();
-                this.shadowRoot.appendChild(createElements(GitHubBaseURL, this.base, hideHTML, hideCSharp, hideJSON));
+                this.shadowRoot.appendChild(createElements(GitHubBaseURL, this.base, hideHTML, hideCSharp, hideJSON, sectionType));
             }
         }
         customElements.define('github-source-links', GTSL);

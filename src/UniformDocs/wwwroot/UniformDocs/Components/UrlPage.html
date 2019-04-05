@@ -27,7 +27,8 @@
                 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank" rel="noopener">MDN</a>. The URL can be to a static file or to a HTTP GET handler in the app. In some browsers like Firefox, the URL has to be on the same domain for the download to be initiated.
             </p>
 
-            <a slot="uniformdocs/download-attrib-link" download="UniformDocsLogo.svg" href="/UniformDocs/images/UniformDocs.svg">Non-morphable downloadable link: SVG icon</a>
+            <a slot="uniformdocs/download-attrib-link" download="UniformDocs.svg" href="/UniformDocs/download?session={{model.DownloadLinkSessionId}}">Non-morphable downloadable link: SVG icon</a>
+            <output slot="uniformdocs/download-attrib-link-feedback">{{model.DownloadLinkFeedback}}</output>
 
             <p slot="uniformdocs/url-description-targeted-iframe">
                 Links with a target to another window or frame (such as
@@ -63,6 +64,9 @@
                     <p>
                         <slot name="uniformdocs/download-attrib-link"></slot>
                     </p>
+                    <div class="uni-alert-info">
+                        <slot name="uniformdocs/download-attrib-link-feedback"></slot>
+                    </div>
                 </div>
                 <div>
                     <slot name="uniformdocs/url-description-targeted-iframe"></slot>

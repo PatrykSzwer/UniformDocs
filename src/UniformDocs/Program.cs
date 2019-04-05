@@ -6,6 +6,7 @@ using UniformDocs.ViewModels;
 using UniformDocs.ViewModels.Components;
 using UniformDocs.ViewModels.Design;
 using UniformDocs.ViewModels.HowTo;
+using UniformDocs.ViewModels.HowTo.BlendableMenu;
 
 namespace UniformDocs
 {
@@ -45,9 +46,6 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/card", () => new CardPage());
             Handle.GET("/UniformDocs/card", () => WrapPage<CardPage>("/UniformDocs/partial/card"));
-
-            Handle.GET("/UniformDocs/partial/title", () => new TitlePage());
-            Handle.GET("/UniformDocs/title", () => WrapPage<TitlePage>("/UniformDocs/partial/title"));
 
             Handle.GET("/UniformDocs/partial/alerts", () => new AlertsPage());
             Handle.GET("/UniformDocs/alerts", () => WrapPage<AlertsPage>("/UniformDocs/partial/alerts"));
@@ -115,6 +113,21 @@ namespace UniformDocs
             Handle.GET("/UniformDocs/partial/url", () => new UrlPage());
             Handle.GET("/UniformDocs/url", () => WrapPage<UrlPage>("/UniformDocs/partial/url"));
 
+            Handle.GET("/UniformDocs/download?session={?}", (string id) =>
+            {
+                var ids = new string[] { id };
+                Session.RunTask(ids, (session, sessionId) => {
+                    var masterPage = Session.Ensure().Store[nameof(MasterPage)] as MasterPage;
+                    var urlPage = masterPage.CurrentPage as UrlPage;
+                    if(urlPage != null)
+                    {
+                        urlPage.DownloadStarted();
+                        session.CalculatePatchAndPushOnWebSocket();
+                    }
+                });
+                return Self.GET("/UniformDocs/images/UniformDocs.svg");
+            });
+
             Handle.GET("/UniformDocs/partial/Geo", () =>
             {
                 return Db.Scope(() =>
@@ -178,6 +191,24 @@ namespace UniformDocs
 
             Handle.GET("/UniformDocs/partial/clientlocalstate", () => new ClientLocalStatePage());
             Handle.GET("/UniformDocs/clientlocalstate", () => WrapPage<ClientLocalStatePage>("/UniformDocs/partial/clientlocalstate"));
+
+            Handle.GET("/UniformDocs/partial/blendablemenu/menulinks", () => new MenuLinksPage());
+            // Handle.GET("/UniformDocs/blendablemenu/menulinks", () => WrapPage<MenuLinksPage>("/UniformDocs/partial/blendablemenu/menulinks"));
+
+            Handle.GET("/UniformDocs/partial/blendablemenu/menubuttons", () => new MenuButtonsPage());
+            // Handle.GET("/UniformDocs/blendablemenu/menubuttons", () => WrapPage<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons"));
+
+            // pretend it's the other app
+            Handle.GET("/UniformDocs/partial/blendablemenu/othermenubuttons", () => new MenuButtonsPage());
+            // Handle.GET("/UniformDocs/blendablemenu/menubuttons", () => WrapPage<MenuButtonsPage>("/UniformDocs/partial/blendablemenu/menubuttons"));
+
+            Handle.GET("/UniformDocs/partial/blendablemenu", () => new BlendableMenuPage
+            {
+                GridMenu = Self.GET("/UniformDocs/partial/blendablemenu/menubuttons"),
+                ListMenu = Self.GET("/UniformDocs/partial/blendablemenu/menulinks")
+            });
+            Handle.GET("/UniformDocs/blendablemenu", () => WrapPage<BlendableMenuPage>("/UniformDocs/partial/blendablemenu"));
+
 
             Handle.GET("/UniformDocs/partial/cookie", (Request request) =>
             {

@@ -2,7 +2,7 @@ using Starcounter;
 using System.Threading;
 using System;
 using System.Threading.Tasks;
-using Joozek78.Star.Async;
+using Starcounter.Async;
 
 namespace UniformDocs.ViewModels.HowTo
 {

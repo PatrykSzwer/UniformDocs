@@ -2,5 +2,7 @@
   "Html": "/UniformDocs/Components/UrlPage.html",
 
   "Url": "",
-  "Label": ""
+  "Label": "",
+  "DownloadLinkSessionId": "",
+  "DownloadLinkFeedback": "Press the link above to download an SVG file"
 }

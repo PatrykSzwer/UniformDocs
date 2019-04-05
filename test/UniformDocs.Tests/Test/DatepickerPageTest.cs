@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
     class DatepickerPageTest : BaseTest
@@ -29,7 +30,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DatepickerPage_SelectDate()
         {
-            WaitUntil(x => _datePicker.YearInput.Displayed);
+            WaitUntil(x => _datePicker.IsLoaded(), $"Expected date picker to be fully loaded");
 
             _datePicker.SelectThroughUniDatePicker("2016-01-01");
 

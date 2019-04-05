@@ -22,7 +22,10 @@ namespace UniformDocs.Tests.Ui
 
         public void UploadAFile(string filePath)
         {
-            GetFileElement().SendKeys(filePath);
+            var inputFileElement = GetFileElement();
+            var script = "return arguments[0].classList.contains('style-scope') ? arguments[0].style.display = 'initial' : true;"; //in Shadow DOM polyfill (Firefox), Selenium cannot type to an input that is "display: none" and throws ElementNotInteractableException. This line fixes the problem
+            ExecuteScriptOnElement(inputFileElement, script);
+            inputFileElement.SendKeys(filePath);
         }
 
         public int GetUploadedFilesCount()

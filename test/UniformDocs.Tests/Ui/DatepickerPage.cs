@@ -31,5 +31,17 @@ namespace UniformDocs.Tests.Ui
             pickerInput.SendKeys(date);
             pickerInput.SendKeys(Keys.Enter);
         }
+        public bool IsLoaded()
+        {
+            try
+            {
+                var page = Driver.FindElement(By.CssSelector("starcounter-include[slot=\"uniformdocs/current\"]"));
+                return page.Displayed && YearInput.Displayed;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

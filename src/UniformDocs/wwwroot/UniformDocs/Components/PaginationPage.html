@@ -14,7 +14,7 @@
                 <code>FETCH</code> to determine how many entries there should be on every page and
                 <code>OFFSET</code> to retrieve the right entries
             </p>
-            <juicy-select slot="uniformdocs/pagination-juicy-select-items-per-page" class="uniformdocs-juicyselect" value="{{model.EntriesPerPage$::change}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
+            <juicy-select slot="uniformdocs/pagination-juicy-select-items-per-page" class="uniformdocs-juicyselect" value="{{model.EntriesPerPage$}}" options="{{model.PageEntries}}" text-property="Text" value-property="Amount">
             </juicy-select>
             <table slot="uniformdocs/pagination-table">
                 <thead>
@@ -32,8 +32,8 @@
                     </template>
                 </tbody>
             </table>
-            <input type="range" slot="uniformdocs/pagination-pages" value="{{model.CurrentPage$::change}}" end$="{{model.TotalPages}}" />
-           
+            <input type="range" slot="uniformdocs/pagination-pages" value="{{model.CurrentPage$::change}}" max$="{{model.TotalPages}}" />
+
             <p slot="uniformdocs/pagination-page-number">page {{model.CurrentPage$}} of {{model.TotalPages}}</p>
 
             <github-source-links base="{{model.Html}}"></github-source-links>

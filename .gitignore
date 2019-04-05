@@ -115,3 +115,9 @@ UpgradeLog*.XML
 node_modules
 
 dist/*
+
+# Merge tool
+*.orig
+
+# Remove bower deps package-lock files
+src/UniformDocs/wwwroot/sys/**/package-lock.json

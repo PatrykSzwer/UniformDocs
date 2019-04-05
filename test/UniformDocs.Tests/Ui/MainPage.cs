@@ -18,7 +18,7 @@ namespace UniformDocs.Tests.Ui
 
         public MainPage GoToMainPage()
         {
-            Driver.Navigate().GoToUrl(Config.UniformDocsUrl + "/MainPage");
+            Driver.Navigate().GoToUrl(Config.TestedAppUrl + "/MainPage");
             return this;
         }
 

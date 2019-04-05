@@ -2,6 +2,11 @@
 
 Present typical UI patterns in a form that is easy to apply in any Starcounter app.
 
+📖 There are two GitHub repos:
+
+- [uniform](https://github.com/Starcounter/uniform) is used to discuss the design system: guidelines, components, look and feel
+- [UniformDocs](https://github.com/Starcounter/UniformDocs) is used to discuss the sample app and changes in that app
+
 ## Demo
 
 You can find a hosted demo of the UniformDocs app on [uniform.starcounter.io](https://uniform.starcounter.io/).
@@ -36,4 +41,4 @@ For developer instructions, go to [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 
-MIT
+MIT 

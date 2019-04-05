@@ -49,7 +49,7 @@ namespace UniformDocs.ViewModels.Components
 
         void Handle(Input.TakeOneRegeneratingCarrotTrigger action)
         {
-            Thread.Sleep(500);
+            Thread.Sleep(5000);
             action.Cancel();
         }
     }

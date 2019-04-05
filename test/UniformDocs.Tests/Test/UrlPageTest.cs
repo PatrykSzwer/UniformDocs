@@ -8,6 +8,7 @@ using OpenQA.Selenium.Support.UI;
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
     internal class UrlPageTest : BaseTest
@@ -47,15 +48,15 @@ namespace UniformDocs.Tests.Test
             // leave a foot print in the window object
             jsExecuter.ExecuteScript("window.footprintExists = true");
 
-            // control test 
-            Assert.AreEqual($"{Config.UniformDocsUrl}/Url", Driver.Url);
+            // control test
+            Assert.AreEqual($"{Config.TestedAppUrl}/Url", Driver.Url);
             Assert.AreEqual(true, jsExecuter.ExecuteScript("return window.footprintExists"));
 
             _urlPage.ClickSimpleMorphableLink();
 
             System.Threading.Thread.Sleep(2000);
 
-            Assert.AreEqual(Driver.Url, Config.UniformDocsUrl.ToString());
+            Assert.AreEqual(Driver.Url, Config.TestedAppUrl.ToString());
 
             // if the foot print still exists, we can infer that the page was actually morphed, not fully loaded
             Assert.AreEqual(true, jsExecuter.ExecuteScript("return window.footprintExists"));
@@ -67,7 +68,7 @@ namespace UniformDocs.Tests.Test
         {
             WaitUntil(x => _urlPage.BlankTargettedLink.Displayed);
 
-            //control test 
+            //control test
             Assert.AreEqual(Driver.WindowHandles.Count, 1);
 
             WaitUntil(x => ExpectedConditions.ElementToBeClickable(_urlPage.BlankTargettedLink));
@@ -88,20 +89,11 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void UrlPage_ClickLinkWithDownloadAttribute()
         {
-            string downloadsDirPath = Path.Combine(System.Environment.GetEnvironmentVariable("USERPROFILE"), "Downloads");
-            string downloadedFilePath = Path.Combine(downloadsDirPath, "UniformDocsLogo.svg");
-            FileInfo downloadedFile = new FileInfo(downloadedFilePath);
-
-            if (downloadedFile.Exists)
-            {
-                downloadedFile.Delete();
-            }
-
             WaitUntil(x => _urlPage.LinkWithDownloadAttrib.Displayed);
 
             _urlPage.ClickLinkWithDownloadAttrib();
 
-            WaitUntil(x => new FileInfo(downloadedFilePath).Exists);
+            WaitUntil(x => _urlPage.DownloadLinkFeedback.Text == "Your download has started");
         }
 
         [Test]
@@ -109,14 +101,14 @@ namespace UniformDocs.Tests.Test
         {
             WaitUntil(x => _urlPage.IframeTargettedLink != null && _urlPage.IframeTargettedLink.Displayed);
 
-            //control test 
+            //control test
             Assert.AreEqual(GetIframeCurrentURL(), "about:blank");
 
             _urlPage.ClickIframeTargettedLink();
 
             System.Threading.Thread.Sleep(500);
 
-            Assert.AreEqual(GetIframeCurrentURL(), Config.UniformDocsUrl.ToString());
+            Assert.AreEqual(GetIframeCurrentURL(), Config.TestedAppUrl.ToString());
         }
         [Test]
         public void UrlPage_GitHubSourceURL()
