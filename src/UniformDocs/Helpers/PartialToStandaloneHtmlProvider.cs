@@ -5,26 +5,26 @@ using System.Text;
 
 namespace UniformDocs
 {
-    public class PartialJsonToStandaloneHtmlProvider : IMiddleware
+    public class PartialToStandaloneHtmlProvider : IMiddleware
     {
         static Encoding defaultEncoding = Encoding.UTF8;
         string appShell, serviceWorkerTemplate;
         string RUNTIME_CACHE_KEY = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Creates a new instance of <see cref="PartialJsonToStandaloneHtmlProvider"/>
+        /// Creates a new instance of <see cref="PartialToStandaloneHtmlProvider"/>
         /// using the template fetched from the static file server.
         /// </summary>
-        public PartialJsonToStandaloneHtmlProvider()
+        public PartialToStandaloneHtmlProvider()
         {
            
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="ServiceWorkerMiddleWare"/>
+        /// Creates a new instance of <see cref="PartialToStandaloneHtmlProvider"/>
         /// using the given standalone page template.
         /// </summary>
-        public PartialJsonToStandaloneHtmlProvider(string standaloneTemplate)
+        public PartialToStandaloneHtmlProvider(string standaloneTemplate)
         {
             if (string.IsNullOrEmpty(standaloneTemplate)) throw new ArgumentNullException("standaloneTemplate");
             appShell = standaloneTemplate;

@@ -16,7 +16,7 @@ namespace UniformDocs
         {
             var app = Application.Current;
             app.Use(new HtmlFromJsonProvider());
-            app.Use(new PartialJsonToStandaloneHtmlProvider());
+            app.Use(new PartialToStandaloneHtmlProvider());
 
             DummyData.Create();
 
