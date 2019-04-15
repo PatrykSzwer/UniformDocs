@@ -1,6 +1,9 @@
 {
   "FirstName": "",
   "LastName": "",
-  "Email$": "",
+  "Email": {
+    "Type": "",
+    "Address$": "" 
+  },
   "DeleteTrigger$": 0
 }

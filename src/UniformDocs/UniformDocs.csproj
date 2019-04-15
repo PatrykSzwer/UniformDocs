@@ -95,11 +95,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Book.cs" />
+    <Compile Include="Database\Email.cs" />
     <Compile Include="Database\GroceryProduct.cs" />
     <Compile Include="Database\MapCoordinates.cs" />
     <Compile Include="Database\SoftwareProduct.cs" />
     <Compile Include="Database\Person.cs" />
     <Compile Include="Database\TreeItem.cs" />
+    <Compile Include="Helpers\PersonFilter.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
     </Compile>

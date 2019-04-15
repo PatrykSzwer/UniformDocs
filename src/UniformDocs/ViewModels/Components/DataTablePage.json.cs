@@ -16,12 +16,12 @@ namespace UniformDocs.ViewModels.Components
         public void Init()
         {
             this.DataTable = new DataTableBuilder<DataTableRow>()
-                .WithDataSource(DbLinq.Objects<Person>(), data => data.WithConverter(CreateDataTableRow))
+                .WithDataSource(DbLinq.Objects<Person>(), data => data.WithConverter(CreateDataTableRow).WithFilter(new PersonFilter()))
                 .WithColumns(columns =>
                     columns
                         .AddColumn(b => b.FirstName, column => column.DisplayName("First Name").Sortable().Filterable())
                         .AddColumn(b => b.LastName, column => column.Sortable().DisplayName("Last Name"))
-                        .AddColumn(b => b.Email, column => column.Filterable().Sortable().DisplayName("Email")))
+                        .AddColumn(b => b.Email.Address, column => column.Filterable().Sortable().DisplayName("Email")))
                 .WithInitialPageSize(20)
                 .Build();
         }
@@ -51,7 +51,11 @@ namespace UniformDocs.ViewModels.Components
                 {
                     FirstName = "New first name",
                     LastName = "New last name",
-                    Email = "New email"
+                    Email = new Email
+                    {
+                        Address = "newPersonsEmail@email.com",
+                        Type = "Private"
+                    }
                 };
             });
 

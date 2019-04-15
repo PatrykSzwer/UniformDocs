@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using Starcounter;
+using System.Linq;
 using UniformDocs.Database;
-using Starcounter;
 
 namespace UniformDocs.Helpers
 {
@@ -54,13 +54,18 @@ namespace UniformDocs.Helpers
                 // For DataTable page
                 if (!Db.SQL($"SELECT r FROM {typeof(Person)} r").Any())
                 {
+                    var book = Db.SQL<Book>("SELECT b FROM UniformDocs.Database.Book b").FirstOrDefault();
                     for (int i = 500; i > 0; i--)
                     {
                         new Person
                         {
                             FirstName = $"{i} member first name",
                             LastName = $"{i} member last name",
-                            Email = $"{i} member email"
+                            Email = new Email
+                            {
+                                Address = $"{i}member@email.com",
+                                Type = "Work"
+                            }, 
                         };
                     }
                 }
