@@ -3,6 +3,7 @@ using Starcounter.Linq;
 using Starcounter.Uniform.Builder;
 using Starcounter.Uniform.ViewModels;
 using UniformDocs.Database;
+using UniformDocs.Helpers;
 
 namespace UniformDocs.ViewModels.Components
 {

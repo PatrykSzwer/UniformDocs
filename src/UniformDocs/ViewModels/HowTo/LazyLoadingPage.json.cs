@@ -1,8 +1,8 @@
 using Starcounter;
-using System.Threading;
-using System;
-using System.Threading.Tasks;
 using Starcounter.Async;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace UniformDocs.ViewModels.HowTo
 {
