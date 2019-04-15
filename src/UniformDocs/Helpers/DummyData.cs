@@ -54,7 +54,6 @@ namespace UniformDocs.Helpers
                 // For DataTable page
                 if (!Db.SQL($"SELECT r FROM {typeof(Person)} r").Any())
                 {
-                    var book = Db.SQL<Book>("SELECT b FROM UniformDocs.Database.Book b").FirstOrDefault();
                     for (int i = 500; i > 0; i--)
                     {
                         new Person
