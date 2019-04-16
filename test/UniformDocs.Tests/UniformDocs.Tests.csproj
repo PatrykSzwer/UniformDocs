@@ -103,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>8.0.3</Version>
+      <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="NUnit">
       <Version>3.10.1</Version>
