@@ -196,7 +196,7 @@ using Microsoft.CSharp;
     {
         var uiTestsConfig = rootPath + "/test/BifrostTestConfig/UiTests.json";
         string cliShell = "cmd";
-        string nunitConsoleRunnerPath = $"{rootPath}/packages/nunit.consolerunner/3.6.1/tools/nunit3-console.exe";
+        string nunitConsoleRunnerPath = $"{rootPath}/packages/nunit.consolerunner/3.10.0/tools/nunit3-console.exe";
 
         // Get all test files.
         var allUiTestsJson = System.IO.File.ReadAllText(uiTestsConfig);
@@ -222,7 +222,6 @@ using Microsoft.CSharp;
             int exitCode = StartProcess(cliShell, processSettings);
 
             Information($"Exit Code: {exitCode}");
-            Information($"Exit Code: {test}");
 
             if(exitCode != 0 && exitCode != -5)
             {
