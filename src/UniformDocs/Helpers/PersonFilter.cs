@@ -1,6 +1,7 @@
 ﻿using Starcounter.Uniform.Generic.FilterAndSort;
 using Starcounter.Uniform.Queryables;
 using System;
+using System.Globalization;
 using System.Linq;
 using UniformDocs.Database;
 
@@ -13,7 +14,10 @@ namespace UniformDocs.Helpers
             if (filter == null) throw new ArgumentNullException(nameof(filter));
             if (filter.PropertyName == nameof(Email.Address))
             {
-                return data.Where(person => person.Email.Address.Contains(filter.Value));
+                // Entire string comparison with a method to ignore diacritics.
+                return data.ToList().Where(person => string.Compare(person.Email.Address, filter.Value,
+                                                                      CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace) ==
+                                                                  0).AsQueryable();
             }
 
             return base.ApplyFilter(data, filter);
