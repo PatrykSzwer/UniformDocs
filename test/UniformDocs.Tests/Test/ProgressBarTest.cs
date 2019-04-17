@@ -22,7 +22,7 @@ namespace UniformDocs.Tests.Test
         {
             if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
             {
-                Assert.Inconclusive($"The tested app {_testedAppName} is not running");
+                Assert.Fail($"The tested app {_testedAppName} is not running");
             }
 
             _mainPage = new MainPage(Driver).GoToMainPage();
@@ -41,7 +41,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ProgressBarPage_GitHubSourceURL()
         {
-            Assert.Inconclusive("Invocation of Assert.Inconclusive for testing the affect on TC build.");
+            Assert.Fail("Invocation of Assert.Inconclusive for testing the affect on TC build.");
 
             WaitUntil(x => _progressBarPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();

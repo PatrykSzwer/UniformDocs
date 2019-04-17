@@ -54,5 +54,7 @@ namespace UniformDocs.Tests.Utilities
             {Browser.Edge, "Edge"},
             {Browser.Firefox, "Firefox"}
         };
+
+        public static readonly int FailsBeforeStop = 5;
     }
 }

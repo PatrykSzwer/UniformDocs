@@ -1,4 +1,5 @@
-﻿using UniformDocs.Tests.Ui;
+﻿using System;
+using UniformDocs.Tests.Ui;
 using UniformDocs.Tests.Utilities;
 using NUnit.Framework;
 
@@ -27,6 +28,8 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void AutoCompletePage_FillStarExpectAllItemsShowUp()
         {
+            throw new Exception("test exception1");
+
             WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
             _autoCompletePage.ProductsInput.Clear();
             _autoCompletePage.ProductsInput.SendKeys("*");
@@ -54,6 +57,8 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void AutoCompletePage_FillProductNameThenSelectProduct()
         {
+            throw new Exception("test exception2");
+
             WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
             _autoCompletePage.PlaceInput.Clear();
             _autoCompletePage.ProductsInput.SendKeys("B");

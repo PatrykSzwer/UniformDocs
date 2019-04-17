@@ -21,6 +21,7 @@ namespace UniformDocs.Tests.Test
         private ResultState LastOutcome;
         private string LastOutcomeMessage;
         protected static readonly string _testedAppName = "UniformDocs";
+        private static int failsCount = 0;
 
         public BaseTest(Config.Browser browser)
         {
@@ -63,9 +64,19 @@ namespace UniformDocs.Tests.Test
         {
             if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
             {
-                Assert.Inconclusive($"The tested app {_testedAppName} unexpectedly stopped during the test. " +
-                                    $"The following text is the last message that can be found in the Starcounter log: " +
-                                    $"{RestApiHelper.GetLatestLogEntry().Result}");
+                Assert.Fail($"The tested app {_testedAppName} unexpectedly stopped during the test. " +
+                            $"The following text is the last message that can be found in the Starcounter log: " +
+                            $"{RestApiHelper.GetLatestLogEntry().Result}");
+            }
+
+            if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
+            {
+                failsCount++;
+
+                if (failsCount >= Config.FailsBeforeStop)
+                {
+                    throw new Exception("The maximum number of test errors was reached. Tests will be stopped.");
+                }
             }
 
             if (LastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
@@ -99,7 +110,7 @@ namespace UniformDocs.Tests.Test
         {
             int tries = 5;
             Exception lastException = null;
-            while(tries-- > 0)
+            while (tries-- > 0)
             {
                 // sometimes the github-source-element reference refers to the old now-stale page,
                 // which throws an excpetion. This gives it 4 more chances
@@ -108,7 +119,8 @@ namespace UniformDocs.Tests.Test
                 {
                     WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeToWait)) { Message = errorMessage };
                     return wait.Until(condition);
-                } catch (Exception exp) { lastException = exp; }
+                }
+                catch (Exception exp) { lastException = exp; }
             }
             throw lastException;
         }
@@ -130,7 +142,8 @@ namespace UniformDocs.Tests.Test
             string urlsString = (string)jsExecuter.ExecuteScript("return Array.from(document.querySelector('github-source-links').shadowRoot.querySelectorAll('a[href]')).map(el => el.href).join('|')");
             var URLs = urlsString.Split(new char[] { '|' });
 
-            foreach(string URL in URLs) {
+            foreach (string URL in URLs)
+            {
                 Assert.True(IsURLStatus200(URL));
             }
         }
