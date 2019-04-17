@@ -29,7 +29,7 @@ namespace UniformDocs
         /// </summary>
         public PartialToStandaloneHtmlProvider()
         {
-           
+            Init();
         }
 
         /// <summary>
@@ -41,6 +41,11 @@ namespace UniformDocs
             if (string.IsNullOrEmpty(standaloneTemplate)) throw new ArgumentNullException("standaloneTemplate");
             appShell = standaloneTemplate;
 
+            Init();
+        }
+
+        private void Init()
+        {
             Starcounter.Internal.AppsBootstrapper.WatchResources(ResourceChanged); //this will be called n times, where n is the number of Palindrom sessions. Move it somewhere else where it is called once per resource change event
         }
 
