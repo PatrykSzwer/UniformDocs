@@ -46,7 +46,7 @@ namespace UniformDocs
 
         private void Init()
         {
-            Starcounter.Internal.AppsBootstrapper.WatchResources(ResourceChanged); //this will be called n times, where n is the number of Palindrom sessions. Move it somewhere else where it is called once per resource change event
+            Starcounter.Internal.AppsBootstrapper.WatchResources(ResourceChanged); //this will be called n times, where n is the number of apps that use the middleware. Move it somewhere else where it is called once per resource change event
         }
 
         void IMiddleware.Register(Application application)
