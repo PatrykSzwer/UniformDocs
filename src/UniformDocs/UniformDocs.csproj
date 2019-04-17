@@ -102,6 +102,7 @@
     <Compile Include="Database\Person.cs" />
     <Compile Include="Database\TreeItem.cs" />
     <Compile Include="Helpers\PartialToStandaloneHtmlProvider.cs" />
+    <Compile Include="Helpers\ServiceWorkerCacheKeySingleton.cs" />
     <Compile Include="ViewModels\Components\AutocompletePage.json.cs">
       <DependentUpon>AutocompletePage.json</DependentUpon>
     </Compile>

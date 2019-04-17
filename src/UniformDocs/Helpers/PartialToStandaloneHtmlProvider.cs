@@ -9,19 +9,6 @@ namespace UniformDocs
     {
         static Encoding defaultEncoding = Encoding.UTF8;
         string appShell, serviceWorkerTemplate;
-        static string RUNTIME_CACHE_KEY = Guid.NewGuid().ToString();
-
-        /// <summary>
-        /// in case of update, oldUri == newUri
-        /// in case of rename, oldUri != newUri 
-        /// in case of delete, newUri is null
-        /// in case of a new file, oldUri is null
-        /// </summary>
-        /// <param name="resourceChanged"></param>
-        static void ResourceChanged(string newUri, string oldUri)
-        {
-            RUNTIME_CACHE_KEY = Guid.NewGuid().ToString();
-        }
 
         /// <summary>
         /// Creates a new instance of <see cref="PartialToStandaloneHtmlProvider"/>
@@ -29,7 +16,6 @@ namespace UniformDocs
         /// </summary>
         public PartialToStandaloneHtmlProvider()
         {
-            Init();
         }
 
         /// <summary>
@@ -40,13 +26,6 @@ namespace UniformDocs
         {
             if (string.IsNullOrEmpty(standaloneTemplate)) throw new ArgumentNullException("standaloneTemplate");
             appShell = standaloneTemplate;
-
-            Init();
-        }
-
-        private void Init()
-        {
-            Starcounter.Internal.AppsBootstrapper.WatchResources(ResourceChanged); //this will be called n times, where n is the number of apps that use the middleware. Move it somewhere else where it is called once per resource change event
         }
 
         void IMiddleware.Register(Application application)
@@ -65,7 +44,7 @@ namespace UniformDocs
                         template = FetchServiceWorkerTemplate();
                         serviceWorkerTemplate = template;
                     }
-                    var SW = template.Replace("REPLACE_ME_WTH_RUNTIME_HASH", RUNTIME_CACHE_KEY);
+                    var SW = template.Replace("REPLACE_ME_WTH_RUNTIME_HASH", ServiceWorkerCacheKeySingleton.Instance.GetKey());
                     var response = new Response
                     {
                         BodyBytes = defaultEncoding.GetBytes(SW)
