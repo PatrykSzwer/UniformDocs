@@ -14,8 +14,8 @@ star --resourcedir="%~dp0src\UniformDocs\wwwroot" "%~dp0src/UniformDocs/bin/%Con
 IF ERRORLEVEL 1 EXIT /B 1
 
 :: Start the test
-IF NOT EXIST "%~dp0packages\NUnit.ConsoleRunner.3.6.1\" (ECHO Error: Cannot find NUnit Console Runner. Build the project to restore the packages && PAUSE && EXIT /B 1)
-%~dp0packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe %~dp0test\UniformDocs.Tests\bin\Debug\UniformDocs.Tests.dll --noheader %*
+IF NOT EXIST "%~dp0packages\nunit.consolerunner\3.10.0\" (ECHO Error: Cannot find NUnit Console Runner. Build the project to restore the packages && PAUSE && EXIT /B 1)
+%~dp0packages\nunit.consolerunner\3.10.0\tools\nunit3-console.exe %~dp0test\UniformDocs.Tests\bin\Debug\UniformDocs.Tests.dll --noheader %*
 
 if %interactive%==0 pause
 
