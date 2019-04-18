@@ -1,0 +1,9 @@
+{
+    "Description": "All nightly test scripts, excluding daily test scripts",
+    "Tests": [
+        {
+            "Enabled": true,
+            "TestFile": "/test/UniformDocs.Tests/bin/<UniformDocsConfiguration>/UniformDocs.Tests.dll"
+        }
+    ]
+ }
