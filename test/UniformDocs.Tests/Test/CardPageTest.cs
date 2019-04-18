@@ -22,8 +22,10 @@ namespace UniformDocs.Tests.Test
 
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
+            base.SetUp();
+
             _mainPage = new MainPage(Driver).GoToMainPage();
             _cardPage = _mainPage.GoToCardPage();
         }

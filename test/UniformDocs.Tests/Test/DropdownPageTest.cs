@@ -22,8 +22,10 @@ namespace UniformDocs.Tests.Test
         private const string StarcounterDatabase = "Starcounter Database";
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
+            base.SetUp();
+
             _mainPage = new MainPage(Driver).GoToMainPage();
             _dropDownPage = _mainPage.GoToDropdownPage();
         }

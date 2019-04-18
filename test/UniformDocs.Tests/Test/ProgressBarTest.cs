@@ -18,12 +18,9 @@ namespace UniformDocs.Tests.Test
         }
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
-            {
-                Assert.Fail($"The tested app {_testedAppName} is not running");
-            }
+            base.SetUp();
 
             _mainPage = new MainPage(Driver).GoToMainPage();
             _progressBarPage = _mainPage.GoToProgressBarPage();

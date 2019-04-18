@@ -59,6 +59,20 @@ namespace UniformDocs.Tests.Test
             }
         }
 
+        [SetUp]
+        public virtual void SetUp()
+        {
+            if (failsCount >= Config.FailsBeforeStop)
+            {
+                Assert.Fail("The maximum number of test errors was reached. Tests will be stopped.");
+            }
+
+            if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
+            {
+                Assert.Fail($"The tested app {_testedAppName} is not running");
+            }
+        }
+
         [TearDown]
         public void TearDown()
         {
@@ -72,11 +86,6 @@ namespace UniformDocs.Tests.Test
             if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
             {
                 failsCount++;
-
-                if (failsCount >= Config.FailsBeforeStop)
-                {
-                    throw new Exception("The maximum number of test errors was reached. Tests will be stopped.");
-                }
             }
 
             if (LastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
