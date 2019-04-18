@@ -1,5 +1,6 @@
 {
   "Html": "/UniformDocs/Components/DataTablePage.html",
   "DataTable": {},
-  "AddNewRowTrigger$": 0
+  "AddNewRowTrigger$": 0,
+  "ResetSortingTrigger$": 0
 }

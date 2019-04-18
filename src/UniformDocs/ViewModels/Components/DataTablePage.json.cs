@@ -1,3 +1,4 @@
+using System.Linq;
 using Starcounter;
 using Starcounter.Linq;
 using Starcounter.Uniform.Builder;
@@ -56,6 +57,14 @@ namespace UniformDocs.ViewModels.Components
             });
 
             this.DataTable.LoadRows();
+        }
+
+        protected void Handle(Input.ResetSortingTrigger action)
+        {
+            foreach (var column in this.DataTable.Columns)
+            {
+                column.Sort = null;
+            }
         }
     }
 }

@@ -15,6 +15,7 @@
             <h2 slot="uniformdocs/example">Example</h2>
 
             <button slot="uniformdocs/datatable-add-button" value="{{model.AddNewRowTrigger$::click}}" onmousedown="++this.value">Add new row</button>
+            <button slot="uniformdocs/datatable-reset-sorting-button" value="{{model.ResetSortingTrigger$::click}}" onmousedown="++this.value">Reset sorting</button>
 
             <uni-data-table slot="uniformdocs/datatable-data-table"
                             provider="{{model.DataTable}}" auto-pagination>
@@ -176,6 +177,7 @@
             <div class="uni-primary-button">
                 <slot name="uniformdocs/datatable-add-button"></slot>
             </div>
+            <slot name="uniformdocs/datatable-reset-sorting-button"></slot>
         </div>
         <div class="uni-section-primary">
             <slot name="uniformdocs/guidelines"></slot>
