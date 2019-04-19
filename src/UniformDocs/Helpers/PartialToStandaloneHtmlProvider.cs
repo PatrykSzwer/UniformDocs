@@ -32,7 +32,7 @@ namespace UniformDocs
         {
             application.Use(request =>
             {
-                if (request.Uri.Equals("/service-workers.js"))
+                if (request.Uri.Equals("/service-worker.js"))
                 {
                     string template;
                     if (!string.IsNullOrEmpty(serviceWorkerTemplate))

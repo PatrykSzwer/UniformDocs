@@ -1,15 +1,32 @@
 const version = 'REPLACE_ME_WTH_RUNTIME_HASH';
-
-function isRequestForAnAsset(url) {
+/**
+ * This function's logic determins `url` is cached in the service worker cache. 
+ * Feel free to extend is logic with whatever critera you think is needed for caching urls
+ * @param {String} url 
+ * @returns {Boolean} whether to cache the URL or not.
+ */
+function shouldCacheThisURL(url) {
+  // get the last part of the url after the last `/`;
   const lastPartOfUrl = url.split('/').pop();
+
+  /* if the last part matches ends with an extension that is (2-5) in length
+     it's probably a file (eg: file.jpg), worth caching
+   */
   if (lastPartOfUrl.match(/\.\w{2,5}$/)) {
     // has an extenstion
     return true;
   }
+  /**
+   * If the url has `htmlmerger` word in it, then it's a dynamic yet cachable URL. Since the url's uniqueness
+   * is tightly coupled with the content's uniqueness in this case
+   */
   if (url.includes('htmlmerger')) {
     // an HTML merger url
     return true;
   }
+  /**
+   * The url probably represents a JSON model that shouldn't be cached
+   */
   return false;
 }
 
@@ -74,7 +91,7 @@ self.addEventListener('fetch', event => {
             // only cache assets
             // caching non-assets would cache eg MainPage (which is technically the app shell),
             // and would cache REST API calls
-            if (isRequestForAnAsset(event.request.url)) {
+            if (shouldCacheThisURL(event.request.url)) {
               return cache.put(event.request, response.clone()).then(() => {
                 return response;
               });
