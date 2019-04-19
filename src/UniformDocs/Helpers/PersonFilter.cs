@@ -1,8 +1,8 @@
 ﻿using Starcounter.Uniform.Generic.FilterAndSort;
 using Starcounter.Uniform.Queryables;
 using System;
-using System.Globalization;
 using System.Linq;
+using System.Text;
 using UniformDocs.Database;
 
 namespace UniformDocs.Helpers
@@ -12,12 +12,18 @@ namespace UniformDocs.Helpers
         protected override IQueryable<Person> ApplyFilter(IQueryable<Person> data, Filter filter)
         {
             if (filter == null) throw new ArgumentNullException(nameof(filter));
+            if (filter.PropertyName == nameof(Person.FirstName))
+            {
+                // Match normalized string without diacritics.
+                return data.ToList().Where(person =>
+                        new string(person.FirstName.Normalize(NormalizationForm.FormD).Where(c => c < 128).ToArray()).Contains(filter.Value) ||
+                        person.FirstName.Contains(filter.Value)) // if someone is using diacritic characters in search
+                    .AsQueryable();
+            }
             if (filter.PropertyName == nameof(Email.Address))
             {
-                // Entire string comparison with a method to ignore diacritics.
-                return data.ToList().Where(person => string.Compare(person.Email.Address, filter.Value,
-                                                                      CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace) ==
-                                                                  0).AsQueryable();
+                // Exact matching.
+                return data.ToList().Where(person => person.Email.Address.Contains(filter.Value)).AsQueryable();
             }
 
             return base.ApplyFilter(data, filter);
