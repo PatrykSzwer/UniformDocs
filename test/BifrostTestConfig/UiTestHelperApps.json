@@ -1,0 +1,13 @@
+{
+    "Description": "All the apps that must be running before run the UI tests.",
+    "Apps": [
+        {
+            "Enabled": true,
+            "ApplicationPath": "/src/UniformDocs/bin/<UniformDocsConfiguration>/UniformDocs.exe",
+            "ResourceDirectory": "/src/UniformDocs/wwwroot"
+        }
+    ]
+}
+
+
+

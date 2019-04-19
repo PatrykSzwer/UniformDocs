@@ -8,6 +8,14 @@ All changes should be as a PR to the `master` branch.
 
 The branch `master-2.3` does not get updates anymore and is only for reference purposes.
 
+### Build scripts specific prerequisites
+
+* Install the latest global .NET Core Cake tool by running `dotnet tool install -g Cake.Tool`.
+* Add [nuget.exe](https://www.nuget.org/downloads) to PATH.
+* Make sure that the MSBuild version that is used comes from your Visual Studio installation and not from a previous installation of .NET Framework. The easiest way to test this is to run `msbuild /version` which should return a `15.X` version. If it returns something like `4.X`, then you have to either
+    * add `C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin` to PATH (check both System AND User).  Make sure it's inserted before any `C:\Windows\Microsoft.NET\Framework\v4.0.30319`
+    * or run `C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools\VsDevCmd.bat` which will only set proper environment variable values for the current process.
+
 ## How to build and run
 
 ### Build and run using CLI
