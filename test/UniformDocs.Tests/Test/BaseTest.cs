@@ -7,7 +7,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
-using System.IO;
 using System.Net;
 
 namespace UniformDocs.Tests.Test
@@ -18,8 +17,8 @@ namespace UniformDocs.Tests.Test
         private readonly Config.Browser _browser;
         private readonly string _browsersTc = TestContext.Parameters["Browsers"];
         private List<string> _browsersToRun = new List<string>();
-        private ResultState LastOutcome;
-        private string LastOutcomeMessage;
+        private ResultState _lastOutcome;
+        private string _lastOutcomeMessage;
 
         public BaseTest(Config.Browser browser)
         {
@@ -36,7 +35,7 @@ namespace UniformDocs.Tests.Test
             else
             {
                 _browsersToRun.Add("Chrome");
-                _browsersToRun.Add("ChromeNoV0");
+                //_browsersToRun.Add("ChromeNoV0");
                 _browsersToRun.Add("Firefox");
                 //_browsersToRun.Add("Edge");
             }
@@ -49,7 +48,24 @@ namespace UniformDocs.Tests.Test
 
             if (_browsersToRun.Contains(Config.BrowserDictionary[_browser]))
             {
-                Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, serverUri);
+                try
+                {
+                    Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, serverUri);
+                }
+                catch (WebDriverException ex)
+                {
+                    if (ex.Message.Contains("All parallel tests are currently in use"))
+                    {
+                        TestsRunner.TestsQueue.Enqueue(TestContext.CurrentContext.Test.FullName);
+                    }
+
+                    if (TestsRunner.TestsQueue.Any() && !TestsRunner.IsProcessing)
+                    {
+                        TestsRunner.StartProcessingTests();
+                    }
+
+                    Assert.Inconclusive("Can't create WebDriver, because all parallel tests are currently in use.");
+                }
             }
             else
             {
@@ -60,31 +76,28 @@ namespace UniformDocs.Tests.Test
         [TearDown]
         public void TearDown()
         {
-            if (LastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            if (_lastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
                 //this class has single driver session for all test methods
                 //we don't want to mark a test as passed if it was already marked as failed
-                LastOutcome = TestContext.CurrentContext.Result.Outcome;
-                LastOutcomeMessage = TestContext.CurrentContext.Result.Message;
+                _lastOutcome = TestContext.CurrentContext.Result.Outcome;
+                _lastOutcomeMessage = TestContext.CurrentContext.Result.Message;
             }
         }
 
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Skipped)
+            if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Skipped && 
+                TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Failed &&
+                Driver != null)
             {
                 if (WebDriverManager.IsCloud)
                 {
-                    WebDriverManager.MarkTestStatusOnBrowserStack(Driver, LastOutcome, LastOutcomeMessage);
+                    WebDriverManager.MarkTestStatusOnBrowserStack(Driver, _lastOutcome, _lastOutcomeMessage);
                 }
                 WebDriverManager.StopDriver(Driver);
             }
-        }
-
-        private string GetSafeFilename(string filename)
-        {
-            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
 
         protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, string errorMessage = null, int timeToWait = 10)

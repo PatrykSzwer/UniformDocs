@@ -1,16 +1,15 @@
-using System.Drawing.Design;
 using UniformDocs.Tests.Ui;
 using UniformDocs.Tests.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
+    //[TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
+    [Parallelizable(ParallelScope.Fixtures)]
     class ButtonPageTest : BaseTest
     {
         private ButtonPage _buttonPage;

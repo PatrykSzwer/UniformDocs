@@ -5,9 +5,10 @@ using NUnit.Framework;
 namespace UniformDocs.Tests.Test
 {
     [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
+    //[TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
+    [Parallelizable(ParallelScope.Fixtures)]
     class ClientLocalStateTest : BaseTest
     {
         private ClientLocalStatePage _clientLocalStatePage;
