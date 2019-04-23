@@ -6,60 +6,55 @@ namespace UniformDocs
 {
     public sealed class ServiceWorkerBodyBytesSingleton
     {
-        private static Encoding defaultEncoding = Encoding.UTF8;
-        private string serviceWorkerTemplate;
-        private byte[] CachedHydratedServiceWorkerBytes;
+        private static Encoding _defaultEncoding = Encoding.UTF8;
+        private string _sourceTemplate;
+        private byte[] _hydrated;
 
         private ServiceWorkerBodyBytesSingleton()
         {
-            RegenerateKeyAndHydrateServiceWorkerTemplate();
-            Starcounter.Internal.AppsBootstrapper.WatchResources(ResourceChanged);
+            _regenerateKeyAndHydrateTemplate();
+            Starcounter.Internal.AppsBootstrapper.WatchResources(_resourceChanged);
         }
        
         private static string FetchServiceWorkerTemplate()
         {
-            string ServiceWorkerUrl = "/sys/app-shell/service-worker-source.js";
+            string sourceUrl = "/sys/app-shell/service-worker-source.js";
             try
             {
-                return Self.GET(ServiceWorkerUrl).Body;
+                return Self.GET(sourceUrl).Body;
             }
-            catch
+            catch(Exception e)
             {
-                throw new Exception($"Could not fetch {ServiceWorkerUrl}");
+                var err = e;
+                throw new Exception($"Could not fetch {sourceUrl}");
             }
         }
 
-        private static readonly Lazy<ServiceWorkerBodyBytesSingleton> lazy = new Lazy<ServiceWorkerBodyBytesSingleton>(() => new ServiceWorkerBodyBytesSingleton());
+        private static readonly Lazy<ServiceWorkerBodyBytesSingleton> s_lazy = new Lazy<ServiceWorkerBodyBytesSingleton>(() => new ServiceWorkerBodyBytesSingleton());
 
-        public static ServiceWorkerBodyBytesSingleton Instance => lazy.Value;
+        public static ServiceWorkerBodyBytesSingleton Instance => s_lazy.Value;
 
-        private void RegenerateKeyAndHydrateServiceWorkerTemplate()
+        private void _regenerateKeyAndHydrateTemplate()
         {
-            string Key = Guid.NewGuid().ToString();
-            RehydrateServiceWorkerTemplate(Key);
+            string key = Guid.NewGuid().ToString();
+            _rehydrateTemplate(key);
         }
 
-        private void RehydrateServiceWorkerTemplate(string key)
+        private void _rehydrateTemplate(string key)
         {
-            string template;
-            if (!string.IsNullOrEmpty(serviceWorkerTemplate))
+            if (string.IsNullOrEmpty(_sourceTemplate))
             {
-                template = serviceWorkerTemplate;
+                _sourceTemplate = FetchServiceWorkerTemplate();
             }
-            else
-            {
-                template = FetchServiceWorkerTemplate();
-                serviceWorkerTemplate = template;
-            }
-            var SWBody = template.Replace("REPLACE_ME_WTH_RUNTIME_HASH", key);
-            CachedHydratedServiceWorkerBytes = defaultEncoding.GetBytes(SWBody);
+            string body = _sourceTemplate.Replace("REPLACE_ME_WTH_RUNTIME_HASH", key);
+            _hydrated = _defaultEncoding.GetBytes(body);
         }
         /// <summary>
         /// Returns the byte-array of UTF8 encoded service-worker JavaScript code
         /// </summary>
-        public byte[] GetServiceWorkerBodyBytes()
+        public byte[] GetBodyBytes()
         {
-            return CachedHydratedServiceWorkerBytes;
+            return _hydrated;
         }
 
         /// <summary>
@@ -68,10 +63,19 @@ namespace UniformDocs
         /// in case of delete, newUri is null
         /// in case of a new file, oldUri is null
         /// </summary>
-        /// <param name="resourceChanged"></param>
-        private void ResourceChanged(string newUri, string oldUri)
+        /// <param name="_resourceChanged"></param>
+        private void _resourceChanged(string newUri, string oldUri)
         {
-            RegenerateKeyAndHydrateServiceWorkerTemplate();
+            /* FIXME: currently this is throwing "You are trying to perform a Self call while not being on Starcounter scheduler" 
+            
+            // the service worker source file has changed. Re-fetch the source template
+            // this cancels the need for restarting the app(s) to get the effects of updating the service-worker-source template
+            if(newUri.EndsWith("service-worker-source.js"))
+            {
+                _serviceWorkerTemplate = FetchServiceWorkerTemplate();
+            }
+            */
+            _regenerateKeyAndHydrateTemplate();
         }
     }
 }

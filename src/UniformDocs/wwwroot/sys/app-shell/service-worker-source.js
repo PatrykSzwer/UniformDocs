@@ -1,14 +1,14 @@
 const version = 'REPLACE_ME_WTH_RUNTIME_HASH';
-const serviceWorkerGreetubgMessage = `Hi 👋! This message is logged from Starcounter's built-in Service Worker to indicate that it is running. Please note that most of your static files are served through this Service Worker cache. Although this results in tremendous performance benefits, it is a new feature that might result in expected behaviour.
-If you're having any issues, questions, or any type of feedback please write in: https://git.io/fj3ye`
-const serviceWorkerFormatting = 'color: #9e6664; width: 100%';
+const greetingMessage = `Hi 👋! This message is logged from Starcounter's built-in Service Worker to indicate that it is running. Please note that most of your static files are served through this Service Worker cache. Although this results in tremendous performance benefits, it is a new feature that might result in unexpected behaviour.
+If you're having any issues, questions, or any type of feedback please write in: https://github.com/Starcounter/StarcounterClientFiles/issues/111`
+const logFormatting = 'color: #53a6a5; width: 100%';
 
 /** logs a nice distinct console message */
 function niceLog() {
   const args = Array.from(arguments);
   const formattedMessages = args.reduce((acc, message) => {
     acc.push('%c[SW]: ' + message);
-    acc.push(serviceWorkerFormatting);
+    acc.push(logFormatting);
     return acc;
   }, []);
   console.info(...formattedMessages);
@@ -48,7 +48,7 @@ function shouldCacheThisURL(url) {
 
 // a new client arrives! Greet them.
 self.addEventListener('message', function(event){
-  niceLog(serviceWorkerGreetubgMessage);
+  niceLog(greetingMessage);
 });
 
 self.addEventListener('install', function(event) {

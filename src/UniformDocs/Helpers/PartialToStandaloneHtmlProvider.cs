@@ -34,7 +34,7 @@ namespace UniformDocs
             {
                 if (request.Uri.Equals("/service-worker.js"))
                 {
-                    var ServiceWorkerBodyBytes = ServiceWorkerBodyBytesSingleton.Instance.GetServiceWorkerBodyBytes();
+                    var ServiceWorkerBodyBytes = ServiceWorkerBodyBytesSingleton.Instance.GetBodyBytes();
                     var response = new Response
                     {
                         BodyBytes = ServiceWorkerBodyBytes
