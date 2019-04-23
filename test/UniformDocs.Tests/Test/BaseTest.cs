@@ -64,7 +64,7 @@ namespace UniformDocs.Tests.Test
         {
             if (failsCount >= Config.FailsBeforeStop)
             {
-                Assert.Fail("The maximum number of test errors was reached. Tests will be stopped.");
+                Assert.Inconclusive("The maximum number of test errors was reached. Tests will be stopped.");
             }
 
             if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
