@@ -1,4 +1,9 @@
 const version = 'REPLACE_ME_WTH_RUNTIME_HASH';
+const serviceWorkerMessage = `Hi 👋! This message is logged from Starcounter's built-in Service Worker to indicate that it is running. Please note that most of your static files are served through this Service Worker cache. Although this results in tremendous performance benefits, it is a new feature that might result in expected behaviour.
+If you're having any issues, questions, or any type of feedback please write in: https://git.io/fj3ye
+`
+console.info(`%c${serviceWorkerMessage}`, 'color: #9e6664; padding: 5px 2px; width: 100%')
+
 /**
  * This function's logic determins `url` is cached in the service worker cache. 
  * Feel free to extend is logic with whatever critera you think is needed for caching urls
