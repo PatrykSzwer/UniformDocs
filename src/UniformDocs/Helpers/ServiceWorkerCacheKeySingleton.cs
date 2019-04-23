@@ -1,29 +1,65 @@
-﻿using System;
+﻿using Starcounter;
+using System;
+using System.Text;
 
 namespace UniformDocs
 {
-    public sealed class ServiceWorkerCacheKeySingleton
+    public sealed class ServiceWorkerBodyBytesSingleton
     {
-        private ServiceWorkerCacheKeySingleton()
+        private static Encoding defaultEncoding = Encoding.UTF8;
+        private string serviceWorkerTemplate;
+        private byte[] CachedHydratedServiceWorkerBytes;
+
+        private ServiceWorkerBodyBytesSingleton()
         {
-            RegenerateKey();
+            RegenerateKeyAndHydrateServiceWorkerTemplate();
             Starcounter.Internal.AppsBootstrapper.WatchResources(ResourceChanged);
         }
-
-        private static readonly Lazy<ServiceWorkerCacheKeySingleton> lazy = new Lazy<ServiceWorkerCacheKeySingleton>(() => new ServiceWorkerCacheKeySingleton());
-
-        public static ServiceWorkerCacheKeySingleton Instance => lazy.Value;
-
-        private string Key;
-
-        private void RegenerateKey()
+       
+        private static string FetchServiceWorkerTemplate()
         {
-            Key = Guid.NewGuid().ToString();
+            try
+            {
+                string ServiceWorkerUrl = "/sys/service-worker-source.js";
+                return Self.GET(ServiceWorkerUrl).Body;
+            }
+            catch
+            {
+                throw new Exception(@"Could not fetch /sys/service-worker-source.js");
+            }
         }
 
-        public string GetKey()
+        private static readonly Lazy<ServiceWorkerBodyBytesSingleton> lazy = new Lazy<ServiceWorkerBodyBytesSingleton>(() => new ServiceWorkerBodyBytesSingleton());
+
+        public static ServiceWorkerBodyBytesSingleton Instance => lazy.Value;
+
+        private void RegenerateKeyAndHydrateServiceWorkerTemplate()
         {
-            return Key;
+            string Key = Guid.NewGuid().ToString();
+            RehydrateServiceWorkerTemplate(Key);
+        }
+
+        private void RehydrateServiceWorkerTemplate(string key)
+        {
+            string template;
+            if (!string.IsNullOrEmpty(serviceWorkerTemplate))
+            {
+                template = serviceWorkerTemplate;
+            }
+            else
+            {
+                template = FetchServiceWorkerTemplate();
+                serviceWorkerTemplate = template;
+            }
+            var SWBody = template.Replace("REPLACE_ME_WTH_RUNTIME_HASH", key);
+            CachedHydratedServiceWorkerBytes = defaultEncoding.GetBytes(SWBody);
+        }
+        /// <summary>
+        /// Returns the byte-array of UTF8 encoded service-worker JavaScript code
+        /// </summary>
+        public byte[] GetServiceWorkerBodyBytes()
+        {
+            return CachedHydratedServiceWorkerBytes;
         }
 
         /// <summary>
@@ -35,7 +71,7 @@ namespace UniformDocs
         /// <param name="resourceChanged"></param>
         private void ResourceChanged(string newUri, string oldUri)
         {
-            RegenerateKey();
+            RegenerateKeyAndHydrateServiceWorkerTemplate();
         }
     }
 }

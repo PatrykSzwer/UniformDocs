@@ -8,7 +8,7 @@ namespace UniformDocs
     public class PartialToStandaloneHtmlProvider : IMiddleware
     {
         static Encoding defaultEncoding = Encoding.UTF8;
-        string appShell, serviceWorkerTemplate;
+        string appShell;
 
         /// <summary>
         /// Creates a new instance of <see cref="PartialToStandaloneHtmlProvider"/>
@@ -34,20 +34,10 @@ namespace UniformDocs
             {
                 if (request.Uri.Equals("/service-worker.js"))
                 {
-                    string template;
-                    if (!string.IsNullOrEmpty(serviceWorkerTemplate))
-                    {
-                        template = serviceWorkerTemplate;
-                    }
-                    else
-                    {
-                        template = FetchServiceWorkerTemplate();
-                        serviceWorkerTemplate = template;
-                    }
-                    var SW = template.Replace("REPLACE_ME_WTH_RUNTIME_HASH", ServiceWorkerCacheKeySingleton.Instance.GetKey());
+                    var ServiceWorkerBodyBytes = ServiceWorkerBodyBytesSingleton.Instance.GetServiceWorkerBodyBytes();
                     var response = new Response
                     {
-                        BodyBytes = defaultEncoding.GetBytes(SW)
+                        BodyBytes = ServiceWorkerBodyBytes
                     };
                     response.Headers["Content-Type"] = "application/javascript";
                     request.SendResponse(response);
@@ -70,19 +60,7 @@ namespace UniformDocs
                 throw new Exception(@"Could not fetch /sys/app-shell/app-shell.html");
             }
         }
-
-        private static string FetchServiceWorkerTemplate()
-        {
-            try
-            {
-                string serviceWorkerUrl = "/sys/service-worker-source.js";
-                return Self.GET(serviceWorkerUrl).Body;
-            }
-            catch
-            {
-                throw new Exception(@"Could not fetch /sys/service-worker-source.js");
-            }
-        }
+             
 
         void Invoke(MimeProviderContext context, Action next)
         {
