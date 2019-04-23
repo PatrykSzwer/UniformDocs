@@ -20,7 +20,8 @@ function shouldCacheThisURL(url) {
    * If the url has `htmlmerger` word in it, then it's a dynamic yet cachable URL. Since the url's uniqueness
    * is tightly coupled with the content's uniqueness in this case
    */
-  if (url.includes('htmlmerger')) {
+  const urlInstance = new URL(url);
+  if (urlInstance.pathname === '/sc/htmlmerger') {
     // an HTML merger url
     return true;
   }
