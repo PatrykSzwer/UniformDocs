@@ -1,8 +1,18 @@
 const version = 'REPLACE_ME_WTH_RUNTIME_HASH';
-const serviceWorkerMessage = `Hi 👋! This message is logged from Starcounter's built-in Service Worker to indicate that it is running. Please note that most of your static files are served through this Service Worker cache. Although this results in tremendous performance benefits, it is a new feature that might result in expected behaviour.
-If you're having any issues, questions, or any type of feedback please write in: https://git.io/fj3ye
-`
-console.info(`%c${serviceWorkerMessage}`, 'color: #9e6664; padding: 5px 2px; width: 100%')
+const serviceWorkerGreetubgMessage = `Hi 👋! This message is logged from Starcounter's built-in Service Worker to indicate that it is running. Please note that most of your static files are served through this Service Worker cache. Although this results in tremendous performance benefits, it is a new feature that might result in expected behaviour.
+If you're having any issues, questions, or any type of feedback please write in: https://git.io/fj3ye`
+const serviceWorkerFormatting = 'color: #9e6664; width: 100%';
+
+/** logs a nice distinct console message */
+function niceLog() {
+  const args = Array.from(arguments);
+  const formattedMessages = args.reduce((acc, message) => {
+    acc.push('%c[SW]: ' + message);
+    acc.push(serviceWorkerFormatting);
+    return acc;
+  }, []);
+  console.info(...formattedMessages);
+}
 
 /**
  * This function's logic determins `url` is cached in the service worker cache. 
@@ -36,13 +46,18 @@ function shouldCacheThisURL(url) {
   return false;
 }
 
+// a new client arrives! Greet them.
+self.addEventListener('message', function(event){
+  niceLog(serviceWorkerGreetubgMessage);
+});
+
 self.addEventListener('install', function(event) {
-  console.log('[ServiceWorker] Installed version', version);
-  console.log('[ServiceWorker] Skip waiting on install');
+  niceLog(`Installed version ${version}`);
+  niceLog(`Skip waiting on install`);
   return self.skipWaiting();
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function(event) { 
   self.clients
     .matchAll({
       includeUncontrolled: true
@@ -51,7 +66,7 @@ self.addEventListener('activate', function(event) {
       var urls = clientList.map(function(client) {
         return client.url;
       });
-      console.log('[ServiceWorker] Matching clients:', urls.join(', '));
+      niceLog(`Matching clients:' ${urls.join(', ')}`);
     });
 
   event.waitUntil(
@@ -61,14 +76,14 @@ self.addEventListener('activate', function(event) {
         return Promise.all(
           cacheNames.map(function(cacheName) {
             if (cacheName !== version) {
-              console.log('[ServiceWorker] Deleting old cache:', cacheName);
+              niceLog(`Deleting old cache:' ${cacheName}`);
               return caches.delete(cacheName);
             }
           })
         );
       })
       .then(function() {
-        console.log('[ServiceWorker] Claiming clients for version', version);
+        niceLog(`Claiming clients for version`);
         return self.clients.claim();
       })
   );

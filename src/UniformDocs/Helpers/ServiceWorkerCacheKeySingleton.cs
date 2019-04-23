@@ -18,14 +18,14 @@ namespace UniformDocs
        
         private static string FetchServiceWorkerTemplate()
         {
+            string ServiceWorkerUrl = "/sys/app-shell/service-worker-source.js";
             try
             {
-                string ServiceWorkerUrl = "/sys/service-worker-source.js";
                 return Self.GET(ServiceWorkerUrl).Body;
             }
             catch
             {
-                throw new Exception(@"Could not fetch /sys/service-worker-source.js");
+                throw new Exception($"Could not fetch {ServiceWorkerUrl}");
             }
         }
 

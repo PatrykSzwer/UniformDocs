@@ -32,6 +32,10 @@
         async function registerSW(swUrl) {{
           try {{
             const registration = await navigator.serviceWorker.register(swUrl);
+            
+            // send a message to the SW to it logs the SW disclaimer
+            navigator.serviceWorker.controller.postMessage("Hi! I deeclare myself as a new client");
+
             registration.onupdatefound = () => {{
                 const installingWorker = registration.installing;
                 installingWorker.onstatechange = () => {{
