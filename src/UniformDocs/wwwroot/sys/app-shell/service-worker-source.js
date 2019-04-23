@@ -3,7 +3,13 @@ const greetingMessage = `Hi 👋! This message is logged from Starcounter's buil
 If you're having any issues, questions, or any type of feedback please write in: https://github.com/Starcounter/StarcounterClientFiles/issues/111`
 const logFormatting = 'color: #53a6a5; width: 100%';
 
-/** logs a nice distinct console message */
+/**
+ * console.* functions accept formatted messages
+ * in the format of `console.log('%c message1', 'formatting for message1', '$c message2', 'formatting for message2')`;
+ * this function converts an array of plain strings to formatted-pairs ([message, formatting]) and logs them.
+ * it also prefixes every message with `[SW]` for Service Worker
+ * @param {...String} messages
+ */
 function niceLog() {
   const args = Array.from(arguments);
   const formattedMessages = args.reduce((acc, message) => {
