@@ -18,10 +18,9 @@ namespace UniformDocs.Tests.Test
         private readonly Config.Browser _browser;
         private readonly string _browsersTc = TestContext.Parameters["Browsers"];
         private List<string> _browsersToRun = new List<string>();
-        private ResultState LastOutcome;
-        private string LastOutcomeMessage;
-        protected static readonly string _testedAppName = "UniformDocs";
-        private static int failsCount = 0;
+        private ResultState _lastOutcome;
+        private string _lastOutcomeMessage;
+        private static int _failsCount;
 
         public BaseTest(Config.Browser browser)
         {
@@ -62,38 +61,38 @@ namespace UniformDocs.Tests.Test
         [SetUp]
         public virtual void SetUp()
         {
-            if (failsCount >= Config.FailsBeforeStop)
+            if (_failsCount >= Config.FailsBeforeStop)
             {
-                Assert.Inconclusive("The maximum number of test errors was reached. Tests will be stopped.");
+                Assert.Inconclusive($"The maximum number of {_failsCount} test errors was reached. The further tests are marked as inconclusive.");
             }
 
-            if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
+            if (!(RestApiHelper.CheckAppRunning(Config.TestedAppName).Result))
             {
-                Assert.Fail($"The tested app {_testedAppName} is not running");
+                Assert.Fail($"The tested app {Config.TestedAppName} is not running");
             }
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (!(RestApiHelper.CheckAppRunning(_testedAppName).Result))
+            if (!(RestApiHelper.CheckAppRunning(Config.TestedAppName).Result))
             {
-                Assert.Fail($"The tested app {_testedAppName} unexpectedly stopped during the test. " +
+                Assert.Fail($"The tested app {Config.TestedAppName} unexpectedly stopped during the test. " +
                             $"The following text is the last message that can be found in the Starcounter log: " +
                             $"{RestApiHelper.GetLatestLogEntry().Result}");
             }
 
             if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
             {
-                failsCount++;
+                _failsCount++;
             }
 
-            if (LastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            if (_lastOutcome == null || TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
                 //this class has single driver session for all test methods
                 //we don't want to mark a test as passed if it was already marked as failed
-                LastOutcome = TestContext.CurrentContext.Result.Outcome;
-                LastOutcomeMessage = TestContext.CurrentContext.Result.Message;
+                _lastOutcome = TestContext.CurrentContext.Result.Outcome;
+                _lastOutcomeMessage = TestContext.CurrentContext.Result.Message;
             }
         }
 
@@ -104,7 +103,7 @@ namespace UniformDocs.Tests.Test
             {
                 if (WebDriverManager.IsCloud)
                 {
-                    WebDriverManager.MarkTestStatusOnBrowserStack(Driver, LastOutcome, LastOutcomeMessage);
+                    WebDriverManager.MarkTestStatusOnBrowserStack(Driver, _lastOutcome, _lastOutcomeMessage);
                 }
                 WebDriverManager.StopDriver(Driver);
             }

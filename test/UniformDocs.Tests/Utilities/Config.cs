@@ -56,6 +56,7 @@ namespace UniformDocs.Tests.Utilities
             {Browser.Firefox, "Firefox"}
         };
 
+        public static readonly string TestedAppName = "UniformDocs";
         public static readonly int FailsBeforeStop = 5;
     }
 }
