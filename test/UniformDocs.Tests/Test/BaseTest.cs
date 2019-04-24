@@ -8,6 +8,7 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace UniformDocs.Tests.Test
 {
@@ -26,7 +27,7 @@ namespace UniformDocs.Tests.Test
         }
 
         [OneTimeSetUp]
-        public void TestFixtureSetUp()
+        public async Task TestFixtureSetUp()
         {
             if (_browsersTc != null)
             {
@@ -48,23 +49,33 @@ namespace UniformDocs.Tests.Test
 
             if (_browsersToRun.Contains(Config.BrowserDictionary[_browser]))
             {
-                try
+                var tries = 0;
+
+                while (tries <= 5)
                 {
-                    Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, serverUri);
+                    try
+                    {
+                        Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, serverUri);
+                        break;
+                    }
+                    catch (WebDriverException ex)
+                    {
+                        if (ex.Message.Contains("All parallel tests are currently in use"))
+                        {
+                            await Task.Delay(TimeSpan.FromSeconds(20));
+                            tries++;
+                        }
+                    }
+
+                    if (Driver != null)
+                    {
+                        break;
+                    }
                 }
-                catch (WebDriverException ex)
+
+                if (Driver == null)
                 {
-                    if (ex.Message.Contains("All parallel tests are currently in use"))
-                    {
-                        TestsRunner.TestsQueue.Enqueue(TestContext.CurrentContext.Test.FullName);
-                    }
-
-                    if (TestsRunner.TestsQueue.Any() && !TestsRunner.IsProcessing)
-                    {
-                        TestsRunner.StartProcessingTests();
-                    }
-
-                    Assert.Inconclusive("Can't create WebDriver, because all parallel tests are currently in use.");
+                    throw new Exception("Can't create WebDriver, probably due to a bad config or because all parallel tests are currently in use.");
                 }
             }
             else
