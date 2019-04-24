@@ -61,17 +61,14 @@ namespace UniformDocs
         /// in case of a new file, oldUri is null
         /// </summary>
         /// <param name="ResourceChanged"></param>
-        private void ResourceChanged(string newUri, string oldUri)
+        async private void ResourceChanged(string newUri, string oldUri)
         {
             // the service worker source file has changed. Re-fetch the source template
             // this cancels the need for restarting the app(s) to get the effects of updating the service-worker-source template
             if (newUri.EndsWith("service-worker-source.js"))
             {
-                ThreadPool.QueueUserWorkItem(async o =>
-                {
-                    await Scheduling.RunTask(() => _sourceTemplate = FetchServiceWorkerTemplate());
-                    RegenerateKeyAndHydrateTemplate();
-                });
+                await Scheduling.RunTask(() => _sourceTemplate = FetchServiceWorkerTemplate());
+                RegenerateKeyAndHydrateTemplate();
             }
             else
             {
