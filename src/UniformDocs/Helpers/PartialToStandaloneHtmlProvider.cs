@@ -1,14 +1,45 @@
-﻿using Starcounter;
-using Starcounter.XSON.Advanced;
-using System;
+﻿using System;
 using System.Text;
+using Starcounter.XSON.Advanced;
+using Starcounter;
 
 namespace UniformDocs
 {
+    /// <summary>
+    /// For any HTTP request with `Accept: text/html` with a response that is HTML,
+    /// checks if the HTML document is a partial (does not start with a doctype).
+    /// If yes, returns the app shell that contains code to bootstrap
+    /// a Palindrom connection instead of that HTML.
+    ///
+    /// The HTML template cointans the session URL that was returned from the handler,
+    /// so that Palindrom can request the relevant JSON in a following request.
+    ///
+    /// Must be used after `HtmlFromJsonProvider` middleware.
+    ///
+    /// A custom HTML template can be provided as a string parameter to the constructor.
+    ///
+    /// Middleware only wraps requests that have a HTTP handler. Since this middleware
+    /// wraps the actual response, it will also have the HTTP status code
+    /// that was returned from the handler.
+    /// </summary>
     public class PartialToStandaloneHtmlProvider : IMiddleware
     {
         static Encoding defaultEncoding = Encoding.UTF8;
-        string appShell;
+
+        string appShellPreconfigured;
+
+        private static string FetchTemplate()
+        {
+            try
+            {
+                string appShellHTMLUrl = "/sys/app-shell/app-shell.html";
+                return Self.GET(appShellHTMLUrl).Body;
+            }
+            catch
+            {
+                throw new Exception(@"Could not fetch /sys/app-shell/app-shell.html");
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of <see cref="PartialToStandaloneHtmlProvider"/>
@@ -25,7 +56,7 @@ namespace UniformDocs
         public PartialToStandaloneHtmlProvider(string standaloneTemplate)
         {
             if (string.IsNullOrEmpty(standaloneTemplate)) throw new ArgumentNullException("standaloneTemplate");
-            appShell = standaloneTemplate;
+            appShellPreconfigured = standaloneTemplate;
         }
 
         void IMiddleware.Register(Application application)
@@ -47,20 +78,6 @@ namespace UniformDocs
 
             application.Use(MimeProvider.Html(this.Invoke));
         }
-
-        private static string FetchAppShellTemplate()
-        {
-            try
-            {
-                string appShellHTMLUrl = "/sys/app-shell/app-shell.html";
-                return Self.GET(appShellHTMLUrl).Body;
-            }
-            catch
-            {
-                throw new Exception(@"Could not fetch /sys/app-shell/app-shell.html");
-            }
-        }
-             
 
         void Invoke(MimeProviderContext context, Action next)
         {
@@ -87,16 +104,7 @@ namespace UniformDocs
 
         internal byte[] ProvideImplicitStandalonePage(byte[] content, string appName, string sessionUri)
         {
-            string template;
-            if (!string.IsNullOrEmpty(appShell))
-            {
-                template = appShell;
-            }
-            else
-            {
-                appShell = FetchAppShellTemplate();
-                template = appShell;
-            }
+            string template = appShellPreconfigured ?? FetchTemplate();
             var html = String.Format(template, appName, sessionUri);
             return defaultEncoding.GetBytes(html);
         }

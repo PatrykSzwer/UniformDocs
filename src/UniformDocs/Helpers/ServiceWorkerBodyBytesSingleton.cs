@@ -1,6 +1,7 @@
 ﻿using Starcounter;
 using System;
 using System.Text;
+using System.Threading;
 
 namespace UniformDocs
 {
@@ -12,10 +13,10 @@ namespace UniformDocs
 
         private ServiceWorkerBodyBytesSingleton()
         {
-            _regenerateKeyAndHydrateTemplate();
-            Starcounter.Internal.AppsBootstrapper.WatchResources(_resourceChanged);
+            RegenerateKeyAndHydrateTemplate();
+            Starcounter.Internal.AppsBootstrapper.WatchResources(ResourceChanged);
         }
-       
+
         private static string FetchServiceWorkerTemplate()
         {
             string sourceUrl = "/sys/app-shell/service-worker-source.js";
@@ -23,9 +24,8 @@ namespace UniformDocs
             {
                 return Self.GET(sourceUrl).Body;
             }
-            catch(Exception e)
+            catch
             {
-                var err = e;
                 throw new Exception($"Could not fetch {sourceUrl}");
             }
         }
@@ -34,18 +34,15 @@ namespace UniformDocs
 
         public static ServiceWorkerBodyBytesSingleton Instance => s_lazy.Value;
 
-        private void _regenerateKeyAndHydrateTemplate()
+        private void RegenerateKeyAndHydrateTemplate()
         {
             string key = Guid.NewGuid().ToString();
-            _rehydrateTemplate(key);
+            RehydrateTemplate(key);
         }
 
-        private void _rehydrateTemplate(string key)
+        private void RehydrateTemplate(string key)
         {
-            if (string.IsNullOrEmpty(_sourceTemplate))
-            {
-                _sourceTemplate = FetchServiceWorkerTemplate();
-            }
+            _sourceTemplate = _sourceTemplate ?? FetchServiceWorkerTemplate();
             string body = _sourceTemplate.Replace("REPLACE_ME_WTH_RUNTIME_HASH", key);
             _hydrated = _defaultEncoding.GetBytes(body);
         }
@@ -63,19 +60,23 @@ namespace UniformDocs
         /// in case of delete, newUri is null
         /// in case of a new file, oldUri is null
         /// </summary>
-        /// <param name="_resourceChanged"></param>
-        private void _resourceChanged(string newUri, string oldUri)
+        /// <param name="ResourceChanged"></param>
+        private void ResourceChanged(string newUri, string oldUri)
         {
-            /* FIXME: currently this is throwing "You are trying to perform a Self call while not being on Starcounter scheduler" 
-            
             // the service worker source file has changed. Re-fetch the source template
             // this cancels the need for restarting the app(s) to get the effects of updating the service-worker-source template
-            if(newUri.EndsWith("service-worker-source.js"))
+            if (newUri.EndsWith("service-worker-source.js"))
             {
-                _serviceWorkerTemplate = FetchServiceWorkerTemplate();
+                ThreadPool.QueueUserWorkItem(async o =>
+                {
+                    await Scheduling.RunTask(() => _sourceTemplate = FetchServiceWorkerTemplate());
+                    RegenerateKeyAndHydrateTemplate();
+                });
             }
-            */
-            _regenerateKeyAndHydrateTemplate();
+            else
+            {
+                RegenerateKeyAndHydrateTemplate();
+            }
         }
     }
 }
