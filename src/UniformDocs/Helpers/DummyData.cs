@@ -56,13 +56,20 @@ namespace UniformDocs.Helpers
                 {
                     for (int i = 500; i > 0; i--)
                     {
+                        var firstName = $"{i} member first name";
+                        var emailAddress = $"{i}member@email.com";
+                        if (i % 10 == 0)
+                        {
+                            firstName = $"{i} mémbęr first name";
+                            emailAddress = $"{i}mémbęr@email.com";
+                        }
                         new Person
                         {
-                            FirstName = $"{i} member first name",
+                            FirstName = firstName,
                             LastName = $"{i} member last name",
                             Email = new Email
                             {
-                                Address = $"{i}member@email.com",
+                                Address = emailAddress,
                                 Type = "Work"
                             }, 
                         };

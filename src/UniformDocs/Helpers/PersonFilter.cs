@@ -14,7 +14,9 @@ namespace UniformDocs.Helpers
             if (filter == null) throw new ArgumentNullException(nameof(filter));
             if (filter.PropertyName == nameof(Person.FirstName))
             {
-                // Match normalized string without diacritics.
+                // To handle the diacritic characters this:
+                // Normalize to form D splits characters (like è to an e, and a nonspacing `)
+                // Filter characters with the ASCII code lower than 128 to remove the "nonspacing" characters
                 return data.ToList().Where(person =>
                         new string(person.FirstName.Normalize(NormalizationForm.FormD).Where(c => c < 128).ToArray()).Contains(filter.Value) ||
                         person.FirstName.Contains(filter.Value)) // if someone is using diacritic characters in search
