@@ -36,7 +36,7 @@ namespace UniformDocs.Tests.Test
             else
             {
                 _browsersToRun.Add("Chrome");
-                //_browsersToRun.Add("ChromeNoV0");
+                _browsersToRun.Add("ChromeNoV0");
                 _browsersToRun.Add("Firefox");
                 //_browsersToRun.Add("Edge");
             }
@@ -62,7 +62,7 @@ namespace UniformDocs.Tests.Test
                     {
                         if (ex.Message.Contains("All parallel tests are currently in use"))
                         {
-                            await Task.Delay(TimeSpan.FromSeconds(20));
+                            await Task.Delay(TimeSpan.FromSeconds(60));
                             tries++;
                         }
                     }
