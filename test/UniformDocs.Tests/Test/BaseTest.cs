@@ -55,14 +55,18 @@ namespace UniformDocs.Tests.Test
                 {
                     try
                     {
+                        TestContext.Progress.WriteLine($"{TestContext.CurrentContext.Test.FullName} connecting for the {tries} time...");
                         Driver = WebDriverManager.StartDriver(_browser, Config.Timeout, serverUri);
+                        TestContext.Progress.WriteLine($"{TestContext.CurrentContext.Test.FullName} connected OK");
                         break;
                     }
                     catch (WebDriverException ex)
                     {
                         if (ex.Message.Contains("All parallel tests are currently in use"))
                         {
+                            TestContext.Progress.WriteLine($"{TestContext.CurrentContext.Test.FullName} connection FAIL...");
                             await Task.Delay(TimeSpan.FromSeconds(60));
+                            TestContext.Progress.WriteLine($"{TestContext.CurrentContext.Test.FullName} connection will retry now");
                             tries++;
                         }
                     }
