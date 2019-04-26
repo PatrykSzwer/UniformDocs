@@ -8,17 +8,16 @@ namespace UniformDocs.Tests.Test
     [TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
-    class AutoCompletePageTest : BaseTest
+    partial class AllTests : BaseTest
     {
         private AutoCompletePage _autoCompletePage;
         private MainPage _mainPage;
 
-        public AutoCompletePageTest(Config.Browser browser) : base(browser)
+        public AllTests(Config.Browser browser) : base(browser)
         {
         }
 
-        [SetUp]
-        public void SetUp()
+        public void InitAutoCompletePage()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _autoCompletePage = _mainPage.GoToAutoCompletePage();
@@ -27,6 +26,8 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void AutoCompletePage_FillStarExpectAllItemsShowUp()
         {
+            InitAutoCompletePage();
+
             WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
             _autoCompletePage.ProductsInput.Clear();
             _autoCompletePage.ProductsInput.SendKeys("*");
@@ -43,6 +44,8 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void AutoCompletePage_FillCountryNameThenSelectCountry()
         {
+            InitAutoCompletePage();
+
             WaitUntil(x => _autoCompletePage.PlaceInput.Displayed);
             _autoCompletePage.PlaceInput.Clear();
             _autoCompletePage.PlaceInput.SendKeys("P");
@@ -54,6 +57,8 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void AutoCompletePage_FillProductNameThenSelectProduct()
         {
+            InitAutoCompletePage();
+
             WaitUntil(x => _autoCompletePage.ProductsInput.Displayed);
             _autoCompletePage.PlaceInput.Clear();
             _autoCompletePage.ProductsInput.SendKeys("B");
@@ -64,6 +69,8 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void AutoCompletePage_GitHubSourceURL()
         {
+            InitAutoCompletePage();
+
             WaitUntil(x => _autoCompletePage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }
