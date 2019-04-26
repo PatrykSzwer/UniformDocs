@@ -17,6 +17,7 @@ namespace UniformDocs.Tests.Test
     [TestFixture(Config.Browser.ChromeNoV0)]
     [TestFixture(Config.Browser.Edge)]
     [TestFixture(Config.Browser.Firefox)]
+    [Parallelizable(ParallelScope.Fixtures)]
     public partial class BaseTest
     {
         protected MainPage _mainPage;
