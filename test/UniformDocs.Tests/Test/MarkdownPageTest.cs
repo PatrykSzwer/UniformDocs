@@ -4,19 +4,12 @@ using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class MarkdownPageTest : BaseTest
+    partial class BaseTest
+
     {
         private MarkdownPage _markdown;
-        private MainPage _mainPage;
 
-        public MarkdownPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitMarkdownPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _markdown = _mainPage.GoToMarkdownPage();
@@ -25,6 +18,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void MarkdownPage_CheckPreviewText()
         {
+            InitMarkdownPageTest();
             WaitUntil(x => _markdown.MarkedElement.Displayed);
 
             Assert.AreEqual("This is a structured text", _markdown.GetHeaderText());
@@ -32,6 +26,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void MarkdownPage_GitHubSourceURL()
         {
+            InitMarkdownPageTest();
             WaitUntil(x => _markdown.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

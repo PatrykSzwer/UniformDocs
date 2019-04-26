@@ -4,21 +4,12 @@ using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class ToggleButtonPageTest : BaseTest
+    partial class BaseTest
+
     {
         private ToggleButtonPage _toggleButtonPage;
-        private MainPage _mainPage;
 
-        public ToggleButtonPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitToggleButtonPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _toggleButtonPage = _mainPage.GoToToggleButtonPage();
@@ -27,6 +18,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ToggleButtonPage_CheckboxUncheckedAndCheckedAgain()
         {
+            InitToggleButtonPageTest();
             WaitUntil(x => _toggleButtonPage.ToogleButton.Displayed);
             WaitUntil(x => _toggleButtonPage.InfoLabel.Displayed);
             Assert.AreEqual("I accept terms and conditions", _toggleButtonPage.InfoLabel.Text);
@@ -38,6 +30,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ToggleButtonPage_GitHubSourceURL()
         {
+            InitToggleButtonPageTest();
             WaitUntil(x => _toggleButtonPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

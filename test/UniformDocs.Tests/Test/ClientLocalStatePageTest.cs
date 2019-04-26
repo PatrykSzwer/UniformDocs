@@ -4,21 +4,12 @@ using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class ClientLocalStateTest : BaseTest
+    partial class BaseTest
+
     {
         private ClientLocalStatePage _clientLocalStatePage;
-        private MainPage _mainPage;
 
-        public ClientLocalStateTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitClientLocalStatePageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _clientLocalStatePage = _mainPage.GoToClientLocalStatePage();
@@ -27,6 +18,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ClientLocalStatePage_HoverListItemExpectHoveredTextToShow()
         {
+            InitClientLocalStatePageTest();
             WaitUntil(x => _clientLocalStatePage.HoverableList.Displayed);
 
             // Hover the first item
@@ -49,6 +41,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ClientLocalStatePage_GitHubSourceURL()
         {
+            InitClientLocalStatePageTest();
             WaitUntil(x => _clientLocalStatePage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

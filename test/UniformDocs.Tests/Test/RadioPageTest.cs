@@ -4,21 +4,12 @@ using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class RadioPageTest : BaseTest
+    partial class BaseTest
+
     {
         private RadioPage _radioPage;
-        private MainPage _mainPage;
 
-        public RadioPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitRadioPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _radioPage = _mainPage.GoToRadioPage();
@@ -27,6 +18,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void RadioPage_RegularButton()
         {
+            InitRadioPageTest();
             WaitUntil(x => _radioPage.InfoLabel.Displayed);
             Assert.IsTrue(WaitForText(_radioPage.InfoLabel, "You like dogs", 5));
 
@@ -42,6 +34,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void RadioPage_GitHubSourceURL()
         {
+            InitRadioPageTest();
             WaitUntil(x => _radioPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

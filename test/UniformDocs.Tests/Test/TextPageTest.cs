@@ -5,21 +5,12 @@ using OpenQA.Selenium;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    internal class TextPageTest : BaseTest
+    partial class BaseTest
+
     {
         private TextPage _textPage;
-        private MainPage _mainPage;
 
-        public TextPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitTextPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _textPage = _mainPage.GoToTextPage();
@@ -28,6 +19,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextPage_TextPropagationOnUnfocus()
         {
+            InitTextPageTest();
             WaitUntil(x => _textPage.Input.Displayed);
 
             _textPage.FillInput(_textPage.Input, "Krystian");
@@ -40,6 +32,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextPage_TextPropagationWhileTyping()
         {
+            InitTextPageTest();
             WaitUntil(x => _textPage.InputDynamic.Displayed);
 
             _textPage.FillInput(_textPage.InputDynamic, "Krystian");
@@ -53,6 +46,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextPage_TextPropagationForPaperTextOnUnfocus()
         {
+            InitTextPageTest();
             // Make sure that paper element is loaded.
             WaitUntil(x => _textPage.PaperInput.Displayed);
 
@@ -69,6 +63,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextPage_TextPropagationForPaperTextWhileTyping()
         {
+            InitTextPageTest();
             // Make sure that paper element is loaded.
             WaitUntil(x => _textPage.PaperInputDynamic.Displayed);
 
@@ -83,6 +78,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextPage_GitHubSourceURL()
         {
+            InitTextPageTest();
             WaitUntil(x => _textPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

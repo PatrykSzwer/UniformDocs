@@ -5,23 +5,12 @@ using UniformDocs.Tests.Utilities;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)] //BUG on EDGE https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7194303/
-    [TestFixture(Config.Browser.Firefox)]
-    class FileUploadPageTest : BaseTest
+    partial class BaseTest
+
     {
         private FileUploadPage _fileUploadPage;
-        private MainPage _mainPage;
-        private readonly Config.Browser _browser;
-
-        public FileUploadPageTest(Config.Browser browser) : base(browser)
-        {
-            _browser = browser;
-        }
-
-        [SetUp]
-        public void SetUp()
+ 
+        public void InitFileUploadPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _fileUploadPage = _mainPage.GoToFileUploadPage();
@@ -30,6 +19,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void FileUploadPage_UploadAFile()
         {
+            InitFileUploadPageTest();
             WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
 
             string tempFilePath = Path.GetTempFileName();
@@ -48,6 +38,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void FileUploadPage_UploadAndDeleteAFile()
         {
+            InitFileUploadPageTest();
             WaitUntil(x => _fileUploadPage.CheckFileInputVisible());
 
             string tempFilePath = Path.GetTempFileName();
@@ -69,6 +60,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void FileUploadPage_GitHubSourceURL()
         {
+            InitFileUploadPageTest();
             WaitUntil(x => _fileUploadPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

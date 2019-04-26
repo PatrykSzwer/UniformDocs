@@ -9,11 +9,18 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework.Interfaces;
 using System.IO;
 using System.Net;
+using UniformDocs.Tests.Ui;
 
 namespace UniformDocs.Tests.Test
 {
-    public class BaseTest
+    [TestFixture(Config.Browser.Chrome)]
+    [TestFixture(Config.Browser.ChromeNoV0)]
+    [TestFixture(Config.Browser.Edge)]
+    [TestFixture(Config.Browser.Firefox)]
+    public partial class BaseTest
     {
+        protected MainPage _mainPage;
+
         public RemoteWebDriver Driver;
         private readonly Config.Browser _browser;
         private readonly string _browsersTc = TestContext.Parameters["Browsers"];

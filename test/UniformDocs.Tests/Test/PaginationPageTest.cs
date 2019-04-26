@@ -5,21 +5,12 @@ using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class PaginationPageTest : BaseTest
+    partial class BaseTest
+
     {
         private PaginationPage _paginationPage;
-        private MainPage _mainPage;
 
-        public PaginationPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitPaginationPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _paginationPage = _mainPage.GoToPaginationPage();
@@ -28,6 +19,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PaginationPage_Dropdown_HasCorrectOptions()
         {
+            InitPaginationPageTest();
             _paginationPage.ScrollToTheTop();
 
             WaitUntil(x => _paginationPage.DropDown.Displayed, $"Expected DropDown to be Displayed");
@@ -46,6 +38,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PaginationPage_LastButton_GoesToLastPage()
         {
+            InitPaginationPageTest();
             _paginationPage.ScrollToTheTop();
 
             WaitUntil(x => _paginationPage.DropDown.Displayed);
@@ -65,6 +58,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PaginationPage_GitHubSourceURL()
         {
+            InitPaginationPageTest();
             WaitUntil(x => _paginationPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

@@ -3,22 +3,13 @@ using UniformDocs.Tests.Utilities;
 using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
-{ 
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class PasswordPageTest : BaseTest
+{
+    partial class BaseTest
+
     {
         private PasswordPage _passwordPage;
-        private MainPage _mainPage;
 
-        public PasswordPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitPasswordPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _passwordPage = _mainPage.GoToPasswordPage();
@@ -27,6 +18,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PasswordPage_PasswordTooShort()
         {
+            InitPasswordPageTest();
             const string originalLabel = "Password must be at least 6 chars long";
             const string password = "123";
 
@@ -39,6 +31,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PasswordPage_PasswordWithProperLength()
         {
+            InitPasswordPageTest();
             const string password = "123456";
 
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
@@ -50,6 +43,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PasswordPage_ChangingPasswordToGoodThenToShort()
         {
+            InitPasswordPageTest();
             const string password = "123456";
 
             WaitUntil(x => _passwordPage.PasswordInput.Displayed);
@@ -63,6 +57,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void PasswordPage_GitHubSourceURL()
         {
+            InitPasswordPageTest();
             WaitUntil(x => _passwordPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

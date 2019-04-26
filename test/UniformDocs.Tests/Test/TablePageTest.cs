@@ -4,21 +4,12 @@ using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class TablePageTest : BaseTest
+    partial class BaseTest
+
     {
         private TablePage _tablePage;
-        private MainPage _mainPage;
 
-        public TablePageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitTablePageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _tablePage = _mainPage.GoToTablePage();
@@ -27,6 +18,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TablePage_AddNewRow()
         {
+            InitTablePageTest();
             WaitUntil(x => _tablePage.PetsTable.Displayed);
             _tablePage.AddPet();
             WaitUntil(x => _tablePage.PetsTableRows.Count == 4);
@@ -34,6 +26,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TablePage_GitHubSourceURL()
         {
+            InitTablePageTest();
             WaitUntil(x => _tablePage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

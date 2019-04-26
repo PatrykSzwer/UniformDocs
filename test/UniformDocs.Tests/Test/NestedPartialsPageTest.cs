@@ -6,21 +6,13 @@ using OpenQA.Selenium;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class NestedPartialsPageTest : BaseTest
+    partial class BaseTest
+
     {
         private NestedPartialsPage _nestedPartialsPage;
-        private MainPage _mainPage;
-
-        public NestedPartialsPageTest(Config.Browser browser) : base(browser)
-        {
-        }
 
         [SetUp]
-        public void SetUp()
+        public void InitNestedPartialsPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _nestedPartialsPage = _mainPage.GoToNestedPartialsPage();
@@ -29,6 +21,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void NestedPartialsPage_AddNewChild()
         {
+            InitNestedPartialsPageTest();
             WaitUntil(x => _nestedPartialsPage.ChildCompositions.Count > 0);
 
             var compositionsBefore = _nestedPartialsPage.ChildCompositions.Count;
@@ -42,6 +35,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void NestedPartialsPage_AddNewChildAndSubchild()
         {
+            InitNestedPartialsPageTest();
             WaitUntil(x => _nestedPartialsPage.ChildCompositions.Count > 0);
             var compositionsBefore = _nestedPartialsPage.ChildCompositions.Count;
 
@@ -59,6 +53,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void NestedPartialsPage_GitHubSourceURL()
         {
+            InitNestedPartialsPageTest();
             WaitUntil(x => _nestedPartialsPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

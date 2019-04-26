@@ -7,22 +7,11 @@ using OpenQA.Selenium;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class CardPageTest : BaseTest
+    partial class BaseTest
     {
         private CardPage _cardPage;
-        private MainPage _mainPage;
 
-        public CardPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-
-        [SetUp]
-        public void SetUp()
+        public void InitCardPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _cardPage = _mainPage.GoToCardPage();
@@ -30,6 +19,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void CardPage_GitHubSourceURL()
         {
+            InitCardPageTest();
             WaitUntil(x => _cardPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

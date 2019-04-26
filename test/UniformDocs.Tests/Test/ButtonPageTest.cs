@@ -8,11 +8,11 @@ using OpenQA.Selenium;
 namespace UniformDocs.Tests.Test
 {
 
-    partial class AllTests : BaseTest
+    partial class BaseTest
     {
         private ButtonPage _buttonPage;
 
-        public void InitButtonPage()
+        public void InitButtonPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _buttonPage = _mainPage.GoToButtonPage();
@@ -21,8 +21,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ButtonPage_RegularButton()
         {
-            InitButtonPage();
-
+            InitButtonPageTest();
             WaitUntil(x => _buttonPage.VegetablesButtonInfoLabel.Displayed);
             Assert.AreEqual("You don't have any carrots", _buttonPage.VegetablesButtonInfoLabel.Text);
 
@@ -42,8 +41,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ButtonPage_SelfButton()
         {
-            InitButtonPage();
-
+            InitButtonPageTest();
             _buttonPage.ClickButonTakeOneRegeneratingCarrot();
             WaitUntil(x => _buttonPage.GeneratingCarrotsElement.Displayed);
             Assert.IsTrue(WaitForText(_buttonPage.GeneratingCarrotsLabel, "This button will regenerate in 5 seconds!", 5));
@@ -52,8 +50,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ButtonPage_SwitchButton()
         {
-            InitButtonPage();
-
+            InitButtonPageTest();
             Assert.IsTrue(WaitForText(_buttonPage.EnableCarrotEngineLabel, "Carrot engine is off", 5));
 
             _buttonPage.ClickEnableCarrotEngine();
@@ -65,8 +62,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ButtonPage_DisabledButton()
         {
-            InitButtonPage();
-
+            InitButtonPageTest();
             Assert.IsTrue(WaitForText(_buttonPage.AddCarrotsLabel,
                 "You don't have any carrots", 5));
             _buttonPage.ClickButtonAddCarrots();
@@ -77,8 +73,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ButtonPage_ButtonWithChildren()
         {
-            InitButtonPage();
-
+            InitButtonPageTest();
             Assert.IsTrue(WaitForText(_buttonPage.BuyCarrotLabel,
                 "You don't have any carrots", 5));
             _buttonPage.ClickSpanInsideButtonBuyCarrot();
@@ -88,8 +83,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void ButtonPage_GitHubSourceURL()
         {
-            InitButtonPage();
-
+            InitButtonPageTest();
             WaitUntil(x => _buttonPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

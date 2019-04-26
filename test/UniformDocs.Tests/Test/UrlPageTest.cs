@@ -7,21 +7,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    internal class UrlPageTest : BaseTest
+    partial class BaseTest
+
     {
         private UrlPage _urlPage;
-        private MainPage _mainPage;
 
-        public UrlPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitUrlPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _urlPage = _mainPage.GoToUrlPage();
@@ -33,15 +24,11 @@ namespace UniformDocs.Tests.Test
             return (string)jsExecuter.ExecuteScript("return document.querySelector('#link-target').contentWindow.location.href");
         }
 
-        [TearDown]
-        public void TeadDown()
-        {
-            _urlPage = _mainPage.GoToUrlPage();
-        }
 
         [Test]
         public void UrlPage_ClickSimpleLink()
         {
+            InitUrlPageTest();
             IJavaScriptExecutor jsExecuter = (IJavaScriptExecutor)Driver;
             WaitUntil(x => _urlPage.SimpleMorphableLink.Displayed);
 
@@ -66,6 +53,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void UrlPage_ClickBlankTargettedLink()
         {
+            InitUrlPageTest();
             WaitUntil(x => _urlPage.BlankTargettedLink.Displayed);
 
             //control test
@@ -89,6 +77,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void UrlPage_ClickLinkWithDownloadAttribute()
         {
+            InitUrlPageTest();
             WaitUntil(x => _urlPage.LinkWithDownloadAttrib.Displayed);
 
             _urlPage.ClickLinkWithDownloadAttrib();
@@ -99,6 +88,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void UrlPage_ClickIframeTargettedLink()
         {
+            InitUrlPageTest();
             WaitUntil(x => _urlPage.IframeTargettedLink != null && _urlPage.IframeTargettedLink.Displayed);
 
             //control test
@@ -113,6 +103,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void UrlPage_GitHubSourceURL()
         {
+            InitUrlPageTest();
             WaitUntil(x => _urlPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

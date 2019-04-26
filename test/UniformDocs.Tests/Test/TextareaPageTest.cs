@@ -4,21 +4,12 @@ using NUnit.Framework;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class TextareaPageTest : BaseTest
+    partial class BaseTest
+
     {
         private TextareaPage _textareaPage;
-        private MainPage _mainPage;
 
-        public TextareaPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitTextareaPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _textareaPage = _mainPage.GoToTextareaPage();
@@ -27,6 +18,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextareaPage_WriteToTextArea()
         {
+            InitTextareaPageTest();
             const string newText = "We all love princess cake!";
 
             WaitUntil(x => _textareaPage.Textarea.Displayed);
@@ -39,6 +31,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextareaPage_CounterPropagationWhileTyping()
         {
+            InitTextareaPageTest();
             const string newText = "Love";
 
             WaitUntil(x => _textareaPage.Textarea.Displayed);
@@ -51,6 +44,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void TextareaPage_GitHubSourceURL()
         {
+            InitTextareaPageTest();
             WaitUntil(x => _textareaPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

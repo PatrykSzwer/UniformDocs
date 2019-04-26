@@ -8,26 +8,15 @@ using System.Text.RegularExpressions;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class MainPageTest : BaseTest
-    {
-        private MainPage _mainPage;
+    partial class BaseTest
 
+    {
         static string GetAppVersionFromEndPoint()
         {
             return new System.Net.WebClient().DownloadString(Config.TestedAppUrl + "/uniformdocs-app-version");
         }
 
-        public MainPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-
-        [SetUp]
-        public void SetUp()
+        public void InitMainPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
         }
@@ -35,6 +24,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void MainPage_AppVersion()
         {
+            InitMainPageTest();
             WaitUntil(x => _mainPage.AppVersionSpan.Displayed);
             Assert.AreEqual(GetAppVersionFromEndPoint(), _mainPage.AppVersionSpan.Text);
 
@@ -45,6 +35,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void MainPage_StarcounterVersion()
         {
+            InitMainPageTest();
             WaitUntil(x => _mainPage.SCVersionSpan.Displayed);
             Assert.True(Regex.IsMatch(_mainPage.SCVersionSpan.Text, @"\d+\.\d+\.\d+.\d+"));
         }

@@ -7,21 +7,12 @@ using OpenQA.Selenium;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class DatepickerPageTest : BaseTest
+    partial class BaseTest
+
     {
         private DatepickerPage _datePicker;
-        private MainPage _mainPage;
 
-        public DatepickerPageTest(Config.Browser browser) : base(browser)
-        {
-        }
-
-        [SetUp]
-        public void SetUp()
+        public void InitDatepickerPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _datePicker = _mainPage.GoToDatePickerPage();
@@ -30,6 +21,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DatepickerPage_SelectDate()
         {
+            InitDatepickerPageTest();
             WaitUntil(x => _datePicker.IsLoaded(), $"Expected date picker to be fully loaded");
 
             _datePicker.SelectThroughUniDatePicker("2016-01-01");
@@ -41,6 +33,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DatepickerPage_GitHubSourceURL()
         {
+            InitDatepickerPageTest();
             WaitUntil(x => _datePicker.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

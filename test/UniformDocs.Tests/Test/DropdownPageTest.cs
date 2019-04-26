@@ -5,24 +5,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class DropdownPageTest : BaseTest
+    partial class BaseTest
+
     {
         private DropdownPage _dropDownPage;
-        private MainPage _mainPage;
-
-        public DropdownPageTest(Config.Browser browser) : base(browser)
-        {
-        }
 
         private const string PolymerLibrary = "Polymer JavaScript library";
         private const string StarcounterDatabase = "Starcounter Database";
 
-        [SetUp]
-        public void SetUp()
+        public void InitDropdownPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _dropDownPage = _mainPage.GoToDropdownPage();
@@ -31,6 +22,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DropdownPage_PetsDropdown_SelectPets()
         {
+            InitDropdownPageTest();
             WaitUntil(x => _dropDownPage.PetsSelect.Displayed);
             _dropDownPage.SelectPet("dogs");
             Assert.IsTrue(WaitForText(_dropDownPage.PetLikeLabel, "You like dogs", 5));
@@ -43,6 +35,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DropdownPage_JuicyDropdown_SelectProduct()
         {
+            InitDropdownPageTest();
             WaitUntil(x => _dropDownPage.JuicySelect.Displayed);
             Assert.AreEqual(PolymerLibrary, new SelectElement(_dropDownPage.ProductSelect).SelectedOption.Text);
 
@@ -58,6 +51,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DropdownPage_Dropdown_SelectProduct()
         {
+            InitDropdownPageTest();
             WaitUntil(x => _dropDownPage.ProductSelect.Displayed);
             _dropDownPage.SelectProduct(StarcounterDatabase);
             Assert.IsTrue(WaitForText(_dropDownPage.JuicySelectLabel, "You have selected: Starcounter Database", 5));
@@ -70,6 +64,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void DropdownPage_GitHubSourceURL()
         {
+            InitDropdownPageTest();
             WaitUntil(x => _dropDownPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }

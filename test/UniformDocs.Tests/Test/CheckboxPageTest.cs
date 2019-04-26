@@ -5,21 +5,13 @@ using OpenQA.Selenium.Support.UI;
 
 namespace UniformDocs.Tests.Test
 {
-    [TestFixture(Config.Browser.Chrome)]
-    [TestFixture(Config.Browser.ChromeNoV0)]
-    [TestFixture(Config.Browser.Edge)]
-    [TestFixture(Config.Browser.Firefox)]
-    class CheckboxPageTest : BaseTest
+    partial class BaseTest
+
     {
         private CheckboxPage _checkboxPage;
-        private MainPage _mainPage;
-
-        public CheckboxPageTest(Config.Browser browser) : base(browser)
-        {
-        }
 
         [SetUp]
-        public void SetUp()
+        public void InitCheckboxPageTest()
         {
             _mainPage = new MainPage(Driver).GoToMainPage();
             _checkboxPage = _mainPage.GoToCheckboxPage();
@@ -28,6 +20,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void CheckboxPage_CheckboxUncheckedAndCheckedAgain()
         {
+            InitCheckboxPageTest();
             WaitUntil(x => _checkboxPage.Checkbox.Displayed);
             WaitUntil(x => _checkboxPage.InfoLabel.Displayed);
             Assert.IsTrue(WaitForText(_checkboxPage.InfoLabel, "You can drive", 5));
@@ -39,6 +32,7 @@ namespace UniformDocs.Tests.Test
         [Test]
         public void CheckboxPage_GitHubSourceURL()
         {
+            InitCheckboxPageTest();
             WaitUntil(x => _checkboxPage.GitHubSourceLinks.Displayed);
             TestGitHubSourceLinkURLs();
         }
