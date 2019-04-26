@@ -65,15 +65,11 @@ namespace UniformDocs.Tests.Test
                         if (ex.Message.Contains("All parallel tests are currently in use"))
                         {
                             TestContext.Progress.WriteLine($"{TestContext.CurrentContext.Test.FullName} connection FAIL...");
-                            await Task.Delay(TimeSpan.FromSeconds(60));
+                            Random random = new Random();
+                            await Task.Delay(TimeSpan.FromSeconds(random.Next(20, 61)));
                             TestContext.Progress.WriteLine($"{TestContext.CurrentContext.Test.FullName} connection will retry now");
                             tries++;
                         }
-                    }
-
-                    if (Driver != null)
-                    {
-                        break;
                     }
                 }
 
