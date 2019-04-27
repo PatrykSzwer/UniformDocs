@@ -30,6 +30,11 @@ namespace UniformDocs.Tests.Test
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
+            if (_failsCount >= Config.FailsBeforeStop)
+            {
+                Assert.Inconclusive($"The maximum number of {_failsCount} test errors was reached. The further tests are marked as inconclusive.");
+            }
+
             if (_browsersTc != null)
             {
                 _browsersToRun = _browsersTc.Split(',').ToList();
@@ -68,6 +73,7 @@ namespace UniformDocs.Tests.Test
 
             if (!(RestApiHelper.CheckAppRunning(Config.TestedAppName).Result))
             {
+                _failsCount++;
                 Assert.Fail($"The tested app {Config.TestedAppName} is not running");
             }
         }
@@ -77,6 +83,7 @@ namespace UniformDocs.Tests.Test
         {
             if (!(RestApiHelper.CheckAppRunning(Config.TestedAppName).Result))
             {
+                _failsCount++;
                 Assert.Fail($"The tested app {Config.TestedAppName} unexpectedly stopped during the test. " +
                             $"The following text is the last message that can be found in the Starcounter log: " +
                             $"{RestApiHelper.GetLatestLogEntry().Result}");
@@ -99,7 +106,7 @@ namespace UniformDocs.Tests.Test
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Skipped)
+            if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Skipped && _lastOutcome != null)
             {
                 if (WebDriverManager.IsCloud)
                 {
