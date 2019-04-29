@@ -9,6 +9,8 @@ namespace UniformDocs.Tests.Utilities
 {
     public static class RestApiHelper
     {
+        private const int MaxRetries = 10;
+
         public class DatabaseApplicationsJson
         {
             public IEnumerable<App> Items { get; set; }
@@ -31,23 +33,44 @@ namespace UniformDocs.Tests.Utilities
 
         public static async Task<bool> CheckAppRunning(string appName)
         {
-            HttpResponseMessage response = await new HttpClient().GetAsync($"http://{Config.InternalHost}:{Config.InternalPort}/api/admin/databases/default/applications");
+            var numberOfAttempts = 0;
 
-            if (response.IsSuccessStatusCode)
+            using (HttpClient client = new HttpClient())
             {
-                var runningAppsString = await response.Content.ReadAsStringAsync();
-                var runningApps = JsonConvert.DeserializeObject<DatabaseApplicationsJson>(runningAppsString);
-
-                foreach (var app in runningApps.Items)
+                while (true)
                 {
-                    if (app.DisplayName == appName)
+                    try
                     {
-                        return true;
+                        var response = await client.GetAsync(
+                            $"http://{Config.InternalHost}:{Config.InternalPort}/api/admin/databases/default/applications");
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var runningAppsString = await response.Content.ReadAsStringAsync();
+                            var runningApps = JsonConvert.DeserializeObject<DatabaseApplicationsJson>(runningAppsString);
+
+                            foreach (var app in runningApps.Items)
+                            {
+                                if (app.DisplayName == appName)
+                                {
+                                    return true;
+                                }
+                            }
+
+                            return false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        numberOfAttempts++;
+
+                        if (numberOfAttempts >= MaxRetries)
+                        {
+                            throw;
+                        }
                     }
                 }
             }
-
-            return false;
         }
 
         public static async Task<string> GetLatestLogEntry()
@@ -68,7 +91,7 @@ namespace UniformDocs.Tests.Utilities
                 }
             }
 
-            return String.Empty;
+            return string.Empty;
         }
     }
 }
