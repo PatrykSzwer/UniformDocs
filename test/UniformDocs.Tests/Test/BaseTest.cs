@@ -71,7 +71,7 @@ namespace UniformDocs.Tests.Test
                 Assert.Inconclusive($"The maximum number of {_failsCount} test errors was reached. The further tests are marked as inconclusive.");
             }
 
-            if (!(RestApiHelper.CheckAppRunning(Config.TestedAppName).Result))
+            if (!RestApiHelper.CheckAppRunning(Config.TestedAppName, ref _failsCount))
             {
                 _failsCount++;
                 Assert.Fail($"The tested app {Config.TestedAppName} is not running");
@@ -81,7 +81,7 @@ namespace UniformDocs.Tests.Test
         [TearDown]
         public void TearDown()
         {
-            if (!(RestApiHelper.CheckAppRunning(Config.TestedAppName).Result))
+            if (!RestApiHelper.CheckAppRunning(Config.TestedAppName, ref _failsCount))
             {
                 _failsCount++;
                 Assert.Fail($"The tested app {Config.TestedAppName} unexpectedly stopped during the test. " +

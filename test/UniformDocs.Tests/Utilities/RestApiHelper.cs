@@ -31,7 +31,7 @@ namespace UniformDocs.Tests.Utilities
             public string Message { get; set; }
         }
 
-        public static async Task<bool> CheckAppRunning(string appName)
+        public static bool CheckAppRunning(string appName, ref int failsCount)
         {
             var numberOfAttempts = 0;
 
@@ -41,12 +41,13 @@ namespace UniformDocs.Tests.Utilities
                 {
                     try
                     {
-                        var response = await client.GetAsync(
+                        var response = client.GetAsync(
                             $"http://{Config.InternalHost}:{Config.InternalPort}/api/admin/databases/default/applications");
 
-                        if (response.IsSuccessStatusCode)
+                        var httpResponseMessage = response.Result;
+                        if (httpResponseMessage.IsSuccessStatusCode)
                         {
-                            var runningAppsString = await response.Content.ReadAsStringAsync();
+                            var runningAppsString = httpResponseMessage.Content.ReadAsStringAsync().Result;
                             var runningApps = JsonConvert.DeserializeObject<DatabaseApplicationsJson>(runningAppsString);
 
                             foreach (var app in runningApps.Items)
@@ -66,6 +67,7 @@ namespace UniformDocs.Tests.Utilities
 
                         if (numberOfAttempts >= MaxRetries)
                         {
+                            failsCount++;
                             throw;
                         }
                     }
