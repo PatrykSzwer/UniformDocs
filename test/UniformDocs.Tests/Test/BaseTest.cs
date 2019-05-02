@@ -21,6 +21,7 @@ namespace UniformDocs.Tests.Test
         private ResultState _lastOutcome;
         private string _lastOutcomeMessage;
         private static int _failsCount;
+        private static bool _appNotRunning;
 
         public BaseTest(Config.Browser browser)
         {
@@ -74,19 +75,25 @@ namespace UniformDocs.Tests.Test
             if (!RestApiHelper.CheckAppRunning(Config.TestedAppName, ref _failsCount))
             {
                 _failsCount++;
-                Assert.Fail($"The tested app {Config.TestedAppName} is not running");
+                _appNotRunning = true;
+                Assert.Fail($"The tested app {Config.TestedAppName} unexpectedly stopped before the test start. " +
+                            $"The following text is the last message that can be found in the Starcounter log: " +
+                            $"{RestApiHelper.GetLatestLogEntry().Result}");
             }
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (!RestApiHelper.CheckAppRunning(Config.TestedAppName, ref _failsCount))
+            if (!_appNotRunning)
             {
-                _failsCount++;
-                Assert.Fail($"The tested app {Config.TestedAppName} unexpectedly stopped during the test. " +
-                            $"The following text is the last message that can be found in the Starcounter log: " +
-                            $"{RestApiHelper.GetLatestLogEntry().Result}");
+                if (!RestApiHelper.CheckAppRunning(Config.TestedAppName, ref _failsCount))
+                {
+                    _failsCount++;
+                    Assert.Fail($"The tested app {Config.TestedAppName} unexpectedly stopped during the test. " +
+                                $"The following text is the last message that can be found in the Starcounter log: " +
+                                $"{RestApiHelper.GetLatestLogEntry().Result}");
+                }
             }
 
             if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
