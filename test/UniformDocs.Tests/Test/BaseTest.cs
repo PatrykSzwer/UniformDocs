@@ -21,7 +21,7 @@ namespace UniformDocs.Tests.Test
         private ResultState _lastOutcome;
         private string _lastOutcomeMessage;
         private static int _failsCount;
-        private static bool _appNotRunning;
+        private static bool _appStopped;
 
         public BaseTest(Config.Browser browser)
         {
@@ -75,7 +75,7 @@ namespace UniformDocs.Tests.Test
             if (!RestApiHelper.CheckAppRunning(Config.TestedAppName, ref _failsCount))
             {
                 _failsCount++;
-                _appNotRunning = true;
+                _appStopped = true;
                 Assert.Fail($"The tested app {Config.TestedAppName} unexpectedly stopped before the test start. " +
                             $"The following text is the last message that can be found in the Starcounter log: " +
                             $"{RestApiHelper.GetLatestLogEntry().Result}");
@@ -85,7 +85,7 @@ namespace UniformDocs.Tests.Test
         [TearDown]
         public void TearDown()
         {
-            if (!_appNotRunning)
+            if (!_appStopped)
             {
                 if (!RestApiHelper.CheckAppRunning(Config.TestedAppName, ref _failsCount))
                 {
