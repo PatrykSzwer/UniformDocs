@@ -51,7 +51,7 @@ namespace UniformDocs.Tests.Test
             {
                 var tries = 0;
 
-                while (tries <= 5)
+                while (tries <= 10)
                 {
                     try
                     {
